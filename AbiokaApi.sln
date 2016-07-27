@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Infrastructure.Common", "AbiokaApi.Infrastructure.Common\AbiokaApi.Infrastructure.Common.csproj", "{1B91BA21-B8E2-4A84-9221-9E9365EFD4DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Infrastructure.Framework", "AbiokaApi.Infrastructure.Framework\AbiokaApi.Infrastructure.Framework.csproj", "{2C2128EF-7A08-4046-8B45-FBBA66EA0245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Domain", "AbiokaApi.Domain\AbiokaApi.Domain.csproj", "{D4D41960-64F6-4BC8-B7F6-20E68A98D362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.ApplicationService", "AbiokaApi.ApplicationService\AbiokaApi.ApplicationService.csproj", "{B7F4AFC8-F56C-42D0-A9B3-D8047F8413A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Repository", "AbiokaApi.Repository\AbiokaApi.Repository.csproj", "{A1BA5300-27CE-4D13-9FC7-EE48108228A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B91BA21-B8E2-4A84-9221-9E9365EFD4DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B91BA21-B8E2-4A84-9221-9E9365EFD4DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B91BA21-B8E2-4A84-9221-9E9365EFD4DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B91BA21-B8E2-4A84-9221-9E9365EFD4DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C2128EF-7A08-4046-8B45-FBBA66EA0245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C2128EF-7A08-4046-8B45-FBBA66EA0245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C2128EF-7A08-4046-8B45-FBBA66EA0245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C2128EF-7A08-4046-8B45-FBBA66EA0245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4D41960-64F6-4BC8-B7F6-20E68A98D362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4D41960-64F6-4BC8-B7F6-20E68A98D362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4D41960-64F6-4BC8-B7F6-20E68A98D362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4D41960-64F6-4BC8-B7F6-20E68A98D362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F4AFC8-F56C-42D0-A9B3-D8047F8413A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F4AFC8-F56C-42D0-A9B3-D8047F8413A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F4AFC8-F56C-42D0-A9B3-D8047F8413A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F4AFC8-F56C-42D0-A9B3-D8047F8413A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
