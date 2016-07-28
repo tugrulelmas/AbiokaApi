@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.ApplicationServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Repository", "AbiokaApi.Repository\AbiokaApi.Repository.csproj", "{A1BA5300-27CE-4D13-9FC7-EE48108228A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.UnitTest", "AbiokaApi.UnitTest\AbiokaApi.UnitTest.csproj", "{02A2DDE0-1E78-4B86-AA04-4E9A26BB4B07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Host", "AbiokaApi.Host\AbiokaApi.Host.csproj", "{8C8C8D37-7073-410B-8B28-0F2810D581FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1BA5300-27CE-4D13-9FC7-EE48108228A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A2DDE0-1E78-4B86-AA04-4E9A26BB4B07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A2DDE0-1E78-4B86-AA04-4E9A26BB4B07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A2DDE0-1E78-4B86-AA04-4E9A26BB4B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A2DDE0-1E78-4B86-AA04-4E9A26BB4B07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C8C8D37-7073-410B-8B28-0F2810D581FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8C8D37-7073-410B-8B28-0F2810D581FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8C8D37-7073-410B-8B28-0F2810D581FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8C8D37-7073-410B-8B28-0F2810D581FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

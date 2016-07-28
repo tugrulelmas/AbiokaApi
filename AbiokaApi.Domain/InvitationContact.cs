@@ -5,13 +5,13 @@ namespace AbiokaApi.Domain
 {
     public class InvitationContact : IdEntity<int>
     {
-        public virtual string Name { get; set; }
+        public string Name { get; set; }
 
-        public virtual string Email { get; set; }
+        public string Email { get; set; }
 
-        public virtual string Phone { get; set; }
+        public string Phone { get; set; }
 
-        public virtual string Message { get; set; }
+        public string Message { get; set; }
 
         public override ValidationResult Validate(ActionType actionType) {
             var collection = new ValidationMessageCollection();

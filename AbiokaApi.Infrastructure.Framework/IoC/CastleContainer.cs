@@ -1,5 +1,8 @@
 ﻿using AbiokaApi.Infrastructure.Common.IoC;
+using Castle.Core;
+using Castle.MicroKernel.ModelBuilder.Descriptors;
 using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using System;
 using System.Collections.Generic;
@@ -10,6 +13,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
     {
         public CastleContainer() {
             container = new WindsorContainer();
+            container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true));
         }
 
         /// <summary>
@@ -40,8 +44,16 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
             return container.Resolve<T>();
         }
 
-        public IDependencyContainer Register<T>(string name) {
-            container.Register(Component.For(typeof(T)).Named(name).LifeStyle.Transient);
+        public IEnumerable<T> ResolveAll<T>() {
+            return container.ResolveAll<T>();
+        }
+
+        public IDependencyContainer Register<T>(LifeStyle lifeStyle) {
+            return Register(typeof(T), lifeStyle);
+        }
+
+        public IDependencyContainer Register(Type type, LifeStyle lifeStyle) {
+            RegisterComponent(Component.For(type), lifeStyle);
             return this;
         }
 
@@ -50,17 +62,12 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         }
 
         public IDependencyContainer RegisterWithAllInterfaces(Type type) {
-            container.Register(Classes.FromThisAssembly().BasedOn(type).WithServiceAllInterfaces().Configure(c => c.LifestyleSingleton()));
+            container.Register(Classes.FromAssemblyInThisApplication().BasedOn(type).WithServiceAllInterfaces().Configure(c => c.LifestyleSingleton()));
             return this;
         }
 
-        public IDependencyContainer Register<T1, T2>() {
-            container.Register(Component.For(typeof(T1)).ImplementedBy(typeof(T2)).LifeStyle.Singleton);
-            return this;
-        }
-
-        public IDependencyContainer RegisterPerWebRequest<T1, T2>() {
-            container.Register(Component.For(typeof(T1)).ImplementedBy(typeof(T2)).LifeStyle.PerWebRequest);
+        public IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle) {
+            RegisterComponent(Component.For(typeof(T1)).ImplementedBy(typeof(T2)), lifeStyle);
             return this;
         }
 
@@ -75,6 +82,28 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         public IDependencyContainer UsingFactoryMethod<T>(Func<T> func) {
             container.Register(Component.For(typeof(T)).UsingFactoryMethod(func).LifeStyle.Singleton);
             return this;
+        }
+
+        private void RegisterComponent<T>(ComponentRegistration<T> componentRegistration, LifeStyle lifeStyle) where T: class {
+            var lifestyleDescriptor = new LifestyleDescriptor<T>(GetLifestyleType(lifeStyle));
+            componentRegistration.AddDescriptor(lifestyleDescriptor);
+            container.Register(componentRegistration);
+        }
+
+        private LifestyleType GetLifestyleType(LifeStyle lifeStyle) {
+            switch (lifeStyle)
+            {
+                case LifeStyle.PerThread:
+                    return LifestyleType.Thread;
+                case LifeStyle.PerWebRequest:
+                    return LifestyleType.PerWebRequest;
+                case LifeStyle.Singleton:
+                    return LifestyleType.Singleton;
+                case LifeStyle.Transient:
+                    return LifestyleType.Transient;
+                default:
+                    throw new NotSupportedException($"{lifeStyle} is not a supported life style.");
+            }
         }
     }
 }

@@ -48,7 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="IoC\CastleContainer.cs" />
+    <Compile Include="IoC\CastleInvocationContext.cs" />
+    <Compile Include="IoC\DynamicInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

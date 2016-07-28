@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AbiokaApi.Infrastructure.Common.Domain;
 
 namespace AbiokaApi.Repository.DatabaseObjects
 {
-    internal class DBEntity
+    internal abstract class DBEntity
     {
+        public abstract IEntity ToDomainObject();
     }
 }
