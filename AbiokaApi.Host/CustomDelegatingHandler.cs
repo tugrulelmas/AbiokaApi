@@ -1,6 +1,5 @@
 ﻿using AbiokaApi.Infrastructure.Common.Dynamic;
 using AbiokaApi.Infrastructure.Common.IoC;
-using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +31,7 @@ namespace AbiokaApi.Host
                     }
                 );
             }
-            catch (Exception ex)
+            catch 
             {
                 foreach (var dynamicHandlerItem in dynamicHandlers)
                 {

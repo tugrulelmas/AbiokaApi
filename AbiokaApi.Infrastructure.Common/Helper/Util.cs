@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AbiokaApi.Infrastructure.Common
+namespace AbiokaApi.Infrastructure.Common.Helper
 {
     public class Util
     {

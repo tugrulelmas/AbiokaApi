@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AbiokaApi.Infrastructure.Common
+namespace AbiokaApi.Infrastructure.Common.Helper
 {
     public class Ensure
     {

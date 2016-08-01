@@ -1,40 +1,48 @@
-﻿using NHibernate;
+﻿using AbiokaApi.Infrastructure.Common.Helper;
+using NHibernate;
 using System;
 
 namespace AbiokaApi.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ISessionFactory _sessionFactory;
-        private ITransaction _transaction;
+        private static readonly string contextName = "_AbiokaUnitOfWorkContext_";
+        private readonly ISessionFactory sessionFactory;
+        private static IContextHolder _contextHolder;
+        private ITransaction transaction;
 
         public ISession Session { get; private set; }
-
+        
         public static UnitOfWork Current {
-            get { return _current; }
-            set { _current = value; }
+            get {
+                object obj = _contextHolder.GetData(contextName);
+                if (obj == null)
+                {
+                    throw new ApplicationException("Abioka unit of work context is empty");
+                }
+                return (UnitOfWork)obj;
+            }
         }
 
-        [ThreadStatic]
-        private static UnitOfWork _current;
-
-        public UnitOfWork(ISessionFactory sessionFactory) {
-            _sessionFactory = sessionFactory;
+        public UnitOfWork(ISessionFactory sessionFactory, IContextHolder contextHolder) {
+            this.sessionFactory = sessionFactory;
+            _contextHolder = contextHolder;
+            contextHolder.SetData(contextName, this);
         }
 
         public void BeginTransaction() {
-            Session = _sessionFactory.OpenSession();
-            _transaction = Session.BeginTransaction();
+            Session = sessionFactory.OpenSession();
+            transaction = Session.BeginTransaction();
         }
 
         public void Commit() {
             try
             {
-                _transaction.Commit();
+                transaction.Commit();
             }
             catch
             {
-                _transaction.Rollback();
+                transaction.Rollback();
                 throw;
             }
             finally
@@ -44,7 +52,7 @@ namespace AbiokaApi.Repository
         }
 
         public void Rollback() {
-            _transaction.Rollback();
+            transaction.Rollback();
         }
     }
 }
