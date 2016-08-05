@@ -14,13 +14,13 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public SaveInvitaionContactResponse SaveInvitaionContact(SaveInvitaionContactRequest request) {
-            var aa = repository.FindById(1);
             var invitationContact = new InvitationContact
             {
                 Email = request.Email,
                 Message = request.Message,
                 Name = request.Name,
-                Phone = request.Phone
+                Phone = request.Phone,
+                IpAddress = request.IpAddress
             };
 
             repository.Add(invitationContact);

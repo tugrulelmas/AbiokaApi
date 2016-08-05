@@ -13,6 +13,8 @@ namespace AbiokaApi.Domain
 
         public string Message { get; set; }
 
+        public string IpAddress { get; set; }
+
         public override ValidationResult Validate(ActionType actionType) {
             var collection = new ValidationMessageCollection();
 

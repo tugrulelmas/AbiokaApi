@@ -2,6 +2,7 @@
 using AbiokaApi.ApplicationService.Messaging;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace AbiokaApi.Host.Controllers
@@ -17,7 +18,14 @@ namespace AbiokaApi.Host.Controllers
         [HttpGet]
         [Route("Contact")]
         public HttpResponseMessage Contract() {
-            var saveInvitaionContactRequest = new SaveInvitaionContactRequest();
+            var saveInvitaionContactRequest = new SaveInvitaionContactRequest
+            {
+                Email = string.Empty,
+                Message = string.Empty,
+                Name = string.Empty,
+                Phone = string.Empty,
+                IpAddress = HttpContext.Current.Request.UserHostAddress
+            };
             var serviceResult = invitationService.SaveInvitaionContact(saveInvitaionContactRequest);
 
             var response = Request.CreateResponse(HttpStatusCode.Created, serviceResult.Id);

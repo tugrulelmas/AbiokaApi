@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace AbiokaApi.Repository
 {
-    internal class Repository<T, TDBEntity> : IRepository<T> 
+    internal class Repository<T, TDBEntity> : IRepository<T>
         where T : IEntity
         where TDBEntity : DBEntity
     {
@@ -16,8 +16,14 @@ namespace AbiokaApi.Repository
 
         public void Add(T entity) {
             var dbObject = DBObjectMapper.FromDomainObject(entity);
-            Session.Save(dbObject);
-            entity = (T)dbObject.ToDomainObject();
+            var id = Session.Save(dbObject);
+            var idProperty = dbObject.GetType().GetProperty("Id");
+            if (idProperty != null)
+            {
+                idProperty.SetValue(dbObject, id);
+            }
+
+            dbObject.CopyToDomainObject(entity);
         }
 
         public void Delete(T entity) {
@@ -29,17 +35,27 @@ namespace AbiokaApi.Repository
 
             if (dbEntity == null)
                 return default(T);
-
-            var result = dbEntity.ToDomainObject();
-            return (T)result;
+            
+            var result = (T)dbEntity.CreateDomainObject();
+            return result;
         }
 
-        public IEnumerable<T> GetAll() {
-            return Session.Query<T>().AsEnumerable();
+        public virtual IEnumerable<T> GetAll() {
+            var list = Session.Query<TDBEntity>().AsEnumerable();
+
+            foreach (var item in list)
+            {
+                T result = default(T);
+                item.CopyToDomainObject(result);
+                yield return result;
+            }
         }
 
         public void Update(T entity) {
-            Session.Update(entity);
+            var dbObject = DBObjectMapper.FromDomainObject(entity);
+            Session.Merge(dbObject);
         }
+
+        protected IQueryable<TDBEntity> Query { get { return Session.Query<TDBEntity>(); } }
     }
 }

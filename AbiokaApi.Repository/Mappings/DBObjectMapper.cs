@@ -31,7 +31,8 @@ namespace AbiokaApi.Repository.Mappings
                 Name = invitationContact.Name,
                 Email = invitationContact.Email,
                 Phone = invitationContact.Phone,
-                Message = invitationContact.Message
+                Message = invitationContact.Message,
+                IpAddress = invitationContact.IpAddress
             };
             return result;
         }

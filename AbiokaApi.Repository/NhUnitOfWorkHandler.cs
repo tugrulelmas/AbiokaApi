@@ -15,21 +15,21 @@ namespace AbiokaApi.Repository
         }
 
         public void BeforeSend(IRequestContext requestContext) {
-            if (UnitOfWork.Current == null)
+            if (UnitOfWork.Current.Session == null)
             {
                 UnitOfWork.Current.BeginTransaction();
             }
         }
 
         public void AfterSend(IResponseContext responseContext) {
-            if (UnitOfWork.Current != null)
+            if (UnitOfWork.Current.Session != null)
             {
                 UnitOfWork.Current.Commit();
             }
         }
 
         public void OnException(IExceptionContext exceptionContext) {
-            if (UnitOfWork.Current != null)
+            if (UnitOfWork.Current.Session != null)
             {
                 UnitOfWork.Current.Rollback();
             }

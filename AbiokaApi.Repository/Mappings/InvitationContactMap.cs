@@ -11,6 +11,7 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.Email);
             Map(x => x.Phone);
             Map(x => x.Message);
+            Map(x => x.IpAddress);
             Table("Invitation.Contact");
         }
     }
