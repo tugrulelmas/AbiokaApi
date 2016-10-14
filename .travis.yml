@@ -1,0 +1,9 @@
+language: csharp
+solution: AbiokaApi.sln
+before_install:
+  - sudo apt-get install nunit-console
+install:
+  - nuget restore AbiokaApi.sln
+script:
+  - xbuild /p:Configuration=Release AbiokaApi.sln /p:TargetFrameworkVersion="v4.5"
+  - nunit-console AbiokaApi.UnitTest/bin/Release/AbiokaApi.UnitTest.dll
