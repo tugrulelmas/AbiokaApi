@@ -20,5 +20,13 @@ namespace AbiokaApi.Infrastructure.Common.Domain
         /// </summary>
         /// <returns></returns>
         IEnumerable<T> GetAll();
+
+        /// <summary>
+        /// Gets the page.
+        /// </summary>
+        /// <param name="page">The page.</param>
+        /// <param name="limit">The limit.</param>
+        /// <returns></returns>
+        IPage<T> GetPage(int page, int limit);
     }
 }

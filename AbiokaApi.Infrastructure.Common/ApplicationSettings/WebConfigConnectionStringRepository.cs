@@ -14,9 +14,7 @@ namespace AbiokaApi.Infrastructure.Common.ApplicationSettings
         /// </summary>
         /// <param name="appSettingName">Name of the application setting.</param>
         /// <returns></returns>
-        public string ReadAppSetting(string appSettingName) {
-            return ConfigurationManager.AppSettings[appSettingName];
-        }
+        public string ReadAppSetting(string appSettingName) => ConfigurationManager.AppSettings[appSettingName];
 
         /// <summary>
         /// Reads the connection string.

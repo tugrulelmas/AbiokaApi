@@ -14,6 +14,7 @@ namespace AbiokaApi.Repository
                 .UsingFactoryMethod(SessionFactory.CreateNhSessionFactory)
                 //.RegisterWithAllInterfaces(typeof(IRepository<>))
                 .Register<IInvitationContactRepository, InvitationContactRepository>()
+                .Register<IUserRepository, UserRepository>()
                 .Register<IDynamicHandler, NhUnitOfWorkHandler>(LifeStyle.Transient)
                 .Register<IUnitOfWork, UnitOfWork>(LifeStyle.Transient);
         }

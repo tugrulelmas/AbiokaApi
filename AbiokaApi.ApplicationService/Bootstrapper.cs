@@ -9,6 +9,7 @@ namespace AbiokaApi.ApplicationService
         public static void Initialise() {
             Repository.Bootstrapper.Initialise();
             DependencyContainer.Container.Register<IInvitationService, InvitationService>();
+            DependencyContainer.Container.Register<IUserService, UserService>();
         }
     }
 }

@@ -48,8 +48,10 @@
     <Compile Include="Domain\IdEntity.cs" />
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\IIdEntity.cs" />
+    <Compile Include="Domain\IPage.cs" />
     <Compile Include="Domain\IReadOnlyRepository.cs" />
     <Compile Include="Domain\IRepository.cs" />
+    <Compile Include="Domain\Page.cs" />
     <Compile Include="Dynamic\IRequestContext.cs" />
     <Compile Include="Dynamic\IExceptionContext.cs" />
     <Compile Include="Dynamic\IResponseContext.cs" />

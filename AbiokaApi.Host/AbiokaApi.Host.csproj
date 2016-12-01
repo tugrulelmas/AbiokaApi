@@ -93,6 +93,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />
     <Compile Include="CustomDelegatingHandler.cs" />
     <Compile Include="DIControllerActivator.cs" />
@@ -105,6 +106,10 @@
     <ProjectReference Include="..\AbiokaApi.ApplicationService\AbiokaApi.ApplicationService.csproj">
       <Project>{b7f4afc8-f56c-42d0-a9b3-d8047f8413a7}</Project>
       <Name>AbiokaApi.ApplicationService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbiokaApi.Domain\AbiokaApi.Domain.csproj">
+      <Project>{d4d41960-64f6-4bc8-b7f6-20e68a98d362}</Project>
+      <Name>AbiokaApi.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbiokaApi.Infrastructure.Common\AbiokaApi.Infrastructure.Common.csproj">
       <Project>{1b91ba21-b8e2-4a84-9221-9e9365efd4dd}</Project>

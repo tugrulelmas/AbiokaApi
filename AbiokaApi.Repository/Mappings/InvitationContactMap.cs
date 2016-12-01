@@ -15,4 +15,19 @@ namespace AbiokaApi.Repository.Mappings
             Table("Invitation.Contact");
         }
     }
+
+    internal class UserMap : ClassMap<UserDB>
+    {
+        public UserMap() {
+            Id(x => x.Id);
+            Map(x => x.AuthProvider);
+            Map(x => x.Email);
+            Map(x => x.IsActive);
+            Map(x => x.IsAdmin);
+            Map(x => x.Password);
+            Map(x => x.ProviderToken);
+            Map(x => x.Token);
+            Table("dbo.[User]");
+        }
+    }
 }

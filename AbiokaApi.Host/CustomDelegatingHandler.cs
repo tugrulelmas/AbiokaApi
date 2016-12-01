@@ -11,35 +11,26 @@ namespace AbiokaApi.Host
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) {
             var dynamicHandlers = DependencyContainer.Container.ResolveAll<IDynamicHandler>();
 
-            foreach (var dynamicHandlerItem in dynamicHandlers)
-            {
+            foreach (var dynamicHandlerItem in dynamicHandlers) {
                 // TODO: pass the context parameter
                 dynamicHandlerItem.BeforeSend(null);
             }
-            try
-            {
-                return base.SendAsync(request, cancellationToken).ContinueWith(
-                    (task) =>
-                    {
-                        foreach (var dynamicHandlerItem in dynamicHandlers)
-                        {
+
+            return base.SendAsync(request, cancellationToken).ContinueWith(
+                (task) => {
+                    foreach (var dynamicHandlerItem in dynamicHandlers) {
+                        if (task.Result.IsSuccessStatusCode) {
                             // TODO: pass the context parameter
                             dynamicHandlerItem.AfterSend(null);
                         }
-
-                        return task.Result;
+                        else {
+                            // TODO: pass the context parameter
+                            dynamicHandlerItem.OnException(null);
+                        }
                     }
-                );
-            }
-            catch 
-            {
-                foreach (var dynamicHandlerItem in dynamicHandlers)
-                {
-                    // TODO: pass the context parameter
-                    dynamicHandlerItem.OnException(null);
-                }
-                throw;
-            }
+
+                    return task.Result;
+                });
         }
     }
 }

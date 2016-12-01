@@ -5,6 +5,8 @@ using NHibernate;
 using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using NHibernate.Criterion;
 
 namespace AbiokaApi.Repository
 {
@@ -12,22 +14,20 @@ namespace AbiokaApi.Repository
         where T : IEntity
         where TDBEntity : DBEntity
     {
-        protected ISession Session { get { return UnitOfWork.Current.Session; } }
+        protected ISession Session => UnitOfWork.Current.Session;
 
         public void Add(T entity) {
             var dbObject = DBObjectMapper.FromDomainObject(entity);
             var id = Session.Save(dbObject);
-            var idProperty = dbObject.GetType().GetProperty("Id");
-            if (idProperty != null)
-            {
-                idProperty.SetValue(dbObject, id);
+            var idProperty = entity.GetType().GetProperty("Id");
+            if (idProperty != null) {
+                idProperty.SetValue(entity, id);
             }
-
-            dbObject.CopyToDomainObject(entity);
         }
 
         public void Delete(T entity) {
-            Session.Delete(entity);
+            var dbEntity = DBObjectMapper.FromDomainObject(entity);
+            Session.Delete(dbEntity);
         }
 
         public T FindById(object id) {
@@ -35,20 +35,15 @@ namespace AbiokaApi.Repository
 
             if (dbEntity == null)
                 return default(T);
-            
-            var result = (T)dbEntity.CreateDomainObject();
+
+            var result = (T)DBObjectMapper.ToDomainObject(dbEntity);
             return result;
         }
 
         public virtual IEnumerable<T> GetAll() {
-            var list = Session.Query<TDBEntity>().AsEnumerable();
-
-            foreach (var item in list)
-            {
-                T result = default(T);
-                item.CopyToDomainObject(result);
-                yield return result;
-            }
+            var list = Query.AsEnumerable();
+            var result = DBObjectMapper.ToDomainObjects<T>(list);
+            return result;
         }
 
         public void Update(T entity) {
@@ -56,6 +51,25 @@ namespace AbiokaApi.Repository
             Session.Merge(dbObject);
         }
 
-        protected IQueryable<TDBEntity> Query { get { return Session.Query<TDBEntity>(); } }
+        public IPage<T> GetPage(int page, int limit) {
+            var query = Session.QueryOver<TDBEntity>()
+                .Skip((page - 1) * limit)
+                .Take(limit)
+                .Future<TDBEntity>();
+
+            var list = query.ToList();
+
+            var rowcount = Session.QueryOver<TDBEntity>()
+                .Select(Projections.Count(Projections.Id()))
+                .FutureValue<int>().Value;
+
+
+            IPage<T> result = new Page<T>();
+            result.Count = rowcount;
+            result.Data = DBObjectMapper.ToDomainObjects<T>(list);
+            return result;
+        }
+
+        protected IQueryable<TDBEntity> Query => Session.Query<TDBEntity>();
     }
 }
