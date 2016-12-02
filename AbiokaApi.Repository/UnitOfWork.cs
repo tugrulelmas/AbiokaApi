@@ -10,14 +10,16 @@ namespace AbiokaApi.Repository
         private readonly ISessionFactory sessionFactory;
         private static IContextHolder _contextHolder;
         private ITransaction transaction;
+        private ISession session;
 
-        public ISession Session { get; private set; }
-        
+        public bool IsInTransaction => transaction != null && transaction.IsActive;
+
+        public ISession Session => session;
+
         public static UnitOfWork Current {
             get {
                 object obj = _contextHolder.GetData(contextName);
-                if (obj == null)
-                {
+                if (obj == null) {
                     throw new ApplicationException("Abioka unit of work context is empty");
                 }
                 return (UnitOfWork)obj;
@@ -31,8 +33,8 @@ namespace AbiokaApi.Repository
         }
 
         public void BeginTransaction() {
-            Session = sessionFactory.OpenSession();
-            transaction = Session.BeginTransaction();
+            session = sessionFactory.OpenSession();
+            transaction = session.BeginTransaction();
         }
 
         public void Commit() {
@@ -47,7 +49,7 @@ namespace AbiokaApi.Repository
             }
             finally
             {
-                Session.Close();
+                session.Close();
             }
         }
 

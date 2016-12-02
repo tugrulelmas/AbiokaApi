@@ -15,23 +15,23 @@ namespace AbiokaApi.Repository
         }
 
         public void BeforeSend(IRequestContext requestContext) {
-            if (UnitOfWork.Current.Session == null)
+            if (!unitOfWork.IsInTransaction)
             {
-                UnitOfWork.Current.BeginTransaction();
+                unitOfWork.BeginTransaction();
             }
         }
 
         public void AfterSend(IResponseContext responseContext) {
-            if (UnitOfWork.Current.Session != null)
+            if (unitOfWork.IsInTransaction)
             {
-                UnitOfWork.Current.Commit();
+                unitOfWork.Commit();
             }
         }
 
         public void OnException(IExceptionContext exceptionContext) {
-            if (UnitOfWork.Current.Session != null)
+            if (unitOfWork.IsInTransaction)
             {
-                UnitOfWork.Current.Rollback();
+                unitOfWork.Rollback();
             }
         }
     }

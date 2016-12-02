@@ -2,11 +2,10 @@
 using AbiokaApi.Repository.DatabaseObjects;
 using AbiokaApi.Repository.Mappings;
 using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using NHibernate.Criterion;
 
 namespace AbiokaApi.Repository
 {

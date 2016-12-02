@@ -15,8 +15,8 @@ namespace AbiokaApi.Repository
                 //.RegisterWithAllInterfaces(typeof(IRepository<>))
                 .Register<IInvitationContactRepository, InvitationContactRepository>()
                 .Register<IUserRepository, UserRepository>()
-                .Register<IDynamicHandler, NhUnitOfWorkHandler>(LifeStyle.Transient)
-                .Register<IUnitOfWork, UnitOfWork>(LifeStyle.Transient);
+                .Register<IDynamicHandler, NhUnitOfWorkHandler>(LifeStyle.PerWebRequest)
+                .Register<IUnitOfWork, UnitOfWork>(LifeStyle.PerWebRequest);
         }
     }
 }
