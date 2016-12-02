@@ -2,6 +2,8 @@
 {
     public interface IDynamicHandler
     {
+        short Order { get; }
+
         /// <summary>
         /// Befores the send.
         /// </summary>

@@ -1,27 +1,18 @@
-﻿using AbiokaApi.Infrastructure.Common.Exceptions.Adapters;
-using System.Net.Http;
+﻿using AbiokaApi.Infrastructure.Common.Dynamic;
+using AbiokaApi.Infrastructure.Common.IoC;
+using System.Linq;
 using System.Web.Http.Filters;
 
 namespace AbiokaApi.Host.Attributes
 {
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {
-        private readonly IExceptionAdapterFactory exceptionAdapterFactory;
-
-        public CustomExceptionFilterAttribute(IExceptionAdapterFactory exceptionAdapterFactory) {
-            this.exceptionAdapterFactory = exceptionAdapterFactory;
-        }
-
         public override void OnException(HttpActionExecutedContext context) {
-            IExceptionAdapter exceptionAdapter = exceptionAdapterFactory.GetAdapter(context.Exception);
-            var response = context.Request.CreateResponse(exceptionAdapter.HttpStatusCode, exceptionAdapter.Content);
-            
-            if (exceptionAdapter.ExtraHeaders != null) {
-                foreach (var headerItem in exceptionAdapter.ExtraHeaders) {
-                    response.Headers.Add(headerItem.Key, headerItem.Value);
-                }
+            var dynamicHandlers = DependencyContainer.Container.ResolveAll<IDynamicHandler>().OrderBy(d => d.Order);
+            IExceptionContext exceptionContext = new ExceptionContext(context);
+            foreach (var dynamicHandlerItem in dynamicHandlers) {
+                dynamicHandlerItem.OnException(exceptionContext);
             }
-            context.Response = response;
         }
     }
 }

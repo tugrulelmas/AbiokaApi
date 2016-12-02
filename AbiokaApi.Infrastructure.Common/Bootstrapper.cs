@@ -11,7 +11,8 @@ namespace AbiokaApi.Infrastructure.Common
             DependencyContainer.Container
                 .Register<IConnectionStringRepository, WebConfigConnectionStringRepository>()
                 .Register<IContextHolder, ContextHolder>()
-                .Register<IExceptionAdapterFactory, ExceptionAdapterFactory>();
+                .Register<IExceptionAdapterFactory, ExceptionAdapterFactory>()
+                .Register<ICurrentContext, CurrentContext>(LifeStyle.PerWebRequest);
         }
     }
 }

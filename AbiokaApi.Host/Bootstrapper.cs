@@ -10,7 +10,7 @@ namespace AbiokaApi.Host
     {
         public static void Initialise() {
             DependencyContainer.SetContainer(new CastleContainer());
-
+            Infrastructure.Framework.Bootstrapper.Initialise();
             ApplicationService.Bootstrapper.Initialise();
 
             var controllerTypes =

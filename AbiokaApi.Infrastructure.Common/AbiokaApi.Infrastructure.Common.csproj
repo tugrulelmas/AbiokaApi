@@ -60,7 +60,9 @@
     <Compile Include="Domain\Page.cs" />
     <Compile Include="Dynamic\IRequestContext.cs" />
     <Compile Include="Dynamic\IExceptionContext.cs" />
+    <Compile Include="Dynamic\ExceptionContext.cs" />
     <Compile Include="Dynamic\IResponseContext.cs" />
+    <Compile Include="Dynamic\RequestContext.cs" />
     <Compile Include="Exceptions\Adapters\AggregateExceptionAdapter.cs" />
     <Compile Include="Exceptions\Adapters\ApiExceptionAdapter.cs" />
     <Compile Include="Exceptions\Adapters\ArgumentNullExceptionAdapter.cs" />
@@ -71,10 +73,12 @@
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Exceptions\DenialException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="Helper\CurrentContext.cs" />
     <Compile Include="Helper\IContextHolder.cs" />
     <Compile Include="Helper\ContextHolder.cs" />
     <Compile Include="Helper\Ensure.cs" />
     <Compile Include="Dynamic\IDynamicHandler.cs" />
+    <Compile Include="Helper\ICurrentContext.cs" />
     <Compile Include="IoC\DependencyContainer.cs" />
     <Compile Include="IoC\IDependencyContainer.cs" />
     <Compile Include="IoC\IDynamicInterceptor.cs" />

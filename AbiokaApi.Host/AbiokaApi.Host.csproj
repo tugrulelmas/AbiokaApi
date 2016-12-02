@@ -91,12 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\CustomActionFilter.cs" />
     <Compile Include="Attributes\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />
-    <Compile Include="CustomDelegatingHandler.cs" />
     <Compile Include="DIControllerActivator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

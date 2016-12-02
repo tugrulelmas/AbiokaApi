@@ -6,6 +6,8 @@ namespace AbiokaApi.Repository
     {
         private readonly IUnitOfWork unitOfWork;
 
+        public short Order => 10;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="NhUnitOfWorkHandler"/> class.
         /// </summary>

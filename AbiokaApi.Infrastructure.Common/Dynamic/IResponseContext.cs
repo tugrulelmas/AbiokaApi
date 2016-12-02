@@ -2,5 +2,6 @@
 {
     public interface IResponseContext
     {
+        object Context { get; }
     }
 }
