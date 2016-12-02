@@ -44,6 +44,12 @@
   <ItemGroup>
     <Compile Include="ApplicationSettings\IConnectionStringRepository.cs" />
     <Compile Include="ApplicationSettings\WebConfigConnectionStringRepository.cs" />
+    <Compile Include="Authentication\AuthProvider.cs" />
+    <Compile Include="Authentication\CustomPrincipal.cs" />
+    <Compile Include="Authentication\IAbiokaToken.cs" />
+    <Compile Include="Authentication\ICustomPrincipal.cs" />
+    <Compile Include="Authentication\TokenPayload.cs" />
+    <Compile Include="Authentication\UserClaim.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Domain\IdEntity.cs" />
     <Compile Include="Domain\IEntity.cs" />
