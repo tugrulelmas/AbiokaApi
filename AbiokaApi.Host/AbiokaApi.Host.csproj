@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Attributes\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />

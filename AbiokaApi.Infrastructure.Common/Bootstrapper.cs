@@ -1,4 +1,5 @@
 ﻿using AbiokaApi.Infrastructure.Common.ApplicationSettings;
+using AbiokaApi.Infrastructure.Common.Exceptions.Adapters;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Infrastructure.Common.IoC;
 
@@ -9,7 +10,8 @@ namespace AbiokaApi.Infrastructure.Common
         public static void Initialise() {
             DependencyContainer.Container
                 .Register<IConnectionStringRepository, WebConfigConnectionStringRepository>()
-                .Register<IContextHolder, ContextHolder>();
+                .Register<IContextHolder, ContextHolder>()
+                .Register<IExceptionAdapterFactory, ExceptionAdapterFactory>();
         }
     }
 }
