@@ -22,8 +22,16 @@ namespace AbiokaApi.Host.Attributes
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext) {
             base.OnActionExecuted(actionExecutedContext);
 
-            foreach (var dynamicHandlerItem in dynamicHandlers) {
-                dynamicHandlerItem.AfterSend(null);
+            if (actionExecutedContext.Exception == null) {
+                foreach (var dynamicHandlerItem in dynamicHandlers) {
+                    dynamicHandlerItem.AfterSend(null);
+                }
+            }
+            else {
+                IExceptionContext exceptionContext = new ExceptionContext(actionExecutedContext);
+                foreach (var dynamicHandlerItem in dynamicHandlers) {
+                    dynamicHandlerItem.OnException(exceptionContext);
+                }
             }
         }
 
