@@ -1,5 +1,4 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
-using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.Infrastructure.Common.IoC;
 
 namespace AbiokaApi.ApplicationService
@@ -8,8 +7,7 @@ namespace AbiokaApi.ApplicationService
     {
         public static void Initialise() {
             Repository.Bootstrapper.Initialise();
-            DependencyContainer.Container.Register<IInvitationService, InvitationService>();
-            DependencyContainer.Container.Register<IUserService, UserService>();
+            DependencyContainer.Container.RegisterWithAllInterfaces<IService>();
         }
     }
 }
