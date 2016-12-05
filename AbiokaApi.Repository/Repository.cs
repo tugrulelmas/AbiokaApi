@@ -17,6 +17,9 @@ namespace AbiokaApi.Repository
 
         public void Add(T entity) {
             var dbObject = DBObjectMapper.FromDomainObject(entity);
+            if (dbObject is IDeletableEntity) {
+                ((IDeletableEntity)dbObject).IsDeleted = false;
+            }
             var id = Session.Save(dbObject);
             var idProperty = entity.GetType().GetProperty("Id");
             if (idProperty != null) {
@@ -26,6 +29,12 @@ namespace AbiokaApi.Repository
 
         public void Delete(T entity) {
             var dbEntity = DBObjectMapper.FromDomainObject(entity);
+            if (dbEntity is IDeletableEntity) {
+                ((IDeletableEntity)dbEntity).IsDeleted = true;
+                Session.Merge(dbEntity);
+                return;
+            }
+
             Session.Delete(dbEntity);
         }
 
@@ -69,6 +78,14 @@ namespace AbiokaApi.Repository
             return result;
         }
 
-        protected IQueryable<TDBEntity> Query => Session.Query<TDBEntity>();
+        protected IQueryable<TDBEntity> Query {
+            get {
+                var query = Session.Query<TDBEntity>();
+                if (typeof(IDeletableEntity).IsAssignableFrom(typeof(TDBEntity))) {
+                    query = query.Where(e => !((IDeletableEntity)e).IsDeleted);
+                }
+                return query;
+            }
+        }
     }
 }

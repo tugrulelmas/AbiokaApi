@@ -81,7 +81,7 @@ namespace AbiokaApi.Repository.Mappings
                 Token = userDB.Token,
                 Password = userDB.Password,
                 IsAdmin = userDB.IsAdmin,
-                IsActive = userDB.IsActive
+                IsDeleted = userDB.IsDeleted
             };
             return result;
         }
@@ -91,7 +91,7 @@ namespace AbiokaApi.Repository.Mappings
                 Id = user.Id,
                 AuthProvider = user.AuthProvider,
                 Email = user.Email,
-                IsActive = user.IsActive,
+                IsDeleted = user.IsDeleted,
                 IsAdmin = user.IsAdmin,
                 Password = user.Password,
                 ProviderToken = user.ProviderToken,

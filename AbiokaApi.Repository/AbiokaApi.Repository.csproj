@@ -54,10 +54,12 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="DatabaseObjects\DBEntity.cs" />
+    <Compile Include="DatabaseObjects\IDeletableEntity.cs" />
     <Compile Include="DatabaseObjects\InvitationContact.cs" />
     <Compile Include="DatabaseObjects\UserDB.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Mappings\DBObjectMapper.cs" />
+    <Compile Include="Mappings\DeletableClassMap.cs" />
     <Compile Include="Mappings\InvitationContactMap.cs" />
     <Compile Include="NhUnitOfWorkHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -22,7 +22,7 @@ namespace AbiokaApi.Repository.Mappings
             Id(x => x.Id);
             Map(x => x.AuthProvider);
             Map(x => x.Email);
-            Map(x => x.IsActive);
+            Map(x => x.IsDeleted);
             Map(x => x.IsAdmin);
             Map(x => x.Password);
             Map(x => x.ProviderToken);
@@ -31,7 +31,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class UserMap : ClassMap<UserDB>
+    internal class UserMap : DeletableClassMap<UserDB>
     {
         public UserMap() {
             Id(x => x.Id);

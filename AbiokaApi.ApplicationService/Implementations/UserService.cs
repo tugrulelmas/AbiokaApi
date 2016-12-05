@@ -36,7 +36,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 throw new DenialException("hatalı şifre");
             }
 
-            if (!user.IsActive) {
+            if (user.IsDeleted) {
                 throw new DenialException("Kullanıcı aktif değil");
             }
 

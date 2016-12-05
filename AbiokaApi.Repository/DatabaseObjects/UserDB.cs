@@ -18,10 +18,10 @@ namespace AbiokaApi.Repository.DatabaseObjects
 
         public virtual bool IsAdmin { get; set; }
 
-        public virtual bool IsActive { get; set; }
+        public virtual bool IsDeleted { get; set; }
     }
 
-    internal class UserDB : DBEntity
+    internal class UserDB : DeletableEntity
     {
         public virtual Guid Id { get; set; }
 
