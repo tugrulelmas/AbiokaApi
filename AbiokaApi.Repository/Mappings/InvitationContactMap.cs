@@ -16,9 +16,9 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class UserMap : ClassMap<UserDB>
+    internal class UserSecurityMap : ClassMap<UserSecurityDB>
     {
-        public UserMap() {
+        public UserSecurityMap() {
             Id(x => x.Id);
             Map(x => x.AuthProvider);
             Map(x => x.Email);
@@ -27,6 +27,16 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.Password);
             Map(x => x.ProviderToken);
             Map(x => x.Token);
+            Table("dbo.[User]");
+        }
+    }
+
+    internal class UserMap : ClassMap<UserDB>
+    {
+        public UserMap() {
+            Id(x => x.Id);
+            Map(x => x.Email);
+            Map(x => x.IsAdmin);
             Table("dbo.[User]");
         }
     }

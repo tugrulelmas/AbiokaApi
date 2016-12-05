@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\IUserSecurityRepository.cs" />
     <Compile Include="User.cs" />
     <Compile Include="InvitationContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IInvitationContactRepository.cs" />
+    <Compile Include="UserSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbiokaApi.Infrastructure.Common\AbiokaApi.Infrastructure.Common.csproj">

@@ -40,29 +40,21 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
 
         public readonly IWindsorContainer container;
 
-        public T Resolve<T>() {
-            return container.Resolve<T>();
-        }
+        public T Resolve<T>() => container.Resolve<T>();
 
-        public IEnumerable<T> ResolveAll<T>() {
-            return container.ResolveAll<T>();
-        }
+        public IEnumerable<T> ResolveAll<T>() => container.ResolveAll<T>();
 
-        public IDependencyContainer Register<T>(LifeStyle lifeStyle) {
-            return Register(typeof(T), lifeStyle);
-        }
+        public IDependencyContainer Register<T>(LifeStyle lifeStyle) => Register(typeof(T), lifeStyle);
 
         public IDependencyContainer Register(Type type, LifeStyle lifeStyle) {
             RegisterComponent(Component.For(type), lifeStyle);
             return this;
         }
 
-        public IDependencyContainer RegisterWithAllInterfaces<T>() {
-            return RegisterWithAllInterfaces(typeof(T));
-        }
+        public IDependencyContainer RegisterWithAllInterfaces<T>() => RegisterWithAllInterfaces(typeof(T));
 
         public IDependencyContainer RegisterWithAllInterfaces(Type type) {
-            container.Register(Classes.FromAssemblyInThisApplication().BasedOn(type).WithServiceAllInterfaces().Configure(c => c.LifestyleSingleton()));
+            container.Register(Classes.FromAssemblyInThisApplication().BasedOn(type).WithService.FromInterface().Configure(c => c.LifestyleSingleton()));
             return this;
         }
 

@@ -14,9 +14,11 @@ namespace AbiokaApi.Repository.Mappings
         static DBObjectMapper() {
             mapActions = new Dictionary<RuntimeTypeHandle, Func<IEntity, DBEntity>>();
             mapActions.Add(typeof(InvitationContact).TypeHandle, (entity) => ToInvitationContactDB((InvitationContact)entity));
+            mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserSecurityDB((UserSecurity)entity));
             mapActions.Add(typeof(User).TypeHandle, (entity) => ToUserDB((User)entity));
 
             dbMapActions = new Dictionary<RuntimeTypeHandle, Func<DBEntity, IEntity>>();
+            dbMapActions.Add(typeof(UserSecurityDB).TypeHandle, (entity) => ToUserSecurity((UserSecurityDB)entity));
             dbMapActions.Add(typeof(UserDB).TypeHandle, (entity) => ToUser((UserDB)entity));
             dbMapActions.Add(typeof(InvitationContact).TypeHandle, (entity) => ToInvitationContact((InvitationContactDB)entity));
         }
@@ -70,8 +72,8 @@ namespace AbiokaApi.Repository.Mappings
             return result;
         }
 
-        private static User ToUser(UserDB userDB) {
-            var result = new User {
+        private static UserSecurity ToUserSecurity(UserSecurityDB userDB) {
+            var result = new UserSecurity {
                 Id = userDB.Id,
                 Email = userDB.Email,
                 AuthProvider = userDB.AuthProvider,
@@ -84,8 +86,8 @@ namespace AbiokaApi.Repository.Mappings
             return result;
         }
 
-        private static UserDB ToUserDB(User user) {
-            var result = new UserDB {
+        private static UserSecurityDB ToUserSecurityDB(UserSecurity user) {
+            var result = new UserSecurityDB {
                 Id = user.Id,
                 AuthProvider = user.AuthProvider,
                 Email = user.Email,
@@ -94,6 +96,24 @@ namespace AbiokaApi.Repository.Mappings
                 Password = user.Password,
                 ProviderToken = user.ProviderToken,
                 Token = user.Token
+            };
+            return result;
+        }
+
+        private static User ToUser(UserDB userDB) {
+            var result = new User {
+                Id = userDB.Id,
+                Email = userDB.Email,
+                IsAdmin = userDB.IsAdmin
+            };
+            return result;
+        }
+
+        private static UserDB ToUserDB(User user) {
+            var result = new UserDB {
+                Id = user.Id,
+                Email = user.Email,
+                IsAdmin = user.IsAdmin
             };
             return result;
         }

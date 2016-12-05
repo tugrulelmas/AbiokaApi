@@ -1,10 +1,8 @@
-﻿using AbiokaApi.Domain;
-using AbiokaApi.Infrastructure.Common.Domain;
-using System;
+﻿using System;
 
 namespace AbiokaApi.Repository.DatabaseObjects
 {
-    internal class UserDB : DBEntity
+    internal class UserSecurityDB : DBEntity
     {
         public virtual Guid Id { get; set; }
 
@@ -21,5 +19,14 @@ namespace AbiokaApi.Repository.DatabaseObjects
         public virtual bool IsAdmin { get; set; }
 
         public virtual bool IsActive { get; set; }
+    }
+
+    internal class UserDB : DBEntity
+    {
+        public virtual Guid Id { get; set; }
+
+        public virtual string Email { get; set; }
+
+        public virtual bool IsAdmin { get; set; }
     }
 }

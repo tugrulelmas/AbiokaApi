@@ -46,6 +46,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Implementations\InvitationService.cs" />
     <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Messaging\LoginRequest.cs" />
     <Compile Include="Messaging\SaveInvitaionContactRequest.cs" />
     <Compile Include="Messaging\SaveInvitaionContactResponse.cs" />
     <Compile Include="Messaging\ServiceRequestBase.cs" />
