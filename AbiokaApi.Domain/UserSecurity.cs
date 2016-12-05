@@ -1,3 +1,4 @@
+using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Infrastructure.Common.Validation;
@@ -21,7 +22,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The authentication provider.
         /// </value>
-        public string AuthProvider { get; set; }
+        public AuthProvider AuthProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the provider token.
@@ -67,6 +68,12 @@ namespace AbiokaApi.Domain
             var hashedPassword = Util.GetHashText(string.Concat(Email.ToLowerInvariant(), "#", password));
             return hashedPassword;
         }
+
+        public static implicit operator User(UserSecurity userSecurity) => new User {
+            Id = userSecurity.Id,
+            Email = userSecurity.Email,
+            IsAdmin = userSecurity.IsAdmin
+        };
 
         public override ValidationResult Validate(ActionType actionType) {
             var collection = new ValidationMessageCollection();

@@ -25,7 +25,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         public IEnumerable<User> GetAll() => repository.GetAll();
 
         public string Login(LoginRequest loginRequest) {
-           var user = userSecurityRepository.GetByEmail(loginRequest.Email);
+            var user = userSecurityRepository.GetByEmail(loginRequest.Email);
 
             if (user == null) {
                 throw new DenialException(HttpStatusCode.NotFound, "kullanıcı bulunamadı");
@@ -55,6 +55,32 @@ namespace AbiokaApi.ApplicationService.Implementations
             userSecurityRepository.Update(user);
 
             return token;
+        }
+
+        public void Delete(Guid id) {
+            var user = repository.FindById(id);
+            if (user == null)
+                throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
+
+            repository.Delete(user);
+        }
+
+        public User Add(AddUserRequest request) {
+            var tmpUser = userSecurityRepository.GetByEmail(request.Email);
+            if (tmpUser != null)
+                throw new DenialException("UserIsAlreadyRegistered");
+
+            var userSecurity = new UserSecurity {
+                Email = request.Email,
+                IsAdmin = request.IsAdmin,
+                AuthProvider = AuthProvider.Local,
+                ProviderToken = Guid.NewGuid().ToString()
+            };
+            userSecurity.Password = userSecurity.GetHashedPassword(request.Password);
+
+            userSecurityRepository.Add(userSecurity);
+
+            return userSecurity;
         }
     }
 }

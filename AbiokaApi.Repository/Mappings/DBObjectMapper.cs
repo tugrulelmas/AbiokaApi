@@ -1,8 +1,10 @@
 ﻿using AbiokaApi.Domain;
+using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Repository.DatabaseObjects;
 using System;
 using System.Collections.Generic;
+using AbiokaApi.Infrastructure.Common.Helper;
 
 namespace AbiokaApi.Repository.Mappings
 {
@@ -76,7 +78,7 @@ namespace AbiokaApi.Repository.Mappings
             var result = new UserSecurity {
                 Id = userDB.Id,
                 Email = userDB.Email,
-                AuthProvider = userDB.AuthProvider,
+                AuthProvider = userDB.AuthProvider.EnumParse<AuthProvider>(),
                 ProviderToken = userDB.ProviderToken,
                 Token = userDB.Token,
                 Password = userDB.Password,
@@ -89,7 +91,7 @@ namespace AbiokaApi.Repository.Mappings
         private static UserSecurityDB ToUserSecurityDB(UserSecurity user) {
             var result = new UserSecurityDB {
                 Id = user.Id,
-                AuthProvider = user.AuthProvider,
+                AuthProvider = user.AuthProvider.ToString(),
                 Email = user.Email,
                 IsDeleted = user.IsDeleted,
                 IsAdmin = user.IsAdmin,

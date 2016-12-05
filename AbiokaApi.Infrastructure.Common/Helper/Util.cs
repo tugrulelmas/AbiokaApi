@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AbiokaApi.Infrastructure.Common.Helper
 {
-    public class Util
+    public static class Util
     {
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp) {
             DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
@@ -23,7 +23,7 @@ namespace AbiokaApi.Infrastructure.Common.Helper
             return hash.ToString();
         }
 
-        public static T EnumParse<T>(string value) {
+        public static T EnumParse<T>(this string value) {
             if (!typeof(T).IsEnum)
                 throw new NotSupportedException($"{typeof(T).Name} is not an enum");
 
