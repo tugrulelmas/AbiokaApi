@@ -7,7 +7,7 @@ namespace AbiokaApi.ApplicationService
     {
         public static void Initialise() {
             Repository.Bootstrapper.Initialise();
-            DependencyContainer.Container.RegisterWithAllInterfaces<IService>();
+            DependencyContainer.Container.RegisterWithFromInterface<IService>();
         }
     }
 }

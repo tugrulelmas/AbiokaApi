@@ -4,7 +4,7 @@ using AbiokaApi.Repository.DatabaseObjects;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    internal class UserRepository : Repository<User, UserDB>, IUserRepository
+    public class UserRepository : Repository<User, UserDB>, IUserRepository
     {
     }
 }

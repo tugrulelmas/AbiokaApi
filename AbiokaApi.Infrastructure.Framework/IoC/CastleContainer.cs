@@ -51,10 +51,17 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
             return this;
         }
 
-        public IDependencyContainer RegisterWithAllInterfaces<T>() => RegisterWithAllInterfaces(typeof(T));
+        public IDependencyContainer RegisterWithFromInterface<T>() => RegisterWithFromInterface(typeof(T));
 
-        public IDependencyContainer RegisterWithAllInterfaces(Type type) {
+        public IDependencyContainer RegisterWithFromInterface(Type type) {
             container.Register(Classes.FromAssemblyContaining(type).BasedOn(type).WithService.FromInterface().Configure(c => c.LifestyleSingleton()));
+            return this;
+        }
+
+        public IDependencyContainer RegisterWithDefaultInterfaces<T1, T2>() => RegisterWithDefaultInterfaces(typeof(T1), typeof(T2));
+
+        public IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2) {
+            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.DefaultInterfaces().Configure(c => c.LifestyleSingleton()));
             return this;
         }
 

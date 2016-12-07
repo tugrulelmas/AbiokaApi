@@ -4,7 +4,7 @@ using AbiokaApi.Repository.DatabaseObjects;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    internal class InvitationContactRepository : Repository<InvitationContact, InvitationContactDB>, IInvitationContactRepository
+    public class InvitationContactRepository : Repository<InvitationContact, InvitationContactDB>, IInvitationContactRepository
     {
     }
 }

@@ -1,9 +1,6 @@
-﻿using AbiokaApi.Domain;
-using AbiokaApi.Infrastructure.Common.Domain;
-
-namespace AbiokaApi.Repository.DatabaseObjects
+﻿namespace AbiokaApi.Repository.DatabaseObjects
 {
-    internal class InvitationContactDB : DBEntity
+    public class InvitationContactDB : DBEntity
     {
         public virtual int Id { get; set; }
 

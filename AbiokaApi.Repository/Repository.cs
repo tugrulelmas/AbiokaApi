@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace AbiokaApi.Repository
 {
-    internal class Repository<T, TDBEntity> : IRepository<T>
+    public class Repository<T, TDBEntity> : IRepository<T>
         where T : IEntity
         where TDBEntity : DBEntity
     {

@@ -1,6 +1,6 @@
 ﻿namespace AbiokaApi.Repository.DatabaseObjects
 {
-    internal interface IDeletableEntity
+    public interface IDeletableEntity
     {
         /// <summary>
         /// Gets or sets a value indicating whether this instance is deleted.
@@ -11,7 +11,7 @@
         bool IsDeleted { get; set; }
     }
 
-    internal abstract class DeletableEntity : DBEntity, IDeletableEntity
+    public abstract class DeletableEntity : DBEntity, IDeletableEntity
     {
         public virtual bool IsDeleted { get; set; }
     }

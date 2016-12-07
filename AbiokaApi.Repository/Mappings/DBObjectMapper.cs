@@ -8,7 +8,7 @@ using AbiokaApi.Infrastructure.Common.Helper;
 
 namespace AbiokaApi.Repository.Mappings
 {
-    internal class DBObjectMapper
+    public class DBObjectMapper
     {
         private static readonly IDictionary<RuntimeTypeHandle, Func<IEntity, DBEntity>> mapActions;
         private static readonly IDictionary<RuntimeTypeHandle, Func<DBEntity, IEntity>> dbMapActions;

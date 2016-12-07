@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    internal class UserSecurityRepository : Repository<UserSecurity, UserSecurityDB>, IUserSecurityRepository
+    public class UserSecurityRepository : Repository<UserSecurity, UserSecurityDB>, IUserSecurityRepository
     {
         public UserSecurity GetByEmail(string email) {
             var dbUser = Query.Where(u => u.Email.ToLowerInvariant() == email.ToLowerInvariant()).FirstOrDefault();

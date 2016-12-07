@@ -1,7 +1,6 @@
-﻿using AbiokaApi.Domain.Repositories;
+﻿using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Dynamic;
 using AbiokaApi.Infrastructure.Common.IoC;
-using AbiokaApi.Repository.Repositories;
 
 namespace AbiokaApi.Repository
 {
@@ -12,10 +11,7 @@ namespace AbiokaApi.Repository
 
             DependencyContainer.Container
                 .UsingFactoryMethod(SessionFactory.CreateNhSessionFactory)
-                //.RegisterWithAllInterfaces(typeof(IRepository<>))
-                .Register<IInvitationContactRepository, InvitationContactRepository>()
-                .Register<IUserRepository, UserRepository>()
-                .Register<IUserSecurityRepository, UserSecurityRepository>()
+                .RegisterWithDefaultInterfaces(typeof(IRepository<>), typeof(Repository<,>))
                 .Register<IDynamicHandler, NhUnitOfWorkHandler>(LifeStyle.PerWebRequest)
                 .Register<IUnitOfWork, UnitOfWork>(LifeStyle.PerWebRequest);
         }

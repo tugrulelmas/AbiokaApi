@@ -2,7 +2,7 @@
 
 namespace AbiokaApi.Repository.DatabaseObjects
 {
-    internal class UserSecurityDB : DBEntity
+    public class UserSecurityDB : DBEntity
     {
         public virtual Guid Id { get; set; }
 
@@ -21,7 +21,7 @@ namespace AbiokaApi.Repository.DatabaseObjects
         public virtual bool IsDeleted { get; set; }
     }
 
-    internal class UserDB : DeletableEntity
+    public class UserDB : DeletableEntity
     {
         public virtual Guid Id { get; set; }
 
