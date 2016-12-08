@@ -1,0 +1,24 @@
+﻿<md-content layout="row" layout-align="space-around" layout-padding="layout-padding" class="login-form">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-toolbar data-background-color="orange">
+            <div class="md-toolbar-tools">
+                <h2><span>Login Form</span></h2>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <form name="loginForm" ng-submit="vm.login()">
+                <md-input-container class="md-block">
+                    <label>Login</label>
+                    <input type="text" name="email" ng-model="vm.user.Email" required="" />
+                    <validation-message model="loginForm.email" field-name="Email"></validation-message>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input type="password" name="password" ng-model="vm.user.Password" required="" md-maxlength="16" />
+                    <validation-message model="loginForm.password" field-name="Password"></validation-message>
+                </md-input-container>
+                <md-button ng-disabled="!loginForm.$valid" ng-click="vm.login()" class="md-raised md-default">&nbsp Login &nbsp</md-button>
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>

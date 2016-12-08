@@ -1,0 +1,7 @@
+<div class="help-block" ng-messages="model.$error" ng-if="model.$touched">
+    <p text-danger ng-message="required">{{fieldName + " zorunlu alan."}}</p>
+    <p text-danger ng-message="md-minlength">{{vm.ml('TooShortMessage').format(vm.fieldName)}}</p>
+    <p text-danger ng-message="md-maxlength">{{vm.ml('TooLongMessage').format(vm.fieldName)}}</p>
+    <p text-danger ng-message="email">{{vm.ml('InvalidEmailMessage').format(vm.fieldName)}}</p>
+    <p text-danger ng-message="compareTo">{{vm.ml('InvalidMatchMessage').format(vm.fieldName)}}</p>
+</div>

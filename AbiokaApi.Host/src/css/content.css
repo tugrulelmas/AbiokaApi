@@ -1,0 +1,74 @@
+﻿md-card {
+    border-radius: 6px !important;
+}
+
+md-toolbar[data-background-color]{
+    border-radius: 3px;
+    margin: -20px 15px 0;
+    position: relative;
+    width: auto !important;
+}
+
+md-card [data-background-color="orange"] {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
+}
+
+md-card [data-background-color="green"] {
+    background: linear-gradient(60deg, #66bb6a, #43a047);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+}
+
+md-card [data-background-color="purple"] {
+  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+}
+
+md-card [data-background-color="blue"] {
+  background: linear-gradient(60deg, #26c6da, #00acc1);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+}
+
+md-card [data-background-color="red"] {
+  background: linear-gradient(60deg, #ef5350, #e53935);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+}
+
+md-card [data-background-color="rose"] {
+  background: linear-gradient(60deg, #ec407a, #d81b60);
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+}
+
+
+md-card [data-icon="true"] {
+  display: inline-block;
+  position: absolute;
+}
+
+md-card .card-header-icon {
+  float: left;
+  padding: 15px;
+}
+
+md-card .card-header-icon i {
+  width: 33px;
+  height: 33px;
+  text-align: center;
+  line-height: 33px;
+}
+
+md-card [data-icon="true"] + md-card-content h4 {
+    margin-top: -10px;
+    margin-left: 80px;
+    padding-bottom: 15px;
+}
+
+.grid-search-box{
+    border: none;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.grid-search-box:focus {
+  outline: none;
+}

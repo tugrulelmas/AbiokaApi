@@ -1,0 +1,68 @@
+﻿<md-content layout="row" layout-align="space-around" layout-padding="layout-padding">
+    <md-card flex="flex">
+        <md-toolbar data-background-color="orange" data-icon="true">
+            <div class="card-header-icon">
+                <i class="material-icons md-dark">face</i>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <h4><span>Users</span></h4>
+            <md-card>
+                <md-toolbar class="md-table-toolbar md-default" ng-show="(!vm.options.rowSelection || !vm.selected.length) && !vm.showSearch">
+                    <div class="md-toolbar-tools">
+                        <span></span>
+                        <span flex></span>
+                        <md-button class="md-icon-button" ng-click="loadStuff()">
+                            <md-icon>refresh</md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="vm.showSearch = true">
+                            <md-icon>filter_list</md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button">
+                            <md-icon>more_vert</md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-toolbar class="md-table-toolbar alternate" ng-show="vm.options.rowSelection && vm.selected.length && !vm.showSearch">
+                    <div class="md-toolbar-tools">
+                        <span>{{vm.selected.length}} {{vm.selected.length > 1 ? 'items' : 'item'}} selected</span>
+                        <span flex></span>
+                        <md-button class="md-icon-button">
+                            <md-icon>delete</md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-toolbar class="md-table-toolbar md-default" ng-show="vm.showSearch" aria-hidden="false">
+                    <div class="md-toolbar-tools">
+                        <md-icon>search</md-icon>
+                        <form flex>
+                            <input type="text" ng-model="vm.query.filter" class="grid-search-box" placeholder="Search" />
+                        </form>
+                        <md-button class="md-icon-button" ng-click="vm.showSearch = false">
+                            <md-icon>close</md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+
+                <md-table-container>
+                    <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
+                        <thead md-head md-order="vm.query.order" md-on-reorder="vm.getData">
+                            <tr md-row>
+                                <th md-column md-order-by="Id"><span>Id</span></th>
+                                <th md-column md-order-by="nameToLower"><span>Name</span></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row md-select="entity" md-select-id="Id" md-auto-select ng-repeat="entity in vm.entities.data">
+                                <td md-cell>{{entity.Id}}</td>
+                                <td md-cell>{{entity.Name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.entities.count}}" md-on-paginate="vm.getData" md-page-select></md-table-pagination>
+            </md-card>
+        </md-card-content>
+    </md-card>
+</md-content>

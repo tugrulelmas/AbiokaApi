@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
+using System.Web.Routing;
 
 namespace AbiokaApi.Host
 {
@@ -11,6 +12,7 @@ namespace AbiokaApi.Host
             Bootstrapper.Initialise();
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerActivator), new DIControllerActivator());
         }
