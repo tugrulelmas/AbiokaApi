@@ -10,11 +10,9 @@
             restrict: 'E',
             //transclude: true,
             scope: {
-                query: '=',
                 options: '=',
                 showDialog: '&',
-                showDeleteDialog: '&',
-                resource: '='
+                showDeleteDialog: '&'
             },
             templateUrl: '/templates/shared/dataTable.html',
             controller: dataTableController,
@@ -26,7 +24,7 @@
         function dataTableController() {
             var vm = this;
             var defaultQuery = { order: 'Name', limit: 10, page: 1 };
-            angular.extend(defaultQuery, vm.query);
+            angular.extend(defaultQuery, vm.options.query);
             vm.query = defaultQuery;
             vm.entities = {};
             vm.selected = [];
@@ -36,7 +34,7 @@
             vm.showCustomDeleteDialog = showCustomDeleteDialog;
 
             function getData() {
-                vm.promise = vm.resource.get(vm.query, success).$promise;
+                vm.promise = vm.options.resource.get(vm.query, success).$promise;
             }
 
             function success(data) {

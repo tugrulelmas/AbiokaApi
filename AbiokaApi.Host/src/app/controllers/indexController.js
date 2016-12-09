@@ -8,16 +8,18 @@
     function IndexController($timeout, $mdDialog, UserResource) {
         var vm = this;
 
-        vm.options = {};
+        vm.options = {
+            rowSelection: false,
+            resource: UserResource.users,
+            query: { order: 'Email' }
+        };
         vm.showDialog = showDialog;
         vm.showDeleteDialog = showDeleteDialog;
-        vm.query = { order: 'Email' };
-        vm.resource = UserResource.users;
 
         activate();
 
         function activate() {
-            vm.options.rowSelection = false;
+
         }
 
         function showDialog(event, entity) {
