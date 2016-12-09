@@ -11,14 +11,16 @@
         vm.cancel = cancel;
         vm.dialog = false;
         vm.isUpdate = user !== null && user.Id !== null;
-        vm.addOrUpdate = addOrUpdate;
+        vm.title = "User Detail";
+        vm.deleteMessage = user !== null ? "Do you really want to delete user whose email is " + user.Email : "";
+        vm.save = save;
         vm.deleteEntity = deleteEntity;
 
         function cancel() {
             $mdDialog.cancel();
         }
 
-        function addOrUpdate() {
+        function save() {
             vm.loading = true;
             if (vm.isUpdate) {
                 UserResource.users.update({}, vm.user).$promise.then(closeDialog);

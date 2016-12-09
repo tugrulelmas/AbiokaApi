@@ -87,9 +87,7 @@ gulp.task('inject:dist', function () {
       .pipe(gulp.dest(config.index.dest));
 });
 
-gulp.task('default', function () {
-    runSequence('copy', 'inject');
-
+gulp.task('default', ['copy', 'inject'], function () {
     watch(config.watch, function () {
         gulp.start('default');
     });

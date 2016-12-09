@@ -1,7 +1,7 @@
-﻿<md-dialog aria-label="User">
+﻿<form name="dialogForm" ng-submit="dialogForm.$valid && vm.save()" novalidate>
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>User Detail</h2>
+            <h2>{{vm.title}}</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="vm.cancel()">
                 <md-icon aria-label="Close dialog">close</md-icon>
@@ -9,8 +9,7 @@
         </div>
     </md-toolbar>
     <md-dialog-content>
-        <div class="md-dialog-content">
-            Do you really want to delete user whose email is {{vm.user.Email}}?
+        <div class="md-dialog-content" ng-transclude>
         </div>
         <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
     </md-dialog-content>
@@ -19,8 +18,8 @@
         <md-button ng-click="vm.cancel()">
             Cancel
         </md-button>
-        <md-button ng-click="vm.deleteEntity()">
-            Delete
+        <md-button type="submit">
+            OK
         </md-button>
     </md-dialog-actions>
-</md-dialog>
+</form>

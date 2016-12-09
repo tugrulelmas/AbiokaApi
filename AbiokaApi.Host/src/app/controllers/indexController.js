@@ -41,7 +41,7 @@
         }
 
         function showDeleteDialog(ev, user) {
-            showEditOrDeleteDialog(ev, user, '/templates/userDeleteDialog.html', true);
+            showEditOrDeleteDialog(ev, user, '/templates/shared/deleteDialog.html', true);
         }
 
         function showEditOrDeleteDialog(ev, user, template, isDelete) {

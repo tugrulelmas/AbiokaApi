@@ -38,7 +38,7 @@
                         <form flex>
                             <input type="text" ng-model="vm.query.filter" class="grid-search-box" placeholder="Search" />
                         </form>
-                        <md-button class="md-icon-button" ng-click="vm.showSearch = false">
+                        <md-button class="md-icon-button" ng-click="vm.query.filter = ''; vm.showSearch = false">
                             <md-icon>close</md-icon>
                         </md-button>
                     </div>
