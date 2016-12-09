@@ -9,6 +9,7 @@
         var vm = this;
 
         vm.options = {
+            loadData: true,
             rowSelection: false,
             resource: UserResource.users,
             query: {},
@@ -17,12 +18,6 @@
         };
         vm.showDialog = showDialog;
         vm.showDeleteDialog = showDeleteDialog;
-
-        activate();
-
-        function activate() {
-
-        }
 
         function showDialog(event, entity) {
             return showEditOrDeleteDialog(event, entity, '/templates/userDialog.html', false);
