@@ -12,14 +12,14 @@
                     <div class="md-toolbar-tools">
                         <span></span>
                         <span flex></span>
-                        <md-button class="md-icon-button" ng-click="loadStuff()">
+                        <md-button class="md-icon-button" ng-click="vm.getData()">
                             <md-icon>refresh</md-icon>
                         </md-button>
                         <md-button class="md-icon-button" ng-click="vm.showSearch = true">
                             <md-icon>filter_list</md-icon>
                         </md-button>
-                        <md-button class="md-icon-button">
-                            <md-icon>more_vert</md-icon>
+                        <md-button class="md-icon-button" ng-click="vm.showDialog($event, null)">
+                            <md-icon>add</md-icon>
                         </md-button>
                     </div>
                 </md-toolbar>
@@ -45,23 +45,32 @@
                 </md-toolbar>
 
                 <md-table-container>
-                    <table md-table md-row-select multiple ng-model="vm.selected" md-progress="vm.promise">
+                    <table md-table ng-model="vm.selected" md-progress="vm.promise">
                         <thead md-head md-order="vm.query.order" md-on-reorder="vm.getData">
                             <tr md-row>
-                                <th md-column md-order-by="Id"><span>Id</span></th>
-                                <th md-column md-order-by="nameToLower"><span>Name</span></th>
+                                <th md-column md-order-by="Email"><span>Email</span></th>
+                                <th md-column><span>Is Admin</span></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody md-body>
-                            <tr md-row md-select="entity" md-select-id="Id" md-auto-select ng-repeat="entity in vm.entities.data">
-                                <td md-cell>{{entity.Id}}</td>
-                                <td md-cell>{{entity.Name}}</td>
+                            <tr md-row md-select="entity" md-select-id="Id" md-auto-select ng-repeat="entity in vm.entities.Data | filter: vm.query.filter">
+                                <td md-cell>{{entity.Email}}</td>
+                                <td md-cell>{{entity.IsAdmin}}</td>
+                                <td md-cell class="right">
+                                    <md-button class="md-icon-button" ng-click="vm.showDialog($event, entity)">
+                                        <md-icon>edit</md-icon>
+                                    </md-button>
+                                    <md-button class="md-icon-button" ng-click="vm.showDeleteDialog($event, entity)">
+                                        <md-icon>delete</md-icon>
+                                    </md-button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </md-table-container>
 
-                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.entities.count}}" md-on-paginate="vm.getData" md-page-select></md-table-pagination>
+                <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.entities.Count}}" md-on-paginate="vm.getData" md-page-select></md-table-pagination>
             </md-card>
         </md-card-content>
     </md-card>

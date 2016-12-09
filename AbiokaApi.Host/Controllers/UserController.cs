@@ -1,5 +1,6 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
 using AbiokaApi.ApplicationService.Messaging;
+using AbiokaApi.Domain;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -23,6 +24,13 @@ namespace AbiokaApi.Host.Controllers
 
             var response = Request.CreateResponse(HttpStatusCode.OK, users);
             return response;
+        }
+
+        [Route("")]
+        [HttpGet]
+        public HttpResponseMessage Get([FromUri]int page, [FromUri]int limit, [FromUri]string order) {
+            var result = userService.GetWithPage(page, limit, order);
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [AllowAnonymous]
@@ -49,6 +57,14 @@ namespace AbiokaApi.Host.Controllers
             var user = userService.Add(request);
 
             return Request.CreateResponse(HttpStatusCode.Created, user);
+        }
+
+        [HttpPut]
+        [Route("")]
+        public HttpResponseMessage Update([FromBody]User user) {
+            userService.Update(user);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

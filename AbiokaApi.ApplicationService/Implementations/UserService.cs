@@ -3,6 +3,7 @@ using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
+using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -58,10 +59,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public void Delete(Guid id) {
-            var user = repository.FindById(id);
-            if (user == null)
-                throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
-
+            var user = GetUser(id);
             repository.Delete(user);
         }
 
@@ -81,6 +79,22 @@ namespace AbiokaApi.ApplicationService.Implementations
             userSecurityRepository.Add(userSecurity);
 
             return userSecurity;
+        }
+
+        public IPage<User> GetWithPage(int page, int limit, string order) => repository.GetPage(page, limit);
+
+        public void Update(User user) {
+            var dbUser = GetUser(user.Id);
+            dbUser.IsAdmin = user.IsAdmin;
+            repository.Update(dbUser);
+        }
+
+        private User GetUser(Guid id) {
+            var user = repository.FindById(id);
+            if (user == null)
+                throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
+
+            return user;
         }
     }
 }

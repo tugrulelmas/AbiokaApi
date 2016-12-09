@@ -4,6 +4,7 @@
     angular.module('abioka', [
         'ngMessages',
         'ngCookies',
+        'ngResource',
         'ui.router',
         'ngMaterial',
         'md.data.table']

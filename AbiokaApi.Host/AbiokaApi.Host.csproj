@@ -116,6 +116,7 @@
     <Content Include="src\app\controllers\indexController.js" />
     <Content Include="src\app\controllers\loginController.js" />
     <Content Include="src\app\controllers\mainController.js" />
+    <Content Include="src\app\controllers\userDialogController.js" />
     <Content Include="src\app\controllers\weddingController.js" />
     <Content Include="src\app\directives\backImgDirective.js" />
     <Content Include="src\app\directives\customOnChangeDirective.js" />
@@ -124,6 +125,7 @@
     <Content Include="src\app\directives\validationMessage.js" />
     <Content Include="src\app\injectors\errorInjector.js" />
     <Content Include="src\app\injectors\tokenInjector.js" />
+    <Content Include="src\app\resources\userResource.js" />
     <Content Include="src\app\services\alert.js" />
     <Content Include="src\app\services\localSignInService.js" />
     <Content Include="src\app\services\userService.js" />
@@ -132,6 +134,8 @@
     <Content Include="src\templates\index.html" />
     <Content Include="src\templates\login.html" />
     <Content Include="src\templates\shared\messages.html" />
+    <Content Include="src\templates\userDeleteDialog.html" />
+    <Content Include="src\templates\userDialog.html" />
     <Content Include="src\Views\web.config" />
     <Content Include="src\Views\_ViewStart.cshtml" />
     <Content Include="src\Views\Home\Detail.cshtml" />

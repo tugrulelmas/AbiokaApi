@@ -1,0 +1,35 @@
+﻿<form name="dialogForm" ng-submit="dialogForm.$valid && vm.addOrUpdate()" novalidate>
+    <md-dialog aria-label="User">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>User Detail</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block">
+                    <label>Email</label>
+                    <input type="text" name="email" ng-model="vm.user.Email" ng-disabled="vm.isUpdate" required />
+                    <validation-message model="dialogForm.email" field-name="Email"></validation-message>
+                </md-input-container>
+                <md-checkbox ng-model="vm.user.IsAdmin" aria-label="Is Admin">
+                    Is Admin
+                </md-checkbox>
+            </div>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="vm.cancel()">
+                Cancel
+            </md-button>
+            <md-button type="submit">
+                OK
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>
+</form>

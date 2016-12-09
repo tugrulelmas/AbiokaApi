@@ -24,6 +24,7 @@
               packageFolder + 'angular-animate/angular-animate.js',
               packageFolder + 'angular-aria/angular-aria.js',
               packageFolder + 'angular-cookies/angular-cookies.js',
+              packageFolder + 'angular-resource/angular-resource.js',
               packageFolder + 'angular-ui-router/release/angular-ui-router.js',
               packageFolder + 'angular-messages/angular-messages.js',
               packageFolder + 'angular-material/angular-material.js',

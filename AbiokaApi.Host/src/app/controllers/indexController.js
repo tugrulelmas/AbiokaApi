@@ -5,14 +5,16 @@
       .controller('IndexController', IndexController);
 
     /* @ngInject */
-    function IndexController($timeout) {
+    function IndexController($timeout, $mdDialog, UserResource) {
         var vm = this;
 
         vm.options = {};
-        vm.entities = { count: 2, data: [{ "Id": 1, "Name": "Foo 1" }, { "Id": 2, "Name": "Foo 2" }] };
+        vm.entities = {};
         vm.selected = [];
         vm.getData = getData;
         vm.promise = $timeout(function () { }, 2000);
+        vm.showDialog = showDialog;
+        vm.showDeleteDialog = showDeleteDialog;
         vm.query = {
             order: 'Name',
             limit: 5,
@@ -22,21 +24,47 @@
         activate();
 
         function activate() {
-            vm.options.rowSelection = true;
+            vm.options.rowSelection = false;
+            getData();
         }
 
         function getData() {
-            //vm.promise = FooService.foos.get(vm.query, success).$promise;
-            vm.promise = $q(function(resolve, reject) {
-              $timeout(function() {
-                  vm.entities = {count: 2, data: [{"Id": 3, "Name": "Foo 3"}, {"Id": 4, "Name": "Foo 4"}]};
-                  resolve();
-              }, 5000);
-            });
+            vm.promise = UserResource.users.get(vm.query, success).$promise;
         }
 
         function success(data) {
             vm.entities = data;
+        }
+
+        function showDialog(ev, user) {
+            showEditOrDeleteDialog(ev, user, '/templates/userDialog.html', false);
+        }
+
+        function showDeleteDialog(ev, user) {
+            showEditOrDeleteDialog(ev, user, '/templates/userDeleteDialog.html', true);
+        }
+
+        function showEditOrDeleteDialog(ev, user, template, isDelete) {
+            var tmpUser = angular.copy(user);
+            $mdDialog.show({
+                controller: 'UserDialogController',
+                controllerAs: 'vm',
+                templateUrl:template ,
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false,
+                locals: {
+                    user: tmpUser
+                }
+            })
+            .then(function (updatedUser) {
+                if (isDelete) {
+                    vm.entities.Data.splice(vm.entities.Data.indexOf(user), 1);
+                } else {
+                    angular.copy(updatedUser, user);
+                }
+            }, function () {
+            });
         }
     }
 })();

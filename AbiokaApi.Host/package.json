@@ -17,6 +17,7 @@
     "angular-material": "^1.1.1",
     "angular-material-data-table": "^0.10.9",
     "angular-messages": "^1.5.9",
+    "angular-resource": "^1.5.9",
     "angular-ui-router": "^0.3.0"
   },
   "devDependencies": {

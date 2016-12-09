@@ -72,3 +72,7 @@ md-card [data-icon="true"] + md-card-content h4 {
 .grid-search-box:focus {
   outline: none;
 }
+
+.right{
+    text-align: right !important;
+}
