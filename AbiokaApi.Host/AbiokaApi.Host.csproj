@@ -120,6 +120,8 @@
     <Content Include="src\app\controllers\weddingController.js" />
     <Content Include="src\app\directives\backImgDirective.js" />
     <Content Include="src\app\directives\customOnChangeDirective.js" />
+    <Content Include="src\app\directives\dataTableDirective.js" />
+    <Content Include="src\app\directives\deleteDialogDirective.js" />
     <Content Include="src\app\directives\editDialogDirective.js" />
     <Content Include="src\app\directives\fileUploadDirective.js" />
     <Content Include="src\app\directives\tokenDirective.js" />
@@ -134,6 +136,8 @@
     <Content Include="src\js\base64.js" />
     <Content Include="src\templates\index.html" />
     <Content Include="src\templates\login.html" />
+    <Content Include="src\templates\shared\dataTable.html" />
+    <Content Include="src\templates\shared\deleteComponent.html" />
     <Content Include="src\templates\shared\editDialog.html" />
     <Content Include="src\templates\shared\messages.html" />
     <Content Include="src\templates\shared\deleteDialog.html" />

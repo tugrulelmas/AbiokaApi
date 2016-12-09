@@ -1,10 +1,10 @@
-﻿<edit-dialog cancel="vm.cancel()" save="vm.save()" title="{{vm.title}}" loading="vm.loading">
+﻿<edit-dialog resource="vm.resource" entity="vm.entity" title="{{vm.title}}">
     <md-input-container class="md-block">
         <label>Email</label>
-        <input type="text" name="email" ng-model="vm.user.Email" ng-disabled="vm.isUpdate" required />
+        <input type="text" name="email" ng-model="vm.entity.Email" ng-disabled="vm.isUpdate" required />
         <validation-message model="dialogForm.email" field-name="Email"></validation-message>
     </md-input-container>
-    <md-checkbox ng-model="vm.user.IsAdmin" aria-label="Is Admin">
+    <md-checkbox ng-model="vm.entity.IsAdmin" aria-label="Is Admin">
         Is Admin
     </md-checkbox>
 </edit-dialog>

@@ -1,4 +1,4 @@
-﻿<md-dialog aria-label="User">
+﻿<div>
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{vm.title}}</h2>
@@ -10,7 +10,7 @@
     </md-toolbar>
     <md-dialog-content>
         <div class="md-dialog-content">
-            {{vm.deleteMessage}}
+            {{vm.message}}
         </div>
         <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
     </md-dialog-content>
@@ -23,4 +23,4 @@
             Delete
         </md-button>
     </md-dialog-actions>
-</md-dialog>
+</div>
