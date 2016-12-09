@@ -7,7 +7,7 @@
     angularFilesort = require('gulp-angular-filesort'),
     ngAnnotate = require('gulp-ng-annotate'),
     concat = require('gulp-concat'),
-    minifyCss = require('gulp-minify-css'),
+    cleanCSS = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
     header = require('gulp-header'),
     rev = require('gulp-rev'),
@@ -37,7 +37,7 @@ gulp.task('clean', function (cb) {
             .pipe(rimraf());
 });
 
-gulp.task('inject', function () {
+gulp.task('inject', ['copy'], function () {
     var css = gulp.src(config.css.src)
               .pipe(gulp.dest(config.css.dest));
 
@@ -59,7 +59,7 @@ gulp.task('inject', function () {
 gulp.task('inject:dist', function () {
     var css = gulp.src(config.css.src)
               .pipe(concat("content.min.css"))
-              .pipe(minifyCss())
+              .pipe(cleanCSS())
               .pipe(header(config.banner, { pkg: pkg }))
               .pipe(rev())
               .pipe(gulp.dest(config.css.dest));
@@ -87,9 +87,9 @@ gulp.task('inject:dist', function () {
       .pipe(gulp.dest(config.index.dest));
 });
 
-gulp.task('default', ['copy', 'inject'], function () {
+gulp.task('default', ['inject'], function () {
     watch(config.watch, function () {
-        gulp.start('default');
+        gulp.start('inject');
     });
 });
 
