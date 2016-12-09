@@ -59,13 +59,16 @@ namespace AbiokaApi.Repository
             Session.Merge(dbObject);
         }
 
-        public IPage<T> GetPage(int page, int limit) {
+        public IPage<T> GetPage(PageRequest pageRequest) {
             var query = Session.QueryOver<TDBEntity>()
-                .Skip((page - 1) * limit)
-                .Take(limit)
-                .Future<TDBEntity>();
+                .Skip((pageRequest.Page - 1) * pageRequest.Limit)
+                .Take(pageRequest.Limit);
 
-            var list = query.ToList();
+            if (!string.IsNullOrWhiteSpace(pageRequest.Order)) {
+                query.UnderlyingCriteria.AddOrder(new Order(pageRequest.Order, pageRequest.Ascending));
+            }
+
+            var list = query.Future<TDBEntity>().ToList();
 
             var rowcount = Session.QueryOver<TDBEntity>()
                 .Select(Projections.Count(Projections.Id()))

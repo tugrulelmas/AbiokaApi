@@ -9,11 +9,12 @@ using System.Web.Http;
 namespace AbiokaApi.Host.Controllers
 {
     [RoutePrefix("api/User")]
-    public class UserController : BaseApiController
+    public class UserController : BaseCrudController<User>
     {
         private readonly IUserService userService;
 
-        public UserController(IUserService userService) {
+        public UserController(IUserService userService)
+            : base(userService) {
             this.userService = userService;
         }
 
@@ -26,13 +27,6 @@ namespace AbiokaApi.Host.Controllers
             return response;
         }
 
-        [Route("")]
-        [HttpGet]
-        public HttpResponseMessage Get([FromUri]int page, [FromUri]int limit, [FromUri]string order) {
-            var result = userService.GetWithPage(page, limit, order);
-            return Request.CreateResponse(HttpStatusCode.OK, result);
-        }
-
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
@@ -42,14 +36,6 @@ namespace AbiokaApi.Host.Controllers
             var response = Request.CreateResponse(HttpStatusCode.OK, token);
             return response;
         }
-        
-        [HttpDelete]
-        [Route("{id}")]
-        public HttpResponseMessage Delete([FromUri]Guid id) {
-            userService.Delete(id);
-
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
 
         [HttpPost]
         [Route("")]
@@ -57,14 +43,6 @@ namespace AbiokaApi.Host.Controllers
             var user = userService.Add(request);
 
             return Request.CreateResponse(HttpStatusCode.Created, user);
-        }
-
-        [HttpPut]
-        [Route("")]
-        public HttpResponseMessage Update([FromBody]User user) {
-            userService.Update(user);
-
-            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

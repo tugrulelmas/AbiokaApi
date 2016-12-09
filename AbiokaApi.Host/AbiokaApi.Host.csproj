@@ -126,6 +126,8 @@
     <Content Include="src\app\directives\fileUploadDirective.js" />
     <Content Include="src\app\directives\tokenDirective.js" />
     <Content Include="src\app\directives\validationMessage.js" />
+    <Content Include="src\app\filters\boolFilter.js" />
+    <Content Include="src\app\filters\picker.js" />
     <Content Include="src\app\injectors\errorInjector.js" />
     <Content Include="src\app\injectors\tokenInjector.js" />
     <Content Include="src\app\resources\userResource.js" />
@@ -163,8 +165,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\CustomActionFilter.cs" />
+    <Compile Include="Attributes\CustomDirectRouteProvider.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\BaseCRUDController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />

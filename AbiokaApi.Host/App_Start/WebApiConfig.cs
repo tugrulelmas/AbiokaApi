@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using AbiokaApi.Host.Attributes;
+using System.Linq;
 using System.Web.Http;
 
 namespace AbiokaApi.Host
@@ -8,7 +9,7 @@ namespace AbiokaApi.Host
         public static void Register(HttpConfiguration config) {
             // Web API configuration and services
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes(new CustomDirectRouteProvider());
 
             //var cors = new EnableCorsAttribute("*", "*", "*");
             //config.EnableCors(cors);

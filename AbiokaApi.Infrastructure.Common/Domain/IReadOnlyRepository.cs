@@ -24,9 +24,8 @@ namespace AbiokaApi.Infrastructure.Common.Domain
         /// <summary>
         /// Gets the page.
         /// </summary>
-        /// <param name="page">The page.</param>
-        /// <param name="limit">The limit.</param>
+        /// <param name="pageRequest">The page request.</param>
         /// <returns></returns>
-        IPage<T> GetPage(int page, int limit);
+        IPage<T> GetPage(PageRequest pageRequest);
     }
 }

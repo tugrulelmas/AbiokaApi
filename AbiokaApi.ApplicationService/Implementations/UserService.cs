@@ -11,13 +11,14 @@ using System.Net;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
-    public class UserService : IUserService
+    public class UserService : CrudService<User>, IUserService
     {
         private readonly IUserRepository repository;
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly IAbiokaToken abiokaToken;
 
-        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IAbiokaToken abiokaToken) {
+        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IAbiokaToken abiokaToken)
+            : base(repository) {
             this.repository = repository;
             this.userSecurityRepository = userSecurityRepository;
             this.abiokaToken = abiokaToken;
@@ -58,9 +59,8 @@ namespace AbiokaApi.ApplicationService.Implementations
             return token;
         }
 
-        public void Delete(Guid id) {
-            var user = GetUser(id);
-            repository.Delete(user);
+        public override void Add(User entiy) {
+            throw new NotSupportedException();
         }
 
         public User Add(AddUserRequest request) {
@@ -81,20 +81,10 @@ namespace AbiokaApi.ApplicationService.Implementations
             return userSecurity;
         }
 
-        public IPage<User> GetWithPage(int page, int limit, string order) => repository.GetPage(page, limit);
-
-        public void Update(User user) {
-            var dbUser = GetUser(user.Id);
-            dbUser.IsAdmin = user.IsAdmin;
+        public override void Update(User entiy) {
+            var dbUser = GetEntity(entiy.Id);
+            dbUser.IsAdmin = entiy.IsAdmin;
             repository.Update(dbUser);
-        }
-
-        private User GetUser(Guid id) {
-            var user = repository.FindById(id);
-            if (user == null)
-                throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
-
-            return user;
         }
     }
 }

@@ -39,15 +39,20 @@
         <table md-table ng-model="vm.selected" md-progress="vm.promise">
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.getData">
                 <tr md-row>
-                    <th md-column md-order-by="Email"><span>Email</span></th>
-                    <th md-column><span>Is Admin</span></th>
+                    <th ng-if="column.order" md-order-by="{{column.name}}" md-column ng-repeat="column in vm.options.columns">
+                        <span>{{column.text}}</span>
+                    </th>
+                    <th ng-if="!column.order" md-column ng-repeat="column in vm.options.columns">
+                        <span>{{column.text}}</span>
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody md-body>
                 <tr md-row md-select="entity" md-select-id="Id" md-auto-select ng-repeat="entity in vm.entities.Data | filter: vm.query.filter">
-                    <td md-cell>{{entity.Email}}</td>
-                    <td md-cell>{{entity.IsAdmin}}</td>
+                    <td md-cell ng-repeat="column in vm.options.columns">
+                        <span>{{entity[column.name] | picker: column.filter}}</span>
+                    </td>
                     <td md-cell class="right">
                         <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, entity)">
                             <md-icon>edit</md-icon>

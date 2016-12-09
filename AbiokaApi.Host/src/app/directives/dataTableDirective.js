@@ -23,7 +23,7 @@
 
         function dataTableController() {
             var vm = this;
-            var defaultQuery = { order: 'Name', limit: 10, page: 1 };
+            var defaultQuery = { order: ' ', limit: 10, page: 1 };
             angular.extend(defaultQuery, vm.options.query);
             vm.query = defaultQuery;
             vm.entities = {};
@@ -44,7 +44,7 @@
             function showEditDialog(event, entity) {
                 var tmpEntity = angular.copy(entity);
                 vm.showDialog({ event: event, entity: tmpEntity }).then(function (updatedEntity) {
-                    angular.copy(updatedEntity, entity); 
+                    angular.copy(updatedEntity, entity);
                 });
             }
 

@@ -57,6 +57,7 @@
     <Compile Include="Domain\IPage.cs" />
     <Compile Include="Domain\IReadOnlyRepository.cs" />
     <Compile Include="Domain\IRepository.cs" />
+    <Compile Include="Domain\PageRequest.cs" />
     <Compile Include="Domain\Page.cs" />
     <Compile Include="Dynamic\IRequestContext.cs" />
     <Compile Include="Dynamic\IExceptionContext.cs" />

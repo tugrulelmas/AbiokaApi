@@ -11,7 +11,9 @@
         vm.options = {
             rowSelection: false,
             resource: UserResource.users,
-            query: { order: 'Email' }
+            query: {},
+            columns: [{ name: "Email", text: "Email", order: true },
+                      { name: "IsAdmin", text: "Is Admin", filter: 'boolFilter' }]
         };
         vm.showDialog = showDialog;
         vm.showDeleteDialog = showDeleteDialog;
