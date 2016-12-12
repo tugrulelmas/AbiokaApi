@@ -3,7 +3,6 @@ using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
-using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -11,15 +10,13 @@ using System.Net;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
-    public class UserService : CrudService<User>, IUserService
+    public class UserService : ReadService<User>, IUserService
     {
-        private readonly IUserRepository repository;
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly IAbiokaToken abiokaToken;
 
         public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IAbiokaToken abiokaToken)
             : base(repository) {
-            this.repository = repository;
             this.userSecurityRepository = userSecurityRepository;
             this.abiokaToken = abiokaToken;
         }
@@ -30,16 +27,16 @@ namespace AbiokaApi.ApplicationService.Implementations
             var user = userSecurityRepository.GetByEmail(loginRequest.Email);
 
             if (user == null) {
-                throw new DenialException(HttpStatusCode.NotFound, "kullanıcı bulunamadı");
+                throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
             }
 
             var hashedPassword = user.GetHashedPassword(loginRequest.Password);
             if (user.Password != hashedPassword) {
-                throw new DenialException("hatalı şifre");
+                throw new DenialException("WrongPassword");
             }
 
             if (user.IsDeleted) {
-                throw new DenialException("Kullanıcı aktif değil");
+                throw new DenialException("UserIsNotActive");
             }
 
             var localToken = Guid.NewGuid().ToString();
@@ -57,10 +54,6 @@ namespace AbiokaApi.ApplicationService.Implementations
             userSecurityRepository.Update(user);
 
             return token;
-        }
-
-        public override void Add(User entiy) {
-            throw new NotSupportedException();
         }
 
         public User Add(AddUserRequest request) {
@@ -81,10 +74,15 @@ namespace AbiokaApi.ApplicationService.Implementations
             return userSecurity;
         }
 
-        public override void Update(User entiy) {
+        public void Update(User entiy) {
             var dbUser = GetEntity(entiy.Id);
             dbUser.IsAdmin = entiy.IsAdmin;
             repository.Update(dbUser);
+        }
+
+        public void Delete(Guid id) {
+            var entity = GetEntity(id);
+            repository.Delete(entity);
         }
     }
 }

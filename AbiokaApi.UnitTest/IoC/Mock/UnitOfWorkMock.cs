@@ -15,8 +15,6 @@ namespace AbiokaApi.UnitTest.IoC.Mock
             SessionFactoryMock = sessionFactoryMock;
         }
 
-        public static UnitOfWorkMock Create() {
-            return new UnitOfWorkMock(new Mock<ISessionFactory>(), ContextHolderMock.Create());
-        }
+        public static UnitOfWorkMock Create() => new UnitOfWorkMock(new Mock<ISessionFactory>(), ContextHolderMock.Create());
     }
 }

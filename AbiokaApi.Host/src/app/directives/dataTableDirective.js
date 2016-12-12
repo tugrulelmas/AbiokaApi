@@ -53,6 +53,7 @@
             var tmpEntity = angular.copy(entity);
             vm.showDeleteDialog({ event: event, entity: tmpEntity }).then(function (deletedEntity) {
                 vm.entities.Data.splice(vm.entities.Data.indexOf(entity), 1);
+                vm.entities.Count -= 1;
             });
         }
         $scope.$watch("vm.options.loadData", function (newVal) {

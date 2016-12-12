@@ -168,7 +168,8 @@
     <Compile Include="Attributes\CustomDirectRouteProvider.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\BaseCRUDController.cs" />
+    <Compile Include="Controllers\BaseReadController.cs" />
+    <Compile Include="Controllers\BaseCrudController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\InvitationController.cs" />

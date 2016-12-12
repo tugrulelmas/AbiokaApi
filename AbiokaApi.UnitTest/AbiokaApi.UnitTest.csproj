@@ -91,7 +91,10 @@
     <Compile Include="IoC\Mock\UnitOfWorkMock.cs" />
     <Compile Include="IoC\ContextHolderTest.cs" />
     <Compile Include="IoC\UnitOfWorkTest.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Service\Mock\ReadServiceMock.cs" />
+    <Compile Include="Service\Mock\UserServiceMock.cs" />
+    <Compile Include="Service\ReadServiceTest.cs" />
+    <Compile Include="Service\UserServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

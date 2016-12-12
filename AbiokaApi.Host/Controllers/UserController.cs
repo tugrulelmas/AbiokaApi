@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace AbiokaApi.Host.Controllers
 {
     [RoutePrefix("api/User")]
-    public class UserController : BaseCrudController<User>
+    public class UserController : BaseReadController<User>
     {
         private readonly IUserService userService;
 
@@ -43,6 +43,22 @@ namespace AbiokaApi.Host.Controllers
             var user = userService.Add(request);
 
             return Request.CreateResponse(HttpStatusCode.Created, user);
+        }
+
+        [HttpPut]
+        [Route("")]
+        public HttpResponseMessage Update([FromBody]User user) {
+            userService.Update(user);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public HttpResponseMessage Delete([FromUri]Guid id) {
+            userService.Delete(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

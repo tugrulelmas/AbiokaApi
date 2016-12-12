@@ -7,11 +7,12 @@ using System.Web.Http;
 
 namespace AbiokaApi.Host.Controllers
 {
-    public abstract class BaseCrudController<T> : BaseApiController where T : IEntity
+    public abstract class BaseCrudController<T> : BaseReadController<T> where T : IIdEntity<Guid>
     {
         private readonly ICrudService<T> crudService;
 
-        public BaseCrudController(ICrudService<T> crudService) {
+        public BaseCrudController(ICrudService<T> crudService)
+            : base(crudService) {
             this.crudService = crudService;
         }
 
@@ -21,13 +22,6 @@ namespace AbiokaApi.Host.Controllers
             crudService.Delete(id);
 
             return Request.CreateResponse(HttpStatusCode.OK);
-        }
-
-        [Route("")]
-        [HttpGet]
-        public virtual HttpResponseMessage Get([FromUri]int page, [FromUri]int limit, [FromUri]string order) {
-            var result = crudService.GetWithPage(page, limit, order);
-            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
         [HttpPut]

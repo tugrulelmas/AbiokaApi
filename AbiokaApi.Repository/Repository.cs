@@ -60,8 +60,15 @@ namespace AbiokaApi.Repository
         }
 
         public IPage<T> GetPage(PageRequest pageRequest) {
-            var query = Session.QueryOver<TDBEntity>()
-                .Skip((pageRequest.Page - 1) * pageRequest.Limit)
+            var queryOver = Session.QueryOver<TDBEntity>();
+            var rowCountQueryOver = Session.QueryOver<TDBEntity>();
+
+            if (typeof(IDeletableEntity).IsAssignableFrom(typeof(TDBEntity))) {
+                queryOver = queryOver.Where(e => !((IDeletableEntity)e).IsDeleted);
+                rowCountQueryOver = rowCountQueryOver.Where(e => !((IDeletableEntity)e).IsDeleted);
+            }
+
+            var query = queryOver.Skip((pageRequest.Page - 1) * pageRequest.Limit)
                 .Take(pageRequest.Limit);
 
             if (!string.IsNullOrWhiteSpace(pageRequest.Order)) {
@@ -70,10 +77,8 @@ namespace AbiokaApi.Repository
 
             var list = query.Future<TDBEntity>().ToList();
 
-            var rowcount = Session.QueryOver<TDBEntity>()
-                .Select(Projections.Count(Projections.Id()))
+            var rowcount = rowCountQueryOver.Select(Projections.Count(Projections.Id()))
                 .FutureValue<int>().Value;
-
 
             IPage<T> result = new Page<T>();
             result.Count = rowcount;
