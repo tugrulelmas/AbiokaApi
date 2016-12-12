@@ -16,6 +16,17 @@ namespace AbiokaApi.Host.Controllers
             this.crudService = crudService;
         }
 
+        [HttpPost]
+        [Route("")]
+        public HttpResponseMessage Add([FromBody]T entity) {
+            crudService.Add(entity);
+
+            var response = Request.CreateResponse(HttpStatusCode.Created);
+            string uri = Url.Link("", new { id = entity.Id });
+            response.Headers.Location = new Uri(uri);
+            return response;
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public HttpResponseMessage Delete([FromUri]Guid id) {
@@ -26,8 +37,8 @@ namespace AbiokaApi.Host.Controllers
 
         [HttpPut]
         [Route("")]
-        public HttpResponseMessage Update([FromBody]T user) {
-            crudService.Update(user);
+        public HttpResponseMessage Update([FromBody]T entity) {
+            crudService.Update(entity);
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

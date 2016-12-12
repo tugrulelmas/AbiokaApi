@@ -4,7 +4,7 @@
     angular.module('abioka')
       .directive('abiokaDataTable', abiokaDataTable);
 
-    function abiokaDataTable($timeout) {
+    function abiokaDataTable() {
         var directive = {
             restrict: 'E',
             //transclude: true,

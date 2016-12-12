@@ -31,6 +31,7 @@
                 message = angular.toJson(rejection);
             }
             alert.error(message);
+            $rootScope.$broadcast('errorOccurred', null);
 
             return $q.reject(rejection);
         }
