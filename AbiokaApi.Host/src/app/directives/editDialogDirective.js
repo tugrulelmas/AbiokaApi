@@ -12,7 +12,8 @@
             scope: {
                 title: '@',
                 resource: '=',
-                entity: '='
+                entity: '=',
+                form: '@'
             },
             templateUrl: '/templates/shared/editDialog.html',
             controller: editDialogController,
@@ -28,8 +29,12 @@
         vm.cancel = cancel;
         vm.loading = false;
         vm.saveDialog = saveDialog;
+        vm.dialogForm = $scope.$parent[vm.form];
 
         function saveDialog() {
+            if (vm.dialogForm && !vm.dialogForm.$valid)
+                return;
+
             vm.loading = true;
             if (vm.entity && vm.entity.Id) {
                 vm.resource.update({}, vm.entity).$promise.then(closeDialog);

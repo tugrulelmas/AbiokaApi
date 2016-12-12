@@ -1,4 +1,4 @@
-﻿<form name="dialogForm" ng-submit="dialogForm.$valid && vm.saveDialog()" novalidate>
+﻿<div>
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{vm.title}}</h2>
@@ -18,8 +18,8 @@
         <md-button ng-click="vm.cancel()">
             Cancel
         </md-button>
-        <md-button type="submit">
+        <md-button ng-click="vm.saveDialog()">
             OK
         </md-button>
     </md-dialog-actions>
-</form>
+</div>

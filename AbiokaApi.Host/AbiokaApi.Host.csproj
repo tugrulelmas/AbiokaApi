@@ -124,6 +124,7 @@
     <Content Include="src\app\directives\deleteDialogDirective.js" />
     <Content Include="src\app\directives\editDialogDirective.js" />
     <Content Include="src\app\directives\fileUploadDirective.js" />
+    <Content Include="src\app\directives\passwordMatchDirective.js" />
     <Content Include="src\app\directives\tokenDirective.js" />
     <Content Include="src\app\directives\validationMessage.js" />
     <Content Include="src\app\filters\boolFilter.js" />
