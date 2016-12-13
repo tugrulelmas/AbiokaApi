@@ -14,7 +14,7 @@ namespace AbiokaApi.Infrastructure.Common.Exceptions.Adapters
 
         public IDictionary<string, string> ExtraHeaders => null;
 
-        public HttpStatusCode HttpStatusCode => HttpStatusCode.BadRequest;
+        public HttpStatusCode HttpStatusCode => HttpStatusCode.InternalServerError;
 
         public object Content => exception.Message;
     }

@@ -2,7 +2,7 @@
     border-radius: 6px !important;
 }
 
-md-toolbar[data-background-color]{
+md-toolbar[data-background-color] {
     border-radius: 3px;
     margin: -20px 15px 0;
     position: relative;
@@ -20,42 +20,42 @@ md-card [data-background-color="green"] {
 }
 
 md-card [data-background-color="purple"] {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
 md-card [data-background-color="blue"] {
-  background: linear-gradient(60deg, #26c6da, #00acc1);
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+    background: linear-gradient(60deg, #26c6da, #00acc1);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
 }
 
 md-card [data-background-color="red"] {
-  background: linear-gradient(60deg, #ef5350, #e53935);
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+    background: linear-gradient(60deg, #ef5350, #e53935);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
 }
 
 md-card [data-background-color="rose"] {
-  background: linear-gradient(60deg, #ec407a, #d81b60);
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+    background: linear-gradient(60deg, #ec407a, #d81b60);
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
 }
 
 
 md-card [data-icon="true"] {
-  display: inline-block;
-  position: absolute;
+    display: inline-block;
+    position: absolute;
 }
 
 md-card .card-header-icon {
-  float: left;
-  padding: 15px;
+    float: left;
+    padding: 15px;
 }
 
-md-card .card-header-icon i {
-  width: 33px;
-  height: 33px;
-  text-align: center;
-  line-height: 33px;
-}
+    md-card .card-header-icon i {
+        width: 33px;
+        height: 33px;
+        text-align: center;
+        line-height: 33px;
+    }
 
 md-card [data-icon="true"] + md-card-content h4 {
     margin-top: -10px;
@@ -63,16 +63,80 @@ md-card [data-icon="true"] + md-card-content h4 {
     padding-bottom: 15px;
 }
 
-.grid-search-box{
+.grid-search-box {
     border: none;
     width: 100%;
     margin-left: 10px;
 }
 
-.grid-search-box:focus {
-  outline: none;
+    .grid-search-box:focus {
+        outline: none;
+    }
+
+.right {
+    text-align: right !important;
 }
 
-.right{
-    text-align: right !important;
+md-toast .md-toast-content {
+    padding: 8px 8px 8px 10px;
+    border-radius: 6px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+}
+
+    md-toast .md-toast-content:hover {
+        -moz-box-shadow: 0 0 12px #000;
+        -webkit-box-shadow: 0 0 12px #000;
+        box-shadow: 0 0 12px #000;
+        opacity: 1;
+        -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+        filter: alpha(opacity=100);
+    }
+
+    md-toast .md-toast-content::before .error-toast {
+        content: '\E876';
+        font-family: Material Icons;
+    }
+
+md-toast.error-toast .md-toast-content {
+    background-color: #bd362f;
+}
+
+md-toast.success-toast .md-toast-content {
+    background-color: #51a351;
+}
+
+md-toast.info-toast .md-toast-content {
+    background-color: #2f96b4;
+}
+
+md-toast.warning-toast .md-toast-content {
+    background-color: #f89406;
+}
+
+md-toast .md-toast-content .md-toast-text {
+    margin-left: 10px;
+}
+
+md-toast .md-toast-content::before {
+    min-height: 0 !important;
+    visibility: visible !important;
+    font-family: Material Icons;
+    font-size: 26px;
+}
+
+md-toast.error-toast .md-toast-content::before {
+    content: '\E001';
+}
+
+md-toast.success-toast .md-toast-content::before {
+    content: '\E876';
+}
+
+md-toast.info-toast .md-toast-content::before {
+    content: '\E88F';
+}
+
+md-toast.warning-toast .md-toast-content::before {
+    content: '\E8B2';
 }

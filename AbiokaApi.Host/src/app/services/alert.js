@@ -43,7 +43,7 @@
             $mdToast.show($mdToast.simple()
                 .position('top right')
                 .textContent(message)
-                .theme(type + '-toast'));
+                .toastClass(type + '-toast'));
         }
     }
 })();

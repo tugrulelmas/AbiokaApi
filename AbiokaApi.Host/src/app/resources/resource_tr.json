@@ -22,5 +22,6 @@
   "DeleteUserMessage": "{0} bu kullanıcıyı silmek istediğinizden emin misiniz?",
   "Page": "Sayfa",
   "RowsPerPage": "Sayfa başına satır sayısı",
-  "of": "arasında"
+  "of": "arasında",
+  "UserIsAlreadyRegistered": "Bu kullanıcı zaten kayıtlı!"
 }

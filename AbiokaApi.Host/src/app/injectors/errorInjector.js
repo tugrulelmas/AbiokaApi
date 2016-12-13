@@ -5,24 +5,29 @@
       .factory('errorInjector', errorInjector);
 
     /* @ngInject */
-    function errorInjector($rootScope, $q, $injector) {
+    function errorInjector($rootScope, $q, $injector, $filter) {
         var service = {
             responseError: responseError
         }
         return service;
 
         function responseError(rejection) {
-            var alert = $injector.get("alert");
             if (rejection.status === 401) {
                 userService.destroy();
                 $rootScope.$broadcast('userSignedOut', null);
                 return $q.reject(rejection);
             }
 
+            var alert = $injector.get("alert");
             var message = "";
             var statusReason = rejection.headers("Status-Reason");
             if (statusReason === "validation-failed") {
-                message = rejection.data;
+                var text = $filter("translate")(rejection.data);
+                if (rejection.status.toString().indexOf("40") === 0) {
+                    alert.warning(text);
+                } else {
+                    message = text;
+                }
             } else if (rejection.data && rejection.data.Message) {
                 message = rejection.data.Message;
             } else if (rejection.data) {
@@ -30,7 +35,10 @@
             } else {
                 message = angular.toJson(rejection);
             }
-            alert.error(message);
+
+            if (message !== "") {
+                alert.error(message);
+            }
             $rootScope.$broadcast('errorOccurred', null);
 
             return $q.reject(rejection);

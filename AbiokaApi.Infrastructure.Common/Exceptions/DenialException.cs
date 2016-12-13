@@ -2,7 +2,7 @@
 
 namespace AbiokaApi.Infrastructure.Common.Exceptions
 {
-    public class DenialException : ValidationException
+    public class DenialException : ApiException
     {
         public DenialException(string errorCode)
             : this(HttpStatusCode.BadRequest, errorCode) {
@@ -10,7 +10,9 @@ namespace AbiokaApi.Infrastructure.Common.Exceptions
 
         public DenialException(HttpStatusCode statusCode, string errorCode)
             : base(errorCode ) {
+            ContentValue = errorCode;
             StatusCode = statusCode;
+            ExtraHeaders.Add("Status-Reason", "validation-failed");
         }
     }
 }

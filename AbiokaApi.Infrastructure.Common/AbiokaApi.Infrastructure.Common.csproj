@@ -73,7 +73,6 @@
     <Compile Include="Exceptions\Adapters\IExceptionAdapterFactory.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Exceptions\DenialException.cs" />
-    <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Helper\CurrentContext.cs" />
     <Compile Include="Helper\IContextHolder.cs" />
     <Compile Include="Helper\ContextHolder.cs" />
