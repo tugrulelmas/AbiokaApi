@@ -1,4 +1,12 @@
-﻿md-card {
+﻿body {
+    background-color: #EEEEEE;
+}
+
+md-content {
+    background-color: inherit;
+}
+
+md-card {
     border-radius: 6px !important;
 }
 
@@ -140,3 +148,14 @@ md-toast.info-toast .md-toast-content::before {
 md-toast.warning-toast .md-toast-content::before {
     content: '\E8B2';
 }
+
+md-toolbar.navbar-transparent {
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: 0;
+    color: #3C4858;
+}
+
+    md-toolbar.navbar-transparent md-icon {
+        color: rgba(0,0,0,0.54);
+    }

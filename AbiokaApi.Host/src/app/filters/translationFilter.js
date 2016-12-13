@@ -6,8 +6,11 @@
 
     /* @ngInject */
     function translate(translationService) {
-        return function (value) {
+        function localization(value) {
             return translationService.getResource(value);
         }
+
+        localization.$stateful = true;
+        return localization;
     }
 })();

@@ -56,6 +56,7 @@ gulp.task('inject', ['copy'], function () {
       .pipe(inject(css, createOptions()))
       .pipe(inject(lib, createOptions('lib')))
       .pipe(inject(app, createOptions('app')))
+      .pipe(header('\ufeff'))
       .pipe(gulp.dest(config.index.dest));
 });
 
@@ -87,6 +88,7 @@ gulp.task('inject:dist', function () {
       .pipe(inject(css, createOptions()))
       .pipe(inject(lib, createOptions('lib')))
       .pipe(inject(app, createOptions('app')))
+      .pipe(header('\ufeff'))
       .pipe(gulp.dest(config.index.dest));
 });
 

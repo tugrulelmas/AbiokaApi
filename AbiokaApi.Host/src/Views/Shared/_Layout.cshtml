@@ -14,9 +14,51 @@
     <!-- inject:css -->
     <!-- endinject -->
 </head>
-<body ng-app="abioka" ng-controller="MainController as vm">
-    <admin-menu></admin-menu>
-    @RenderBody()
+<body ng-app="abioka" ng-controller="MainController as vm" layout="row">
+    <md-sidenav md-component-id="left" md-is-locked-open="true" class="md-sidenav-left" ng-show="vm.user.IsSignedIn">
+        <md-toolbar class="md-medium-tall">
+            <span>Toolbar</span>
+        </md-toolbar>
+        <md-content layout="column" flex>
+            <span>Your sidenav</span>
+        </md-content>
+    </md-sidenav>
+    <div layout="column" flex>
+        <md-toolbar class="navbar-transparent">
+            <div class="md-toolbar-tools">
+                <h2>
+                    <span>Abioka</span>
+                </h2>
+                <span flex></span>
+                <md-menu>
+                    <md-button class="md-fab md-mini" ng-click="$mdOpenMenu($event)">
+                        <md-icon>language</md-icon>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ng-click="vm.changeLanguage('tr')">
+                                Türkçe
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.changeLanguage('en')">
+                                English
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+                <div ng-show="vm.user.IsSignedIn">
+                    <md-button class="md-fab md-mini">
+                        <md-icon>person</md-icon>
+                    </md-button>
+                    <md-button class="md-fab md-mini" ng-click="vm.logout()">
+                        <md-icon>exit_to_app</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </md-toolbar>
+        @RenderBody()
+    </div>
 
     <!-- lib:js -->
     <!-- endinject -->
