@@ -23,5 +23,5 @@
   "Page": "Sayfa",
   "RowsPerPage": "Sayfa başına satır sayısı",
   "of": "arasında",
-  "UserIsAlreadyRegistered": "Bu kullanıcı zaten kayıtlı!"
+  "UserIsAlreadyRegistered": "{0} kullanıcısı zaten kayıtlı!"
 }

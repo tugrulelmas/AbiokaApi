@@ -59,7 +59,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         public User Add(AddUserRequest request) {
             var tmpUser = userSecurityRepository.GetByEmail(request.Email);
             if (tmpUser != null)
-                throw new DenialException("UserIsAlreadyRegistered");
+                throw new DenialException("UserIsAlreadyRegistered", request.Email);
 
             var userSecurity = new UserSecurity {
                 Email = request.Email,

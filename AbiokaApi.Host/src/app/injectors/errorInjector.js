@@ -22,7 +22,10 @@
             var message = "";
             var statusReason = rejection.headers("Status-Reason");
             if (statusReason === "validation-failed") {
-                var text = $filter("translate")(rejection.data);
+                var text = $filter("translate")(rejection.data.ErrorCode);
+                if (rejection.data.Parameters && rejection.data.Parameters.length > 0) {
+                    text = $filter("stringFormat")(text, rejection.data.Parameters);
+                }
                 if (rejection.status.toString().indexOf("40") === 0) {
                     alert.warning(text);
                 } else {
