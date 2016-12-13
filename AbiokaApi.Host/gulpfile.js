@@ -21,6 +21,9 @@ gulp.task('copy', function () {
     gulp.src(config.templates.src)
          .pipe(gulp.dest(config.templates.dest));
 
+    gulp.src(config.resources.src)
+         .pipe(gulp.dest(config.resources.dest));
+
     gulp.src(config.fonts.src)
          .pipe(gulp.dest(config.fonts.dest));
 
@@ -29,7 +32,7 @@ gulp.task('copy', function () {
 });
 
 var createOptions = function (name) {
-    return { name: name, addRootSlash: true }
+    return { name: name, addRootSlash: false }
 };
 
 gulp.task('clean', function (cb) {

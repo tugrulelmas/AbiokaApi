@@ -22,7 +22,7 @@
     }
 
     /* @ngInject */
-    function dataTableController($scope, $timeout) {
+    function dataTableController($scope, $timeout, $filter) {
         var vm = this;
         var defaultQuery = { order: ' ', limit: 10, page: 1 };
         angular.extend(defaultQuery, vm.options.query);
@@ -33,6 +33,11 @@
         vm.promise = $timeout(function () { }, 500);
         vm.showEditDialog = showEditDialog;
         vm.showCustomDeleteDialog = showCustomDeleteDialog;
+        vm.pageLabel = {
+            page: $filter("translate")('Page') + ":",
+            rowsPerPage: $filter("translate")('RowsPerPage') + ':',
+            of: $filter("translate")('of')
+        };
 
         function getData() {
             vm.promise = vm.options.resource.get(vm.query, success).$promise;

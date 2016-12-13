@@ -42,6 +42,9 @@
             user.ExpirationDate = tokenUser.exp;
             user.Token = token;
             user.IsSignedIn = true;
+            if (angular.isUndefined(user.Language) || user.Language.trim() === "") {
+                user.Language = getDefault().Language;
+            }
             $cookies.putObject('userInfo', user, { path: '/' });
             callback(user);
         };
@@ -53,19 +56,23 @@
             user.ExpirationDate = userInfo.ExpirationDate;
             user.Token = userInfo.Token;
             user.IsSignedIn = userInfo.IsSignedIn;
+            user.Language = userInfo.Language;
             $cookies.remove('userInfo', { path: '/' });
             $cookies.putObject('userInfo', user, { path: '/' });
             $rootScope.$broadcast('userUpdated');
         };
 
         function destroy() {
+            var oldLanguage = user.Language;
             user = getDefault();
+            user.Language = oldLanguage;
             $cookies.remove('userInfo', { path: '/' });
             $cookies.putObject('userInfo', user, { path: '/' });
         }
 
         function getDefault() {
             return {
+                Language: "en",
                 IsSignedIn: false
             };
         };

@@ -11,8 +11,10 @@
      ).run(run);
 
     /* @ngInject */
-    function run($rootScope, userService, $state, $stateParams) {
-        $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    function run($rootScope, $state, $stateParams, userService, translationService) {
+        translationService.setGlobalResources();
+
+        $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
             var user = userService.getUser();
             if (toState.isPublic !== true && !user.IsSignedIn) {
                 e.preventDefault();

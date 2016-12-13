@@ -4,7 +4,7 @@
             <h2>{{vm.title}}</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="vm.cancel()">
-                <md-icon aria-label="Close dialog">close</md-icon>
+                <md-icon aria-label="{{'Close' | translate}}">close</md-icon>
             </md-button>
         </div>
     </md-toolbar>
@@ -17,10 +17,10 @@
     <md-dialog-actions layout="row">
         <span flex></span>
         <md-button ng-click="vm.cancel()">
-            Cancel
+            {{'Cancel' | translate}}
         </md-button>
         <md-button ng-click="vm.deleteEntity()">
-            Delete
+            {{'Delete' | translate}}
         </md-button>
     </md-dialog-actions>
 </div>

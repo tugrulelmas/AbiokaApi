@@ -36,6 +36,10 @@
             src: srcFolder + 'app/**/*.js',
             dest: rootFolder + 'app'
         },
+        resources: {
+            src: srcFolder + 'app/resources/*.json',
+            dest: rootFolder + 'resources'
+        },
         templates: {
             src: srcFolder + 'templates/**/*.html',
             dest: rootFolder + 'templates'
@@ -58,7 +62,7 @@
         }
     };
 
-    config.watch = [config.app.src, config.templates.src].concat(config.css.src);
+    config.watch = [config.app.src, config.templates.src, config.resources.src].concat(config.css.src);
 
     return config;
 };

@@ -14,7 +14,7 @@
             resource: UserResource.users,
             query: {},
             columns: [{ name: "Email", text: "Email", order: true },
-                      { name: "IsAdmin", text: "Is Admin", filter: 'boolFilter' }]
+                      { name: "IsAdmin", text: "IsAdmin", filter: 'boolFilter' }]
         };
         vm.showDialog = showDialog;
         vm.showDeleteDialog = showDeleteDialog;

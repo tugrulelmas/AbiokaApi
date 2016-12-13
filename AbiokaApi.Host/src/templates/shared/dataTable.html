@@ -27,7 +27,7 @@
         <div class="md-toolbar-tools">
             <md-icon>search</md-icon>
             <form flex>
-                <input type="text" ng-model="vm.query.filter" class="grid-search-box" placeholder="Search" />
+                <input type="text" ng-model="vm.query.filter" class="grid-search-box" placeholder="{{'Search' | translate}}" />
             </form>
             <md-button class="md-icon-button" ng-click="vm.query.filter = ''; vm.showSearch = false">
                 <md-icon>close</md-icon>
@@ -40,10 +40,10 @@
             <thead md-head md-order="vm.query.order" md-on-reorder="vm.getData">
                 <tr md-row>
                     <th ng-if="column.order" md-order-by="{{column.name}}" md-column ng-repeat="column in vm.options.columns">
-                        <span>{{column.text}}</span>
+                        <span>{{column.text | translate}}</span>
                     </th>
                     <th ng-if="!column.order" md-column ng-repeat="column in vm.options.columns">
-                        <span>{{column.text}}</span>
+                        <span>{{column.text | translate}}</span>
                     </th>
                     <th></th>
                 </tr>
@@ -66,5 +66,5 @@
         </table>
     </md-table-container>
 
-    <md-table-pagination md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.entities.Count}}" md-on-paginate="vm.getData" md-page-select></md-table-pagination>
+    <md-table-pagination md-label="{{vm.pageLabel}}" md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page" md-total="{{vm.entities.Count}}" md-on-paginate="vm.getData" md-page-select></md-table-pagination>
 </md-card>

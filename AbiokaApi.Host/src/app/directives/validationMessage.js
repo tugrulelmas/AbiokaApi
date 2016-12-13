@@ -11,8 +11,7 @@
             scope: {
                 fieldName: '@',
                 model: '='
-            },
-            replace: false
+            }
         };
         return directive;
     }

@@ -4,9 +4,11 @@
     angular.module('abioka')
       .filter('boolFilter', boolFilter);
 
-    function boolFilter() {
+    /* @ngInject */
+    function boolFilter($filter) {
         return function (value) {
-            return value === true ? "True" : "False";
+            var text = value === true ? "True" : "False";
+            return $filter("translate")(text);
         }
     }
 })();

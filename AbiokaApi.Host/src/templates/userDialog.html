@@ -1,22 +1,22 @@
 ﻿<form name="userForm" novalidate>
     <edit-dialog resource="vm.resource" entity="vm.entity" title="{{vm.title}}" form="{{'userForm'}}">
         <md-input-container class="md-block">
-            <label>Email</label>
+            <label>{{'Email' | translate}}</label>
             <input type="email" name="email" ng-model="vm.entity.Email" ng-disabled="vm.isUpdate" required />
-            <validation-message model="userForm.email" field-name="Email"></validation-message>
+            <validation-message model="userForm.email" field-name="{{'Email' | translate}}"></validation-message>
         </md-input-container>
         <md-input-container class="md-block" ng-if="!vm.isUpdate">
-            <label>Password</label>
-            <input type="text" name="password" ng-model="vm.entity.Password" required />
-            <validation-message model="userForm.password" field-name="Password"></validation-message>
+            <label>{{'Password' | translate}}</label>
+            <input type="password" name="password" ng-model="vm.entity.Password" required />
+            <validation-message model="userForm.password" field-name="{{'Password' | translate}}"></validation-message>
         </md-input-container>
         <md-input-container class="md-block" ng-if="!vm.isUpdate">
-            <label>Password Again</label>
-            <input password-match="vm.entity.Password" type="text" name="passwordAgain" ng-model="vm.entity.PasswordAgain" required />
-            <validation-message model="userForm.password" field-name="Password Again"></validation-message>
+            <label>{{'PasswordAgain' | translate}}</label>
+            <input password-match="vm.entity.Password" type="password" name="passwordAgain" ng-model="vm.entity.PasswordAgain" required />
+            <validation-message model="userForm.passwordAgain" field-name="{{'PasswordAgain' | translate}}"></validation-message>
         </md-input-container>
-        <md-checkbox ng-model="vm.entity.IsAdmin" aria-label="Is Admin">
-            Is Admin
+        <md-checkbox ng-model="vm.entity.IsAdmin" aria-label="{{'IsAdmin' | translate}}">
+           {{'IsAdmin' | translate}}
         </md-checkbox>
     </edit-dialog>
 </form>
