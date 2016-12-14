@@ -24,7 +24,7 @@
     }
 
     /* @ngInject */
-    function editDialogController($scope, $mdDialog) {
+    function editDialogController($scope, $mdDialog, alert) {
         var vm = this;
         vm.cancel = cancel;
         vm.loading = false;
@@ -38,8 +38,10 @@
             vm.loading = true;
             if (vm.entity && vm.entity.Id) {
                 vm.resource.update({}, vm.entity).$promise.then(closeDialog);
+                alert.success("ItemIsUpdated", true);
             } else {
                 vm.resource.save({}, vm.entity).$promise.then(closeDialog);
+                alert.success("ItemIsSaved", true);
             }
         }
 

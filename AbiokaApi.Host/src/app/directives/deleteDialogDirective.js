@@ -24,7 +24,7 @@
     }
 
     /* @ngInject */
-    function deleteDialogController($scope, $mdDialog) {
+    function deleteDialogController($scope, $mdDialog, alert) {
         var vm = this;
         vm.cancel = cancel;
         vm.loading = false;
@@ -35,6 +35,7 @@
             vm.resource.delete({ id: vm.entity.Id }).$promise.then(function () {
                 vm.loading = false;
                 $mdDialog.hide(vm.entity);
+                alert.success("ItemIsDeleted", true);
             });
         }
 

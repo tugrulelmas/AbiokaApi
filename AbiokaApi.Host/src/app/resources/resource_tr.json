@@ -23,5 +23,8 @@
   "Page": "Sayfa",
   "RowsPerPage": "Sayfa başına satır sayısı",
   "of": "arasında",
-  "UserIsAlreadyRegistered": "{0} kullanıcısı zaten kayıtlı!"
+  "UserIsAlreadyRegistered": "{0} kullanıcısı zaten kayıtlı!",
+  "ItemIsDeleted": "Kayıt silindi.",
+  "ItemIsUpdated": "Kayıt güncellendi.",
+  "ItemIsSaved": "Kayıt kaydedildi."
 }

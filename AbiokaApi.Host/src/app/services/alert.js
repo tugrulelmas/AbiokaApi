@@ -5,7 +5,7 @@
       .service('alert', alert);
 
     /* @ngInject */
-    function alert($mdToast) {
+    function alert($mdToast, $filter) {
 
         var service = {
             success: success,
@@ -22,27 +22,31 @@
         toastr.options.fadeIn = 250;
         */
 
-        function success(message) {
-            showMessage("success", message);
+        function success(message, translate) {
+            showMessage("success", message, translate);
         }
 
-        function info(message) {
-            showMessage("info", message);
+        function info(message, translate) {
+            showMessage("info", message, translate);
         }
 
-        function warning(message) {
-            showMessage("warning", message);
+        function warning(message, translate) {
+            showMessage("warning", message, translate);
         }
 
-        function error(message) {
-            showMessage("error", message);
+        function error(message, translate) {
+            showMessage("error", message, translate);
         }
 
-        function showMessage(type, message) {
+        function showMessage(type, message, translate) {
+            var text = message;
+            if (translate === true) {
+                text = $filter("translate")(message);
+            }
             //toastr[type](message);
             $mdToast.show($mdToast.simple()
                 .position('top right')
-                .textContent(message)
+                .textContent(text)
                 .toastClass(type + '-toast'));
         }
     }
