@@ -136,6 +136,8 @@
     <Content Include="src\app\services\translationService.js" />
     <Content Include="src\app\services\userService.js" />
     <Content Include="src\css\content.css" />
+    <Content Include="src\images\logo.jpg" />
+    <Content Include="src\images\menu.jpg" />
     <Content Include="src\js\base64.js" />
     <Content Include="src\templates\index.html" />
     <Content Include="src\templates\login.html" />

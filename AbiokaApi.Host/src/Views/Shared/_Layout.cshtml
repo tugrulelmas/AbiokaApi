@@ -15,17 +15,71 @@
     <!-- endinject -->
 </head>
 <body ng-app="abioka" ng-controller="MainController as vm" layout="row">
-    <md-sidenav md-component-id="left" md-is-locked-open="true" class="md-sidenav-left" ng-show="vm.user.IsSignedIn">
-        <md-toolbar class="md-medium-tall">
-            <span>Toolbar</span>
-        </md-toolbar>
-        <md-content layout="column" flex>
-            <span>Your sidenav</span>
+    <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" class="site-sidenav md-sidenav-left md-whiteframe-z2" ng-show="vm.user.IsSignedIn">
+        <header class="nav-header">
+            <a ng-href="/" class="docs-logo" href="/">
+                <img src="/images/logo.jpg" alt="">
+            </a>
+        </header>
+        <md-content flex role="navigation">
+            <ul class="docs-menu">
+                <li class="parent-list-item ">
+                    <a class="md-button md-ink-ripple" ng-href="getting-started" ng-click="focusSection()" href="getting-started">
+                        <span class="ng-binding ng-scope">
+                            Getting Started
+                        </span>
+                    </a>
+                </li>
+                <li class="parent-list-item">
+                    <button class="md-button-toggle md-button md-ink-ripple" type="button" ng-click="toggle()" aria-controls="docs-menu-Demos" aria-expanded="false">
+                        <div flex="" layout="row" class="ng-binding ng-scope layout-row flex">
+                            Demos
+                            <span flex="" class="flex"></span>
+                            <span aria-hidden="true" class="md-toggle-icon">
+                                <md-icon aria-hidden="true">
+                                    expand_more
+                                </md-icon>
+                            </span>
+                        </div>
+                        <span class="md-visually-hidden ng-binding ng-scope">
+                            Toggle collapsed
+                        </span>
+                    </button>
+
+                    <ul id="docs-menu-Demos" class="menu-toggle-list parentActive">
+                        <li>
+                            <a class="md-button md-ink-ripple" ng-href="demo/autocomplete" ng-click="focusSection()" href="demo/autocomplete">
+                                <span class="ng-binding ng-scope">
+                                    Autocomplete
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="md-button md-ink-ripple" ng-href="demo/sidenav" ng-click="focusSection()" href="demo/sidenav">
+                                <span class="ng-binding ng-scope">
+                                    Sidenav
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="md-button md-ink-ripple" ng-href="demo/slider" ng-click="focusSection()" href="demo/slider">
+                                <span class="ng-binding ng-scope">
+                                    Slider
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </md-content>
+        <div class="sidebar-background"></div>
     </md-sidenav>
     <div layout="column" flex>
         <md-toolbar class="navbar-transparent">
             <div class="md-toolbar-tools">
+                <md-button class="md-fab md-raised md-mini" ng-click="vm.openLeftMenu()" hide-gt-sm>
+                    <md-icon>menu</md-icon>
+                </md-button>
                 <h2>
                     <span>Abioka</span>
                 </h2>
@@ -57,7 +111,9 @@
                 </div>
             </div>
         </md-toolbar>
-        @RenderBody()
+        <md-content md-scroll-y layout="column" flex>
+            @RenderBody()
+        </md-content>
     </div>
 
     <!-- lib:js -->

@@ -1,5 +1,6 @@
-﻿body {
+﻿body, html {
     background-color: #EEEEEE;
+    height: 100%;
 }
 
 md-content {
@@ -158,4 +159,205 @@ md-toolbar.navbar-transparent {
 
     md-toolbar.navbar-transparent md-icon {
         color: rgba(0,0,0,0.54);
+    }
+
+/************
+ * DOCS MENU
+ ************/
+.site-sidenav {
+}
+
+    .site-sidenav md-content {
+        background: transparent;
+        z-index: 4;
+    }
+
+    .site-sidenav,
+    .site-sidenav.md-locked-open-add-active,
+    .site-sidenav.md-locked-open {
+        width: 272px;
+        min-width: 272px;
+        max-width: 272px;
+    }
+
+        .site-sidenav > * {
+            min-width: 218px;
+            z-index: 4;
+        }
+
+.docs-menu,
+.docs-menu ul {
+    list-style: none;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+    .docs-menu li {
+        margin: 0;
+    }
+
+.md-whiteframe-glow-z1 {
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+}
+
+.docs-menu .parent-list-item {
+    padding: 5px;
+}
+
+    .docs-menu .parent-list-item:after {
+        content: '';
+        position: absolute;
+        right: 15px;
+        height: 1px;
+        width: calc(100% - 30px);
+        background-color: rgba(180, 180, 180, 0.3);
+    }
+
+.docs-menu .md-button {
+    border-radius: 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    align-items: inherit;
+    line-height: 40px;
+    margin: 0;
+    max-height: 40px;
+    overflow: hidden;
+    padding: 0px 16px;
+    text-align: left;
+    text-decoration: none;
+    white-space: normal;
+    width: 100%;
+    text-transform: none;
+}
+
+    .docs-menu .md-button:hover,
+    .docs-menu .md-button:focus {
+        background: #3C4858 !important;
+        border-radius: 4px; 
+    }
+
+    .docs-menu .md-button md-icon {
+        color: white;
+    }
+
+.docs-menu button.md-button::-moz-focus-inner {
+    padding: 0;
+}
+
+.docs-menu .md-button.active {
+    background: #3C4858;
+}
+
+.menu-heading {
+    display: block;
+    line-height: 32px;
+    margin: 0;
+    padding: 8px 16px 0;
+    text-align: left;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.54);
+}
+
+.menu-toggle-list {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+    -webkit-transition-property: height;
+    -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+    -moz-transition-property: height;
+    transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
+    transition-property: height;
+}
+
+.docs-menu .menu-toggle-list a.md-button {
+    display: block;
+    padding: 0 16px 0 32px;
+    text-transform: none;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+}
+
+.parent-list-item:last-child {
+    margin-bottom: 20px;
+    border-bottom: none;
+}
+
+.md-button-toggle .md-toggle-icon {
+    display: block;
+    margin-left: auto;
+    speak: none;
+    vertical-align: middle;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+}
+
+    .md-button-toggle .md-toggle-icon.toggled {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+    }
+
+/* End Docs Menu */
+
+a.docs-logo {
+    border-bottom: none;
+}
+
+.docs-logo {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0 16px;
+    margin: 0 auto;
+}
+
+    .docs-logo:focus {
+        outline: none;
+    }
+
+    .docs-logo > img {
+        height: 130px;
+        width: auto;
+        display: block;
+        transform: scale(1.2);
+        border-radius: 40%; 
+        margin-top: 20px;
+        opacity: .6;
+    }
+
+.docs-logotype {
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    font-size: 26px;
+}
+
+/******************/
+.site-sidenav .sidebar-background {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center center;
+    background-image: url('/images/menu.jpg');
+}
+
+    .site-sidenav .sidebar-background:after {
+        position: absolute;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        content: "";
+        display: block;
+        background: #000;
+        opacity: .6;
     }

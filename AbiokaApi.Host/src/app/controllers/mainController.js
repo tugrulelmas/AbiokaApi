@@ -5,11 +5,12 @@
       .controller('MainController', MainController);
 
     /* @ngInject */
-    function MainController($scope, $state, userService, translationService) {
+    function MainController($scope, $state, $mdSidenav, userService, translationService) {
         var vm = this;
         vm.user = userService.getUser();
         vm.logout = logout;
         vm.changeLanguage = changeLanguage;
+        vm.openLeftMenu = openLeftMenu;
 
         function changeLanguage(language) {
             var oldLanguage = userService.getUser().Language;
@@ -27,6 +28,10 @@
             vm.user = userService.getUser();
             $state.go("login");
         }
+
+        function openLeftMenu() {
+            $mdSidenav('left').toggle();
+        };
 
         $scope.$on("bodyClassEvent", function (event, data) {
             vm.bodyClass = data;
