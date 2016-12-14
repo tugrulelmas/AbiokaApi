@@ -1,0 +1,36 @@
+﻿<md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" class="site-sidenav md-sidenav-left md-whiteframe-z2" ng-show="vm.user.IsSignedIn">
+    <header class="nav-header">
+        <a ng-href="/" class="docs-logo" href="/">
+            <img src="/images/logo.jpg" alt="">
+        </a>
+    </header>
+    <md-content flex role="navigation">
+        <ul class="docs-menu">
+            <li class="parent-list-item" ng-repeat="menu in vm.menuItems">
+                <a ng-if="!menu.children" class="md-button md-ink-ripple" ng-href="{{menu.url}}">
+                    <span>{{menu.text | translate}}</span>
+                </a>
+
+                <button ng-if="menu.children" class="md-button-toggle md-button md-ink-ripple" type="button" aria-controls="docs-menu-Demos" aria-expanded="false" ng-click="vm.toggleMenu(menu)">
+                    <div flex="" layout="row" class="ng-binding ng-scope layout-row flex">
+                        {{menu.text | translate}}
+                        <span flex></span>
+                        <span aria-hidden="true" class="md-toggle-icon" ng-class="{'toggled': menu.isSelected}">
+                            <md-icon aria-hidden="true">
+                                expand_less
+                            </md-icon>
+                        </span>
+                    </div>
+                </button>
+                <ul class="menu-toggle-list" ng-class="{'parent-selected': menu.isSelected}">
+                    <li ng-repeat="child in menu.children">
+                        <a class="md-button md-ink-ripple" ng-href="{{child.url}}">
+                            <span>{{child.text | translate}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </md-content>
+    <div class="sidebar-background"></div>
+</md-sidenav>

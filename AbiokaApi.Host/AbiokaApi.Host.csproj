@@ -123,6 +123,7 @@
     <Content Include="src\app\directives\editDialogDirective.js" />
     <Content Include="src\app\directives\passwordMatchDirective.js" />
     <Content Include="src\app\directives\tokenDirective.js" />
+    <Content Include="src\app\directives\menuDirective.js" />
     <Content Include="src\app\directives\validationMessage.js" />
     <Content Include="src\app\filters\stringFormatFilter.js" />
     <Content Include="src\app\filters\translationFilter.js" />
@@ -144,6 +145,7 @@
     <Content Include="src\templates\shared\dataTable.html" />
     <Content Include="src\templates\shared\deleteComponent.html" />
     <Content Include="src\templates\shared\editDialog.html" />
+    <Content Include="src\templates\shared\menu.html" />
     <Content Include="src\templates\shared\messages.html" />
     <Content Include="src\templates\shared\deleteDialog.html" />
     <Content Include="src\templates\userDialog.html" />

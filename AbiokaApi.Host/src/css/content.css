@@ -235,7 +235,7 @@ md-toolbar.navbar-transparent {
     .docs-menu .md-button:hover,
     .docs-menu .md-button:focus {
         background: #3C4858 !important;
-        border-radius: 4px; 
+        border-radius: 4px;
     }
 
     .docs-menu .md-button md-icon {
@@ -261,16 +261,22 @@ md-toolbar.navbar-transparent {
 }
 
 .menu-toggle-list {
+    max-height: 0;
     overflow: hidden;
     position: relative;
     z-index: 1;
     -webkit-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-    -webkit-transition-property: height;
+    -webkit-transition-property: max-height;
     -moz-transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-    -moz-transition-property: height;
+    -moz-transition-property: max-height;
     transition: 0.75s cubic-bezier(0.35, 0, 0.25, 1);
-    transition-property: height;
+    transition-property: max-height;
 }
+
+    .menu-toggle-list.parent-selected {
+        height: auto;
+        max-height: 500px;
+    }
 
 .docs-menu .menu-toggle-list a.md-button {
     display: block;
@@ -325,7 +331,7 @@ a.docs-logo {
         width: auto;
         display: block;
         transform: scale(1.2);
-        border-radius: 40%; 
+        border-radius: 40%;
         margin-top: 20px;
         opacity: .6;
     }
