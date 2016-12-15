@@ -15,7 +15,7 @@ namespace AbiokaApi.Repository
             var sessionFactory = Fluently.Configure()
           .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionStringRepository.ReadConnectionString("abioka")))
           .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))
-          .Mappings(m => m.FluentMappings.AddFromAssemblyOf<InvitationContactMap>())
+          .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>())
           .BuildSessionFactory();
             return sessionFactory;
         }

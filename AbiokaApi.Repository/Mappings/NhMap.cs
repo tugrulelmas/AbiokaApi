@@ -3,19 +3,6 @@ using FluentNHibernate.Mapping;
 
 namespace AbiokaApi.Repository.Mappings
 {
-    internal class InvitationContactMap : ClassMap<InvitationContactDB>
-    {
-        public InvitationContactMap() {
-            Id(x => x.Id);
-            Map(x => x.Name);
-            Map(x => x.Email);
-            Map(x => x.Phone);
-            Map(x => x.Message);
-            Map(x => x.IpAddress);
-            Table("Invitation.Contact");
-        }
-    }
-
     internal class UserSecurityMap : ClassMap<UserSecurityDB>
     {
         public UserSecurityMap() {

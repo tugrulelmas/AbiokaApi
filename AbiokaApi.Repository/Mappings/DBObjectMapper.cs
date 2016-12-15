@@ -15,7 +15,6 @@ namespace AbiokaApi.Repository.Mappings
 
         static DBObjectMapper() {
             mapActions = new Dictionary<RuntimeTypeHandle, Func<IEntity, DBEntity>>();
-            mapActions.Add(typeof(InvitationContact).TypeHandle, (entity) => ToInvitationContactDB((InvitationContact)entity));
             mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserSecurityDB((UserSecurity)entity));
             mapActions.Add(typeof(User).TypeHandle, (entity) => ToUserDB((User)entity));
             mapActions.Add(typeof(Role).TypeHandle, (entity) => ToRoleDB((Role)entity));
@@ -24,7 +23,6 @@ namespace AbiokaApi.Repository.Mappings
             dbMapActions.Add(typeof(UserSecurityDB).TypeHandle, (entity) => ToUserSecurity((UserSecurityDB)entity));
             dbMapActions.Add(typeof(UserDB).TypeHandle, (entity) => ToUser((UserDB)entity));
             dbMapActions.Add(typeof(RoleDB).TypeHandle, (entity) => ToRole((RoleDB)entity));
-            dbMapActions.Add(typeof(InvitationContact).TypeHandle, (entity) => ToInvitationContact((InvitationContactDB)entity));
         }
 
         internal static DBEntity FromDomainObject(IEntity entity) {
@@ -49,30 +47,6 @@ namespace AbiokaApi.Repository.Mappings
                 var entity = (T)ToDomainObject(item);
                 result.Add(entity);
             }
-            return result;
-        }
-
-        private static InvitationContact ToInvitationContact(InvitationContactDB invitationContactDB) {
-            var result = new InvitationContact {
-                Id = invitationContactDB.Id,
-                Name = invitationContactDB.Name,
-                Email = invitationContactDB.Email,
-                Phone = invitationContactDB.Phone,
-                Message = invitationContactDB.Message,
-                IpAddress = invitationContactDB.IpAddress
-            };
-            return result;
-        }
-
-        private static InvitationContactDB ToInvitationContactDB(InvitationContact invitationContact) {
-            var result = new InvitationContactDB {
-                Id = invitationContact.Id,
-                Name = invitationContact.Name,
-                Email = invitationContact.Email,
-                Phone = invitationContact.Phone,
-                Message = invitationContact.Message,
-                IpAddress = invitationContact.IpAddress
-            };
             return result;
         }
 
