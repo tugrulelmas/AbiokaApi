@@ -26,5 +26,11 @@
   "UserIsAlreadyRegistered": "User whose email is {0} is already registered!",
   "ItemIsDeleted": "Item is deleted.",
   "ItemIsUpdated": "Item is updated.",
-  "ItemIsSaved": "Item is saved."
+  "ItemIsSaved": "Item is saved.",
+  "Dashboard": "Dashboard",
+  "Roles": "Roles",
+  "RoleDetail": "Role Detail",
+  "DeleteRole": "Delete Role",
+  "DeleteRoleMessage": "Do you really want to delete role whose name is {0}",
+  "Name": "Name"
 }

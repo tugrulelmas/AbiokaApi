@@ -56,6 +56,7 @@
     <Compile Include="DatabaseObjects\DBEntity.cs" />
     <Compile Include="DatabaseObjects\IDeletableEntity.cs" />
     <Compile Include="DatabaseObjects\InvitationContact.cs" />
+    <Compile Include="DatabaseObjects\RoleDB.cs" />
     <Compile Include="DatabaseObjects\UserDB.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Mappings\DBObjectMapper.cs" />

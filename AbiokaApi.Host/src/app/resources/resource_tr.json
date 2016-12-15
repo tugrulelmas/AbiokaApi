@@ -26,5 +26,11 @@
   "UserIsAlreadyRegistered": "{0} kullanıcısı zaten kayıtlı!",
   "ItemIsDeleted": "Kayıt silindi.",
   "ItemIsUpdated": "Kayıt güncellendi.",
-  "ItemIsSaved": "Kayıt kaydedildi."
+  "ItemIsSaved": "Kayıt kaydedildi.",
+  "Dashboard": "Kontrol Paneli",
+  "Roles": "Roller",
+  "RoleDetail": "Rol Detayı",
+  "DeleteRole": "Rol Sil",
+  "DeleteRoleMessage": "{0} bu rolü silmek istediğinizden emin misiniz?",
+  "Name": "Ad"
 }

@@ -13,7 +13,7 @@
         vm.openLeftMenu = openLeftMenu;
         vm.toggleMenu = toggleMenu;
         vm.menuItems = [{ "url": "#/", "text": "Dashboard" }, 
-            { "url": "#/", "text": "Admin", children: [{ "url": "#/", "text": "Users" }, { "url": "#/", "text": "Roles" }] },
+            { "url": "#/", "text": "Admin", children: [{ "url": "#/users", "text": "Users" }, { "url": "#/roles", "text": "Roles" }] },
             { "url": "#/", "text": "Profile" },
         ];
 

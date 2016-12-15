@@ -26,6 +26,18 @@
                 controller: 'IndexController',
                 controllerAs: 'vm',
                 isPublic: false
+            }).state('users', {
+                url: '/users',
+                templateUrl: 'templates/admin/users.html',
+                controller: 'UserController',
+                controllerAs: 'vm',
+                isPublic: false
+            }).state('roles', {
+                url: '/roles',
+                templateUrl: 'templates/admin/roles.html',
+                controller: 'RoleController',
+                controllerAs: 'vm',
+                isPublic: false
             });
     }
 })();

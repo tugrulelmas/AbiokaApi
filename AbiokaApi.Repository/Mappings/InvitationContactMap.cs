@@ -40,4 +40,13 @@ namespace AbiokaApi.Repository.Mappings
             Table("dbo.[User]");
         }
     }
+
+    internal class RoleMap : DeletableClassMap<RoleDB>
+    {
+        public RoleMap() {
+            Id(x => x.Id);
+            Map(x => x.Name);
+            Table("dbo.[Role]");
+        }
+    }
 }

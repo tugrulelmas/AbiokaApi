@@ -18,10 +18,12 @@ namespace AbiokaApi.Repository.Mappings
             mapActions.Add(typeof(InvitationContact).TypeHandle, (entity) => ToInvitationContactDB((InvitationContact)entity));
             mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserSecurityDB((UserSecurity)entity));
             mapActions.Add(typeof(User).TypeHandle, (entity) => ToUserDB((User)entity));
+            mapActions.Add(typeof(Role).TypeHandle, (entity) => ToRoleDB((Role)entity));
 
             dbMapActions = new Dictionary<RuntimeTypeHandle, Func<DBEntity, IEntity>>();
             dbMapActions.Add(typeof(UserSecurityDB).TypeHandle, (entity) => ToUserSecurity((UserSecurityDB)entity));
             dbMapActions.Add(typeof(UserDB).TypeHandle, (entity) => ToUser((UserDB)entity));
+            dbMapActions.Add(typeof(RoleDB).TypeHandle, (entity) => ToRole((RoleDB)entity));
             dbMapActions.Add(typeof(InvitationContact).TypeHandle, (entity) => ToInvitationContact((InvitationContactDB)entity));
         }
 
@@ -116,6 +118,22 @@ namespace AbiokaApi.Repository.Mappings
                 Id = user.Id,
                 Email = user.Email,
                 IsAdmin = user.IsAdmin
+            };
+            return result;
+        }
+
+        private static Role ToRole(RoleDB roleDB) {
+            var result = new Role {
+                Id = roleDB.Id,
+                Name = roleDB.Name
+            };
+            return result;
+        }
+
+        private static RoleDB ToRoleDB(Role role) {
+            var result = new RoleDB {
+                Id = role.Id,
+                Name = role.Name,
             };
             return result;
         }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IUserSecurityRepository.cs" />
+    <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
     <Compile Include="InvitationContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
