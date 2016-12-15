@@ -21,9 +21,7 @@ namespace AbiokaApi.Host.Controllers
         public HttpResponseMessage Add([FromBody]T entity) {
             crudService.Add(entity);
 
-            var response = Request.CreateResponse(HttpStatusCode.Created);
-            string uri = Url.Link("", new { id = entity.Id });
-            response.Headers.Location = new Uri(uri);
+            var response = Request.CreateResponse(HttpStatusCode.Created, entity);
             return response;
         }
 

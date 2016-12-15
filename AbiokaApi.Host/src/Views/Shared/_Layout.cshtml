@@ -17,42 +17,7 @@
 <body ng-app="abioka" ng-controller="MainController as vm" layout="row">
     <menu></menu>
     <div layout="column" flex>
-        <md-toolbar class="navbar-transparent">
-            <div class="md-toolbar-tools">
-                <md-button class="md-fab md-raised md-mini" ng-click="vm.openLeftMenu()" hide-gt-sm>
-                    <md-icon>menu</md-icon>
-                </md-button>
-                <h2>
-                    <span>Abioka</span>
-                </h2>
-                <span flex></span>
-                <md-menu>
-                    <md-button class="md-fab md-mini" ng-click="$mdOpenMenu($event)">
-                        <md-icon>language</md-icon>
-                    </md-button>
-                    <md-menu-content>
-                        <md-menu-item>
-                            <md-button ng-click="vm.changeLanguage('tr')">
-                                Türkçe
-                            </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button ng-click="vm.changeLanguage('en')">
-                                English
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu>
-                <div ng-show="vm.user.IsSignedIn">
-                    <md-button class="md-fab md-mini">
-                        <md-icon>person</md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-mini" ng-click="vm.logout()">
-                        <md-icon>exit_to_app</md-icon>
-                    </md-button>
-                </div>
-            </div>
-        </md-toolbar>
+        <toolbar></toolbar>
         <md-content md-scroll-y layout="column" flex>
             @RenderBody()
         </md-content>

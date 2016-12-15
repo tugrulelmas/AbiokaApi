@@ -50,7 +50,12 @@
         function showEditDialog(event, entity) {
             var tmpEntity = angular.copy(entity);
             vm.showDialog({ event: event, entity: tmpEntity }).then(function (updatedEntity) {
-                angular.copy(updatedEntity, entity);
+                if (tmpEntity && tmpEntity.Id) {
+                    angular.copy(updatedEntity, entity);
+                }
+                else {
+                    vm.entities.Data.push(updatedEntity);
+                }
             });
         }
 

@@ -5,9 +5,9 @@
       .controller('UserDialogController', UserDialogController);
 
     /* @ngInject */
-    function UserDialogController($mdDialog, $filter, UserResource, user) {
+    function UserDialogController($mdDialog, $filter, AdminResource, user) {
         var vm = this;
-        vm.resource = UserResource.users;
+        vm.resource = AdminResource.users;
         vm.entity = user;
         vm.isUpdate = user && user.Id;
         vm.title = $filter("translate")("UserDetail");

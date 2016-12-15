@@ -45,7 +45,10 @@
             }
         }
 
-        function closeDialog() {
+        function closeDialog(data) {
+            if (data && data.Id) {
+                vm.entity.Id = data.Id;
+            }
             vm.loading = false;
             $mdDialog.hide(vm.entity);
         }
