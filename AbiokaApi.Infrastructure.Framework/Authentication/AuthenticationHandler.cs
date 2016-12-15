@@ -49,7 +49,8 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 UserName = payload.id.ToString(),
                 Email = payload.email,
                 Id = payload.id,
-                TokenExpirationDate = Util.UnixTimeStampToDateTime(payload.exp)
+                TokenExpirationDate = Util.UnixTimeStampToDateTime(payload.exp),
+                Roles = payload.roles
             };
             currentContext.Principal = user;
         }

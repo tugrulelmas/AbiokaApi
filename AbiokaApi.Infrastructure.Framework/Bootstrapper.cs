@@ -13,6 +13,7 @@ namespace AbiokaApi.Infrastructure.Framework
             DependencyContainer.Container.Register<DynamicInterceptor>(LifeStyle.Transient)
                 .Register<IAbiokaToken, AbiokaToken>()
                 .Register<IDynamicHandler, AuthenticationHandler>(LifeStyle.PerWebRequest)
+                .Register<IDynamicHandler, RoleValidationHandler>(LifeStyle.PerWebRequest)
                 .Register<IDynamicHandler, ExceptionHandler>();
         }
     }

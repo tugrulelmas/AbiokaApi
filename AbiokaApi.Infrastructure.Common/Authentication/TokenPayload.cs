@@ -17,5 +17,7 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         public string provider { get; set; }
 
         public string language { get; set; }
+
+        public string[] roles { get; set; }
     }
 }

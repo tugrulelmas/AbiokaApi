@@ -68,6 +68,7 @@
     <Compile Include="Authentication\SignatureVerificationException.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Handlers\ExceptionHandler.cs" />
+    <Compile Include="Handlers\RoleValidationHandler.cs" />
     <Compile Include="IoC\CastleContainer.cs" />
     <Compile Include="IoC\CastleInvocationContext.cs" />
     <Compile Include="IoC\DynamicInterceptor.cs" />

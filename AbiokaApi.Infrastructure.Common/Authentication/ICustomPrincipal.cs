@@ -28,5 +28,13 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         /// The identifier.
         /// </value>
         Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets the roles.
+        /// </summary>
+        /// <value>
+        /// The roles.
+        /// </value>
+        string[] Roles { get; }
     }
 }

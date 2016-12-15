@@ -5,7 +5,7 @@ using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace AbiokaApi.ApplicationService.Implementations
@@ -20,8 +20,6 @@ namespace AbiokaApi.ApplicationService.Implementations
             this.userSecurityRepository = userSecurityRepository;
             this.abiokaToken = abiokaToken;
         }
-
-        public IEnumerable<User> GetAll() => repository.GetAll();
 
         public string Login(LoginRequest loginRequest) {
             var user = userSecurityRepository.GetByEmail(loginRequest.Email);
@@ -44,7 +42,8 @@ namespace AbiokaApi.ApplicationService.Implementations
                 Email = loginRequest.Email,
                 Id = user.Id,
                 Provider = AuthProvider.Local,
-                ProviderToken = localToken
+                ProviderToken = localToken,
+                Roles = user.Roles.Select(r => r.Name).ToArray()
             };
             user.ProviderToken = localToken;
 

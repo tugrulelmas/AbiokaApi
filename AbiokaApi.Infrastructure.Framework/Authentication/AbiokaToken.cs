@@ -25,7 +25,8 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 iat = iat,
                 email = userClaim.Email,
                 id = userClaim.Id,
-                provider = userClaim.Provider.ToString()
+                provider = userClaim.Provider.ToString(),
+                roles = userClaim.Roles
             };
 
             return JsonWebToken.Encode(payload, key, JwtHashAlgorithm.HS256);

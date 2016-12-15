@@ -3,6 +3,8 @@ using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Repository.DatabaseObjects;
 using AbiokaApi.Repository.Mappings;
 using System.Linq;
+using NHibernate.Linq;
+using System.Collections.Generic;
 
 namespace AbiokaApi.Repository.Repositories
 {
@@ -27,6 +29,14 @@ namespace AbiokaApi.Repository.Repositories
                 return null;
 
             var result = (UserSecurity)DBObjectMapper.ToDomainObject(dbUser);
+            var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == result.Id);
+            if (userRoles != null && userRoles.Count() > 0) {
+                var roles = new List<Role>();
+                foreach (var userRoleItem in userRoles) {
+                    roles.Add(new Role { Id = userRoleItem.Role.Id, Name = userRoleItem.Role.Name });
+                }
+                result.Roles = roles;
+            }
             return result;
         }
     }
