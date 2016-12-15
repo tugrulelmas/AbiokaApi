@@ -65,8 +65,10 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
             return this;
         }
 
-        public IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle) {
-            RegisterComponent(Component.For(typeof(T1)).ImplementedBy(typeof(T2)), lifeStyle);
+        public IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle) => Register(typeof(T1), typeof(T2), lifeStyle);
+
+        public IDependencyContainer Register(Type type1, Type type2, LifeStyle lifeStyle) {
+            RegisterComponent(Component.For(type1).ImplementedBy(type2), lifeStyle);
             return this;
         }
 

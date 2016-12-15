@@ -17,5 +17,6 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2);
         IDependencyContainer UsingFactoryMethod<T>(Func<T> func);
         IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle = LifeStyle.Singleton);
+        IDependencyContainer Register(Type type1, Type type2, LifeStyle lifeStyle = LifeStyle.Singleton);
     }
 }

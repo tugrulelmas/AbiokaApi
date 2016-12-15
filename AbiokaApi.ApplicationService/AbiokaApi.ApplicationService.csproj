@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Abstractions\ICrudService.cs" />
     <Compile Include="Abstractions\IReadService.cs" />
-    <Compile Include="Abstractions\IRoleService.cs" />
     <Compile Include="Abstractions\IUserService.cs" />
     <Compile Include="Abstractions\IInvitationService.cs" />
     <Compile Include="Abstractions\IService.cs" />
@@ -50,7 +49,6 @@
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Implementations\InvitationService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
-    <Compile Include="Implementations\RoleService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
     <Compile Include="Messaging\LoginRequest.cs" />

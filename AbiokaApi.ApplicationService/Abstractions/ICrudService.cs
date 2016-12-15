@@ -1,5 +1,4 @@
 ﻿using AbiokaApi.Infrastructure.Common.Domain;
-using System;
 
 namespace AbiokaApi.ApplicationService.Abstractions
 {
