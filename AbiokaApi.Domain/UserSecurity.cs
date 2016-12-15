@@ -3,6 +3,7 @@ using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Infrastructure.Common.Validation;
 using System;
+using System.Collections.Generic;
 
 namespace AbiokaApi.Domain
 {
@@ -57,12 +58,12 @@ namespace AbiokaApi.Domain
         public bool IsDeleted { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is admin.
+        /// Gets or sets the roles.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is admin; otherwise, <c>false</c>.
+        /// The roles.
         /// </value>
-        public bool IsAdmin { get; set; }
+        public IEnumerable<Role> Roles { get; set; }
 
         public string GetHashedPassword(string password) {
             var hashedPassword = Util.GetHashText(string.Concat(Email.ToLowerInvariant(), "#", password));
@@ -72,7 +73,7 @@ namespace AbiokaApi.Domain
         public static implicit operator User(UserSecurity userSecurity) => new User {
             Id = userSecurity.Id,
             Email = userSecurity.Email,
-            IsAdmin = userSecurity.IsAdmin
+            Roles = userSecurity.Roles
         };
 
         public override ValidationResult Validate(ActionType actionType) {

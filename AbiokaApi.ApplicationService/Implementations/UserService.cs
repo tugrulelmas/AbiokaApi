@@ -63,7 +63,7 @@ namespace AbiokaApi.ApplicationService.Implementations
 
             var userSecurity = new UserSecurity {
                 Email = request.Email,
-                IsAdmin = request.IsAdmin,
+                Roles = request.Roles,
                 AuthProvider = AuthProvider.Local,
                 ProviderToken = Guid.NewGuid().ToString()
             };
@@ -76,8 +76,8 @@ namespace AbiokaApi.ApplicationService.Implementations
 
         public void Update(User entiy) {
             var dbUser = GetEntity(entiy.Id);
-            dbUser.IsAdmin = entiy.IsAdmin;
-            repository.Update(dbUser);
+            dbUser.Roles = entiy.Roles;
+            repository.Update(entiy);
         }
 
         public void Delete(Guid id) {

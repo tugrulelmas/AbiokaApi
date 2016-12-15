@@ -13,5 +13,21 @@
         vm.title = $filter("translate")("UserDetail");
         vm.deleteTitle = $filter("translate")("DeleteUser");
         vm.deleteMessage = user ? $filter("stringFormat")($filter("translate")("DeleteUserMessage"), user.Email) : "";
+        vm.roles = [];
+        vm.activate = activate;
+
+        activate();
+
+        function activate() {
+            AdminResource.roles.query({}, function (data) {
+                vm.roles = data;
+            });
+        }
+
+        /*
+        $element.find('roleSearch').on('keydown', function (ev) {
+            ev.stopPropagation();
+        });
+        */
     }
 })();

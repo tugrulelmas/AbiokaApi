@@ -17,6 +17,13 @@ namespace AbiokaApi.Host.Controllers
 
         [Route("")]
         [HttpGet]
+        public virtual HttpResponseMessage Get() {
+            var result = readService.GetAll();
+            return Request.CreateResponse(HttpStatusCode.OK, result);
+        }
+
+        [Route("{id}")]
+        [HttpGet]
         public virtual HttpResponseMessage Get([FromUri]Guid id) {
             var result = readService.Get(id);
             return Request.CreateResponse(HttpStatusCode.OK, result);

@@ -15,7 +15,7 @@ namespace AbiokaApi.Repository
     {
         protected ISession Session => UnitOfWork.Current.Session;
 
-        public void Add(T entity) {
+        public virtual void Add(T entity) {
             var dbObject = DBObjectMapper.FromDomainObject(entity);
             if (dbObject is IDeletableEntity) {
                 ((IDeletableEntity)dbObject).IsDeleted = false;
@@ -27,7 +27,7 @@ namespace AbiokaApi.Repository
             }
         }
 
-        public void Delete(T entity) {
+        public virtual void Delete(T entity) {
             var dbEntity = DBObjectMapper.FromDomainObject(entity);
             if (dbEntity is IDeletableEntity) {
                 ((IDeletableEntity)dbEntity).IsDeleted = true;
@@ -38,7 +38,7 @@ namespace AbiokaApi.Repository
             Session.Delete(dbEntity);
         }
 
-        public T FindById(object id) {
+        public virtual T FindById(object id) {
             var dbEntity = Session.Get<TDBEntity>(id);
 
             if (dbEntity == null)
@@ -54,7 +54,7 @@ namespace AbiokaApi.Repository
             return result;
         }
 
-        public void Update(T entity) {
+        public virtual void Update(T entity) {
             var dbObject = DBObjectMapper.FromDomainObject(entity);
             Session.Merge(dbObject);
         }

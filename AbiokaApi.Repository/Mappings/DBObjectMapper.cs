@@ -5,6 +5,7 @@ using AbiokaApi.Repository.DatabaseObjects;
 using System;
 using System.Collections.Generic;
 using AbiokaApi.Infrastructure.Common.Helper;
+using System.Linq;
 
 namespace AbiokaApi.Repository.Mappings
 {
@@ -33,6 +34,15 @@ namespace AbiokaApi.Repository.Mappings
             return mapActions[typeHandle](entity);
         }
 
+        internal static IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DBEntity {
+            var result = new List<T>();
+            foreach (var item in entities) {
+                var entity = (T)FromDomainObject(item);
+                result.Add(entity);
+            }
+            return result;
+        }
+
         internal static IEntity ToDomainObject(DBEntity entity) {
             var typeHandle = entity.GetType().TypeHandle;
             if (!dbMapActions.ContainsKey(typeHandle)) {
@@ -58,7 +68,6 @@ namespace AbiokaApi.Repository.Mappings
                 ProviderToken = userDB.ProviderToken,
                 Token = userDB.Token,
                 Password = userDB.Password,
-                IsAdmin = userDB.IsAdmin,
                 IsDeleted = userDB.IsDeleted
             };
             return result;
@@ -70,7 +79,6 @@ namespace AbiokaApi.Repository.Mappings
                 AuthProvider = user.AuthProvider.ToString(),
                 Email = user.Email,
                 IsDeleted = user.IsDeleted,
-                IsAdmin = user.IsAdmin,
                 Password = user.Password,
                 ProviderToken = user.ProviderToken,
                 Token = user.Token
@@ -81,8 +89,7 @@ namespace AbiokaApi.Repository.Mappings
         private static User ToUser(UserDB userDB) {
             var result = new User {
                 Id = userDB.Id,
-                Email = userDB.Email,
-                IsAdmin = userDB.IsAdmin
+                Email = userDB.Email
             };
             return result;
         }
@@ -90,8 +97,7 @@ namespace AbiokaApi.Repository.Mappings
         private static UserDB ToUserDB(User user) {
             var result = new UserDB {
                 Id = user.Id,
-                Email = user.Email,
-                IsAdmin = user.IsAdmin
+                Email = user.Email
             };
             return result;
         }

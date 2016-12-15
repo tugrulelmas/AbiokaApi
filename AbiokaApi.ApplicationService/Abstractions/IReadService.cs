@@ -1,5 +1,5 @@
 ﻿using AbiokaApi.Infrastructure.Common.Domain;
-using System;
+using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.Abstractions
 {
@@ -20,5 +20,7 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         T Get(object id);
+
+        IEnumerable<T> GetAll();
     }
 }

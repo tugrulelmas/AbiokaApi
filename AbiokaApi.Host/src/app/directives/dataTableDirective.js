@@ -48,15 +48,17 @@
         }
 
         function showEditDialog(event, entity) {
-            var tmpEntity = angular.copy(entity);
-            vm.showDialog({ event: event, entity: tmpEntity }).then(function (updatedEntity) {
-                if (tmpEntity && tmpEntity.Id) {
-                    angular.copy(updatedEntity, entity);
-                }
-                else {
+            if (entity && entity.Id) {
+                vm.options.resource.get({ id: entity.Id }, function (data) {
+                    vm.showDialog({ event: event, entity: data }).then(function (updatedEntity) {
+                        angular.copy(updatedEntity, entity);
+                    });
+                });
+            } else {
+                vm.showDialog({ event: event, entity: null }).then(function (updatedEntity) {
                     vm.entities.Data.push(updatedEntity);
-                }
-            });
+                });
+            }
         }
 
         function showCustomDeleteDialog(event, entity) {

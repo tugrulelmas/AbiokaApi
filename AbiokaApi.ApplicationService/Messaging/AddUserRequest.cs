@@ -1,4 +1,7 @@
-﻿namespace AbiokaApi.ApplicationService.Messaging
+﻿using AbiokaApi.Domain;
+using System.Collections.Generic;
+
+namespace AbiokaApi.ApplicationService.Messaging
 {
     public class AddUserRequest : ServiceRequestBase
     {
@@ -19,11 +22,11 @@
         public string Password { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance is admin.
+        /// Gets or sets the roles.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is admin; otherwise, <c>false</c>.
+        /// The roles.
         /// </value>
-        public bool IsAdmin { get; set; }
+        public IEnumerable<Role> Roles { get; set; }
     }
 }

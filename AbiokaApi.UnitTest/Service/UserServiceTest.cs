@@ -118,9 +118,8 @@ namespace AbiokaApi.UnitTest.Service
             
             var password = new UserSecurity { Email = addUserRequest.Email }.GetHashedPassword(addUserRequest.Password);
 
-            userService.UserSecurityRepositoryMock.Verify(us => us.Add(It.Is<UserSecurity>(e => e.Email == addUserRequest.Email && e.IsAdmin == addUserRequest.IsAdmin && e.AuthProvider == AuthProvider.Local && e.Password == password)), Times.Once());
+            userService.UserSecurityRepositoryMock.Verify(us => us.Add(It.Is<UserSecurity>(e => e.Email == addUserRequest.Email && e.AuthProvider == AuthProvider.Local && e.Password == password)), Times.Once());
             Assert.AreEqual(user.Email, addUserRequest.Email);
-            Assert.AreEqual(user.IsAdmin, addUserRequest.IsAdmin);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
 using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Exceptions;
+using System.Collections.Generic;
 using System.Net;
 
 namespace AbiokaApi.ApplicationService.Implementations
@@ -12,6 +13,8 @@ namespace AbiokaApi.ApplicationService.Implementations
         public ReadService(IRepository<T> repository) {
             this.repository = repository;
         }
+
+        public IEnumerable<T> GetAll() => repository.GetAll();
 
         public T Get(object id) => repository.FindById(id);
 

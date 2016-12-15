@@ -37,11 +37,15 @@
 
             vm.loading = true;
             if (vm.entity && vm.entity.Id) {
-                vm.resource.update({}, vm.entity).$promise.then(closeDialog);
-                alert.success("ItemIsUpdated", true);
+                vm.resource.update({}, vm.entity).$promise.then(function (data) {
+                    closeDialog(data);
+                    alert.success("ItemIsUpdated", true);
+                });
             } else {
-                vm.resource.save({}, vm.entity).$promise.then(closeDialog);
-                alert.success("ItemIsSaved", true);
+                vm.resource.save({}, vm.entity).$promise.then(function (data) {
+                    closeDialog(data);
+                    alert.success("ItemIsSaved", true);
+                });
             }
         }
 

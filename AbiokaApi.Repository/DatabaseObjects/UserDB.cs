@@ -16,8 +16,6 @@ namespace AbiokaApi.Repository.DatabaseObjects
 
         public virtual string Password { get; set; }
 
-        public virtual bool IsAdmin { get; set; }
-
         public virtual bool IsDeleted { get; set; }
     }
 
@@ -26,7 +24,5 @@ namespace AbiokaApi.Repository.DatabaseObjects
         public virtual Guid Id { get; set; }
 
         public virtual string Email { get; set; }
-
-        public virtual bool IsAdmin { get; set; }
     }
 }

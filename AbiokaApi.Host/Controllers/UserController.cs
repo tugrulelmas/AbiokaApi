@@ -18,15 +18,6 @@ namespace AbiokaApi.Host.Controllers
             this.userService = userService;
         }
 
-        [HttpGet]
-        [Route("")]
-        public HttpResponseMessage Get() {
-            var users = userService.GetAll();
-
-            var response = Request.CreateResponse(HttpStatusCode.OK, users);
-            return response;
-        }
-
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
