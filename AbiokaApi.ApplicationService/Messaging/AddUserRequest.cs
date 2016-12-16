@@ -1,5 +1,10 @@
-﻿using AbiokaApi.Domain;
+﻿using AbiokaApi.ApplicationService.Validation;
+using AbiokaApi.Domain;
+using FluentValidation;
 using System.Collections.Generic;
+using AbiokaApi.Domain.Repositories;
+using AbiokaApi.Infrastructure.Common.Exceptions;
+using AbiokaApi.Infrastructure.Common.Helper;
 
 namespace AbiokaApi.ApplicationService.Messaging
 {
@@ -28,5 +33,23 @@ namespace AbiokaApi.ApplicationService.Messaging
         /// The roles.
         /// </value>
         public IEnumerable<Role> Roles { get; set; }
+    }
+
+    public class AddUserRequestValidator : CustomValidator<AddUserRequest>
+    {
+        private readonly IUserSecurityRepository userSecurityRepository;
+
+        public AddUserRequestValidator(IUserSecurityRepository userSecurityRepository) {
+            this.userSecurityRepository = userSecurityRepository;
+
+            RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").EmailAddress().WithMessage("ShouldBeCorrectEmail");
+            RuleFor(r => r.Password).NotEmpty().WithMessage("IsRequired");
+        }
+
+        protected override void DataValidate(AddUserRequest instance, ActionType actionType) {
+            var tmpUser = userSecurityRepository.GetByEmail(instance.Email);
+            if (tmpUser != null)
+                throw new DenialException("UserIsAlreadyRegistered", instance.Email);
+        }
     }
 }

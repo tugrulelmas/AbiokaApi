@@ -24,19 +24,6 @@ namespace AbiokaApi.ApplicationService.Implementations
         public string Login(LoginRequest loginRequest) {
             var user = userSecurityRepository.GetByEmail(loginRequest.Email);
 
-            if (user == null) {
-                throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
-            }
-
-            var hashedPassword = user.GetHashedPassword(loginRequest.Password);
-            if (user.Password != hashedPassword) {
-                throw new DenialException("WrongPassword");
-            }
-
-            if (user.IsDeleted) {
-                throw new DenialException("UserIsNotActive");
-            }
-
             var localToken = Guid.NewGuid().ToString();
             var userInfo = new UserClaim {
                 Email = loginRequest.Email,
@@ -56,10 +43,6 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public User Add(AddUserRequest request) {
-            var tmpUser = userSecurityRepository.GetByEmail(request.Email);
-            if (tmpUser != null)
-                throw new DenialException("UserIsAlreadyRegistered", request.Email);
-
             var userSecurity = new UserSecurity {
                 Email = request.Email,
                 Roles = request.Roles,

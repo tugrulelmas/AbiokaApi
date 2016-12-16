@@ -57,6 +57,7 @@
             } else {
                 vm.showDialog({ event: event, entity: null }).then(function (updatedEntity) {
                     vm.entities.Data.push(updatedEntity);
+                    vm.entities.Count += 1;
                 });
             }
         }

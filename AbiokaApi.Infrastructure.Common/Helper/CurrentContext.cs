@@ -13,6 +13,12 @@ namespace AbiokaApi.Infrastructure.Common.Helper
             contextHolder.SetData(contextName, this);
         }
 
+        public ActionType ActionType {
+            get {
+                throw new NotImplementedException();
+            }
+        }
+
         public ICurrentContext Current {
             get {
                 object obj = contextHolder.GetData(contextName);
@@ -24,5 +30,7 @@ namespace AbiokaApi.Infrastructure.Common.Helper
         }
 
         public ICustomPrincipal Principal { get; set; }
+
+        ActionType ICurrentContext.ActionType { get; set; }
     }
 }

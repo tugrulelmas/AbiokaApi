@@ -74,6 +74,7 @@
     <Compile Include="Exceptions\Adapters\IExceptionAdapterFactory.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Exceptions\DenialException.cs" />
+    <Compile Include="Helper\ActionType.cs" />
     <Compile Include="Helper\CurrentContext.cs" />
     <Compile Include="Helper\IContextHolder.cs" />
     <Compile Include="Helper\ContextHolder.cs" />
@@ -88,13 +89,6 @@
     <Compile Include="IoC\LifeStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\Util.cs" />
-    <Compile Include="Validation\ActionType.cs" />
-    <Compile Include="Validation\IValidatableObject.cs" />
-    <Compile Include="Validation\ValidationArg.cs" />
-    <Compile Include="Validation\ValidationCode.cs" />
-    <Compile Include="Validation\ValidationMessage.cs" />
-    <Compile Include="Validation\ValidationMessageCollection.cs" />
-    <Compile Include="Validation\ValidationResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

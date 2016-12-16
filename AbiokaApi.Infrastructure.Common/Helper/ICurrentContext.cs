@@ -7,5 +7,7 @@ namespace AbiokaApi.Infrastructure.Common.Helper
         ICurrentContext Current { get; }
 
         ICustomPrincipal Principal { get; set; }
+
+        ActionType ActionType { get; set; }
     }
 }

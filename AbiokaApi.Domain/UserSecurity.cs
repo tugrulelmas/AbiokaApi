@@ -1,7 +1,6 @@
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Helper;
-using AbiokaApi.Infrastructure.Common.Validation;
 using System;
 using System.Collections.Generic;
 
@@ -75,15 +74,5 @@ namespace AbiokaApi.Domain
             Email = userSecurity.Email,
             Roles = userSecurity.Roles
         };
-
-        public override ValidationResult Validate(ActionType actionType) {
-            var collection = new ValidationMessageCollection();
-
-            if (actionType != ActionType.Delete) {
-                collection.AddEmptyMessage(Email, "Email");
-            }
-
-            return collection.ToValidationResult();
-        }
     }
 }

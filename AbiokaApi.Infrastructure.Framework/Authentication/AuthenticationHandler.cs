@@ -24,10 +24,13 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
         private HttpRequestMessage Request;
 
         public void BeforeSend(IRequestContext requestContext) {
+            SetContextActionType(requestContext.Request);
+
             var actionDescriptor = requestContext.Request.GetActionDescriptor();
             var actionAttributes = actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>(true);
             var controllerAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>(true);
             if ((actionAttributes != null && actionAttributes.Count > 0) || (controllerAttributes != null && controllerAttributes.Count > 0)) {
+                currentContext.Principal = null;
                 return;
             }
             Request = requestContext.Request;
@@ -56,6 +59,21 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
         }
 
         public void OnException(IExceptionContext exceptionContext) {
+        }
+
+        private void SetContextActionType(HttpRequestMessage request) {
+            if (request.Method.Method == "DELETE") {
+                currentContext.ActionType = ActionType.Delete;
+            }
+            else if (request.Method.Method == "PUT") {
+                currentContext.ActionType = ActionType.Update;
+            }
+            else if (request.Method.Method == "POST") {
+                currentContext.ActionType = ActionType.Add;
+            }
+            else {
+                currentContext.ActionType = ActionType.List;
+            }
         }
     }
 }

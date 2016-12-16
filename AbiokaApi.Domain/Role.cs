@@ -1,5 +1,4 @@
 ﻿using AbiokaApi.Infrastructure.Common.Domain;
-using AbiokaApi.Infrastructure.Common.Validation;
 using System;
 
 namespace AbiokaApi.Domain
@@ -13,16 +12,5 @@ namespace AbiokaApi.Domain
         /// The name.
         /// </value>
         public string Name { get; set; }
-
-        public override ValidationResult Validate(ActionType actionType) {
-            var collection = new ValidationMessageCollection();
-
-            if (actionType != ActionType.Delete)
-            {
-                collection.AddEmptyMessage(Name, "Name");
-            }
-
-            return collection.ToValidationResult();
-        }
     }
 }

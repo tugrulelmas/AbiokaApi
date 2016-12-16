@@ -1,5 +1,4 @@
 ﻿using AbiokaApi.Infrastructure.Common.Domain;
-using AbiokaApi.Infrastructure.Common.Validation;
 using System;
 using System.Collections.Generic;
 
@@ -22,16 +21,5 @@ namespace AbiokaApi.Domain
         /// The roles.
         /// </value>
         public IEnumerable<Role> Roles { get; set; }
-
-        public override ValidationResult Validate(ActionType actionType) {
-            var collection = new ValidationMessageCollection();
-
-            if (actionType != ActionType.Delete)
-            {
-                collection.AddEmptyMessage(Email, "Email");
-            }
-
-            return collection.ToValidationResult();
-        }
     }
 }

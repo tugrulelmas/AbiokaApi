@@ -89,7 +89,7 @@ namespace AbiokaApi.UnitTest.Service
             Assert.AreEqual(userSecurity.Token, token);
             userService.UserSecurityRepositoryMock.Verify(us => us.Update(userSecurity), Times.Once());
         }
-
+        /*
         [Test]
         public void Add_Throws_User_Is_Already_Registered() {
             var addUserRequest = new AddUserRequest {
@@ -104,6 +104,7 @@ namespace AbiokaApi.UnitTest.Service
             Assert.AreEqual(exception.Message, "UserIsAlreadyRegistered");
             Assert.AreEqual(exception.StatusCode, HttpStatusCode.BadRequest);
         }
+        */
 
         [Test]
         public void Add_Calls_Repository_Add_Method_And_Returns_User() {

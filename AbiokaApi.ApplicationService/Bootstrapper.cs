@@ -1,5 +1,6 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
 using AbiokaApi.ApplicationService.Interceptors;
+using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Infrastructure.Common.IoC;
 
 namespace AbiokaApi.ApplicationService
@@ -10,7 +11,9 @@ namespace AbiokaApi.ApplicationService
             Repository.Bootstrapper.Initialise();
             DependencyContainer.Container
                 .RegisterServices<IService>()
-                .Register<IServiceInterceptor, RoleValidationInterceptor>(LifeStyle.PerWebRequest);
+                .RegisterWithBase(typeof(ICustomValidator<>), typeof(CustomValidator<>))
+                .Register<IServiceInterceptor, RoleValidationInterceptor>(LifeStyle.PerWebRequest)
+                .Register<IServiceInterceptor, DataValidationInterceptor>(LifeStyle.PerWebRequest);
         }
     }
 }
