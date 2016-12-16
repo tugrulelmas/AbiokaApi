@@ -386,3 +386,7 @@ a.docs-logo {
     width: 100%;
     padding: 0;
 }
+
+.edit-dialog {
+    width: 600px;
+}

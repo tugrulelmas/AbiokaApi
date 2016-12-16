@@ -1,31 +1,33 @@
 ﻿<form name="userForm" novalidate>
     <edit-dialog resource="vm.resource" entity="vm.entity" title="{{vm.title}}" form="{{'userForm'}}">
-        <md-input-container class="md-block">
-            <label>{{'Email' | translate}}</label>
-            <input type="email" name="email" ng-model="vm.entity.Email" ng-disabled="vm.isUpdate" required />
-            <validation-message model="userForm.email" field-name="{{'Email' | translate}}"></validation-message>
-        </md-input-container>
-        <md-input-container>
-            <label>{{'Roles' | translate}}</label>
-            <md-select name="role" ng-model="vm.entity.Roles" md-on-close="vm.searchRole = ''" ng-model-options= "{trackBy: '$value.Id'}" data-md-container-class="selectdemoSelectHeader" multiple>
-                <md-select-header class="demo-select-header">
-                    <input id="roleSearch" ng-model="vm.searchRole" type="search" placeholder="{{'Search' | translate}}" class="demo-header-searchbox md-text">
-                </md-select-header>
-                <md-optgroup label="{{'Roles' | translate}}">
-                    <md-option ng-value="role" ng-repeat="role in vm.roles | filter:vm.searchRole" >{{role.Name}}</md-option>
-                </md-optgroup>
-            </md-select>
-            <validation-message model="userForm.role" field-name="{{'Roles' | translate}}"></validation-message>
-        </md-input-container>
-        <md-input-container class="md-block" ng-if="!vm.isUpdate">
-            <label>{{'Password' | translate}}</label>
-            <input type="password" name="password" ng-model="vm.entity.Password" required />
-            <validation-message model="userForm.password" field-name="{{'Password' | translate}}"></validation-message>
-        </md-input-container>
-        <md-input-container class="md-block" ng-if="!vm.isUpdate">
-            <label>{{'PasswordAgain' | translate}}</label>
-            <input password-match="vm.entity.Password" type="password" name="passwordAgain" ng-model="vm.entity.PasswordAgain" required />
-            <validation-message model="userForm.passwordAgain" field-name="{{'PasswordAgain' | translate}}"></validation-message>
-        </md-input-container>
+        <div class-gt-sm="edit-dialog">
+            <md-input-container class="md-block">
+                <label>{{'Email' | translate}}</label>
+                <input type="email" name="email" ng-model="vm.entity.Email" ng-disabled="vm.isUpdate" required />
+                <validation-message model="userForm.email" field-name="{{'Email' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container>
+                <label>{{'Roles' | translate}}</label>
+                <md-select name="role" ng-model="vm.entity.Roles" md-on-close="vm.searchRole = ''" ng-model-options="{trackBy: '$value.Id'}" data-md-container-class="selectdemoSelectHeader" multiple>
+                    <md-select-header class="demo-select-header">
+                        <input id="roleSearch" ng-model="vm.searchRole" type="search" placeholder="{{'Search' | translate}}" class="demo-header-searchbox md-text">
+                    </md-select-header>
+                    <md-optgroup label="{{'Roles' | translate}}">
+                        <md-option ng-value="role" ng-repeat="role in vm.roles | filter:vm.searchRole">{{role.Name}}</md-option>
+                    </md-optgroup>
+                </md-select>
+                <validation-message model="userForm.role" field-name="{{'Roles' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container class="md-block" ng-if="!vm.isUpdate">
+                <label>{{'Password' | translate}}</label>
+                <input type="password" name="password" ng-model="vm.entity.Password" required />
+                <validation-message model="userForm.password" field-name="{{'Password' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container class="md-block" ng-if="!vm.isUpdate">
+                <label>{{'PasswordAgain' | translate}}</label>
+                <input password-match="vm.entity.Password" type="password" name="passwordAgain" ng-model="vm.entity.PasswordAgain" required />
+                <validation-message model="userForm.passwordAgain" field-name="{{'PasswordAgain' | translate}}"></validation-message>
+            </md-input-container>
+        </div>
     </edit-dialog>
 </form>

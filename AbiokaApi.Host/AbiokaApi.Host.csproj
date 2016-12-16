@@ -120,6 +120,7 @@
     <Content Include="src\app\controllers\mainController.js" />
     <Content Include="src\app\controllers\roleDialogController.js" />
     <Content Include="src\app\controllers\userDialogController.js" />
+    <Content Include="src\app\directives\classDirective.js" />
     <Content Include="src\app\directives\customOnChangeDirective.js" />
     <Content Include="src\app\directives\dataTableDirective.js" />
     <Content Include="src\app\directives\deleteDialogDirective.js" />

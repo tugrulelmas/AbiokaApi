@@ -1,9 +1,11 @@
 ﻿<form name="editForm" novalidate>
     <edit-dialog resource="vm.resource" entity="vm.entity" title="{{vm.title}}" form="{{'editForm'}}">
-        <md-input-container class="md-block">
-            <label>{{'Name' | translate}}</label>
-            <input type="text" name="name" ng-model="vm.entity.Name" required />
-            <validation-message model="editForm.name" field-name="{{'Name' | translate}}"></validation-message>
-        </md-input-container>
+        <div class-gt-sm="edit-dialog">
+            <md-input-container class="md-block">
+                <label>{{'Name' | translate}}</label>
+                <input type="text" name="name" ng-model="vm.entity.Name" required />
+                <validation-message model="editForm.name" field-name="{{'Name' | translate}}"></validation-message>
+            </md-input-container>
+        </div> 
     </edit-dialog>
 </form>
