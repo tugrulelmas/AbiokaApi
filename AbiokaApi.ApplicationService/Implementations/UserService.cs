@@ -43,7 +43,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 Id = user.Id,
                 Provider = AuthProvider.Local,
                 ProviderToken = localToken,
-                Roles = user.Roles.Select(r => r.Name).ToArray()
+                Roles = user.Roles?.Select(r => r.Name).ToArray()
             };
             user.ProviderToken = localToken;
 
