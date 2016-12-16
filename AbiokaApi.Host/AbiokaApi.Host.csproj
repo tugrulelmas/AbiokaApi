@@ -164,6 +164,7 @@
     <Content Include="src\Views\Shared\_Layout.cshtml" />
     <Content Include="src\app\resources\resource_en.json" />
     <Content Include="src\app\resources\resource_tr.json" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
