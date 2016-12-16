@@ -10,10 +10,10 @@ namespace AbiokaApi.Infrastructure.Framework
    public class Bootstrapper
     {
         public static void Initialise() {
-            DependencyContainer.Container.Register<DynamicInterceptor>(LifeStyle.Transient)
+            DependencyContainer.Container
+                .Register<ServiceInterceptor>(LifeStyle.Transient)
                 .Register<IAbiokaToken, AbiokaToken>()
                 .Register<IDynamicHandler, AuthenticationHandler>(LifeStyle.PerWebRequest)
-                .Register<IDynamicHandler, RoleValidationHandler>(LifeStyle.PerWebRequest)
                 .Register<IDynamicHandler, ExceptionHandler>();
         }
     }

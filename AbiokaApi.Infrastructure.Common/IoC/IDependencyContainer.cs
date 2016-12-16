@@ -11,8 +11,7 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         void Release(object instance);
         IDependencyContainer Register<T>(LifeStyle lifeStyle);
         IDependencyContainer Register(Type type, LifeStyle lifeStyle);
-        IDependencyContainer RegisterWithFromInterface<T>();
-        IDependencyContainer RegisterWithFromInterface(Type type);
+        IDependencyContainer RegisterServices<T>();
         IDependencyContainer RegisterWithDefaultInterfaces<T1, T2>();
         IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2);
         IDependencyContainer UsingFactoryMethod<T>(Func<T> func);

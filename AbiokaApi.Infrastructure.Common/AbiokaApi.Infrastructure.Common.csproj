@@ -48,7 +48,7 @@
     <Compile Include="Authentication\CustomPrincipal.cs" />
     <Compile Include="Authentication\IAbiokaToken.cs" />
     <Compile Include="Authentication\ICustomPrincipal.cs" />
-    <Compile Include="Authentication\RoleAttributte.cs" />
+    <Compile Include="Authentication\AllowedRoleAttributte.cs" />
     <Compile Include="Authentication\TokenPayload.cs" />
     <Compile Include="Authentication\UserClaim.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -82,7 +82,8 @@
     <Compile Include="Helper\ICurrentContext.cs" />
     <Compile Include="IoC\DependencyContainer.cs" />
     <Compile Include="IoC\IDependencyContainer.cs" />
-    <Compile Include="IoC\IDynamicInterceptor.cs" />
+    <Compile Include="IoC\InvocationContext.cs" />
+    <Compile Include="IoC\IServiceInterceptor.cs" />
     <Compile Include="IoC\IInvocationContext.cs" />
     <Compile Include="IoC\LifeStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

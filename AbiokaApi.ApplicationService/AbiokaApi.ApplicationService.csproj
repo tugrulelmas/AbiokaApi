@@ -48,6 +48,7 @@
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
     <Compile Include="Implementations\UserService.cs" />
+    <Compile Include="Interceptors\RoleValidationInterceptor.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
     <Compile Include="Messaging\LoginRequest.cs" />
     <Compile Include="Messaging\ServiceRequestBase.cs" />

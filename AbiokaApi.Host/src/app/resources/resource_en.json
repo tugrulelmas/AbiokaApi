@@ -32,5 +32,6 @@
   "RoleDetail": "Role Detail",
   "DeleteRole": "Delete Role",
   "DeleteRoleMessage": "Do you really want to delete role whose name is {0}",
-  "Name": "Name"
+  "Name": "Name",
+  "AccessDenied": "Access is denied"
 }

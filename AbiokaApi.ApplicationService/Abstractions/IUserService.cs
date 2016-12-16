@@ -1,18 +1,12 @@
 ﻿using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
+using AbiokaApi.Infrastructure.Common.Authentication;
 using System;
-using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.Abstractions
 {
     public interface IUserService : IReadService<User>
     {
-        /// <summary>
-        /// Gets all.
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<User> GetAll();
-
         /// <summary>
         /// Logins the specified login request.
         /// </summary>
@@ -31,6 +25,7 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// Updates the specified entiy.
         /// </summary>
         /// <param name="entiy">The entiy.</param>
+        [AllowedRole("Admin")]
         void Update(User entiy);
 
         /// <summary>

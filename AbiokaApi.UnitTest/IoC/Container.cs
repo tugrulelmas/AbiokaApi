@@ -16,32 +16,35 @@ namespace AbiokaApi.UnitTest.IoC
 
         [Test]
         public void RegisterAndResolve() {
-            DependencyContainer.Container.Register<IDummy, Dummy>();
+            DependencyContainer.Container.Register<ServiceInterceptor>(LifeStyle.Transient)
+                .RegisterServices<IDummyService>()
+                .Register<IServiceInterceptor, Interceptor>();
 
-            var dummy = DependencyContainer.Container.Resolve<IDummy>();
+            var dummy = DependencyContainer.Container.Resolve<IDummyService>();
 
-            Assert.AreEqual(dummy.GetText(), new Dummy().GetText());
+            Assert.AreEqual(dummy.GetText(), new DummyService().GetText());
         }
     }
 
-    interface IDummy
+   public interface IDummyService
     {
         string GetText();
     }
 
-    class Dummy : IDummy
+    public class DummyService : IDummyService
     {
         public string GetText() {
             return "Dummy";
         }
     }
 
-    class Interceptor : IDynamicInterceptor
+    class Interceptor : IServiceInterceptor
     {
-        public void Intercept(IInvocationContext context) {
+        public int Order => 10;
+
+        public void BeforeProceed(IInvocationContext context) {
             Console.WriteLine("Before");
-            context.Proceed();
-            Console.WriteLine("After");
         }
     }
+
 }

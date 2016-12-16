@@ -3,9 +3,9 @@
 namespace AbiokaApi.Infrastructure.Common.Authentication
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true)]
-    public class AllowedRoleAttributte : Attribute
+    public class AllowedRole : Attribute
     {
-        public AllowedRoleAttributte(params string[] roles) {
+        public AllowedRole(params string[] roles) {
             Roles = roles;
         }
 
