@@ -17,9 +17,9 @@ namespace AbiokaApi.ApplicationService.Validation
         }
 
         protected override void DataValidate(Role instance, ActionType actionType) {
-            if (actionType == ActionType.Add) {
+            if (actionType == ActionType.Add || actionType == ActionType.Update) {
                 var role = repository.GetByName(instance.Name);
-                if (role != null)
+                if (role != null && role.Id != instance.Id)
                     throw new DenialException("RoleIsAlreadyRegistered", instance.Name);
             }
         }
