@@ -21,6 +21,9 @@ namespace AbiokaApi.ApplicationService.Interceptors
             if (attributes == null || attributes.Count() == 0)
                 return;
 
+            if(currentContext.Current.Principal.Roles == null)
+                throw new DenialException("AccessDenied");
+
 
             var allowedRoles = (AllowedRole)attributes.First();
             if (currentContext.Current.Principal.Roles.Any(r => allowedRoles.Roles.Contains(r)))

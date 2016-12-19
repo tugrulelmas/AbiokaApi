@@ -39,6 +39,10 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
@@ -91,6 +95,10 @@
     <Compile Include="IoC\Mock\UnitOfWorkMock.cs" />
     <Compile Include="IoC\ContextHolderTest.cs" />
     <Compile Include="IoC\UnitOfWorkTest.cs" />
+    <Compile Include="Service\AddUserValidationTest.cs" />
+    <Compile Include="Service\LoginValidationTest.cs" />
+    <Compile Include="Service\Mock\AddUserRequestValidatorMock.cs" />
+    <Compile Include="Service\Mock\LoginRequestValidatorMock.cs" />
     <Compile Include="Service\Mock\ReadServiceMock.cs" />
     <Compile Include="Service\Mock\UserServiceMock.cs" />
     <Compile Include="Service\ReadServiceTest.cs" />
