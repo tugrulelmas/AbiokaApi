@@ -12,7 +12,7 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.IsDeleted);
             Map(x => x.Password);
             Map(x => x.ProviderToken);
-            Map(x => x.Token);
+            Map(x => x.Token).Length(512);
             
             Table("dbo.[User]");
         }

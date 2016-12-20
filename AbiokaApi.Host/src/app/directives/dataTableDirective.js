@@ -7,7 +7,6 @@
     function abiokaDataTable() {
         var directive = {
             restrict: 'E',
-            //transclude: true,
             scope: {
                 options: '=',
                 showDialog: '&',
@@ -22,7 +21,7 @@
     }
 
     /* @ngInject */
-    function dataTableController($scope, $timeout, $filter) {
+    function dataTableController($scope, $timeout, $filter, $mdDialog) {
         var vm = this;
         var defaultQuery = { order: ' ', limit: 10, page: 1 };
         angular.extend(defaultQuery, vm.options.query);
@@ -50,12 +49,12 @@
         function showEditDialog(event, entity) {
             if (entity && entity.Id) {
                 vm.options.resource.get({ id: entity.Id }, function (data) {
-                    vm.showDialog({ event: event, entity: data }).then(function (updatedEntity) {
+                    showEditOrDeleteDialog(event, data, vm.options.editTemplate).then(function (updatedEntity) {
                         angular.copy(updatedEntity, entity);
                     });
                 });
             } else {
-                vm.showDialog({ event: event, entity: null }).then(function (updatedEntity) {
+                showEditOrDeleteDialog(event, null, vm.options.editTemplate).then(function (updatedEntity) {
                     vm.entities.Data.push(updatedEntity);
                     vm.entities.Count += 1;
                 });
@@ -64,11 +63,26 @@
 
         function showCustomDeleteDialog(event, entity) {
             var tmpEntity = angular.copy(entity);
-            vm.showDeleteDialog({ event: event, entity: tmpEntity }).then(function (deletedEntity) {
+            showEditOrDeleteDialog(event, tmpEntity, vm.options.deleteTemplate).then(function (deletedEntity) {
                 vm.entities.Data.splice(vm.entities.Data.indexOf(entity), 1);
                 vm.entities.Count -= 1;
             });
         }
+
+        function showEditOrDeleteDialog(event, entity, template) {
+            return $mdDialog.show({
+                controller: vm.options.dialogController,
+                controllerAs: 'vm',
+                templateUrl: template,
+                parent: angular.element(document.body),
+                targetEvent: event,
+                clickOutsideToClose: false,
+                locals: {
+                    entity: entity
+                }
+            });
+        }
+
         $scope.$watch("vm.options.loadData", function (newVal) {
             if (newVal) {
                 getData();

@@ -5,7 +5,7 @@
       .controller('RoleDialogController', RoleDialogController);
 
     /* @ngInject */
-    function RoleDialogController($mdDialog, $filter, AdminResource, entity) {
+    function RoleDialogController($filter, AdminResource, entity) {
         var vm = this;
         vm.resource = AdminResource.roles;
         vm.entity = entity;

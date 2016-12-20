@@ -5,7 +5,7 @@
       .controller('UserController', UserController);
 
     /* @ngInject */
-    function UserController($timeout, $mdDialog, AdminResource) {
+    function UserController($timeout, AdminResource) {
         var vm = this;
 
         vm.options = {
@@ -13,32 +13,10 @@
             rowSelection: false,
             resource: AdminResource.users,
             query: {},
-            columns: [{ name: "Email", text: "Email", order: true },
-                      { name: "IsAdmin", text: "IsAdmin", filter: 'boolFilter' }]
+            columns: [{ name: "Email", text: "Email", order: true }],
+            dialogController: 'UserDialogController',
+            editTemplate: '/templates/admin/userDialog.html',
+            deleteTemplate: '/templates/shared/deleteComponent.html'
         };
-        vm.showDialog = showDialog;
-        vm.showDeleteDialog = showDeleteDialog;
-
-        function showDialog(event, entity) {
-            return showEditOrDeleteDialog(event, entity, '/templates/admin/userDialog.html', false);
-        }
-
-        function showDeleteDialog(event, entity) {
-            return showEditOrDeleteDialog(event, entity, '/templates/shared/deleteComponent.html', true);
-        }
-
-        function showEditOrDeleteDialog(ev, user, template, isDelete) {
-            return $mdDialog.show({
-                controller: 'UserDialogController',
-                controllerAs: 'vm',
-                templateUrl: template,
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose: false,
-                locals: {
-                    user: user
-                }
-            });
-        }
     }
 })();

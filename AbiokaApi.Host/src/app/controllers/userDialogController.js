@@ -5,14 +5,14 @@
       .controller('UserDialogController', UserDialogController);
 
     /* @ngInject */
-    function UserDialogController($mdDialog, $filter, AdminResource, user) {
+    function UserDialogController($filter, AdminResource, entity) {
         var vm = this;
         vm.resource = AdminResource.users;
-        vm.entity = user;
-        vm.isUpdate = user && user.Id;
+        vm.entity = entity;
+        vm.isUpdate = vm.entity && vm.entity.Id;
         vm.title = $filter("translate")("UserDetail");
         vm.deleteTitle = $filter("translate")("DeleteUser");
-        vm.deleteMessage = user ? $filter("stringFormat")($filter("translate")("DeleteUserMessage"), user.Email) : "";
+        vm.deleteMessage = vm.entity ? $filter("stringFormat")($filter("translate")("DeleteUserMessage"), vm.entity.Email) : "";
         vm.roles = [];
         vm.activate = activate;
 

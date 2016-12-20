@@ -7,7 +7,7 @@
     <md-content flex role="navigation">
         <ul class="docs-menu">
             <li class="parent-list-item" ng-repeat="menu in vm.menuItems">
-                <a ng-if="!menu.children" class="md-button md-ink-ripple" ng-href="{{menu.url}}">
+                <a ng-if="!menu.children" class="md-button md-ink-ripple" ui-sref="{{menu.url}}">
                     <span>{{menu.text | translate}}</span>
                 </a>
 
@@ -24,7 +24,7 @@
                 </button>
                 <ul class="menu-toggle-list" ng-class="{'parent-selected': menu.isSelected}">
                     <li ng-repeat="child in menu.children">
-                        <a class="md-button md-ink-ripple" ng-href="{{child.url}}">
+                        <a class="md-button md-ink-ripple" ui-sref="{{child.url}}">
                             <span>{{child.text | translate}}</span>
                         </a>
                     </li>
