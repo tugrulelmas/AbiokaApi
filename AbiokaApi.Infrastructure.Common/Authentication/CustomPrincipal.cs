@@ -25,5 +25,7 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         public string[] Roles { get; set; }
 
         public Guid Id { get; set; }
+
+        public string IP { get; set; }
     }
 }

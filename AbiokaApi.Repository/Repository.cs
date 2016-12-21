@@ -16,11 +16,15 @@ namespace AbiokaApi.Repository
         protected ISession Session => UnitOfWork.Current.Session;
 
         public virtual void Add(T entity) {
+            Add(Session, entity);
+        }
+
+        protected void Add(ISession session, T entity) {
             var dbObject = DBObjectMapper.FromDomainObject(entity);
             if (dbObject is IDeletableEntity) {
                 ((IDeletableEntity)dbObject).IsDeleted = false;
             }
-            var id = Session.Save(dbObject);
+            var id = session.Save(dbObject);
             var idProperty = entity.GetType().GetProperty("Id");
             if (idProperty != null) {
                 idProperty.SetValue(entity, id);

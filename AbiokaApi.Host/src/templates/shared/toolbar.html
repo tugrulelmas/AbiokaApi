@@ -2,14 +2,20 @@
     <div class="md-toolbar-tools">
         <md-button class="md-fab md-raised md-mini" ng-click="vm.openLeftMenu()" hide-gt-sm>
             <md-icon>menu</md-icon>
+            <md-tooltip>
+                {{'Menu' | translate}}
+            </md-tooltip>
         </md-button>
         <h2>
             <span>Abioka</span>
         </h2>
         <span flex></span>
         <md-menu>
-            <md-button class="md-fab md-mini" ng-click="$mdOpenMenu($event)" aria-label="dil">
+            <md-button class="md-fab md-mini" ng-click="$mdOpenMenu($event)">
                 <md-icon>language</md-icon>
+                <md-tooltip>
+                    {{'Language' | translate}}
+                </md-tooltip>
             </md-button>
             <md-menu-content>
                 <md-menu-item>
@@ -30,6 +36,9 @@
             </md-button>
             <md-button class="md-fab md-mini" ng-click="vm.logout()">
                 <md-icon>exit_to_app</md-icon>
+                <md-tooltip>
+                    {{'LogOut' | translate}}
+                </md-tooltip>
             </md-button>
         </div>
     </div>

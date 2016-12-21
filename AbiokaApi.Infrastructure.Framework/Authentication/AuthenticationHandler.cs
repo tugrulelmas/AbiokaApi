@@ -53,7 +53,8 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 Email = payload.email,
                 Id = payload.id,
                 TokenExpirationDate = Util.UnixTimeStampToDateTime(payload.exp),
-                Roles = payload.roles
+                Roles = payload.roles,
+                IP = "IP ADDRESS" // TODO: get ip
             };
             currentContext.Principal = user;
         }

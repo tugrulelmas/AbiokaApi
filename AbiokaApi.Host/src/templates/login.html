@@ -6,7 +6,7 @@
             </div>
         </md-toolbar>
         <md-card-content>
-            <form name="loginForm" ng-submit="vm.login()">
+            <form name="loginForm" ng-submit="loginForm.$valid && vm.login()">
                 <md-input-container class="md-block">
                     <label>{{'Email' | translate}}</label>
                     <input type="email" name="email" ng-model="vm.user.Email" required="" />
@@ -17,7 +17,7 @@
                     <input type="password" name="password" ng-model="vm.user.Password" required="" md-maxlength="16" />
                     <validation-message model="loginForm.password" field-name="{{'Password' | translate}}"></validation-message>
                 </md-input-container>
-                <md-button ng-disabled="!loginForm.$valid" ng-click="vm.login()" class="md-raised md-default">&nbsp {{'Login' | translate}} &nbsp</md-button>
+                <md-button type="submit" ng-disabled="!loginForm.$valid" class="md-raised md-default">&nbsp {{'Login' | translate}} &nbsp</md-button>
             </form>
         </md-card-content>
     </md-card>

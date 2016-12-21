@@ -5,12 +5,21 @@
             <span flex></span>
             <md-button class="md-icon-button" ng-click="vm.getData()">
                 <md-icon>refresh</md-icon>
+                <md-tooltip>
+                    {{'Refresh' | translate}}
+                </md-tooltip>
             </md-button>
             <md-button class="md-icon-button" ng-click="vm.showSearch = true">
                 <md-icon>filter_list</md-icon>
+                <md-tooltip>
+                    {{'Search' | translate}}
+                </md-tooltip>
             </md-button>
             <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, null)">
                 <md-icon>add</md-icon>
+                <md-tooltip>
+                    {{'Add' | translate}}
+                </md-tooltip>
             </md-button>
         </div>
     </md-toolbar>
@@ -56,9 +65,15 @@
                     <td md-cell class="right">
                         <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, entity)">
                             <md-icon>edit</md-icon>
+                            <md-tooltip>
+                                {{'Edit' | translate}}
+                            </md-tooltip>
                         </md-button>
                         <md-button class="md-icon-button" ng-click="vm.showCustomDeleteDialog($event, entity)">
                             <md-icon>delete</md-icon>
+                            <md-tooltip>
+                                {{'Delete' | translate}}
+                            </md-tooltip>
                         </md-button>
                     </td>
                 </tr>

@@ -61,4 +61,19 @@ namespace AbiokaApi.Repository.Mappings
             Table("dbo.[UserRole]");
         }
     }
+
+    internal class LoginAttemptMap : ClassMap<LoginAttemptDB>
+    {
+        public LoginAttemptMap() {
+            Id(x => x.Id);
+            Map(x => x.Date).Not.Nullable();
+            Map(x => x.IP).Not.Nullable();
+            Map(x => x.LoginResult).Not.Nullable();
+            Map(x => x.Token).Length(512).Not.Nullable();
+
+            References(x => x.User).Column("UserId");
+
+            Table("dbo.[LoginAttempt]");
+        }
+    }
 }

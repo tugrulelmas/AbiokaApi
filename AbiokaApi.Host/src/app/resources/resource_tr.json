@@ -33,5 +33,11 @@
   "DeleteRole": "Rol Sil",
   "DeleteRoleMessage": "{0} bu rolü silmek istediğinizden emin misiniz?",
   "Name": "Ad",
-  "AccessDenied": "Erişim engellendi"
+  "AccessDenied": "Erişim engellendi",
+  "LogOut": "Çıkış Yap",
+  "Language": "Dil",
+  "Edit": "Düzenle",
+  "Add": "Ekle",
+  "Menu": "Menü",
+  "Refresh": "Yenile"
 }

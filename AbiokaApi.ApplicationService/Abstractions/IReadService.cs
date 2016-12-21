@@ -21,6 +21,10 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// <returns></returns>
         T Get(object id);
 
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<T> GetAll();
     }
 }

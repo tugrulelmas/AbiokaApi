@@ -1,7 +1,6 @@
 ﻿using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Repository.DatabaseObjects;
-using AbiokaApi.Repository.Mappings;
 using NHibernate.Linq;
 using System;
 using System.Collections.Generic;

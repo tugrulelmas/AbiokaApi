@@ -33,5 +33,11 @@
   "DeleteRole": "Delete Role",
   "DeleteRoleMessage": "Do you really want to delete role whose name is {0}",
   "Name": "Name",
-  "AccessDenied": "Access is denied"
+  "AccessDenied": "Access is denied",
+  "LogOut": "Log Out",
+  "Language": "Language",
+  "Edit": "Edit",
+  "Add": "Add",
+  "Menu": "Menu",
+  "Refresh": "Refresh"
 }

@@ -1,9 +1,10 @@
 ﻿using AbiokaApi.ApplicationService.Validation;
+using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
 using FluentValidation;
-using FluentValidation.Results;
+using System;
 using System.Net;
 
 namespace AbiokaApi.ApplicationService.Messaging
@@ -30,9 +31,11 @@ namespace AbiokaApi.ApplicationService.Messaging
     public class LoginRequestValidator : CustomValidator<LoginRequest>
     {
         private readonly IUserSecurityRepository userSecurityRepository;
-        
-        public LoginRequestValidator(IUserSecurityRepository userSecurityRepository) {
+        private readonly ILoginAttemptRepository loginAttemptRepository;
+
+        public LoginRequestValidator(IUserSecurityRepository userSecurityRepository, ILoginAttemptRepository loginAttemptRepository) {
             this.userSecurityRepository = userSecurityRepository;
+            this.loginAttemptRepository = loginAttemptRepository;
 
             RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").EmailAddress().WithMessage("ShouldBeCorrectEmail");
             RuleFor(lr => lr.Password).NotEmpty().WithMessage("IsRequired");
@@ -46,13 +49,30 @@ namespace AbiokaApi.ApplicationService.Messaging
             }
 
             var hashedPassword = user.GetHashedPassword(instance.Password);
+
+            var loginAttempt = new LoginAttempt {
+                Date = DateTime.UtcNow,
+                Token = user.Token,
+                User = user,
+                IP = "ada"
+            };
+
             if (user.Password != hashedPassword) {
+                loginAttempt.LoginResult = LoginResult.WrongPassword;
+                loginAttemptRepository.Add(loginAttempt);
+
                 throw new DenialException("WrongPassword");
             }
 
             if (user.IsDeleted) {
+                loginAttempt.LoginResult = LoginResult.UserIsNotActive;
+                loginAttemptRepository.Add(loginAttempt);
+
                 throw new DenialException("UserIsNotActive");
             }
+
+            loginAttempt.LoginResult = LoginResult.Successfull;
+            loginAttemptRepository.Add(loginAttempt);
         }
     }
 }

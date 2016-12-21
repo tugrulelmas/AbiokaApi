@@ -1,11 +1,10 @@
 ﻿using AbiokaApi.Domain;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Domain;
+using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Repository.DatabaseObjects;
 using System;
 using System.Collections.Generic;
-using AbiokaApi.Infrastructure.Common.Helper;
-using System.Linq;
 
 namespace AbiokaApi.Repository.Mappings
 {
@@ -19,11 +18,13 @@ namespace AbiokaApi.Repository.Mappings
             mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserSecurityDB((UserSecurity)entity));
             mapActions.Add(typeof(User).TypeHandle, (entity) => ToUserDB((User)entity));
             mapActions.Add(typeof(Role).TypeHandle, (entity) => ToRoleDB((Role)entity));
+            mapActions.Add(typeof(LoginAttempt).TypeHandle, (entity) => ToLoginAttemptDB((LoginAttempt)entity));
 
             dbMapActions = new Dictionary<RuntimeTypeHandle, Func<DBEntity, IEntity>>();
             dbMapActions.Add(typeof(UserSecurityDB).TypeHandle, (entity) => ToUserSecurity((UserSecurityDB)entity));
             dbMapActions.Add(typeof(UserDB).TypeHandle, (entity) => ToUser((UserDB)entity));
             dbMapActions.Add(typeof(RoleDB).TypeHandle, (entity) => ToRole((RoleDB)entity));
+            dbMapActions.Add(typeof(LoginAttemptDB).TypeHandle, (entity) => ToLoginAttempt((LoginAttemptDB)entity));
         }
 
         internal static DBEntity FromDomainObject(IEntity entity) {
@@ -114,6 +115,30 @@ namespace AbiokaApi.Repository.Mappings
             var result = new RoleDB {
                 Id = role.Id,
                 Name = role.Name,
+            };
+            return result;
+        }
+
+        private static LoginAttemptDB ToLoginAttemptDB(LoginAttempt loginAttempt) {
+            var result = new LoginAttemptDB {
+                Id = loginAttempt.Id,
+                Date = loginAttempt.Date,
+                IP = loginAttempt.IP,
+                Token = loginAttempt.Token,
+                User = ToUserDB(loginAttempt.User),
+                LoginResult = loginAttempt.LoginResult.ToString()
+            };
+            return result;
+        }
+
+        private static LoginAttempt ToLoginAttempt(LoginAttemptDB loginAttempt) {
+            var result = new LoginAttempt {
+                Id = loginAttempt.Id,
+                Date = loginAttempt.Date,
+                IP = loginAttempt.IP,
+                Token = loginAttempt.Token,
+                User = ToUser(loginAttempt.User),
+                LoginResult = loginAttempt.LoginResult.EnumParse<LoginResult>()
             };
             return result;
         }
