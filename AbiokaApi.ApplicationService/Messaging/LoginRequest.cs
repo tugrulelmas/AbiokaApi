@@ -73,7 +73,7 @@ namespace AbiokaApi.ApplicationService.Messaging
                 throw new DenialException("UserIsNotActive");
             }
 
-            loginAttempt.LoginResult = LoginResult.Successfull;
+            loginAttempt.LoginResult = LoginResult.Successful;
             loginAttemptRepository.Add(loginAttempt);
         }
     }

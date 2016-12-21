@@ -61,7 +61,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         public IDependencyContainer RegisterWithDefaultInterfaces<T1, T2>() => RegisterWithDefaultInterfaces(typeof(T1), typeof(T2));
 
         public IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2) {
-            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.DefaultInterfaces().Configure(c => c.LifestyleSingleton()));
+            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.DefaultInterfaces().Configure(c => c.LifestyleSingleton().Named(Guid.NewGuid().ToString())));
             return this;
         }
 

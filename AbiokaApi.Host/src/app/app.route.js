@@ -38,6 +38,12 @@
                 controller: 'RoleController',
                 controllerAs: 'vm',
                 isPublic: false
+            }).state('loginAttempts', {
+                url: '/loginAttempts',
+                templateUrl: 'templates/loginAttempts.html',
+                controller: 'LoginAttemptController',
+                controllerAs: 'vm',
+                isPublic: false
             });
     }
 })();

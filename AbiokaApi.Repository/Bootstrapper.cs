@@ -3,6 +3,7 @@ using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Dynamic;
 using AbiokaApi.Infrastructure.Common.IoC;
 using AbiokaApi.Repository.DatabaseObjects;
+using AbiokaApi.Repository.Repositories;
 
 namespace AbiokaApi.Repository
 {
@@ -15,6 +16,7 @@ namespace AbiokaApi.Repository
                 .UsingFactoryMethod(SessionFactory.CreateNhSessionFactory)
                 .RegisterWithDefaultInterfaces(typeof(IRepository<>), typeof(Repository<,>))
                 .Register<IRepository<Role>, Repository<Role, RoleDB>>()
+                .Register<IRepository<LoginAttempt>, LoginAttemptRepository>()
                 .Register<IDynamicHandler, NhUnitOfWorkHandler>(LifeStyle.PerWebRequest)
                 .Register<IUnitOfWork, UnitOfWork>(LifeStyle.PerWebRequest)
                 .Register<IDisposableUnitOfWork, DisposableUnitOfWork>(LifeStyle.Transient);

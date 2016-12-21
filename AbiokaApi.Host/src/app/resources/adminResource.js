@@ -11,7 +11,8 @@
             }),
             roles: $resource('./role/:id', null, {
                 'update': { method: 'PUT' }
-            })
+            }),
+            loginAttempts: $resource('./loginAttempt/:id')
         };
     }
 

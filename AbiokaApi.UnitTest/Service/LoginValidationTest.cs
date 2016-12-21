@@ -93,7 +93,7 @@ namespace AbiokaApi.UnitTest.Service
                 Password = password
             }, ActionType.Add);
             
-            loginRequestValidator.LoginAttemptRepositoryMock.Verify(l => l.Add(It.Is<LoginAttempt>(la => la.LoginResult == LoginResult.Successfull)), Times.Once());
+            loginRequestValidator.LoginAttemptRepositoryMock.Verify(l => l.Add(It.Is<LoginAttempt>(la => la.LoginResult == LoginResult.Successful)), Times.Once());
         }
     }
 }

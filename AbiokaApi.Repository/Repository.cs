@@ -4,8 +4,10 @@ using AbiokaApi.Repository.Mappings;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace AbiokaApi.Repository
 {
@@ -63,13 +65,20 @@ namespace AbiokaApi.Repository
             Session.Merge(dbObject);
         }
 
-        public IPage<T> GetPage(PageRequest pageRequest) {
+        public virtual IPage<T> GetPage(PageRequest pageRequest) => GetPage(pageRequest, null);
+
+        protected IPage<T> GetPage(PageRequest pageRequest, Expression<Func<TDBEntity, bool>> filter) {
             var queryOver = Session.QueryOver<TDBEntity>();
             var rowCountQueryOver = Session.QueryOver<TDBEntity>();
 
             if (typeof(IDeletableEntity).IsAssignableFrom(typeof(TDBEntity))) {
                 queryOver = queryOver.Where(e => !((IDeletableEntity)e).IsDeleted);
                 rowCountQueryOver = rowCountQueryOver.Where(e => !((IDeletableEntity)e).IsDeleted);
+            }
+
+            if (filter != null) {
+                queryOver = queryOver.Where(filter);
+                rowCountQueryOver = rowCountQueryOver.Where(filter);
             }
 
             var query = queryOver.Skip((pageRequest.Page - 1) * pageRequest.Limit)

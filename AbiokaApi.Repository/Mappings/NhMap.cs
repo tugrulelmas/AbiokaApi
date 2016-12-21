@@ -69,7 +69,7 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.Date).Not.Nullable();
             Map(x => x.IP).Not.Nullable();
             Map(x => x.LoginResult).Not.Nullable();
-            Map(x => x.Token).Length(512).Not.Nullable();
+            Map(x => x.Token).Length(512).Nullable();
 
             References(x => x.User).Column("UserId");
 

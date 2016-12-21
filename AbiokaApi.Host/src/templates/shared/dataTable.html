@@ -15,7 +15,7 @@
                     {{'Search' | translate}}
                 </md-tooltip>
             </md-button>
-            <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, null)">
+            <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, null)" ng-show="!vm.options.isReadOnly">
                 <md-icon>add</md-icon>
                 <md-tooltip>
                     {{'Add' | translate}}
@@ -54,15 +54,15 @@
                     <th ng-if="!column.order" md-column ng-repeat="column in vm.options.columns">
                         <span>{{column.text | translate}}</span>
                     </th>
-                    <th></th>
+                    <th ng-show="!vm.options.isReadOnly"></th>
                 </tr>
             </thead>
             <tbody md-body>
                 <tr md-row md-select="entity" md-select-id="Id" md-auto-select ng-repeat="entity in vm.entities.Data | filter: vm.query.filter">
                     <td md-cell ng-repeat="column in vm.options.columns">
-                        <span>{{entity[column.name] | picker: column.filter}}</span>
+                        <span>{{vm.getPropertyValue(entity, column.name) | picker: column.filter}}</span>
                     </td>
-                    <td md-cell class="right">
+                    <td md-cell class="right" ng-show="!vm.options.isReadOnly">
                         <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, entity)">
                             <md-icon>edit</md-icon>
                             <md-tooltip>
