@@ -25,6 +25,7 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
 
         public void BeforeSend(IRequestContext requestContext) {
             SetContextActionType(requestContext.Request);
+            currentContext.IP = requestContext.Request.GetClientIpString();
 
             var actionDescriptor = requestContext.Request.GetActionDescriptor();
             var actionAttributes = actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>(true);
@@ -53,8 +54,7 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 Email = payload.email,
                 Id = payload.id,
                 TokenExpirationDate = Util.UnixTimeStampToDateTime(payload.exp),
-                Roles = payload.roles,
-                IP = "IP ADDRESS" // TODO: get ip
+                Roles = payload.roles
             };
             currentContext.Principal = user;
         }

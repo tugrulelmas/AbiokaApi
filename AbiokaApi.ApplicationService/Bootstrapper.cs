@@ -12,8 +12,8 @@ namespace AbiokaApi.ApplicationService
             DependencyContainer.Container
                 .RegisterServices<IService>()
                 .RegisterWithBase(typeof(ICustomValidator<>), typeof(CustomValidator<>))
-                .Register<IServiceInterceptor, RoleValidationInterceptor>(LifeStyle.PerWebRequest)
-                .Register<IServiceInterceptor, DataValidationInterceptor>(LifeStyle.PerWebRequest);
+                .Register<IServiceInterceptor, RoleValidationInterceptor>()
+                .Register<IServiceInterceptor, DataValidationInterceptor>();
         }
     }
 }

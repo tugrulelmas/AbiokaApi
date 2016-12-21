@@ -36,13 +36,5 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         /// The roles.
         /// </value>
         string[] Roles { get; }
-
-        /// <summary>
-        /// Gets or sets the ip.
-        /// </summary>
-        /// <value>
-        /// The ip.
-        /// </value>
-        string IP { get; set; }
     }
 }

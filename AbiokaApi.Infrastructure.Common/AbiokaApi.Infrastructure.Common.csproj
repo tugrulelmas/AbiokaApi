@@ -76,6 +76,7 @@
     <Compile Include="Exceptions\DenialException.cs" />
     <Compile Include="Helper\ActionType.cs" />
     <Compile Include="Helper\CurrentContext.cs" />
+    <Compile Include="Helper\HttpRequestMessageExtensions.cs" />
     <Compile Include="Helper\IContextHolder.cs" />
     <Compile Include="Helper\ContextHolder.cs" />
     <Compile Include="Helper\Ensure.cs" />

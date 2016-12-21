@@ -32,10 +32,12 @@ namespace AbiokaApi.ApplicationService.Messaging
     {
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly ILoginAttemptRepository loginAttemptRepository;
+        private readonly ICurrentContext currentContext;
 
-        public LoginRequestValidator(IUserSecurityRepository userSecurityRepository, ILoginAttemptRepository loginAttemptRepository) {
+        public LoginRequestValidator(IUserSecurityRepository userSecurityRepository, ILoginAttemptRepository loginAttemptRepository, ICurrentContext currentContext) {
             this.userSecurityRepository = userSecurityRepository;
             this.loginAttemptRepository = loginAttemptRepository;
+            this.currentContext = currentContext;
 
             RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").EmailAddress().WithMessage("ShouldBeCorrectEmail");
             RuleFor(lr => lr.Password).NotEmpty().WithMessage("IsRequired");
@@ -49,12 +51,12 @@ namespace AbiokaApi.ApplicationService.Messaging
             }
 
             var hashedPassword = user.GetHashedPassword(instance.Password);
-
+            
             var loginAttempt = new LoginAttempt {
                 Date = DateTime.UtcNow,
                 Token = user.Token,
                 User = user,
-                IP = "ada"
+                IP = currentContext.Current.IP
             };
 
             if (user.Password != hashedPassword) {
