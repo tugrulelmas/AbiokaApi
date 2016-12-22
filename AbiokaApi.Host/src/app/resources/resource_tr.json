@@ -43,5 +43,10 @@
   "WrongPassword": "Hatalı Şifre",
   "Successful": "Başarılı",
   "UserIsNotActive": "Kullanıcı aktif değil",
-  "LoginLogs": "Giriş Bilgileri"
+  "LoginLogs": "Giriş Bilgileri",
+  "FullDateFormat": "dd.MM.yyyy HH:mm:ss",
+  "Date": "Tarih",
+  "Email": "Email",
+  "IP": "IP",
+  "LoginResult": "Giriş Sonucu"
 }

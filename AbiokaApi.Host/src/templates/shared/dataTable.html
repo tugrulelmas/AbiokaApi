@@ -59,8 +59,7 @@
             </thead>
             <tbody md-body>
                 <tr md-row md-select="entity" md-select-id="Id" md-auto-select ng-repeat="entity in vm.entities.Data | filter: vm.query.filter">
-                    <td md-cell ng-repeat="column in vm.options.columns">
-                        <span>{{vm.getPropertyValue(entity, column.name) | picker: column.filter}}</span>
+                    <td md-cell ng-repeat="column in vm.options.columns" grid-cell>
                     </td>
                     <td md-cell class="right" ng-show="!vm.options.isReadOnly">
                         <md-button class="md-icon-button" ng-click="vm.showEditDialog($event, entity)">

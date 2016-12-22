@@ -43,5 +43,10 @@
   "WrongPassword": "Wrong Password",
   "Successful": "Successful",
   "UserIsNotActive": "User is not active",
-  "LoginLogs": "Login Logs"
+  "LoginLogs": "Login Logs",
+  "FullDateFormat": "yyyy-MM-dd HH:mm:ss",
+  "Date": "Date",
+  "Email": "Email",
+  "IP": "IP",
+  "LoginResult": "Login Result"
 }

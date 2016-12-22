@@ -32,7 +32,6 @@
         vm.promise = $timeout(function () { }, 500);
         vm.showEditDialog = showEditDialog;
         vm.showCustomDeleteDialog = showCustomDeleteDialog;
-        vm.getPropertyValue = getPropertyValue;
         vm.pageLabel = {
             page: $filter("translate")('Page') + ":",
             rowsPerPage: $filter("translate")('RowsPerPage') + ':',
@@ -82,15 +81,6 @@
                     entity: entity
                 }
             });
-        }
-
-        function getPropertyValue(entity, property) {
-            if (property.indexOf(".") === -1) {
-                return entity[property];
-            }
-
-            var firstProperty = property.split('.')[0];
-            return getPropertyValue(entity[firstProperty], property.substr(firstProperty.length + 1, property.length - 1));
         }
 
         $scope.$watch("vm.options.loadData", function (newVal) {

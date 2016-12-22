@@ -123,6 +123,7 @@
     <Content Include="src\app\controllers\userDialogController.js" />
     <Content Include="src\app\directives\classDirective.js" />
     <Content Include="src\app\directives\customOnChangeDirective.js" />
+    <Content Include="src\app\directives\dataCellDirective.js" />
     <Content Include="src\app\directives\dataTableDirective.js" />
     <Content Include="src\app\directives\deleteDialogDirective.js" />
     <Content Include="src\app\directives\editDialogDirective.js" />
