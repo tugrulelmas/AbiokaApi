@@ -44,7 +44,7 @@
   "Successful": "Başarılı",
   "UserIsNotActive": "Kullanıcı aktif değil",
   "LoginLogs": "Giriş Bilgileri",
-  "FullDateFormat": "dd.MM.yyyy HH:mm:ss",
+  "FullDateFormat": "DD.MM.YYYY HH:mm:ss",
   "Date": "Tarih",
   "Email": "Email",
   "IP": "IP",

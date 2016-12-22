@@ -132,6 +132,7 @@
     <Content Include="src\app\directives\tokenDirective.js" />
     <Content Include="src\app\directives\menuDirective.js" />
     <Content Include="src\app\directives\validationMessage.js" />
+    <Content Include="src\app\filters\abDate.js" />
     <Content Include="src\app\filters\stringFormatFilter.js" />
     <Content Include="src\app\filters\translationFilter.js" />
     <Content Include="src\app\filters\boolFilter.js" />

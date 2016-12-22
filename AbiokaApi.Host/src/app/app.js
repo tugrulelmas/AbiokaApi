@@ -7,7 +7,8 @@
         'ngResource',
         'ui.router',
         'ngMaterial',
-        'md.data.table']
+        'md.data.table',
+        'angularMoment']
      ).run(run);
 
     /* @ngInject */

@@ -44,7 +44,7 @@
   "Successful": "Successful",
   "UserIsNotActive": "User is not active",
   "LoginLogs": "Login Logs",
-  "FullDateFormat": "yyyy-MM-dd HH:mm:ss",
+  "FullDateFormat": "YYYY-MM-DD HH:mm:ss",
   "Date": "Date",
   "Email": "Email",
   "IP": "IP",
