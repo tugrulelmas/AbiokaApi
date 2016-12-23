@@ -1,6 +1,6 @@
 ﻿<md-toolbar class="navbar-transparent">
     <div class="md-toolbar-tools">
-        <md-button class="md-fab md-raised md-mini" ng-click="vm.openLeftMenu()" hide-gt-sm>
+        <md-button class="md-fab md-raised md-mini" ng-click="$ctrl.openLeftMenu()" hide-gt-sm>
             <md-icon>menu</md-icon>
             <md-tooltip>
                 {{'Menu' | translate}}
@@ -19,22 +19,22 @@
             </md-button>
             <md-menu-content>
                 <md-menu-item>
-                    <md-button ng-click="vm.changeLanguage('tr')">
+                    <md-button ng-click="$ctrl.changeLanguage({language: 'tr'})">
                         Türkçe
                     </md-button>
                 </md-menu-item>
                 <md-menu-item>
-                    <md-button ng-click="vm.changeLanguage('en')">
+                    <md-button ng-click="$ctrl.changeLanguage({language: 'en'})">
                         English
                     </md-button>
                 </md-menu-item>
             </md-menu-content>
         </md-menu>
-        <div ng-show="vm.user.IsSignedIn">
+        <div ng-show="$ctrl.isSignedIn">
             <md-button class="md-fab md-mini">
                 <md-icon>person</md-icon>
             </md-button>
-            <md-button class="md-fab md-mini" ng-click="vm.logout()">
+            <md-button class="md-fab md-mini" ng-click="$ctrl.logout()">
                 <md-icon>exit_to_app</md-icon>
                 <md-tooltip>
                     {{'LogOut' | translate}}

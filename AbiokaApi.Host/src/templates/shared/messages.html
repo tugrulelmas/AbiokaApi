@@ -1,7 +1,7 @@
-<div ng-messages="model.$error" ng-show="model.$dirty">
-    <div ng-message="required">{{'RequiredMessage' | translate | stringFormat: fieldName}}</div>
-    <div ng-message="minlength">{{'TooShortMessage' | translate | stringFormat: fieldName}}</div>
-    <div ng-message="md-maxlength">{{'TooLongMessage' | translate | stringFormat: fieldName}}</div>
-    <div ng-message="email">{{'InvalidEmailMessage' | translate | stringFormat: fieldName}}</div>
-    <div ng-message="compareTo">{{'InvalidMatchMessage' | translate | stringFormat: fieldName}}</div>
+<div ng-messages="$ctrl.model.$error" ng-show="$ctrl.model.$dirty">
+    <div ng-message="required">{{'RequiredMessage' | translate | stringFormat: $ctrl.fieldName}}</div>
+    <div ng-message="minlength">{{'TooShortMessage' | translate | stringFormat: $ctrl.fieldName}}</div>
+    <div ng-message="md-maxlength">{{'TooLongMessage' | translate | stringFormat: $ctrl.fieldName}}</div>
+    <div ng-message="email">{{'InvalidEmailMessage' | translate | stringFormat: $ctrl.fieldName}}</div>
+    <div ng-message="compareTo">{{'InvalidMatchMessage' | translate | stringFormat: $ctrl.fieldName}}</div>
 </div>
