@@ -8,7 +8,7 @@
             resource: '<',
             entity: '<'
         },
-        templateUrl: '/templates/shared/deleteDialog.html',
+        templateUrl: '/app/shared/dataTable/deleteDialog.html',
         controller: deleteDialogController,
     };
 

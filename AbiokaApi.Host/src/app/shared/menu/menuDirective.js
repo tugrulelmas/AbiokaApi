@@ -7,7 +7,7 @@
     function menu() {
         var directive = {
             restrict: 'E',
-            templateUrl: '/templates/shared/menu.html',
+            templateUrl: '/app/shared/menu/menu.html',
             replace: true
         };
         return directive;

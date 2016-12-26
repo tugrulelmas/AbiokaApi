@@ -2,7 +2,7 @@
     'use strict';
 
     var toolbar = {
-        templateUrl: '/templates/shared/toolbar.html',
+        templateUrl: '/app/shared/toolbar/toolbar.html',
         controller: controller
     };
 

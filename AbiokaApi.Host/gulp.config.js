@@ -43,8 +43,8 @@
             dest: rootFolder + 'resources'
         },
         templates: {
-            src: srcFolder + 'templates/**/*.html',
-            dest: rootFolder + 'templates'
+            src: srcFolder + 'app/**/*.html',
+            dest: rootFolder + 'app'
         },
         views: {
             src: srcFolder + 'Views/**/*',

@@ -1,11 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('abioka')
-      .controller('LoginAttemptController', LoginAttemptController);
+    var loginAttempts = {
+        templateUrl: '/app/components/loginAttempt/loginAttempts.html',
+        controller: LoginAttemptsController,
+        controllerAs: 'vm'
+    };
 
     /* @ngInject */
-    function LoginAttemptController($timeout, $filter, AdminResource) {
+    function LoginAttemptsController($filter, AdminResource) {
         var vm = this;
 
         var resultTemplate = "<span class='ab-label' ng-class=\"{'label-warning': entity.LoginResult === 'WrongPassword', 'label-success': entity.LoginResult === 'Successful'}\">{{entity.LoginResult | translate}}</span>";
@@ -23,5 +26,19 @@
             { name: "LoginResult", text: "LoginResult", cellTemplate: resultTemplate },
             { name: "IP", text: "IP" }],
         };
+    }
+
+    angular.module('abioka')
+      .component('loginAttempts', loginAttempts)
+      .config(config);
+
+    /* @ngInject */
+    function config($stateProvider) {
+        $stateProvider
+            .state('loginAttempts', {
+                url: '/loginAttempts',
+                template: '<login-attempts></login-attempts>',
+                isPublic: false
+            });
     }
 })();

@@ -2,7 +2,7 @@
     'use strict';
 
     var validationMessage = {
-        templateUrl: '/templates/shared/messages.html',
+        templateUrl: '/app/shared/validationMessage/validationMessage.html',
         bindings: {
             fieldName: '@',
             model: '<'

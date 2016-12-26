@@ -9,7 +9,9 @@
         'ngMaterial',
         'md.data.table',
         'angularMoment']
-     ).run(run);
+     )
+     .run(run)
+     .config(config);
 
     /* @ngInject */
     function run($rootScope, $state, $stateParams, userService, translationService) {
@@ -25,5 +27,15 @@
                 $state.go("login");
             }
         });
+    }
+
+    /* @ngInject */
+    function config($urlRouterProvider, $locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: false,
+            requireBase: false
+        });
+
+        $urlRouterProvider.otherwise('/');
     }
 })();

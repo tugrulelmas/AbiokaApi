@@ -8,7 +8,7 @@
             entity: '<',
             form: '@'
         },
-        templateUrl: '/templates/shared/editDialog.html',
+        templateUrl: '/app/shared/dataTable/editDialog.html',
         controller: editDialogController,
         transclude: true
     }

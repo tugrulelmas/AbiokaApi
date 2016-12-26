@@ -14,7 +14,6 @@
         vm.deleteTitle = $filter("translate")("DeleteUser");
         vm.deleteMessage = vm.entity ? $filter("stringFormat")($filter("translate")("DeleteUserMessage"), vm.entity.Email) : "";
         vm.roles = [];
-        vm.activate = activate;
 
         activate();
 

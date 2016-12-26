@@ -7,7 +7,7 @@
             showDialog: '&',
             showDeleteDialog: '&'
         },
-        templateUrl: '/templates/shared/dataTable.html',
+        templateUrl: '/app/shared/dataTable/dataTable.html',
         controller: dataTableController
     }
 
