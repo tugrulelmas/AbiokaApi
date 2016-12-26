@@ -16,8 +16,8 @@
         css: {
             src: [packageFolder + 'angular-material/angular-material.css',
               packageFolder + 'angular-material-data-table/dist/md-data-table.css',
-              srcFolder + 'css/content.css'],
-            dest: rootFolder + '/content'
+              srcFolder + 'assets/css/content.css'],
+            dest: rootFolder + '/assets/content'
         },
         lib: {
             src: [packageFolder + 'angular/angular.js',
@@ -31,8 +31,8 @@
               packageFolder + 'angular-material-data-table/dist/md-data-table.js',
               packageFolder + 'moment/moment.js',
               packageFolder + 'angular-moment/angular-moment.js',
-              srcFolder + 'js/base64.js',],
-            dest: rootFolder + 'lib'
+              srcFolder + 'assets/js/base64.js', ],
+            dest: rootFolder + 'assets/lib'
         },
         app: {
             src: srcFolder + 'app/**/*.js',
@@ -40,7 +40,7 @@
         },
         resources: {
             src: srcFolder + 'app/resources/*.json',
-            dest: rootFolder + 'resources'
+            dest: rootFolder + 'app/resources'
         },
         templates: {
             src: srcFolder + 'app/**/*.html',
@@ -55,12 +55,12 @@
             dest: 'Views/Shared'
         },
         images: {
-            src: [srcFolder + 'images/**/*.*'],
-            dest: rootFolder + 'images'
+            src: [srcFolder + 'assets/images/**/*.*'],
+            dest: rootFolder + 'assets/images'
         },
         fonts: {
             src: [packageFolder + 'font-awesome/fonts/**/*.*'],
-            dest: rootFolder + 'fonts'
+            dest: rootFolder + 'assets/fonts'
         }
     };
 

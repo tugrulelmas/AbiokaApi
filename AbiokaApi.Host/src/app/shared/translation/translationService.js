@@ -38,7 +38,7 @@
         function setGlobalResources() {
             var deferred = $q.defer();
             resourceLoaded = false;
-            var languageFilePath = "resources/resource" + "_" + userService.getUser().Language + '.json';
+            var languageFilePath = "app/resources/resource" + "_" + userService.getUser().Language + '.json';
             getRecourcesFromFileOrCache(languageFilePath).then(function (data) {
                 resources = data;
                 resourceLoaded = true;

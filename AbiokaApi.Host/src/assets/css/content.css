@@ -354,7 +354,7 @@ a.docs-logo {
     left: 0;
     background-size: cover;
     background-position: center center;
-    background-image: url('/images/menu.jpg');
+    background-image: url('/assets/images/menu.jpg');
 }
 
     .site-sidenav .sidebar-background:after {

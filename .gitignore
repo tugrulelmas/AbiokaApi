@@ -250,10 +250,6 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-/AbiokaApi.Host/templates
 /AbiokaApi.Host/Views
 /AbiokaApi.Host/app
-/AbiokaApi.Host/content
-/AbiokaApi.Host/lib
-/AbiokaApi.Host/resources
-/AbiokaApi.Host/images
+/AbiokaApi.Host/assets

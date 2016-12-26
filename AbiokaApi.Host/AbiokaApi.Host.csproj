@@ -143,10 +143,10 @@
     <Content Include="src\app\shared\authentication\localSignInService.js" />
     <Content Include="src\app\shared\translation\translationService.js" />
     <Content Include="src\app\shared\authentication\userService.js" />
-    <Content Include="src\css\content.css" />
-    <Content Include="src\images\logo.jpg" />
-    <Content Include="src\images\menu.jpg" />
-    <Content Include="src\js\base64.js" />
+    <Content Include="src\assets\css\content.css" />
+    <Content Include="src\assets\images\logo.jpg" />
+    <Content Include="src\assets\images\menu.jpg" />
+    <Content Include="src\assets\js\base64.js" />
     <Content Include="src\app\components\role\roles.html" />
     <Content Include="src\app\components\user\users.html" />
     <Content Include="src\app\components\role\roleDialog.html" />
