@@ -18,11 +18,5 @@
                 vm.loading = false;
             });
         }
-
-        activate();
-
-        function activate() {
-            $scope.$emit('bodyClassEvent', 'login-page');
-        }
     }
 })();

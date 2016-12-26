@@ -53,7 +53,7 @@
             if (entity && entity.Id) {
                 self.options.resource.get({ id: entity.Id }, function (data) {
                     showEditOrDeleteDialog(event, data, self.options.editTemplate).then(function (updatedEntity) {
-                        angular.copy(updatedEntity, entity);
+                        getData();
                     });
                 });
             } else {

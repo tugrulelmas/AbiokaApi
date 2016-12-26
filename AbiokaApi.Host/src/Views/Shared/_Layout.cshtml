@@ -17,7 +17,7 @@
 <body ng-app="abioka" ng-controller="MainController as vm" layout="row">
     <menu menu-items="vm.menuItems" toggle-menu="vm.toggleMenu(menuItem)" is-signed-in="vm.user.IsSignedIn"></menu>
     <div layout="column" flex>
-        <toolbar logout="vm.logout()" change-language="vm.changeLanguage(language)" open-left-menu="vm.openLeftMenu()" is-signed-in="vm.user.IsSignedIn"></toolbar>
+        <toolbar></toolbar>
         <md-content md-scroll-y layout="column" flex>
             @RenderBody()
         </md-content>

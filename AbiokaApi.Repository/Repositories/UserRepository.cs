@@ -12,7 +12,7 @@ namespace AbiokaApi.Repository.Repositories
     {
         public override User FindById(object id) {
             var user = base.FindById(id);
-            var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == user.Id);
+            var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == user.Id).ToList();
             if (userRoles != null && userRoles.Count() > 0) {
                 var roles = new List<Role>();
                 foreach (var userRoleItem in userRoles) {
