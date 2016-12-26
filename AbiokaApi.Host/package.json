@@ -25,15 +25,19 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-angular-filesort": "^1.1.1",
+    "gulp-angular-templatecache": "^2.0.0",
     "gulp-clean-css": "^2.2.0",
     "gulp-concat": "^2.6.0",
     "gulp-header": "^1.8.8",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-inject": "^4.1.0",
+    "gulp-jshint": "^2.0.4",
     "gulp-ng-annotate": "^2.0.0",
     "gulp-rev": "^7.1.2",
     "gulp-rimraf": "^0.2.0",
     "gulp-uglify": "^2.0.0",
     "gulp-watch": "^4.3.9",
+    "jshint": "^2.9.4",
     "run-sequence": "^1.2.2"
   },
   "repository": {

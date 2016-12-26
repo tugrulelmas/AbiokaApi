@@ -10,7 +10,8 @@
                 return value;
             }
             return $filter(filterName)(value);
-        }
+        };
+
         filter.$stateful = true;
         return filter;
     }

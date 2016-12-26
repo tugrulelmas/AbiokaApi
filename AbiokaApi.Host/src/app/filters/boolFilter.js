@@ -9,6 +9,6 @@
         return function (value) {
             var text = value === true ? "True" : "False";
             return $filter("translate")(text);
-        }
+        };
     }
 })();

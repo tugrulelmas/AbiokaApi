@@ -35,7 +35,8 @@
             dest: rootFolder + 'assets/lib'
         },
         app: {
-            src: srcFolder + 'app/**/*.js',
+            src: [srcFolder + 'app/**/*.js',
+                  rootFolder + 'app/templates.js'],
             dest: rootFolder + 'app'
         },
         resources: {
@@ -44,7 +45,10 @@
         },
         templates: {
             src: srcFolder + 'app/**/*.html',
-            dest: rootFolder + 'app'
+            dest: rootFolder + 'app',
+            fileName: 'templates.js',
+            module: 'abioka',
+            root: '/app/'
         },
         views: {
             src: srcFolder + 'Views/**/*',
@@ -64,7 +68,7 @@
         }
     };
 
-    config.watch = [config.app.src, config.templates.src, config.resources.src].concat(config.css.src);
+    config.watch = [config.templates.src, config.resources.src, srcFolder + 'app/**/*.js'].concat(config.css.src);
 
     return config;
 };

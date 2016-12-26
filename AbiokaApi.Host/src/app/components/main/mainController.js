@@ -16,7 +16,7 @@
 
         function toggleMenu(menuItem) {
             menuItem.isSelected = !menuItem.isSelected;
-        };
+        }
 
         $scope.$on("userSignedOut", function (event, data) {
             vm.user = userService.getUser();

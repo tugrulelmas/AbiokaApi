@@ -11,15 +11,15 @@
     uglify = require('gulp-uglify'),
     header = require('gulp-header'),
     rev = require('gulp-rev'),
-    watch = require('gulp-watch');
+    watch = require('gulp-watch'),
+    templateCache = require('gulp-angular-templatecache'),
+    htmlmin = require('gulp-htmlmin'),
+    jshint = require("gulp-jshint");
 
 gulp.task('copy', function () {
     gulp.src([config.views.src, '!' + config.index.src])
              .pipe(header('\ufeff'))
              .pipe(gulp.dest(config.views.dest));
-
-    gulp.src(config.templates.src)
-         .pipe(gulp.dest(config.templates.dest));
 
     gulp.src(config.resources.src)
          .pipe(gulp.dest(config.resources.dest));
@@ -40,7 +40,16 @@ gulp.task('clean', function (cb) {
             .pipe(rimraf());
 });
 
-gulp.task('inject', ['copy'], function () {
+gulp.task('templateCache', function () {
+    var baseFn = function (file) { return './' + file.relative; }
+
+    return gulp.src(config.templates.src)
+      .pipe(htmlmin({ collapseWhitespace: true }))
+      .pipe(templateCache(config.templates.fileName, { module: config.templates.module, root: config.templates.root, base: baseFn }))
+      .pipe(gulp.dest(config.templates.dest));
+});
+
+gulp.task('inject', ['copy', 'templateCache', 'jsLint'], function () {
     var css = gulp.src(config.css.src)
               .pipe(gulp.dest(config.css.dest));
 
@@ -60,7 +69,7 @@ gulp.task('inject', ['copy'], function () {
       .pipe(gulp.dest(config.index.dest));
 });
 
-gulp.task('inject:dist', function () {
+gulp.task('inject:dist', ['jsLint'], function () {
     var css = gulp.src(config.css.src)
               .pipe(concat("content.min.css"))
               .pipe(cleanCSS())
@@ -98,6 +107,17 @@ gulp.task('default', ['inject'], function () {
     });
 });
 
+gulp.task('jsLint', function () {
+    gulp.src(config.app.src)
+    .pipe(jshint())
+    .pipe(jshint.reporter()); // Dump results
+});
+
+gulp.task('clean-templates', function () {
+    return gulp.src(config.templates.dest + '/' + config.templates.fileName, { read: false })
+            .pipe(rimraf());
+});
+
 gulp.task('dist', function () {
-    runSequence('clean', 'copy', 'inject:dist');
+    runSequence('clean', 'copy', 'templateCache', 'inject:dist', 'clean-templates');
 });

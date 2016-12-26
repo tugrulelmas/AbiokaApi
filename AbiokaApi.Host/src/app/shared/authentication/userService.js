@@ -47,7 +47,7 @@
             }
             $cookies.putObject('userInfo', user, { path: '/' });
             callback(user);
-        };
+        }
 
         function updateUser(userInfo) {
             user.Id = userInfo.Id;
@@ -60,7 +60,7 @@
             $cookies.remove('userInfo', { path: '/' });
             $cookies.putObject('userInfo', user, { path: '/' });
             $rootScope.$broadcast('userUpdated');
-        };
+        }
 
         function destroy() {
             var oldLanguage = user.Language;
@@ -75,6 +75,6 @@
                 Language: "en",
                 IsSignedIn: false
             };
-        };
+        }
     }
 })();

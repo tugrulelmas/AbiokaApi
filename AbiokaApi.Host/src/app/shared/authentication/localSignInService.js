@@ -23,7 +23,7 @@
                 deferred.reject(response);
             });
             return deferred.promise;
-        };
+        }
 
         function logout() {
             var deferred = $q.defer();
