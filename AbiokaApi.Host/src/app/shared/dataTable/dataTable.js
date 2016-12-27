@@ -53,13 +53,13 @@
                 self.options.resource.get({ id: entity.Id }, function (data) {
                     showEditOrDeleteDialog(event, data, self.options.editTemplate).then(function (updatedEntity) {
                         getData();
-                    });
+                    }, function () { });
                 });
             } else {
                 showEditOrDeleteDialog(event, null, self.options.editTemplate).then(function (updatedEntity) {
                     self.entities.Data.push(updatedEntity);
                     self.entities.Count += 1;
-                });
+                }, function () { });
             }
         }
 
@@ -68,7 +68,7 @@
             showEditOrDeleteDialog(event, tmpEntity, self.options.deleteTemplate).then(function (deletedEntity) {
                 self.entities.Data.splice(self.entities.Data.indexOf(entity), 1);
                 self.entities.Count -= 1;
-            });
+            }, function () { });
         }
 
         function showEditOrDeleteDialog(event, entity, template) {

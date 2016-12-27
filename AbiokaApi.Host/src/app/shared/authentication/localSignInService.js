@@ -14,8 +14,8 @@
 
         function login(localUser) {
             var deferred = $q.defer();
-            $http.post("./User/Login", localUser).success(function (data) {
-                userService.setUser(data, function (user) {
+            $http.post("./User/Login", localUser).then(function (response) {
+                userService.setUser(response.data, function (user) {
                     $state.go("/");
                 });
                 deferred.resolve();
