@@ -6,7 +6,7 @@ This is what I've done after 7 years passing with development. I wrote this proj
 
 ##Covered things##
 - Authentication 
-- Validation
+- [Validation](#Validation)
 - Inversion of Control
 - CRUD Operations
 - Repository Pattern
@@ -25,6 +25,7 @@ This is what I've done after 7 years passing with development. I wrote this proj
 - Fluent NHibernate
 - AngularJS
 - Angular Material
+- [Material Design Data Table](https://github.com/daniel-nagy/md-data-table)
 - Gulp
 - npm
 - NUnit
@@ -84,3 +85,38 @@ This catches every exception and wraps it and then returns Http Response with sp
 
 ##### 1.2. NhUnitOfWorkHandler
 This opens a db transaction before calling service layer and commits this transaction after service layer response. If there is an exception, this rollbacks the transaction.
+
+#### 2. Service Interceptors
+There is service interceptors for adding additional behavior to the application services (AbiokaApi.ApplicationService application) without modifying service codes.
+
+## Validation
+Creating a class that inherits CustomValidator<`parameter type`> is enough to validate this parameter type for every service method which has this parameter.
+
+**Example**
+
+```csharp
+public interface IUserService : IReadService<User>
+{
+    User Add(AddUserRequest request);
+}
+```
+
+```csharp
+public class AddUserRequestValidator : CustomValidator<AddUserRequest>
+{
+    private readonly IUserSecurityRepository userSecurityRepository;
+
+    public AddUserRequestValidator(IUserSecurityRepository userSecurityRepository) {
+        this.userSecurityRepository = userSecurityRepository;
+
+        RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").EmailAddress().WithMessage("ShouldBeCorrectEmail");
+        RuleFor(r => r.Password).NotEmpty().WithMessage("IsRequired");
+    }
+
+    protected override void DataValidate(AddUserRequest instance, ActionType actionType) {
+        var tmpUser = userSecurityRepository.GetByEmail(instance.Email);
+        if (tmpUser != null)
+            throw new DenialException("UserIsAlreadyRegistered", instance.Email);
+    }
+}
+```
