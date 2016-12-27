@@ -16,7 +16,7 @@
         var dateTemplate = "<span>{{entity.Date | abDate:'" + fulldateFormat + "'}}</span>";
 
         vm.options = {
-            loadData: true,
+            loadOnInit: true,
             rowSelection: false,
             isReadOnly: true,
             resource: AdminResource.loginAttempts,

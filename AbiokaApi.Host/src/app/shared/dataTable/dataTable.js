@@ -4,8 +4,7 @@
     var abiokaDataTable = {
         bindings: {
             options: '<',
-            showDialog: '&',
-            showDeleteDialog: '&'
+            loadData: '<'
         },
         templateUrl: '/app/shared/dataTable/dataTable.html',
         controller: DataTableController
@@ -30,13 +29,13 @@
                 rowsPerPage: $filter("translate")('RowsPerPage') + ':',
                 of: $filter("translate")('of')
             };
-            if (self.options.loadData) {
+            if (self.options.loadOnInit) {
                 getData();
             }
         };
 
         this.$onChanges = function (changesObj) {
-            if (changesObj.options.loadData) {
+            if (changesObj.loadData.currentValue) {
                 getData();
             }
         };

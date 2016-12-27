@@ -8,11 +8,11 @@
     };
 
     /* @ngInject */
-    function UsersController(AdminResource) {
+    function UsersController($timeout, AdminResource) {
         var vm = this;
-
+        vm.loadData = false;
         vm.options = {
-            loadData: true,
+            loadOnInit: false,
             rowSelection: false,
             resource: AdminResource.users,
             query: {},
@@ -21,6 +21,10 @@
             editTemplate: '/app/components/user/userDialog.html',
             deleteTemplate: '/app/shared/deleteComponent/deleteComponent.html'
         };
+
+        $timeout(function () {
+            vm.loadData = true;
+        }, 1000);
     }
 
     angular.module('abioka')

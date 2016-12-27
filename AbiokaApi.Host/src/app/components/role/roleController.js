@@ -12,7 +12,7 @@
         var vm = this;
 
         vm.options = {
-            loadData: true,
+            loadOnInit: true,
             rowSelection: false,
             resource: AdminResource.roles,
             query: {},
