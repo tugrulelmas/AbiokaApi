@@ -6,6 +6,7 @@ This is what I've done after 7 years passing with development. I wrote this proj
 
 ##Covered things##
 - Authentication 
+- [Authorization](#authorization)
 - [Validation](#validation)
 - Inversion of Control
 - CRUD Operations
@@ -89,6 +90,38 @@ This opens a db transaction before calling service layer and commits this transa
 #### 2. Service Interceptors
 There is service interceptors for adding additional behavior to the application services (AbiokaApi.ApplicationService application) without modifying service codes.
 
+##### 2.1 RoleValidationInterceptor
+if the current user hasn't the role which is necessary for the application service method, this throws an exception. 
+
+```csharp
+internal class RoleValidationInterceptor : IServiceInterceptor
+{
+    private readonly ICurrentContext currentContext;
+
+    public RoleValidationInterceptor(ICurrentContext currentContext) {
+        this.currentContext = currentContext;
+    }
+
+    public int Order => 0;
+
+    public void BeforeProceed(IInvocationContext context) {
+        var attributes = context.Method.GetCustomAttributes(typeof(AllowedRole), true);
+        if (attributes == null || attributes.Count() == 0)
+            return;
+
+        if(currentContext.Current.Principal.Roles == null)
+            throw new DenialException("AccessDenied");
+
+
+        var allowedRoles = (AllowedRole)attributes.First();
+        if (currentContext.Current.Principal.Roles.Any(r => allowedRoles.Roles.Contains(r)))
+            return;
+
+        throw new DenialException("AccessDenied");
+    }
+}
+```
+
 ## Validation
 Creating a class that inherits CustomValidator<`parameter type`> is enough to validate this parameter type for every service method which has this parameter.
 
@@ -118,5 +151,18 @@ public class AddUserRequestValidator : CustomValidator<AddUserRequest>
         if (tmpUser != null)
             throw new DenialException("UserIsAlreadyRegistered", instance.Email);
     }
+}
+```
+
+## Authorization
+
+Only defining the roles with `AllowedRole` attributte for service method is sufficient for authorization.
+
+**Example**
+```csharp
+public interface IUserService : IReadService<User>
+{
+     [AllowedRole("Admin", "SuperUser")]
+     void Update(User entiy);
 }
 ```
