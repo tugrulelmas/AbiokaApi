@@ -156,7 +156,7 @@ public class AddUserRequestValidator : CustomValidator<AddUserRequest>
 
 ## Authorization
 
-Only defining the roles with `AllowedRole` attributte for service method is sufficient for authorization.
+Only defining the roles with `AllowedRole` attributte for service method is sufficient for authorization. You may want to look at [RoleValidationInterceptor](#rolevalidationinterceptor)
 
 **Example**
 ```csharp
