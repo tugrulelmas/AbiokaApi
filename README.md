@@ -6,7 +6,7 @@ This is what I've done after 7 years passing with development. I wrote this proj
 
 ##Covered things##
 - Authentication 
-- [Validation](#Validation)
+- [Validation](#validation)
 - Inversion of Control
 - CRUD Operations
 - Repository Pattern
