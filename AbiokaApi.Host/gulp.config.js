@@ -68,7 +68,7 @@
         }
     };
 
-    config.watch = [config.templates.src, config.resources.src, srcFolder + 'app/**/*.js'].concat(config.css.src);
+    config.watch = [srcFolder + 'app/**/*.*'].concat(config.css.src);
 
     return config;
 };

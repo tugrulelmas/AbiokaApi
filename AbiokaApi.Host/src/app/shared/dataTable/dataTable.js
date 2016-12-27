@@ -8,11 +8,11 @@
             showDeleteDialog: '&'
         },
         templateUrl: '/app/shared/dataTable/dataTable.html',
-        controller: dataTableController
-    }
+        controller: DataTableController
+    };
 
     /* @ngInject */
-    function dataTableController($timeout, $filter, $mdDialog) {
+    function DataTableController($timeout, $filter, $mdDialog) {
         var self = this;
 
         this.$onInit = function () {
@@ -39,7 +39,7 @@
             if (changesObj.options.loadData) {
                 getData();
             }
-        }
+        };
 
         function getData() {
             self.promise = self.options.resource.get(self.query, success).$promise;

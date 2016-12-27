@@ -3,11 +3,11 @@
 
     var toolbar = {
         templateUrl: '/app/shared/toolbar/toolbar.html',
-        controller: controller
+        controller: ToolbarController
     };
 
     /* @ngInject */
-    function controller($scope, $state, userService, translationService, $mdSidenav) {
+    function ToolbarController($scope, $state, userService, translationService, $mdSidenav) {
         var self = this;
         self.changeLanguage = changeLanguage;
         self.logout = logout;
@@ -34,7 +34,7 @@
 
         function openLeftMenu() {
             $mdSidenav('left').toggle();
-        };
+        }
     }
 
     angular.module('abioka')

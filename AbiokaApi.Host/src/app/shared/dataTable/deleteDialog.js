@@ -9,11 +9,11 @@
             entity: '<'
         },
         templateUrl: '/app/shared/dataTable/deleteDialog.html',
-        controller: deleteDialogController,
+        controller: DeleteDialogController,
     };
 
     /* @ngInject */
-    function deleteDialogController($scope, $mdDialog, alert) {
+    function DeleteDialogController($scope, $mdDialog, alert) {
         var self = this;
         self.cancel = cancel;
         self.loading = false;

@@ -45,7 +45,7 @@
                 deferred.resolve();
             });
             return deferred.promise;
-        };
+        }
 
         function getResource(resourceName) {
             var result = resources[resourceName];
@@ -53,6 +53,6 @@
                 return resourceName;
 
             return result;
-        };
+        }
     }
 })();

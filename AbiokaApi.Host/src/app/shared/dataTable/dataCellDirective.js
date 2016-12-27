@@ -15,16 +15,16 @@
                               if ($scope.column.filter) {
                                   result = $filter($scope.column.filter)(result);
                               }
-                              
+
                               $elm.append(result);
                           } else {
                               var cellElement = $compile($scope.column.cellTemplate)($scope.$parent);
                               $elm.append(cellElement);
                           }
                       }
-                  }
+                  };
               }
-          }
+          };
 
           return uiGridCell;
       }]);

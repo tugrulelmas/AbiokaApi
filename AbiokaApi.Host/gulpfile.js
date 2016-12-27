@@ -49,7 +49,7 @@ gulp.task('templateCache', function () {
       .pipe(gulp.dest(config.templates.dest));
 });
 
-gulp.task('inject', ['copy', 'templateCache', 'jsLint'], function () {
+gulp.task('inject', ['copy', 'templateCache'], function () {
     var css = gulp.src(config.css.src)
               .pipe(gulp.dest(config.css.dest));
 
@@ -57,6 +57,8 @@ gulp.task('inject', ['copy', 'templateCache', 'jsLint'], function () {
          .pipe(gulp.dest(config.lib.dest));
 
     var app = gulp.src(config.app.src)
+              .pipe(jshint())
+              .pipe(jshint.reporter())
               .pipe(ngAnnotate())
               .pipe(gulp.dest(config.app.dest))
               .pipe(angularFilesort());
@@ -69,7 +71,7 @@ gulp.task('inject', ['copy', 'templateCache', 'jsLint'], function () {
       .pipe(gulp.dest(config.index.dest));
 });
 
-gulp.task('inject:dist', ['jsLint'], function () {
+gulp.task('inject:dist', function () {
     var css = gulp.src(config.css.src)
               .pipe(concat("content.min.css"))
               .pipe(cleanCSS())
@@ -85,6 +87,8 @@ gulp.task('inject:dist', ['jsLint'], function () {
          .pipe(gulp.dest(config.lib.dest));
 
     var app = gulp.src(config.app.src)
+              .pipe(jshint())
+              .pipe(jshint.reporter())
               .pipe(ngAnnotate())
               .pipe(angularFilesort())
               .pipe(concat("app.min.js"))
@@ -105,12 +109,6 @@ gulp.task('default', ['inject'], function () {
     watch(config.watch, function () {
         gulp.start('inject');
     });
-});
-
-gulp.task('jsLint', function () {
-    gulp.src(config.app.src)
-    .pipe(jshint())
-    .pipe(jshint.reporter()); // Dump results
 });
 
 gulp.task('clean-templates', function () {

@@ -8,7 +8,7 @@
     function errorInjector($rootScope, $q, $injector, $filter) {
         var service = {
             responseError: responseError
-        }
+        };
         return service;
 
         function responseError(rejection) {

@@ -16,7 +16,7 @@
                 config.url = "/api" + config.url.substring(1, config.url.length);
                 var user = userService.getUser();
                 if (user && user.IsSignedIn === true) {
-                    config.headers["Authorization"] = "Bearer " + user.Token;
+                    config.headers.Authorization = "Bearer " + user.Token;
                 }
             }
             return config;

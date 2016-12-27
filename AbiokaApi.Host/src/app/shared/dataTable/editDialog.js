@@ -9,12 +9,12 @@
             form: '@'
         },
         templateUrl: '/app/shared/dataTable/editDialog.html',
-        controller: editDialogController,
+        controller: EditDialogController,
         transclude: true
-    }
+    };
 
     /* @ngInject */
-    function editDialogController($scope, $mdDialog, alert) {
+    function EditDialogController($scope, $mdDialog, alert) {
         var self = this;
         self.cancel = cancel;
         self.loading = false;
