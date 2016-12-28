@@ -5,7 +5,7 @@
 I've done this after 7 years passed with development. I wrote this project according to S.O.L.I.D principles.
 
 ##Covered things##
-- Authentication 
+- [Authentication](#authentication)
 - [Authorization](#authorization)
 - [Validation](#validation)
 - Inversion of Control
@@ -151,6 +151,37 @@ public class AddUserRequestValidator : CustomValidator<AddUserRequest>
         var tmpUser = userSecurityRepository.GetByEmail(instance.Email);
         if (tmpUser != null)
             throw new DenialException("UserIsAlreadyRegistered", instance.Email);
+    }
+}
+```
+
+## Authentication
+
+[JWT](http://jwt.io) is used for Authentication. Once the user is logged in, then JWT is generated and returned as a response. Each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. You may want to look at [AuthenticationHandler](#11-authenticationhandler)
+
+**Allow Anonymous**
+
+Adding `AllowAnonymous` attributte to a controller method disables token validation for that method.
+
+```csharp
+[RoutePrefix("api/User")]
+public class UserController : BaseReadController<User>
+{
+    private readonly IUserService userService;
+
+    public UserController(IUserService userService)
+        : base(userService) {
+        this.userService = userService;
+    }
+
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("Login")]
+    public HttpResponseMessage Login([FromBody]LoginRequest request) {
+        var token = userService.Login(request);
+
+        var response = Request.CreateResponse(HttpStatusCode.OK, token);
+        return response;
     }
 }
 ```
