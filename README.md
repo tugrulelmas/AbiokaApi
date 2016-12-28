@@ -41,37 +41,37 @@ It aims to add behavior for RESTful Service (AbiokaApi.Host application). These 
 ##### Usage
 Write a class that implements IDynamicHandler interface.
 ```csharp
-    public class NhUnitOfWorkHandler : IDynamicHandler
-    {
-        private readonly IUnitOfWork unitOfWork;
+public class NhUnitOfWorkHandler : IDynamicHandler
+{
+    private readonly IUnitOfWork unitOfWork;
 
-        public short Order => 10;
+    public short Order => 10;
 
-        public NhUnitOfWorkHandler(IUnitOfWork unitOfWork) {
-            this.unitOfWork = unitOfWork;
-        }
+    public NhUnitOfWorkHandler(IUnitOfWork unitOfWork) {
+        this.unitOfWork = unitOfWork;
+    }
 
-        public void BeforeSend(IRequestContext requestContext) {
-            if (!unitOfWork.IsInTransaction)
-            {
-                unitOfWork.BeginTransaction();
-            }
-        }
-
-        public void AfterSend(IResponseContext responseContext) {
-            if (unitOfWork.IsInTransaction)
-            {
-                unitOfWork.Commit();
-            }
-        }
-
-        public void OnException(IExceptionContext exceptionContext) {
-            if (unitOfWork.IsInTransaction)
-            {
-                unitOfWork.Rollback();
-            }
+    public void BeforeSend(IRequestContext requestContext) {
+        if (!unitOfWork.IsInTransaction)
+        {
+            unitOfWork.BeginTransaction();
         }
     }
+
+    public void AfterSend(IResponseContext responseContext) {
+        if (unitOfWork.IsInTransaction)
+        {
+            unitOfWork.Commit();
+        }
+    }
+
+    public void OnException(IExceptionContext exceptionContext) {
+        if (unitOfWork.IsInTransaction)
+        {
+            unitOfWork.Rollback();
+        }
+    }
+}
 ```
 Register this class with IoC container. To learn additional information about Lifestyles please read [this](https://github.com/castleproject/Windsor/blob/master/docs/lifestyles.md).
 ```csharp
