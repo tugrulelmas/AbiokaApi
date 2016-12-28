@@ -32,10 +32,11 @@ I've done this after 7 years passed with development. I wrote this project accor
 - NUnit
 - Moq
 
-##Terminology##
+##Aspect Oriented Programming##
+There are dynamic handlers and service interceptors for adding additional behavior to the RESTful or Application Service layer without modifying service codes.
 
 #### 1. Dynamic Handler
-There is dynamic handlers for adding additional behavior to the RESTful Service (AbiokaApi.Host application) without modifying service codes. These behaviors can be logging Http Request and Response messages, checking authentication etc. If you want to do something for every request or response, you should use a dynamic handler. 
+It aims to add behavior for RESTful Service (AbiokaApi.Host application). These behaviors can be logging Http Request and Response messages, checking authentication etc. If you want to do something for every request or response, you should use a dynamic handler. 
 
 ##### Usage
 Write a class that implements IDynamicHandler interface.
@@ -88,7 +89,7 @@ It catches every exception and wraps it and then returns Http Response with spec
 It opens a db transaction before calling service layer and commits this transaction after service layer response. If there is an exception, it rollbacks the transaction.
 
 #### 2. Service Interceptors
-There is service interceptors for adding additional behavior to the application services (AbiokaApi.ApplicationService application) without modifying service codes.
+It aims to add behavior for the application services (AbiokaApi.ApplicationService application).
 
 ##### 2.1 RoleValidationInterceptor
 if the current user hasn't the role which is necessary for the application service method, it throws an exception. 
