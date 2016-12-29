@@ -8,11 +8,12 @@ I've done this after 7 years passed with development. I wrote this project accor
 - [Authentication](#authentication)
 - [Authorization](#authorization)
 - [Validation](#validation)
+- [Localization](#localization)
 - Inversion of Control
 - CRUD Operations
 - Repository Pattern
 - RESTful Services
-- Single Page Application
+- [Single Page Application](#single-page-application)
 - [Aspect Oriented Programming](#aspect-oriented-programming)
 - Object Oriented Programming
 
@@ -198,12 +199,13 @@ public interface IUserService : IReadService<User>
      void Update(User entiy);
 }
 ```
-
 ## Single Page Application
+
+AngularJS provides SPA template for UI.
 
 #### abioka-data-table
 
-It's a compenent wraps [md-data-table](https://github.com/daniel-nagy/md-data-table). 
+It's a compenent wraps [md-data-table](https://github.com/daniel-nagy/md-data-table). It uses [$resource](https://docs.angularjs.org/api/ngResource/service/$resource) object to interact with RESTful server-side data sources. 
 
 **Example**
 
@@ -234,7 +236,7 @@ With load-data option:
  }
 ```
 
-With cellTemplate:
+With cellTemplate option:
 ```html
 <abioka-data-table options="vm.options">
 </abioka-data-table>
@@ -253,11 +255,32 @@ function LoginAttemptsController($filter, AdminResource) {
         rowSelection: false,
         isReadOnly: true,
         resource: AdminResource.loginAttempts,
-        query: { order: '-Date' },
+        query: { order: '-Date' }, // default order by Date descending while loading data.
         columns: [{ name: "Date", text: "Date", order: true, cellTemplate: dateTemplate },
             { name: "User.Email", text: "Email" },
         { name: "LoginResult", text: "LoginResult", cellTemplate: resultTemplate },
         { name: "IP", text: "IP" }],
     };
 }
+```
+
+### Localization
+
+Language resources are stored under [resources](AbiokaApi.Host/src/app/resources) folder and used with `translate` filter.
+
+**Example**
+
+resource_en.json:
+```json
+{
+  "Password": "Password",
+  "PasswordAgain": "Password Again",
+  "IsAdmin": "Is Admin",
+  "LoginForm": "Login Form",
+}
+```
+
+in html:
+```html
+<label>{{'Password' | translate}}</label>
 ```
