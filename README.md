@@ -2,7 +2,7 @@
 
 # AbiokaApi
 
-I've done this after 7 years passed with development. I wrote this project according to S.O.L.I.D principles.
+I've written this project after almost 8 years passed with development. S.O.L.I.D principles are applied in this project.
 
 * [Installation](#installation)
 * [License](#license)
