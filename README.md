@@ -4,6 +4,9 @@
 
 I've done this after 7 years passed with development. I wrote this project according to S.O.L.I.D principles.
 
+* [Installation](#installation)
+* [License](#license)
+
 ##Covered Functionality##
 - [Authentication](#authentication)
 - [Authorization](#authorization)
@@ -284,3 +287,25 @@ in html:
 ```html
 <label>{{'Password' | translate}}</label>
 ```
+
+## Installation
+
+Clone this repository to your local machine.
+
+```
+git clone https://github.com/tugrulelmas/AbiokaApi.git
+```
+
+Run the following codes:
+```
+cd AbiokaApi/AbiokaApi.Host
+npm install
+gulp
+```
+
+Change connection string in [web.config](AbiokaApi.Host/Web.config)
+
+Open the [AbiokaApi.sln](AbiokaApi.sln) with Visual Studio and then run the project.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
