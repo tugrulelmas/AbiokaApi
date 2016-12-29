@@ -4,7 +4,7 @@
 
 I've done this after 7 years passed with development. I wrote this project according to S.O.L.I.D principles.
 
-##Covered things##
+##Covered Functionality##
 - [Authentication](#authentication)
 - [Authorization](#authorization)
 - [Validation](#validation)
@@ -17,20 +17,20 @@ I've done this after 7 years passed with development. I wrote this project accor
 - Object Oriented Programming
 
 ##Used Technologies##
-- C#
-- Asp.Net Web Api
-- SQL Server
-- FluentValidation
-- Castle Windsor
-- NHibernate
-- Fluent NHibernate
-- AngularJS
-- Angular Material
+- [Asp.Net Web Api 2](https://www.asp.net/web-api)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server)
+- [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
+- [Castle Windsor](https://github.com/castleproject/Windsor)
+- [NHibernate](http://nhibernate.info)
+- [Fluent NHibernate](https://github.com/jagregory/fluent-nhibernate)
+- [AngularJS](https://angularjs.org)
+- [Angular Material](https://material.angularjs.org)
 - [Material Design Data Table](https://github.com/daniel-nagy/md-data-table)
-- Gulp
-- npm
-- NUnit
-- Moq
+- [Gulp](http://gulpjs.com)
+- [npm](https://www.npmjs.com)
+- [NUnit](https://www.nunit.org)
+- [Moq](https://github.com/moq/moq4)
+- [Unsplash](https://unsplash.com)
 
 ##Aspect Oriented Programming##
 There are dynamic handlers and service interceptors for adding additional behavior to the RESTful or Application Service layer without modifying service codes.
@@ -196,5 +196,68 @@ public interface IUserService : IReadService<User>
 {
      [AllowedRole("Admin", "SuperUser")]
      void Update(User entiy);
+}
+```
+
+## Single Page Application
+
+#### abioka-data-table
+
+It's a compenent wraps [md-data-table](https://github.com/daniel-nagy/md-data-table). 
+
+**Example**
+
+With load-data option:
+```html
+<abioka-data-table options="vm.options" load-data="vm.loadData">
+</abioka-data-table>
+```
+```javascript
+ /* @ngInject */
+ function UsersController($timeout, AdminResource) {
+     var vm = this;
+     vm.loadData = false;
+     vm.options = {
+         loadOnInit: false, // If you want to load data immediately, pass this as true.
+         rowSelection: false,
+         resource: AdminResource.users,
+         query: {},
+         columns: [{ name: "Email", text: "Email", order: true }],
+         dialogController: 'UserDialogController',
+         editTemplate: '/app/components/user/userDialog.html',
+         deleteTemplate: '/app/shared/deleteComponent/deleteComponent.html'
+     };
+
+     $timeout(function () {
+         vm.loadData = true;
+     }, 1000);
+ }
+```
+
+With cellTemplate:
+```html
+<abioka-data-table options="vm.options">
+</abioka-data-table>
+```
+```javascript
+/* @ngInject */
+function LoginAttemptsController($filter, AdminResource) {
+    var vm = this;
+
+    var resultTemplate = "<span class='ab-label' ng-class=\"{'label-warning': entity.LoginResult === 'WrongPassword', 'label-success': entity.LoginResult === 'Successful'}\">{{entity.LoginResult | translate}}</span>";
+    var fulldateFormat = $filter("translate")("FullDateFormat");
+    var dateTemplate = "<span>{{entity.Date | abDate:'" + fulldateFormat + "'}}</span>";
+
+    vm.options = {
+        loadOnInit: true,
+        rowSelection: false,
+        isReadOnly: true,
+        resource: AdminResource.loginAttempts,
+        query: { order: '-Date' },
+        columns: [{ name: "Date", text: "Date", order: true, cellTemplate: dateTemplate },
+            { name: "User.Email", text: "Email" },
+        { name: "LoginResult", text: "LoginResult", cellTemplate: resultTemplate },
+        { name: "IP", text: "IP" }],
+    };
 }
 ```
