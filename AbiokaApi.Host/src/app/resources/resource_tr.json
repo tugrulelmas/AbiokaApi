@@ -51,5 +51,6 @@
   "IP": "IP",
   "LoginResult": "Giriş Sonucu",
   "Create": "Oluştur",
-  "Installation": "Kurulum"
+  "Installation": "Kurulum",
+  "Installation.Description": "Uygulamaya giriş yapabilmek için Admin Kullanıcısını oluşturmalısın."
 }

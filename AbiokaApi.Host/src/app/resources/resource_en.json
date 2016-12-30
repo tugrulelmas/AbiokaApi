@@ -51,5 +51,6 @@
   "IP": "IP",
   "LoginResult": "Login Result",
   "Create": "Create",
-  "Installation": "Installation"
+  "Installation": "Installation",
+  "Installation.Description": "You have to create Admin User to login application."
 }

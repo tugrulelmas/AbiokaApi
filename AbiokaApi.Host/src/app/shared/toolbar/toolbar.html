@@ -1,6 +1,6 @@
 ﻿<md-toolbar class="navbar-transparent">
     <div class="md-toolbar-tools">
-        <md-button class="md-fab md-raised md-mini" ng-click="$ctrl.openLeftMenu()" hide-gt-sm>
+        <md-button class="md-fab md-raised md-mini" ng-click="$ctrl.openLeftMenu()" ng-if="$ctrl.user.IsSignedIn" hide-gt-sm>
             <md-icon>menu</md-icon>
             <md-tooltip>
                 {{'Menu' | translate}}
