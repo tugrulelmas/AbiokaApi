@@ -30,12 +30,12 @@
                 self.resource.update({}, self.entity).$promise.then(function (data) {
                     closeDialog(data);
                     alert.success("ItemIsUpdated", true);
-                });
+                }, function () { });
             } else {
                 self.resource.save({}, self.entity).$promise.then(function (data) {
                     closeDialog(data);
                     alert.success("ItemIsSaved", true);
-                });
+                }, function () { });
             }
         }
 

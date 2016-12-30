@@ -33,5 +33,11 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <param name="id">The identifier.</param>
         void Delete(Guid id);
+
+        /// <summary>
+        /// Count of users.
+        /// </summary>
+        /// <returns></returns>
+        int Count();
     }
 }

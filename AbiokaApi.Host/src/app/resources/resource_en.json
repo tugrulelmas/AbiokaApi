@@ -23,7 +23,8 @@
   "Page": "Page",
   "RowsPerPage": "Rows per page",
   "of": "of",
-  "UserIsAlreadyRegistered": "User whose email is {0} is already registered!",
+  "UserIsAlreadyRegistered": "{0} is already registered!",
+  "RoleIsAlreadyRegistered": "{0} is already registered!",
   "ItemIsDeleted": "Item is deleted.",
   "ItemIsUpdated": "Item is updated.",
   "ItemIsSaved": "Item is saved.",
@@ -48,5 +49,7 @@
   "Date": "Date",
   "Email": "Email",
   "IP": "IP",
-  "LoginResult": "Login Result"
+  "LoginResult": "Login Result",
+  "Create": "Create",
+  "Installation": "Installation"
 }

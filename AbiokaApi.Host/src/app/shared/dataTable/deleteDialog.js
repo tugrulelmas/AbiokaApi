@@ -25,7 +25,7 @@
                 self.loading = false;
                 $mdDialog.hide(self.entity);
                 alert.success("ItemIsDeleted", true);
-            });
+            }, function () { });
         }
 
         function cancel() {

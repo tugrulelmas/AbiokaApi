@@ -26,14 +26,16 @@ namespace AbiokaApi.ApplicationService.Interceptors
 
                 var type = typeof(ICustomValidator<>).MakeGenericType(item.GetType());
                 var validator = (ICustomValidator)DependencyContainer.Container.Resolve(type);
-                if (validator != null) {
-                    var result = validator.Validate(item, currentContext.Current.ActionType);
-                    if (!result.IsValid) {
-                        foreach (var errorItem in result.Errors) {
-                            throw new DenialException(errorItem.ErrorMessage, errorItem.PropertyName);
-                            // TODO: throw exception for all error messages
-                        }
-                    }
+                if (validator == null)
+                    continue;
+
+                var result = validator.Validate(item, currentContext.Current.ActionType);
+                if (result.IsValid)
+                    continue;
+
+                foreach (var errorItem in result.Errors) {
+                    throw new DenialException(errorItem.ErrorMessage, errorItem.PropertyName);
+                    // TODO: throw exception for all error messages
                 }
             }
         }

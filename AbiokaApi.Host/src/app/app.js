@@ -18,8 +18,11 @@
         translationService.setGlobalResources();
 
         $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
+            if (toState.isPublic === true)
+                return;
+
             var user = userService.getUser();
-            if (toState.isPublic !== true && !user.IsSignedIn) {
+            if (!user.IsSignedIn) {
                 e.preventDefault();
                 $state.transitionTo("login", null, {
                     notify: false
@@ -32,7 +35,7 @@
     /* @ngInject */
     function config($urlRouterProvider, $locationProvider) {
         $locationProvider.html5Mode({
-            enabled: false,
+            enabled: true,
             requireBase: false
         });
 

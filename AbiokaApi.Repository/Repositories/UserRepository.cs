@@ -10,6 +10,11 @@ namespace AbiokaApi.Repository.Repositories
 {
     public class UserRepository : Repository<User, UserDB>, IUserRepository
     {
+        public int Count() {
+            var result = Query.Count();
+            return result;
+        }
+
         public override User FindById(object id) {
             var user = base.FindById(id);
             var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == user.Id).ToList();

@@ -112,6 +112,8 @@
     <Content Include="package.json" />
     <Content Include="src\app\app.configuration.js" />
     <Content Include="src\app\app.js" />
+    <Content Include="src\app\components\install\install.html" />
+    <Content Include="src\app\components\install\installComponent.js" />
     <Content Include="src\app\components\role\roleController.js" />
     <Content Include="src\app\components\loginAttempt\loginAttemptController.js" />
     <Content Include="src\app\components\user\usersController.js" />
@@ -191,6 +193,7 @@
     <Compile Include="Controllers\BaseReadController.cs" />
     <Compile Include="Controllers\BaseCrudController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstallationController.cs" />
     <Compile Include="Controllers\LoginAttemptController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\RoleController.cs" />

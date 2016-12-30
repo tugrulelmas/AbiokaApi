@@ -3,10 +3,8 @@ using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
-using AbiokaApi.Infrastructure.Common.Exceptions;
 using System;
 using System.Linq;
-using System.Net;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
@@ -66,5 +64,7 @@ namespace AbiokaApi.ApplicationService.Implementations
             var entity = GetEntity(id);
             repository.Delete(entity);
         }
+
+        public int Count() => ((IUserRepository)repository).Count();
     }
 }
