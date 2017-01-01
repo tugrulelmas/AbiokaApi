@@ -19,7 +19,10 @@
         self.cancel = cancel;
         self.loading = false;
         self.saveDialog = saveDialog;
-        self.dialogForm = $scope.$parent[self.form];
+        
+        this.$onInit = function () {
+            self.dialogForm = $scope.$parent[self.form];
+        }
 
         function saveDialog() {
             if (self.dialogForm && !self.dialogForm.$valid)
