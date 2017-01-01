@@ -6,6 +6,7 @@ I've written this project after almost 8 years passed with development. S.O.L.I.
 
 * [Installation](#installation)
 * [License](#license)
+* [Demo](#demo)
 
 ##Covered Functionality##
 - [Authentication](#authentication)
@@ -287,6 +288,14 @@ in html:
 ```html
 <label>{{'Password' | translate}}</label>
 ```
+
+## Demo
+
+You can test this application at [demo.abioka.com](http://demo.abioka.com)
+
+User Name: demo@abioka.com
+
+Password: demo
 
 ## Installation
 
