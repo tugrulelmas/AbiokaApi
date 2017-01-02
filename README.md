@@ -293,9 +293,10 @@ in html:
 
 You can test this application at [demo.abioka.com](http://demo.abioka.com)
 
+```
 User Name: demo@abioka.com
-
-Password: demo
+Password : demo
+```
 
 [![Abioka Demo](http://img.youtube.com/vi/UZl7nWQIbtw/0.jpg)](http://www.youtube.com/watch?v=UZl7nWQIbtw)
 
