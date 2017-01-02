@@ -297,6 +297,10 @@ User Name: demo@abioka.com
 
 Password: demo
 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=UZl7nWQIbtw
+" target="_blank"><img src="http://img.youtube.com/vi/UZl7nWQIbtw/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
 ## Installation
 
 Clone this repository to your local machine.
