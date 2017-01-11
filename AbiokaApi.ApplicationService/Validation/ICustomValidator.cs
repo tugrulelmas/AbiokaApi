@@ -1,5 +1,4 @@
 ﻿using AbiokaApi.Infrastructure.Common.Helper;
-using FluentValidation;
 using FluentValidation.Results;
 
 namespace AbiokaApi.ApplicationService.Validation

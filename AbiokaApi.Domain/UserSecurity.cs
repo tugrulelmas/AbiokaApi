@@ -77,10 +77,10 @@ namespace AbiokaApi.Domain
             return hashedPassword;
         }
 
-        public static implicit operator User(UserSecurity userSecurity) => new User {
-            Id = userSecurity.Id,
-            Email = userSecurity.Email,
-            Roles = userSecurity.Roles
-        };
+        public static implicit operator User(UserSecurity userSecurity) => new User(
+           userSecurity.Id,
+           userSecurity.Email,
+           userSecurity.Roles
+        );
     }
 }

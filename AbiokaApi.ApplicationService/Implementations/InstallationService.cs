@@ -1,6 +1,7 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
 using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.Implementations
@@ -16,9 +17,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public void CreateApplicationData(CreateApplicationDataRequest createApplicationDataRequest) {
-            var role = new Role {
-                Name = "Admin"
-            };
+            var role = new Role(Guid.Empty, "Admin");
             roleService.Add(role);
 
             var adduserRequest = new AddUserRequest {

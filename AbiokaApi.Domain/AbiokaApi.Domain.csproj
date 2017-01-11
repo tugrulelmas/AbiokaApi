@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\RoleRemovedFromUser.cs" />
+    <Compile Include="Events\RoleAddedToUser.cs" />
     <Compile Include="LoginAttempt.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Repositories\ILoginAttemptRepository.cs" />

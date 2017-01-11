@@ -90,10 +90,11 @@ namespace AbiokaApi.Repository.Mappings
         }
 
         private static User ToUser(UserDB userDB) {
-            var result = new User {
-                Id = userDB.Id,
-                Email = userDB.Email
-            };
+            var result = new User(
+              userDB.Id,
+              userDB.Email,
+              null
+            );
             return result;
         }
 
@@ -106,10 +107,10 @@ namespace AbiokaApi.Repository.Mappings
         }
 
         private static Role ToRole(RoleDB roleDB) {
-            var result = new Role {
-                Id = roleDB.Id,
-                Name = roleDB.Name
-            };
+            var result = new Role(
+                roleDB.Id,
+                roleDB.Name
+            );
             return result;
         }
 

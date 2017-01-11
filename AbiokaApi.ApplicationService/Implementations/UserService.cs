@@ -3,6 +3,7 @@ using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
+using AbiokaApi.Infrastructure.Common.Domain;
 using System;
 using System.Linq;
 
@@ -12,11 +13,13 @@ namespace AbiokaApi.ApplicationService.Implementations
     {
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly IAbiokaToken abiokaToken;
+        private readonly IEventDispatcher eventDispatcher;
 
-        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IAbiokaToken abiokaToken)
+        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IAbiokaToken abiokaToken, IEventDispatcher eventDispatcher)
             : base(repository) {
             this.userSecurityRepository = userSecurityRepository;
             this.abiokaToken = abiokaToken;
+            this.eventDispatcher = eventDispatcher;
         }
 
         public string Login(LoginRequest loginRequest) {
@@ -48,10 +51,11 @@ namespace AbiokaApi.ApplicationService.Implementations
             return userSecurity;
         }
 
-        public void Update(User entiy) {
-            var dbUser = GetEntity(entiy.Id);
-            dbUser.Roles = entiy.Roles;
-            repository.Update(entiy);
+        public void Update(User entity) {
+            var dbUser = GetEntity(entity.Id);
+            dbUser.SetRoles(entity.Roles);
+
+            eventDispatcher.Dispatch(dbUser.Events.ToArray());
         }
 
         public void Delete(Guid id) {

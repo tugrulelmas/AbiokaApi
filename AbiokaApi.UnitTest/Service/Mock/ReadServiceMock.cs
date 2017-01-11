@@ -1,4 +1,6 @@
-﻿using AbiokaApi.ApplicationService.Implementations;
+﻿using System;
+using System.Collections.Generic;
+using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.Infrastructure.Common.Domain;
 using Moq;
 
@@ -17,5 +19,12 @@ namespace AbiokaApi.UnitTest.Service.Mock
         public static ReadServiceMock Create() => new ReadServiceMock(new Mock<IRepository<MockEntity>>());
     }
 
-    public class MockEntity : IEntity { }
+    public class MockEntity : IEntity
+    {
+        public IEnumerable<IEvent> Events {
+            get {
+                throw new NotImplementedException();
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ namespace AbiokaApi.Repository.Repositories
             if (userRoles != null && userRoles.Count() > 0) {
                 var roles = new List<Role>();
                 foreach (var userRoleItem in userRoles) {
-                    roles.Add(new Role { Id = userRoleItem.Role.Id, Name = userRoleItem.Role.Name });
+                    roles.Add(new Role(userRoleItem.Role.Id, userRoleItem.Role.Name));
                 }
                 result.Roles = roles;
             }

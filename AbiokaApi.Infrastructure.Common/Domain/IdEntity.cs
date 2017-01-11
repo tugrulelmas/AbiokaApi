@@ -1,10 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AbiokaApi.Infrastructure.Common.Domain
 {
     public abstract class IdEntity<IdType> : IEquatable<IdEntity<IdType>>, IIdEntity<IdType>
     {
+        private List<IEvent> events = new List<IEvent>();
+
         public virtual IdType Id { get; set; }
+
+        public IEnumerable<IEvent> Events => events;
+
+        /// <summary>
+        /// Adds the event.
+        /// </summary>
+        /// <param name="event">The event.</param>
+        protected void AddEvent(IEvent @event) {
+            events.Add(@event);
+        }
+
+        /// <summary>
+        /// Clears the events.
+        /// </summary>
+        protected void ClearEvents() {
+            events.Clear();
+        }
 
         public override bool Equals(object entity) => entity != null && entity is IdEntity<IdType> && this == (IdEntity<IdType>)entity;
 

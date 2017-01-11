@@ -16,16 +16,14 @@ namespace AbiokaApi.UnitTest.Service
 
         [SetUp]
         public void Initialize() {
-            role = new Role {
-                Name = "Test"
-            };
+            role = new Role(Guid.Empty, "Test");
 
             roleValidator = RoleValidatorMock.Create();
         }
 
         [Test]
         public void Throws_Role_Is_Already_Registered_On_Add() {
-            roleValidator.RoleRepositoryMock.Setup(us => us.GetByName(role.Name)).Returns(new Role { Id = Guid.NewGuid() });
+            roleValidator.RoleRepositoryMock.Setup(us => us.GetByName(role.Name)).Returns(new Role(Guid.NewGuid(), string.Empty));
             var exception = Assert.Throws<DenialException>(() => roleValidator.DataValidate(role, ActionType.Add));
 
             Assert.AreEqual(exception.Message, "RoleIsAlreadyRegistered");
@@ -34,7 +32,7 @@ namespace AbiokaApi.UnitTest.Service
 
         [Test]
         public void Throws_Role_Is_Already_Registered_On_Update() {
-            roleValidator.RoleRepositoryMock.Setup(us => us.GetByName(role.Name)).Returns(new Role { Id = Guid.NewGuid() });
+            roleValidator.RoleRepositoryMock.Setup(us => us.GetByName(role.Name)).Returns(new Role(Guid.NewGuid(), string.Empty));
             var exception = Assert.Throws<DenialException>(() => roleValidator.DataValidate(role, ActionType.Update));
 
             Assert.AreEqual(exception.Message, "RoleIsAlreadyRegistered");
@@ -43,7 +41,7 @@ namespace AbiokaApi.UnitTest.Service
 
         [Test]
         public void Does_Not_Throw_Role_Is_Already_Registered_On_Update_Itself() {
-            roleValidator.RoleRepositoryMock.Setup(us => us.GetByName(role.Name)).Returns(new Role { Id = role.Id });
+            roleValidator.RoleRepositoryMock.Setup(us => us.GetByName(role.Name)).Returns(new Role(role.Id, string.Empty));
 
             Assert.DoesNotThrow(() => roleValidator.DataValidate(role, ActionType.Update));
         }
