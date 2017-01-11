@@ -21,6 +21,14 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         public string ProviderToken { get; set; }
 
         /// <summary>
+        /// Gets or sets the refresh token.
+        /// </summary>
+        /// <value>
+        /// The refresh token.
+        /// </value>
+        public string RefreshToken { get; set; }
+
+        /// <summary>
         /// Gets or sets the provider.
         /// </summary>
         /// <value>

@@ -12,6 +12,8 @@ namespace AbiokaApi.Repository.DatabaseObjects
 
         public virtual string ProviderToken { get; set; }
 
+        public virtual string RefreshToken { get; set; }
+
         public virtual string Token { get; set; }
 
         public virtual string Password { get; set; }

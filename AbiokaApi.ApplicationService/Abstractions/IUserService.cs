@@ -15,6 +15,13 @@ namespace AbiokaApi.ApplicationService.Abstractions
         string Login(LoginRequest loginRequest);
 
         /// <summary>
+        /// Refreshes the token.
+        /// </summary>
+        /// <param name="refreshToken">The refresh token.</param>
+        /// <returns></returns>
+        string RefreshToken(string refreshToken);
+
+        /// <summary>
         /// Adds the specified request.
         /// </summary>
         /// <param name="request">The request.</param>

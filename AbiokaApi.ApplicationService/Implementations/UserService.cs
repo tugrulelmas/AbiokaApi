@@ -21,22 +21,16 @@ namespace AbiokaApi.ApplicationService.Implementations
 
         public string Login(LoginRequest loginRequest) {
             var user = userSecurityRepository.GetByEmail(loginRequest.Email);
+            var token = CreateToken(user);
+            return token;
+        }
 
-            var localToken = Guid.NewGuid().ToString();
-            var userInfo = new UserClaim {
-                Email = loginRequest.Email,
-                Id = user.Id,
-                Provider = AuthProvider.Local,
-                ProviderToken = localToken,
-                Roles = user.Roles?.Select(r => r.Name).ToArray()
-            };
-            user.ProviderToken = localToken;
+        public string RefreshToken(string refreshToken) {
+            var user = userSecurityRepository.GetByRefreshToken(refreshToken);
+            if (user == null)
+                throw AuthenticationException.InvalidCredential;
 
-            var token = abiokaToken.Encode(userInfo);
-            user.Token = token;
-
-            userSecurityRepository.Update(user);
-
+            var token = CreateToken(user);
             return token;
         }
 
@@ -66,5 +60,25 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public int Count() => ((IUserRepository)repository).Count();
+
+        private string CreateToken(UserSecurity user) {
+            var localToken = Guid.NewGuid().ToString();
+            var userInfo = new UserClaim {
+                Email = user.Email,
+                Id = user.Id,
+                Provider = AuthProvider.Local,
+                ProviderToken = localToken,
+                Roles = user.Roles?.Select(r => r.Name).ToArray(),
+                RefreshToken = user.RefreshToken
+            };
+            user.ProviderToken = localToken;
+
+            var token = abiokaToken.Encode(userInfo);
+            user.Token = token;
+
+            userSecurityRepository.Update(user);
+
+            return token;
+        }
     }
 }

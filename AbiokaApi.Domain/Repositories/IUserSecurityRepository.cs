@@ -10,5 +10,12 @@ namespace AbiokaApi.Domain.Repositories
         /// <param name="email">The email.</param>
         /// <returns></returns>
         UserSecurity GetByEmail(string email);
+
+        /// <summary>
+        /// Gets the by refresh token.
+        /// </summary>
+        /// <param name="refreshToken">The refresh token.</param>
+        /// <returns></returns>
+        UserSecurity GetByRefreshToken(string refreshToken);
     }
 }

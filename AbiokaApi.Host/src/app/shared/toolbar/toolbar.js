@@ -35,6 +35,11 @@
         function openLeftMenu() {
             $mdSidenav('left').toggle();
         }
+
+        $scope.$on("userSignedOut", function (event, data) {
+            self.user = userService.getUser();
+            $state.go("login");
+        });
     }
 
     angular.module('abioka')

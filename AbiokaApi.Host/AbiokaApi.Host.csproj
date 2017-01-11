@@ -128,6 +128,7 @@
     <Content Include="src\app\shared\dataTable\dataTable.js" />
     <Content Include="src\app\shared\dataTable\deleteDialog.js" />
     <Content Include="src\app\shared\dataTable\editDialog.js" />
+    <Content Include="src\app\shared\token\refreshTokenInjector.js" />
     <Content Include="src\app\shared\toolbar\toolbar.js" />
     <Content Include="src\app\shared\menu\menuDirective.js" />
     <Content Include="src\app\shared\validationMessage\passwordMatchDirective.js" />
@@ -188,6 +189,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\CustomActionFilter.cs" />
     <Compile Include="Attributes\CustomDirectRouteProvider.cs" />
+    <Compile Include="Attributes\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BaseReadController.cs" />

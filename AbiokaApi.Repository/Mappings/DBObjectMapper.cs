@@ -69,7 +69,8 @@ namespace AbiokaApi.Repository.Mappings
                 ProviderToken = userDB.ProviderToken,
                 Token = userDB.Token,
                 Password = userDB.Password,
-                IsDeleted = userDB.IsDeleted
+                IsDeleted = userDB.IsDeleted,
+                RefreshToken = userDB.RefreshToken
             };
             return result;
         }
@@ -82,7 +83,8 @@ namespace AbiokaApi.Repository.Mappings
                 IsDeleted = user.IsDeleted,
                 Password = user.Password,
                 ProviderToken = user.ProviderToken,
-                Token = user.Token
+                Token = user.Token,
+                RefreshToken = user.RefreshToken
             };
             return result;
         }

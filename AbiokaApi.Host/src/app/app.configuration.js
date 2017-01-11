@@ -6,6 +6,7 @@
 
     /* @ngInject */
     function config($httpProvider, $mdThemingProvider) {
+        $httpProvider.interceptors.push('refreshTokenInjector');
         $httpProvider.interceptors.push('tokenInjector');
         $httpProvider.interceptors.push('errorInjector');
 

@@ -20,14 +20,7 @@
         function getUser() {
             var userInfo = $cookies.getObject('userInfo', { path: '/' });
             if (userInfo && userInfo.IsSignedIn === true) {
-                var now = parseInt(new Date().getTime() / 1000);
-                if (userInfo.ExpirationDate > now) {
-                    //TODO: check if the token same as the token stored in db.
-                    user = userInfo;
-                } else {
-                    destroy();
-                    $rootScope.$broadcast('userSignedOut');
-                }
+                user = userInfo;
             }
             return user;
         }
@@ -42,6 +35,7 @@
             user.ExpirationDate = tokenUser.exp;
             user.Token = token;
             user.IsSignedIn = true;
+            user.RefreshToken = tokenUser.refresh_token;
             if (angular.isUndefined(user.Language) || user.Language.trim() === "") {
                 user.Language = getDefault().Language;
             }

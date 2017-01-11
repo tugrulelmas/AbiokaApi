@@ -51,5 +51,14 @@ namespace AbiokaApi.Host.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("RefreshToken/{refreshToken}")]
+        public HttpResponseMessage RefreshToken([FromUri]string refreshToken) {
+            var token = userService.RefreshToken(refreshToken);
+
+            return Request.CreateResponse(HttpStatusCode.OK, token);
+        }
     }
 }

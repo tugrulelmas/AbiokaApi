@@ -8,7 +8,7 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
         private const string key = "_A4b%i+oKa$_";
 
         public string Encode(UserClaim userClaim) {
-            var defaultExpMinutes = new TimeSpan(240, 0, 0).TotalMinutes;
+            var defaultExpMinutes = new TimeSpan(0, 20, 0).TotalMinutes; 
             return Encode(userClaim, defaultExpMinutes);
         }
 
@@ -26,7 +26,8 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 email = userClaim.Email,
                 id = userClaim.Id,
                 provider = userClaim.Provider.ToString(),
-                roles = userClaim.Roles
+                roles = userClaim.Roles,
+                refresh_token = userClaim.RefreshToken
             };
 
             return JsonWebToken.Encode(payload, key, JwtHashAlgorithm.HS256);

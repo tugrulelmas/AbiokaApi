@@ -11,7 +11,8 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.Email);
             Map(x => x.IsDeleted);
             Map(x => x.Password);
-            Map(x => x.ProviderToken);
+            Map(x => x.ProviderToken).Length(50);
+            Map(x => x.RefreshToken).Length(50);
             Map(x => x.Token).Length(512);
             
             Table("dbo.[User]");

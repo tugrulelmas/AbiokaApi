@@ -5,7 +5,7 @@
       .factory('errorInjector', errorInjector);
 
     /* @ngInject */
-    function errorInjector($rootScope, $q, $injector, $filter) {
+    function errorInjector($rootScope, $q, $injector, $filter, userService) {
         var service = {
             responseError: responseError
         };

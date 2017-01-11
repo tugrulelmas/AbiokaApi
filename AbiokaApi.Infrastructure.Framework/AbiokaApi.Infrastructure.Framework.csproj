@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\AbiokaToken.cs" />
-    <Compile Include="Authentication\AuthenticationException.cs" />
     <Compile Include="Authentication\AuthenticationHandler.cs" />
     <Compile Include="Authentication\ErrorMessage.cs" />
     <Compile Include="Authentication\JsonWebToken.cs" />

@@ -1,7 +1,7 @@
 ﻿using AbiokaApi.Infrastructure.Common.Exceptions;
 using System.Net;
 
-namespace AbiokaApi.Infrastructure.Framework.Authentication
+namespace AbiokaApi.Infrastructure.Common.Authentication
 {
     public class AuthenticationException : DenialException
     {

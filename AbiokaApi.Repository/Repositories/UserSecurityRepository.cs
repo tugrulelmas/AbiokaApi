@@ -5,6 +5,8 @@ using AbiokaApi.Repository.Mappings;
 using System.Linq;
 using NHibernate.Linq;
 using System.Collections.Generic;
+using System;
+using System.Linq.Expressions;
 
 namespace AbiokaApi.Repository.Repositories
 {
@@ -23,8 +25,12 @@ namespace AbiokaApi.Repository.Repositories
             }
         }
 
-        public UserSecurity GetByEmail(string email) {
-            var dbUser = Query.Where(u => u.Email.ToLowerInvariant() == email.ToLowerInvariant()).FirstOrDefault();
+        public UserSecurity GetByEmail(string email) => GetUser(u => u.Email.ToLowerInvariant() == email.ToLowerInvariant());
+
+        public UserSecurity GetByRefreshToken(string refreshToken) => GetUser(u => u.RefreshToken == refreshToken);
+
+        private UserSecurity GetUser(Expression<Func<UserSecurityDB, bool>> filter) {
+            var dbUser = Query.Where(filter).FirstOrDefault();
             if (dbUser == null)
                 return null;
 
