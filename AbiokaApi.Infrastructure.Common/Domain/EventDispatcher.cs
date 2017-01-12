@@ -24,9 +24,7 @@ namespace AbiokaApi.Infrastructure.Common.Domain
         }
 
         public async Task DispatchAsync<T>(params T[] events) where T : IEvent {
-            Dispatch<T>(events);
-
-            await Task.CompletedTask;
+            await Task.Factory.StartNew(() => { Dispatch<T>(events); });
         }
     }
 }
