@@ -1,4 +1,5 @@
 ﻿using AbiokaApi.Infrastructure.Common.Exceptions;
+using System.Net;
 
 namespace AbiokaApi.Infrastructure.Framework.Authentication
 {
@@ -6,7 +7,7 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
     public class SignatureVerificationException : DenialException
     {
         public SignatureVerificationException(string message)
-            : base(message) {
+            : base(HttpStatusCode.Unauthorized, message) {
         }
     }
 }
