@@ -13,7 +13,7 @@ namespace AbiokaApi.Repository.EventHandlers
         }
 
         public void Handle(RoleRemovedFromUser eventInstance) {
-            roleRepository.RemoveFromUser(eventInstance.RoleId, eventInstance.UserId);
+            roleRepository.RemoveFromUser(eventInstance.RoleId, eventInstance.User.Id);
         }
     }
 }

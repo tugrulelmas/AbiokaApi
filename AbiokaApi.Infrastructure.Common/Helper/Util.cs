@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 
 namespace AbiokaApi.Infrastructure.Common.Helper
 {
@@ -30,5 +32,13 @@ namespace AbiokaApi.Infrastructure.Common.Helper
             var result = (T)Enum.Parse(typeof(T), value);
             return result;
         }
+
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> list) => list == null || list.Count() == 0;
+
+        public static bool IsNotNullAndEmpty<T>(this IEnumerable<T> list) => list != null && list.Count() > 0;
+
+        public static bool IsNullOrEmpty(this Guid guid) => guid == null || guid == Guid.Empty;
+
+        public static bool IsNotNullAndEmpty(this Guid guid) => guid != null && guid != Guid.Empty;
     }
 }

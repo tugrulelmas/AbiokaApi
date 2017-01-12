@@ -90,6 +90,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Domain\Entities\UserSecurityTest.cs" />
+    <Compile Include="Domain\Entities\UserTest.cs" />
+    <Compile Include="Domain\EventHandler\Mock\RoleRemovedFromUserHandlerMock.cs" />
+    <Compile Include="Domain\EventHandler\Mock\RoleAddedToUserHandlerMock.cs" />
+    <Compile Include="Domain\EventHandler\RoleRemovedFromUserHandlerTest.cs" />
+    <Compile Include="Domain\EventHandler\RoleAddedToUserHandlerTest.cs" />
     <Compile Include="IoC\Container.cs" />
     <Compile Include="IoC\Mock\ContextHolderMock.cs" />
     <Compile Include="IoC\Mock\UnitOfWorkMock.cs" />

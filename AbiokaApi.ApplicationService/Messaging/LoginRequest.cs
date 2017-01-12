@@ -49,8 +49,6 @@ namespace AbiokaApi.ApplicationService.Messaging
             if (user == null) {
                 throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
             }
-
-            var hashedPassword = user.GetHashedPassword(instance.Password);
             
             var loginAttempt = new LoginAttempt {
                 Date = DateTime.UtcNow,
@@ -59,7 +57,7 @@ namespace AbiokaApi.ApplicationService.Messaging
                 IP = currentContext.Current.IP
             };
 
-            if (user.Password != hashedPassword) {
+            if (!user.ArePasswordEqual(instance.Email, instance.Password)) {
                 loginAttempt.LoginResult = LoginResult.WrongPassword;
                 loginAttemptRepository.Add(loginAttempt);
 

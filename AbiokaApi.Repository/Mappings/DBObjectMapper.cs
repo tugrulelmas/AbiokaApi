@@ -62,16 +62,17 @@ namespace AbiokaApi.Repository.Mappings
         }
 
         private static UserSecurity ToUserSecurity(UserSecurityDB userDB) {
-            var result = new UserSecurity {
-                Id = userDB.Id,
-                Email = userDB.Email,
-                AuthProvider = userDB.AuthProvider.EnumParse<AuthProvider>(),
-                ProviderToken = userDB.ProviderToken,
-                Token = userDB.Token,
-                Password = userDB.Password,
-                IsDeleted = userDB.IsDeleted,
-                RefreshToken = userDB.RefreshToken
-            };
+            var result = new UserSecurity(
+                 userDB.Id,
+                userDB.Email,
+                userDB.AuthProvider.EnumParse<AuthProvider>(),
+                userDB.ProviderToken,
+                userDB.RefreshToken,
+                userDB.Token,
+                userDB.Password,
+                userDB.IsDeleted,
+                null
+            );
             return result;
         }
 

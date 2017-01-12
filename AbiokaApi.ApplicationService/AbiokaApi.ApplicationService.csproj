@@ -56,6 +56,7 @@
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interceptors\DataValidationInterceptor.cs" />
     <Compile Include="Interceptors\RoleValidationInterceptor.cs" />
+    <Compile Include="Messaging\AddUserResponse.cs" />
     <Compile Include="Messaging\CreateApplicationDataRequest.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
     <Compile Include="Messaging\LoginRequest.cs" />

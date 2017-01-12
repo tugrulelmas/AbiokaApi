@@ -5,6 +5,7 @@ using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.UnitTest.Service.Mock;
 using Moq;
 using NUnit.Framework;
+using System;
 using System.Net;
 
 namespace AbiokaApi.UnitTest.Service
@@ -37,11 +38,7 @@ namespace AbiokaApi.UnitTest.Service
 
         [Test]
         public void Login_Throws_Wrong_Password() {
-            var userSecurity = new UserSecurity {
-                Email = "test@abioka.com",
-                Password = "1234",
-            };
-            userSecurity.Password = userSecurity.GetHashedPassword(userSecurity.Password);
+            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", "1234");
             
             loginRequestValidator.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
 
@@ -58,12 +55,7 @@ namespace AbiokaApi.UnitTest.Service
         [Test]
         public void Login_Throws_User_IsDeleted() {
             var password = "1234";
-            var userSecurity = new UserSecurity {
-                Email = "test@abioka.com",
-                Password = password,
-                IsDeleted = true
-            };
-            userSecurity.Password = userSecurity.GetHashedPassword(userSecurity.Password);
+            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", password, true);
             
             loginRequestValidator.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
 
@@ -80,11 +72,7 @@ namespace AbiokaApi.UnitTest.Service
         [Test]
         public void Login_Adds_Successful_LoginAttempt() {
             var password = "1234";
-            var userSecurity = new UserSecurity {
-                Email = "test@abioka.com",
-                Password = password
-            };
-            userSecurity.Password = userSecurity.GetHashedPassword(userSecurity.Password);
+            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", password);
             
             loginRequestValidator.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
 

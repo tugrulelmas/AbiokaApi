@@ -14,12 +14,13 @@ namespace AbiokaApi.UnitTest.Service
         [Test]
         public void Login_Set_Token() {
             var password = "1234";
-            var userSecurity = new UserSecurity {
-                Id = Guid.NewGuid(),
-                Email = "test@abioka.com",
-                Password = password
-            };
-            userSecurity.Password = userSecurity.GetHashedPassword(userSecurity.Password);
+
+            var userSecurity = UserSecurity.CreateBasic(
+                Guid.Empty,
+                "test@abioka.com",
+                password
+            );
+            userSecurity.Id = Guid.NewGuid();
 
             var userService = UserServiceMock.Create();
             userService.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
@@ -44,10 +45,10 @@ namespace AbiokaApi.UnitTest.Service
             var userService = UserServiceMock.Create();
             userService.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(addUserRequest.Email)).Returns((UserSecurity)null);
             var user = userService.Add(addUserRequest);
-            
-            var password = new UserSecurity { Email = addUserRequest.Email }.GetHashedPassword(addUserRequest.Password);
 
-            userService.UserSecurityRepositoryMock.Verify(us => us.Add(It.Is<UserSecurity>(e => e.Email == addUserRequest.Email && e.AuthProvider == AuthProvider.Local && e.Password == password)), Times.Once());
+            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, addUserRequest.Email, addUserRequest.Password);
+
+            userService.UserSecurityRepositoryMock.Verify(us => us.Add(It.Is<UserSecurity>(e => e.Email == addUserRequest.Email && e.AuthProvider == AuthProvider.Local && e.Password == userSecurity.Password)), Times.Once());
             Assert.AreEqual(user.Email, addUserRequest.Email);
         }
     }

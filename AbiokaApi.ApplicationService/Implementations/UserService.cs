@@ -24,8 +24,9 @@ namespace AbiokaApi.ApplicationService.Implementations
 
         public string Login(LoginRequest loginRequest) {
             var user = userSecurityRepository.GetByEmail(loginRequest.Email);
-            var token = CreateToken(user);
-            return token;
+            user.CreateToken(abiokaToken);
+            userSecurityRepository.Update(user);
+            return user.Token;
         }
 
         public string RefreshToken(string refreshToken) {
@@ -33,22 +34,33 @@ namespace AbiokaApi.ApplicationService.Implementations
             if (user == null)
                 throw AuthenticationException.InvalidCredential;
 
-            var token = CreateToken(user);
-            return token;
+            user.CreateToken(abiokaToken);
+            userSecurityRepository.Update(user);
+            return user.Token;
         }
 
-        public User Add(AddUserRequest request) {
-            var userSecurity = new UserSecurity {
-                Email = request.Email,
-                Roles = request.Roles,
-                AuthProvider = AuthProvider.Local,
-                ProviderToken = Guid.NewGuid().ToString()
-            };
-            userSecurity.Password = userSecurity.GetHashedPassword(request.Password);
+        public AddUserResponse Add(AddUserRequest request) {
+            var userSecurity = new UserSecurity (
+                Guid.Empty,
+                request.Email,
+                AuthProvider.Local,
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString(),
+                string.Empty,
+                request.Password,
+                false,
+                request.Roles
+            );
 
             userSecurityRepository.Add(userSecurity);
 
-            return userSecurity;
+            eventDispatcher.Dispatch(userSecurity.Events.ToArray());
+
+            return new AddUserResponse {
+                Email = userSecurity.Email,
+                Id = userSecurity.Id,
+                Roles = userSecurity.Roles.ToArray()
+            };
         }
 
         public void Update(User entity) {
@@ -64,25 +76,5 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public int Count() => ((IUserRepository)repository).Count();
-
-        private string CreateToken(UserSecurity user) {
-            var localToken = Guid.NewGuid().ToString();
-            var userInfo = new UserClaim {
-                Email = user.Email,
-                Id = user.Id,
-                Provider = AuthProvider.Local,
-                ProviderToken = localToken,
-                Roles = user.Roles?.Select(r => r.Name).ToArray(),
-                RefreshToken = user.RefreshToken
-            };
-            user.ProviderToken = localToken;
-
-            var token = abiokaToken.Encode(userInfo);
-            user.Token = token;
-
-            userSecurityRepository.Update(user);
-
-            return token;
-        }
     }
 }

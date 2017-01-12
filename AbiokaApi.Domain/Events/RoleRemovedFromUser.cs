@@ -5,12 +5,12 @@ namespace AbiokaApi.Domain.Events
 {
     public class RoleRemovedFromUser : IEvent
     {
-        public RoleRemovedFromUser(Guid userId, Guid roleId) {
-            UserId = userId;
+        public RoleRemovedFromUser(IIdEntity<Guid> user, Guid roleId) {
+            User = user;
             RoleId = roleId;
         }
 
-        public Guid UserId { get; }
+        public IIdEntity<Guid> User { get; }
 
         public Guid RoleId { get; }
     }

@@ -1,30 +1,18 @@
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
+using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Repository.DatabaseObjects;
 using AbiokaApi.Repository.Mappings;
-using System.Linq;
 using NHibernate.Linq;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace AbiokaApi.Repository.Repositories
 {
     public class UserSecurityRepository : Repository<UserSecurity, UserSecurityDB>, IUserSecurityRepository
     {
-        public override void Add(UserSecurity entity) {
-            base.Add(entity);
-            if (entity.Roles != null && entity.Roles.Count() > 0) {
-                foreach (var roleItem in entity.Roles) {
-                    var userRole = new UserRoleDB {
-                        Role = new RoleDB { Id = roleItem.Id },
-                        UserId = entity.Id
-                    };
-                    Session.Save(userRole);
-                }
-            }
-        }
-
         public UserSecurity GetByEmail(string email) => GetUser(u => u.Email.ToLowerInvariant() == email.ToLowerInvariant());
 
         public UserSecurity GetByRefreshToken(string refreshToken) => GetUser(u => u.RefreshToken == refreshToken);
@@ -36,14 +24,15 @@ namespace AbiokaApi.Repository.Repositories
 
             var result = (UserSecurity)DBObjectMapper.ToDomainObject(dbUser);
             var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == result.Id);
-            if (userRoles != null && userRoles.Count() > 0) {
-                var roles = new List<Role>();
-                foreach (var userRoleItem in userRoles) {
-                    roles.Add(new Role(userRoleItem.Role.Id, userRoleItem.Role.Name));
-                }
-                result.Roles = roles;
+
+            if (userRoles.IsNullOrEmpty())
+                return result;
+
+            var roles = new List<Role>();
+            foreach (var userRoleItem in userRoles) {
+                roles.Add(new Role(userRoleItem.Role.Id, userRoleItem.Role.Name));
             }
-            return result;
+            return new UserSecurity(result.Id, result.Email, result.AuthProvider, result.ProviderToken, result.RefreshToken, result.Token, result.Password, result.IsDeleted, roles);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace AbiokaApi.Repository.EventHandlers
         }
 
         public void Handle(RoleAddedToUser eventInstance) {
-            roleRepository.AddToUser(eventInstance.RoleId, eventInstance.UserId);
+            roleRepository.AddToUser(eventInstance.RoleId, eventInstance.User.Id);
         }
     }
 }

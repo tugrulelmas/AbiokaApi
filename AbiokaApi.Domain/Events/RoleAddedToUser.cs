@@ -5,12 +5,12 @@ namespace AbiokaApi.Domain.Events
 {
     public class RoleAddedToUser : IEvent
     {
-        public RoleAddedToUser(Guid userId, Guid roleId) {
-            UserId = userId;
+        public RoleAddedToUser(IIdEntity<Guid> user, Guid roleId) {
+            User = user;
             RoleId = roleId;
         }
 
-        public Guid UserId { get; }
+        public IIdEntity<Guid> User { get; }
 
         public Guid RoleId { get; }
     }

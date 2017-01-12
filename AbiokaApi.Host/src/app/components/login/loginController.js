@@ -8,7 +8,7 @@
     };
 
     /* @ngInject */
-    function LoginController($scope, $http, $state, localSignInService) {
+    function LoginController($scope, $http, $state, localSignInService, userService) {
         var vm = this;
         vm.user = {};
         vm.login = login;
@@ -16,11 +16,15 @@
         activate();
 
         function activate() {
-            $http.get("./installation/required").then(function (response) {
-                if (response.data === true) {
-                    $state.go("install");
-                }
-            });
+            if (userService.getUser().IsSignedIn) {
+                $state.go("/");
+            } else {
+                $http.get("./installation/required").then(function (response) {
+                    if (response.data === true) {
+                        $state.go("install");
+                    }
+                });
+            }
         }
 
         function login() {
