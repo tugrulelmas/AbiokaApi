@@ -3,8 +3,12 @@ using System;
 
 namespace AbiokaApi.Domain
 {
-    public class Role : IdEntity<Guid>
+    public class Role : DeletableEntity
     {
+        public Role() {
+
+        }
+
         public Role(Guid id, string name) {
             Id = id;
             Name = name;
@@ -16,6 +20,6 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The name.
         /// </value>
-        public string Name { get; protected set; }
+        public virtual string Name { get; protected set; }
     }
 }

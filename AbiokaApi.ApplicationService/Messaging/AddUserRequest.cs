@@ -1,10 +1,10 @@
-﻿using AbiokaApi.ApplicationService.Validation;
-using AbiokaApi.Domain;
-using FluentValidation;
-using System.Collections.Generic;
+﻿using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
+using FluentValidation;
+using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.Messaging
 {
@@ -32,7 +32,7 @@ namespace AbiokaApi.ApplicationService.Messaging
         /// <value>
         /// The roles.
         /// </value>
-        public IEnumerable<Role> Roles { get; set; }
+        public IEnumerable<RoleDTO> Roles { get; set; }
     }
 
     public class AddUserRequestValidator : CustomValidator<AddUserRequest>

@@ -1,5 +1,5 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
-using AbiokaApi.Infrastructure.Common.Domain;
+using AbiokaApi.ApplicationService.DTOs;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace AbiokaApi.Host.Controllers
 {
-    public abstract class BaseReadController<T> : BaseApiController where T : IIdEntity<Guid>
+    public abstract class BaseReadController<T> : BaseApiController where T : DTO
     {
         private readonly IReadService<T> readService;
 

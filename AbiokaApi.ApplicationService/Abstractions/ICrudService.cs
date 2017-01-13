@@ -1,8 +1,8 @@
-﻿using AbiokaApi.Infrastructure.Common.Domain;
+﻿using AbiokaApi.ApplicationService.DTOs;
 
 namespace AbiokaApi.ApplicationService.Abstractions
 {
-    public interface ICrudService<T> : IReadService<T> where T : IEntity
+    public interface ICrudService<T> : IReadService<T> where T : DTO
     {
         /// <summary>
         /// Deletes the specified identifier.
@@ -11,15 +11,15 @@ namespace AbiokaApi.ApplicationService.Abstractions
         void Delete(object id);
 
         /// <summary>
-        /// Updates the specified entiy.
+        /// Updates the specified entity.
         /// </summary>
-        /// <param name="entiy">The entiy.</param>
-        void Update(T entiy);
+        /// <param name="entity">The entity.</param>
+        void Update(T entity);
 
         /// <summary>
-        /// Adds the specified entiy.
+        /// Adds the specified entity.
         /// </summary>
-        /// <param name="entiy">The entiy.</param>
-        void Add(T entiy);
+        /// <param name="entity">The entity.</param>
+        void Add(T entity);
     }
 }

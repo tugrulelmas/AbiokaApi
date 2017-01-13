@@ -1,9 +1,9 @@
-﻿using AbiokaApi.Infrastructure.Common.Domain;
+﻿using AbiokaApi.Domain;
 using System;
 
-namespace AbiokaApi.Domain
+namespace AbiokaApi.ApplicationService.DTOs
 {
-    public class LoginAttempt : IdEntity<Guid>
+   public class LoginAttemptDTO : DTO
     {
         /// <summary>
         /// Gets or sets the user.
@@ -11,15 +11,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The user.
         /// </value>
-        public virtual User User { get; set; }
-
-        /// <summary>
-        /// Gets or sets the token.
-        /// </summary>
-        /// <value>
-        /// The token.
-        /// </value>
-        public virtual string Token { get; set; }
+        public UserDTO User { get; set; }
 
         /// <summary>
         /// Gets or sets the ip.
@@ -27,7 +19,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The ip.
         /// </value>
-        public virtual string IP { get; set; }
+        public string IP { get; set; }
 
         /// <summary>
         /// Gets or sets the date.
@@ -35,7 +27,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The date.
         /// </value>
-        public virtual DateTime Date { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Gets or sets the login result.
@@ -43,6 +35,6 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The login result.
         /// </value>
-        public virtual LoginResult LoginResult { get; set; }
+        public string LoginResult { get; set; }
     }
 }

@@ -1,9 +1,10 @@
-﻿using AbiokaApi.Infrastructure.Common.Domain;
+﻿using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.Infrastructure.Common.Domain;
 using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.Abstractions
 {
-    public interface IReadService<T> : IService where T : IEntity
+    public interface IReadService<T> : IService where T : DTO
     {
         /// <summary>
         /// Gets the with page.

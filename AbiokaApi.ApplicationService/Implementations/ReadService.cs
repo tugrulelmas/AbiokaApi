@@ -1,4 +1,5 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
+using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using System.Collections.Generic;
@@ -6,19 +7,25 @@ using System.Net;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
-    public class ReadService<T> : IReadService<T> where T : IEntity
+    public class ReadService<TEntity, TDTO> : IReadService<TDTO> where TEntity : class, IEntity where TDTO : DTO
     {
-        protected readonly IRepository<T> repository;
+        protected readonly IRepository<TEntity> repository;
 
-        public ReadService(IRepository<T> repository) {
+        public ReadService(IRepository<TEntity> repository) {
             this.repository = repository;
         }
 
-        public IEnumerable<T> GetAll() => repository.GetAll();
+        public IEnumerable<TDTO> GetAll() {
+            var entities = repository.GetAll();
+            return DTOMapper.FromDomainObject<TDTO>(entities);
+        }
 
-        public T Get(object id) => repository.FindById(id);
+        public TDTO Get(object id) {
+            var entity = repository.FindById(id);
+            return (TDTO)DTOMapper.FromDomainObject(entity);
+        }
 
-        public virtual IPage<T> GetWithPage(int page, int limit, string order) {
+        public virtual IPage<TDTO> GetWithPage(int page, int limit, string order) {
             var pageRequest = new PageRequest {
                 Page = page,
                 Limit = limit
@@ -27,17 +34,25 @@ namespace AbiokaApi.ApplicationService.Implementations
                 if (order.StartsWith("-")) {
                     pageRequest.Order = order.Substring(1);
                     pageRequest.Ascending = false;
-                }
-                else {
+                } else {
                     pageRequest.Order = order;
                     pageRequest.Ascending = true;
                 }
             }
-            return repository.GetPage(pageRequest);
+            var pageResult = repository.GetPage(pageRequest);
+            if (pageResult == null)
+                return null;
+
+            var result = new Page<TDTO> {
+                Count = pageResult.Count,
+                Data = DTOMapper.FromDomainObject<TDTO>(pageResult.Data)
+            };
+
+            return result;
         }
 
-        protected virtual T GetEntity(object id) {
-            var entity = Get(id);
+        protected virtual TEntity GetEntity(object id) {
+            var entity = repository.FindById(id);
             if (entity == null)
                 throw new DenialException(HttpStatusCode.NotFound, "EntityNotFound");
 

@@ -8,6 +8,11 @@ namespace AbiokaApi.Domain
 {
     public class UserSecurity : User
     {
+        public UserSecurity()
+            : base() {
+
+        }
+
         public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string refreshToken, string token, string password, bool isDeleted, IEnumerable<Role> roles)
             : base(id, email, roles) {
             AuthProvider = authProvider;
@@ -29,7 +34,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The authentication provider.
         /// </value>
-        public AuthProvider AuthProvider { get; protected set; }
+        public virtual AuthProvider AuthProvider { get; protected set; }
 
         /// <summary>
         /// Gets or sets the provider token.
@@ -37,7 +42,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The provider token.
         /// </value>
-        public string ProviderToken { get; protected set; }
+        public virtual string ProviderToken { get; protected set; }
 
         /// <summary>
         /// Gets or sets the refresh token.
@@ -45,7 +50,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The refresh token.
         /// </value>
-        public string RefreshToken { get; protected set; }
+        public virtual string RefreshToken { get; protected set; }
 
         /// <summary>
         /// Gets or sets the token.
@@ -53,7 +58,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The token.
         /// </value>
-        public string Token { get; protected set; }
+        public virtual string Token { get; protected set; }
 
         /// <summary>
         /// Gets or sets the password.
@@ -61,21 +66,13 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The password.
         /// </value>
-        public string Password { get; protected set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is deleted.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance is deleted; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsDeleted { get; protected set; }
+        public virtual string Password { get; protected set; }
 
         /// <summary>
         /// Creates the token.
         /// </summary>
         /// <param name="abiokaToken">The abioka token.</param>
-        public void CreateToken(IAbiokaToken abiokaToken) {
+        public virtual void CreateToken(IAbiokaToken abiokaToken) {
             var localToken = Guid.NewGuid().ToString();
             var userInfo = new UserClaim {
                 Email = Email,
@@ -97,7 +94,7 @@ namespace AbiokaApi.Domain
         /// <param name="email">The email.</param>
         /// <param name="password">The password.</param>
         /// <returns></returns>
-        public bool ArePasswordEqual(string email, string password) => Password == ComputeHashPassword(email, password);
+        public virtual bool ArePasswordEqual(string email, string password) => Password == ComputeHashPassword(email, password);
 
         private void ComputeHashPassword(string password) {
             Password = ComputeHashPassword(Email, password);

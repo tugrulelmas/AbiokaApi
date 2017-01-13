@@ -1,16 +1,23 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
+using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.Infrastructure.Common.Domain;
+using System;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
-    public class CrudService<T> : ReadService<T>, ICrudService<T> where T : IEntity
+    public class CrudService<TEntity, TDTO> : ReadService<TEntity, TDTO>, ICrudService<TDTO> where TEntity : class, IEntity where TDTO : DTO
     {
-        public CrudService(IRepository<T> repository)
+        public CrudService(IRepository<TEntity> repository)
             : base(repository) {
         }
 
-        public virtual void Add(T entiy) {
-            repository.Add(entiy);
+        public virtual void Add(TDTO entity) {
+            var domainEntity = (TEntity)DTOMapper.ToDomainObject(entity);
+            repository.Add(domainEntity);
+
+            if (domainEntity is IIdEntity<Guid>) {
+                entity.Id = ((IIdEntity<Guid>)domainEntity).Id;
+            }
         }
 
         public virtual void Delete(object id) {
@@ -18,8 +25,9 @@ namespace AbiokaApi.ApplicationService.Implementations
             repository.Delete(entity);
         }
 
-        public virtual void Update(T entiy) {
-            repository.Update(entiy);
+        public virtual void Update(TDTO entity) {
+            var domainEntity = (TEntity)DTOMapper.ToDomainObject(entity);
+            repository.Update(domainEntity);
         }
     }
 }

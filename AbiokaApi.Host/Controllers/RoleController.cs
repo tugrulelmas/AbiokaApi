@@ -1,13 +1,13 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
-using AbiokaApi.Domain;
+using AbiokaApi.ApplicationService.DTOs;
 using System.Web.Http;
 
 namespace AbiokaApi.Host.Controllers
 {
     [RoutePrefix("api/Role")]
-    public class RoleController : BaseCrudController<Role>
+    public class RoleController : BaseCrudController<RoleDTO>
     {
-        public RoleController(ICrudService<Role> service)
+        public RoleController(ICrudService<RoleDTO> service)
             : base(service) {
         }
     }

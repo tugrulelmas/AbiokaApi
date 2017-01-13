@@ -50,6 +50,11 @@
     <Compile Include="Abstractions\IUserService.cs" />
     <Compile Include="Abstractions\IService.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="DTOs\DTOMapper.cs" />
+    <Compile Include="DTOs\DTO.cs" />
+    <Compile Include="DTOs\LoginAttemptDTO.cs" />
+    <Compile Include="DTOs\RoleDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\ReadService.cs" />

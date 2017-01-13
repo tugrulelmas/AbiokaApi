@@ -1,4 +1,5 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
+using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
@@ -9,7 +10,7 @@ using System.Linq;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
-    public class UserService : ReadService<User>, IUserService
+    public class UserService : ReadService<User, UserDTO>, IUserService
     {
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly IAbiokaToken abiokaToken;
@@ -40,6 +41,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public AddUserResponse Add(AddUserRequest request) {
+            var roles = DTOMapper.ToDomainObjects<Role>(request.Roles);
             var userSecurity = new UserSecurity (
                 Guid.Empty,
                 request.Email,
@@ -49,7 +51,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 string.Empty,
                 request.Password,
                 false,
-                request.Roles
+                roles
             );
 
             userSecurityRepository.Add(userSecurity);
@@ -59,13 +61,14 @@ namespace AbiokaApi.ApplicationService.Implementations
             return new AddUserResponse {
                 Email = userSecurity.Email,
                 Id = userSecurity.Id,
-                Roles = userSecurity.Roles.ToArray()
+                Roles = request.Roles
             };
         }
 
-        public void Update(User entity) {
+        public void Update(UserDTO entity) {
             var dbUser = GetEntity(entity.Id);
-            dbUser.SetRoles(entity.Roles);
+            var roles = DTOMapper.ToDomainObjects<Role>(entity.Roles);
+            dbUser.SetRoles(roles);
 
             eventDispatcher.Dispatch(dbUser.Events.ToArray());
         }

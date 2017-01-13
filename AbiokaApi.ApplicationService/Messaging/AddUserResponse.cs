@@ -1,4 +1,4 @@
-﻿using AbiokaApi.Domain;
+﻿using AbiokaApi.ApplicationService.DTOs;
 using System;
 using System.Collections.Generic;
 
@@ -10,6 +10,6 @@ namespace AbiokaApi.ApplicationService.Messaging
 
         public string Email { get; set; }
 
-        public IEnumerable<Role> Roles { get; set; }
+        public IEnumerable<RoleDTO> Roles { get; set; }
     }
 }

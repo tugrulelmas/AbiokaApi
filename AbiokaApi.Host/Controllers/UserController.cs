@@ -1,6 +1,6 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
+using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.ApplicationService.Messaging;
-using AbiokaApi.Domain;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace AbiokaApi.Host.Controllers
 {
     [RoutePrefix("api/User")]
-    public class UserController : BaseReadController<User>
+    public class UserController : BaseReadController<UserDTO>
     {
         private readonly IUserService userService;
 
@@ -38,7 +38,7 @@ namespace AbiokaApi.Host.Controllers
 
         [HttpPut]
         [Route("")]
-        public HttpResponseMessage Update([FromBody]User user) {
+        public HttpResponseMessage Update([FromBody]UserDTO user) {
             userService.Update(user);
 
             return Request.CreateResponse(HttpStatusCode.OK);

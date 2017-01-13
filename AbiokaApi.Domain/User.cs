@@ -8,14 +8,18 @@ using System.Linq;
 
 namespace AbiokaApi.Domain
 {
-    public class User : IdEntity<Guid>
+    public class User : DeletableEntity
     {
         protected readonly List<Role> roles;
 
-        public User(Guid id, string email, IEnumerable<Role> roles) {
+        public User() {
+            roles = new List<Role>();
+        }
+
+        public User(Guid id, string email, IEnumerable<Role> roles)
+            : this() {
             Id = id;
             Email = email;
-            this.roles = new List<Role>();
 
             if (roles.IsNotNullAndEmpty()) {
                 AddRoles(roles);
@@ -32,7 +36,7 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The email.
         /// </value>
-        public string Email { get; protected set; }
+        public virtual string Email { get; protected set; }
 
         /// <summary>
         /// Gets the roles.
@@ -40,14 +44,14 @@ namespace AbiokaApi.Domain
         /// <value>
         /// The roles.
         /// </value>
-        public IEnumerable<Role> Roles => roles;
+        public virtual IEnumerable<Role> Roles => roles;
 
         /// <summary>
         /// Adds the role.
         /// </summary>
         /// <param name="role">The role.</param>
         /// <exception cref="DenialException"></exception>
-        public void AddRole(Role role) {
+        public virtual void AddRole(Role role) {
             var tmpRole = roles.FirstOrDefault(r => r.Id == role.Id);
             if (tmpRole != null)
                 throw new DenialException($"The user with email {Email} has already a role with id {role.Id}");
@@ -67,7 +71,7 @@ namespace AbiokaApi.Domain
         /// </summary>
         /// <param name="role">The role.</param>
         /// <exception cref="DenialException"></exception>
-        public void RemoveRole(Role role) {
+        public virtual void RemoveRole(Role role) {
             var tmpRole = roles.FirstOrDefault(r => r.Id == role.Id);
             if (tmpRole == null)
                 throw new DenialException($"The user with email {Email} has not a role with id {role.Id}");
@@ -80,7 +84,7 @@ namespace AbiokaApi.Domain
         /// Sets the roles.
         /// </summary>
         /// <param name="roles">The roles.</param>
-        public void SetRoles(IEnumerable<Role> roles) {
+        public virtual void SetRoles(IEnumerable<Role> roles) {
             if (roles.IsNullOrEmpty()) {
                 var tmpRoles = Roles.ToArray();
                 foreach (var roleItem in tmpRoles) {

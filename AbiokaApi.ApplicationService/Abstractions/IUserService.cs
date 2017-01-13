@@ -1,11 +1,11 @@
-﻿using AbiokaApi.ApplicationService.Messaging;
-using AbiokaApi.Domain;
+﻿using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using System;
 
 namespace AbiokaApi.ApplicationService.Abstractions
 {
-    public interface IUserService : IReadService<User>
+    public interface IUserService : IReadService<UserDTO>
     {
         /// <summary>
         /// Logins the specified login request.
@@ -33,7 +33,7 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <param name="entiy">The entiy.</param>
         [AllowedRole("Admin")]
-        void Update(User entiy);
+        void Update(UserDTO entiy);
 
         /// <summary>
         /// Deletes the specified user.
