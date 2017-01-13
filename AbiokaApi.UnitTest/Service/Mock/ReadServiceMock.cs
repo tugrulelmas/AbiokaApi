@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.Infrastructure.Common.Domain;
 using Moq;
+using AbiokaApi.ApplicationService.DTOs;
 
 namespace AbiokaApi.UnitTest.Service.Mock
 {
-    class ReadServiceMock : ReadService<MockEntity>
+    class ReadServiceMock : ReadService<MockEntity, MockEntityDTO>
     {
         public readonly Mock<IRepository<MockEntity>> RepositoryMock;
 
@@ -21,10 +22,19 @@ namespace AbiokaApi.UnitTest.Service.Mock
 
     public class MockEntity : IEntity
     {
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime UpdatedDate { get; set; }
+
         public IEnumerable<IEvent> Events {
             get {
                 throw new NotImplementedException();
             }
         }
+    }
+
+    public class MockEntityDTO : DTO
+    {
+
     }
 }

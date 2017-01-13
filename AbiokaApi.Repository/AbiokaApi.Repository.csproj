@@ -53,17 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="DatabaseObjects\DBEntity.cs" />
-    <Compile Include="DatabaseObjects\IDeletableEntity.cs" />
-    <Compile Include="DatabaseObjects\LoginAttemptDB.cs" />
     <Compile Include="DatabaseObjects\RoleDB.cs" />
-    <Compile Include="DatabaseObjects\UserDB.cs" />
     <Compile Include="DisposableUnitOfWork.cs" />
     <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
     <Compile Include="IDisposableUnitOfWork.cs" />
     <Compile Include="IUnitOfWork.cs" />
-    <Compile Include="Mappings\DBObjectMapper.cs" />
+    <Compile Include="Mappings\BaseClassMap.cs" />
     <Compile Include="Mappings\DeletableClassMap.cs" />
     <Compile Include="Mappings\NhMap.cs" />
     <Compile Include="NhUnitOfWorkHandler.cs" />

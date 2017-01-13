@@ -1,4 +1,5 @@
-﻿using AbiokaApi.Domain;
+﻿using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.Domain;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.UnitTest.Service.Mock;
@@ -11,12 +12,12 @@ namespace AbiokaApi.UnitTest.Service
     [TestFixture]
     public class RoleValidationTest
     {
-        private Role role;
+        private RoleDTO role;
         private RoleValidatorMock roleValidator;
 
         [SetUp]
         public void Initialize() {
-            role = new Role(Guid.Empty, "Test");
+            role = new RoleDTO { Id = Guid.Empty, Name = "Test" };
 
             roleValidator = RoleValidatorMock.Create();
         }

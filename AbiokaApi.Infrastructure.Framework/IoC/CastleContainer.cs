@@ -58,6 +58,13 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
             return this;
         }
 
+        public IDependencyContainer RegisterService<T1, T2>(LifeStyle lifeStyle) => RegisterService(typeof(T1), typeof(T2), lifeStyle);
+
+        public IDependencyContainer RegisterService(Type type1, Type type2, LifeStyle lifeStyle) {
+            RegisterComponent(Component.For(type1).ImplementedBy(type2).Interceptors<ServiceInterceptor>(), lifeStyle);
+            return this;
+        }
+
         public IDependencyContainer RegisterWithDefaultInterfaces<T1, T2>() => RegisterWithDefaultInterfaces(typeof(T1), typeof(T2));
 
         public IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2) {

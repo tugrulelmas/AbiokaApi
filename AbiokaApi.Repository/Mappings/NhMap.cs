@@ -1,25 +1,23 @@
-﻿using AbiokaApi.Repository.DatabaseObjects;
+﻿using AbiokaApi.Domain;
+using AbiokaApi.Repository.DatabaseObjects;
 using FluentNHibernate.Mapping;
 
 namespace AbiokaApi.Repository.Mappings
 {
-    internal class UserSecurityMap : ClassMap<UserSecurityDB>
+    internal class UserSecurityMap : SubclassMap<UserSecurity>
     {
         public UserSecurityMap() {
-            Id(x => x.Id);
             Map(x => x.AuthProvider);
-            Map(x => x.Email);
-            Map(x => x.IsDeleted);
             Map(x => x.Password);
             Map(x => x.ProviderToken).Length(50);
             Map(x => x.RefreshToken).Length(50);
             Map(x => x.Token).Length(512);
-            
-            Table("dbo.[User]");
+
+            Table("dbo.[UserSecurity]");
         }
     }
     
-    internal class UserMap : DeletableClassMap<UserDB>
+    internal class UserMap : DeletableClassMap<User>
     {
         public UserMap() {
             Id(x => x.Id);
@@ -36,7 +34,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class RoleMap : DeletableClassMap<RoleDB>
+    internal class RoleMap : DeletableClassMap<Role>
     {
         public RoleMap() {
             Id(x => x.Id);
@@ -50,7 +48,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class UserRoleMap : ClassMap<UserRoleDB>
+    internal class UserRoleMap : BaseClassMap<UserRoleDB>
     {
         public UserRoleMap() {
             Id(x => x.Id);
@@ -63,7 +61,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class LoginAttemptMap : ClassMap<LoginAttemptDB>
+    internal class LoginAttemptMap : BaseClassMap<LoginAttempt>
     {
         public LoginAttemptMap() {
             Id(x => x.Id);

@@ -9,20 +9,24 @@ namespace AbiokaApi.Infrastructure.Common.Domain
 
         public virtual IdType Id { get; set; }
 
-        public IEnumerable<IEvent> Events => events;
+        public virtual IEnumerable<IEvent> Events => events;
+
+        public virtual DateTime CreatedDate { get; set; }
+
+        public virtual DateTime UpdatedDate { get; set; }
 
         /// <summary>
         /// Adds the event.
         /// </summary>
         /// <param name="event">The event.</param>
-        protected void AddEvent(IEvent @event) {
+        protected virtual void AddEvent(IEvent @event) {
             events.Add(@event);
         }
 
         /// <summary>
         /// Clears the events.
         /// </summary>
-        protected void ClearEvents() {
+        public virtual void ClearEvents() {
             events.Clear();
         }
 
@@ -48,7 +52,7 @@ namespace AbiokaApi.Infrastructure.Common.Domain
 
         public static bool operator !=(IdEntity<IdType> entity1, IdEntity<IdType> entity2) => (!(entity1 == entity2));
 
-        public bool Equals(IdEntity<IdType> other) {
+        public virtual bool Equals(IdEntity<IdType> other) {
             if (other == null) {
                 return false;
             }

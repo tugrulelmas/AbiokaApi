@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="AbiokaApi.Infrastructure.Common.Domain.IReadOnlyRepository{T}" />
-    public interface IRepository<T> : IReadOnlyRepository<T> where T : IEntity
+    public interface IRepository<T> : IReadOnlyRepository<T> where T : class, IEntity
     {
         /// <summary>
         /// Adds the specified entity.

@@ -6,7 +6,7 @@ namespace AbiokaApi.Infrastructure.Common.Domain
     /// 
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IReadOnlyRepository<T> where T : IEntity
+    public interface IReadOnlyRepository<T> where T : class, IEntity
     {
         /// <summary>
         /// Finds the by identifier.

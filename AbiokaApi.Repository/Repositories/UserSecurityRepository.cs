@@ -2,8 +2,6 @@ using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Repository.DatabaseObjects;
-using AbiokaApi.Repository.Mappings;
-using NHibernate.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +9,18 @@ using System.Linq.Expressions;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    public class UserSecurityRepository : Repository<UserSecurity, UserSecurityDB>, IUserSecurityRepository
+    public class UserSecurityRepository : Repository<UserSecurity>, IUserSecurityRepository
     {
         public UserSecurity GetByEmail(string email) => GetUser(u => u.Email.ToLowerInvariant() == email.ToLowerInvariant());
 
         public UserSecurity GetByRefreshToken(string refreshToken) => GetUser(u => u.RefreshToken == refreshToken);
 
-        private UserSecurity GetUser(Expression<Func<UserSecurityDB, bool>> filter) {
-            var dbUser = Query.Where(filter).FirstOrDefault();
-            if (dbUser == null)
+        private UserSecurity GetUser(Expression<Func<UserSecurity, bool>> filter) {
+            var result = Query.Where(filter).FirstOrDefault();
+            if (result == null)
                 return null;
-
-            var result = (UserSecurity)DBObjectMapper.ToDomainObject(dbUser);
-            var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == result.Id);
+            
+            var userRoles = GetQuery<UserRoleDB>().Where(ur => ur.UserId == result.Id);
 
             if (userRoles.IsNullOrEmpty())
                 return result;
@@ -32,7 +29,9 @@ namespace AbiokaApi.Repository.Repositories
             foreach (var userRoleItem in userRoles) {
                 roles.Add(new Role(userRoleItem.Role.Id, userRoleItem.Role.Name));
             }
-            return new UserSecurity(result.Id, result.Email, result.AuthProvider, result.ProviderToken, result.RefreshToken, result.Token, result.Password, result.IsDeleted, roles);
+            result.SetRoles(roles);
+            result.ClearEvents();
+            return result;
         }
     }
 }

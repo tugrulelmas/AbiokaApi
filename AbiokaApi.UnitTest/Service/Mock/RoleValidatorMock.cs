@@ -1,5 +1,5 @@
-﻿using AbiokaApi.ApplicationService.Validation;
-using AbiokaApi.Domain;
+﻿using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Helper;
 using Moq;
@@ -15,7 +15,7 @@ namespace AbiokaApi.UnitTest.Service.Mock
             RoleRepositoryMock = roleRepository;
         }
 
-        public new void DataValidate(Role instance, ActionType actionType) {
+        public new void DataValidate(RoleDTO instance, ActionType actionType) {
             base.DataValidate(instance, actionType);
         }
 

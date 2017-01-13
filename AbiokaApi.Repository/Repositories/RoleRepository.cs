@@ -1,34 +1,29 @@
 ﻿using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Repository.DatabaseObjects;
-using AbiokaApi.Repository.Mappings;
-using System.Linq;
 using System;
-using NHibernate.Linq;
+using System.Linq;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    public class RoleRepository : Repository<Role, RoleDB>, IRoleRepository
+    public class RoleRepository : Repository<Role>, IRoleRepository
     {
         public void AddToUser(Guid roleId, Guid userId) {
             var userRole = new UserRoleDB {
-                Role = new RoleDB { Id = roleId },
+                Role = new Role(roleId, string.Empty),
                 UserId = userId
             };
-            Session.Save(userRole);
+            Save(userRole);
         }
 
         public Role GetByName(string name) {
-            var roleDB = Query.Where(q => q.Name.ToLowerInvariant() == name.ToLowerInvariant()).FirstOrDefault();
-            if (roleDB == null)
-                return null;
-
-            return (Role)DBObjectMapper.ToDomainObject(roleDB);
+            var result = Query.Where(q => q.Name.ToLowerInvariant() == name.ToLowerInvariant()).FirstOrDefault();
+            return result;
         }
 
         public void RemoveFromUser(Guid roleId, Guid userId) {
-            var userRole = Session.Query<UserRoleDB>().Where(ur => ur.UserId == userId && ur.Role.Id == roleId).FirstOrDefault();
-            Session.Delete(userRole);
+            var userRole = GetQuery<UserRoleDB>().Where(ur => ur.UserId == userId && ur.Role.Id == roleId).FirstOrDefault();
+            Delete(userRole);
         }
     }
 }

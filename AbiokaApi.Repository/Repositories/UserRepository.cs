@@ -2,13 +2,12 @@
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Repository.DatabaseObjects;
-using NHibernate.Linq;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    public class UserRepository : Repository<User, UserDB>, IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
         public int Count() {
             var result = Query.Count();
@@ -17,7 +16,7 @@ namespace AbiokaApi.Repository.Repositories
 
         public override User FindById(object id) {
             var user = base.FindById(id);
-            var userRoles = Session.Query<UserRoleDB>().Where(ur => ur.UserId == user.Id).ToList();
+            var userRoles = GetQuery<UserRoleDB>().Where(ur => ur.UserId == user.Id).ToList();
 
             if (userRoles.IsNullOrEmpty())
                 return user;
@@ -26,7 +25,9 @@ namespace AbiokaApi.Repository.Repositories
             foreach (var userRoleItem in userRoles) {
                 roles.Add(new Role(userRoleItem.Role.Id, userRoleItem.Role.Name));
             }
-            return new User(user.Id, user.Email, roles);
+            user.SetRoles(roles);
+            user.ClearEvents();
+            return user;
         }
     }
 }

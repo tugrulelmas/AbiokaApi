@@ -53,7 +53,10 @@
     <Compile Include="Authentication\TokenPayload.cs" />
     <Compile Include="Authentication\UserClaim.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Domain\DeletableIdEntity.cs" />
+    <Compile Include="Domain\DeletableEntity.cs" />
     <Compile Include="Domain\EventDispatcher.cs" />
+    <Compile Include="Domain\IDeletableEntity.cs" />
     <Compile Include="Domain\IdEntity.cs" />
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\IEvent.cs" />

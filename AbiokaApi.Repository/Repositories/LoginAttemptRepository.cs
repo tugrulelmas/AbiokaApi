@@ -3,11 +3,10 @@ using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Helper;
 using AbiokaApi.Infrastructure.Common.IoC;
-using AbiokaApi.Repository.DatabaseObjects;
 
 namespace AbiokaApi.Repository.Repositories
 {
-    public class LoginAttemptRepository : Repository<LoginAttempt, LoginAttemptDB>, ILoginAttemptRepository
+    public class LoginAttemptRepository : Repository<LoginAttempt>, ILoginAttemptRepository
     {
         private readonly ICurrentContext currentContext;
 

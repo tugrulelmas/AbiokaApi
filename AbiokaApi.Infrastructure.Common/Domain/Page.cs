@@ -2,7 +2,7 @@
 
 namespace AbiokaApi.Infrastructure.Common.Domain
 {
-    public class Page<T> : IPage<T> where T : IEntity
+    public class Page<T> : IPage<T> where T : class
     {
         public int Count { get; set; }
 

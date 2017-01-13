@@ -12,6 +12,7 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         IDependencyContainer Register<T>(LifeStyle lifeStyle);
         IDependencyContainer Register(Type type, LifeStyle lifeStyle);
         IDependencyContainer RegisterServices<T>();
+        IDependencyContainer RegisterService<T1, T2>(LifeStyle lifeStyle = LifeStyle.Singleton);
         IDependencyContainer RegisterWithDefaultInterfaces<T1, T2>();
         IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2);
         IDependencyContainer RegisterWithBase<T1, T2>();

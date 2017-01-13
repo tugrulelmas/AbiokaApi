@@ -1,6 +1,4 @@
 ﻿using AbiokaApi.Infrastructure.Common.Domain;
-using AbiokaApi.Repository.DatabaseObjects;
-using AbiokaApi.Repository.Mappings;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
@@ -11,67 +9,74 @@ using System.Linq.Expressions;
 
 namespace AbiokaApi.Repository
 {
-    public class Repository<T, TDBEntity> : IRepository<T>
-        where T : IEntity
-        where TDBEntity : DBEntity
+    public class Repository<T> : IRepository<T>
+        where T : class, IEntity
     {
-        protected ISession Session => UnitOfWork.Current.Session;
+        private ISession Session => UnitOfWork.Current.Session;
 
         public virtual void Add(T entity) {
             Add(Session, entity);
         }
 
         protected void Add(ISession session, T entity) {
-            var dbObject = DBObjectMapper.FromDomainObject(entity);
-            if (dbObject is IDeletableEntity) {
-                ((IDeletableEntity)dbObject).IsDeleted = false;
-            }
-            var id = session.Save(dbObject);
-            var idProperty = entity.GetType().GetProperty("Id");
-            if (idProperty != null) {
-                idProperty.SetValue(entity, id);
-            }
+            Save(session, entity);
         }
 
         public virtual void Delete(T entity) {
-            var dbEntity = DBObjectMapper.FromDomainObject(entity);
-            if (dbEntity is IDeletableEntity) {
-                ((IDeletableEntity)dbEntity).IsDeleted = true;
-                Session.Merge(dbEntity);
-                return;
-            }
-
-            Session.Delete(dbEntity);
+            Delete((IEntity)entity);
         }
 
         public virtual T FindById(object id) {
-            var dbEntity = Session.Get<TDBEntity>(id);
-
-            if (dbEntity == null)
-                return default(T);
-
-            var result = (T)DBObjectMapper.ToDomainObject(dbEntity);
+            var result = Session.Get<T>(id);
             return result;
         }
 
         public virtual IEnumerable<T> GetAll() {
-            var list = Query.AsEnumerable();
-            var result = DBObjectMapper.ToDomainObjects<T>(list);
+            var result = Query.ToList();
             return result;
         }
 
         public virtual void Update(T entity) {
-            var dbObject = DBObjectMapper.FromDomainObject(entity);
-            Session.Merge(dbObject);
+            Update((IEntity)entity);
+        }
+
+        protected void Delete(IEntity entity) {
+            if (entity is IDeletableEntity) {
+                ((IDeletableEntity)entity).IsDeleted = true;
+                Update(entity);
+                return;
+            }
+
+            Session.Delete(entity);
+        }
+
+        protected void Update(IEntity entity) {
+            entity.UpdatedDate = DateTime.UtcNow;
+            Session.Merge(entity);
+        }
+
+        protected void Save(IEntity entity) {
+            Save(Session, entity);
+        }
+
+        protected void Save(ISession session, IEntity entity) {
+            if (entity is IDeletableEntity) {
+                ((IDeletableEntity)entity).IsDeleted = false;
+            }
+
+            entity.CreatedDate = DateTime.UtcNow;
+            entity.UpdatedDate = DateTime.UtcNow;
+
+            session.Save(entity);
         }
 
         public virtual IPage<T> GetPage(PageRequest pageRequest) => GetPage(pageRequest, null);
 
-        protected IPage<T> GetPage(PageRequest pageRequest, Expression<Func<TDBEntity, bool>> filter) {
-            var queryOver = Session.QueryOver<TDBEntity>();
-            var rowCountQueryOver = Session.QueryOver<TDBEntity>();
+        protected IPage<T> GetPage(PageRequest pageRequest, Expression<Func<T, bool>> filter) {
+            var queryOver = Session.QueryOver<T>();
+            var rowCountQueryOver = Session.QueryOver<T>();
 
-            if (typeof(IDeletableEntity).IsAssignableFrom(typeof(TDBEntity))) {
+            if (typeof(IDeletableEntity).IsAssignableFrom(typeof(T))) {
                 queryOver = queryOver.Where(e => !((IDeletableEntity)e).IsDeleted);
                 rowCountQueryOver = rowCountQueryOver.Where(e => !((IDeletableEntity)e).IsDeleted);
             }
@@ -88,25 +93,25 @@ namespace AbiokaApi.Repository
                 query.UnderlyingCriteria.AddOrder(new Order(pageRequest.Order, pageRequest.Ascending));
             }
 
-            var list = query.Future<TDBEntity>().ToList();
+            var list = query.Future<T>().ToList();
 
             var rowcount = rowCountQueryOver.Select(Projections.Count(Projections.Id()))
                 .FutureValue<int>().Value;
 
             IPage<T> result = new Page<T>();
             result.Count = rowcount;
-            result.Data = DBObjectMapper.ToDomainObjects<T>(list);
+            result.Data = list;
             return result;
         }
 
-        protected IQueryable<TDBEntity> Query {
-            get {
-                var query = Session.Query<TDBEntity>();
-                if (typeof(IDeletableEntity).IsAssignableFrom(typeof(TDBEntity))) {
-                    query = query.Where(e => !((IDeletableEntity)e).IsDeleted);
-                }
-                return query;
+        protected IQueryable<T> Query => GetQuery<T>();
+
+        protected IQueryable<TEntity> GetQuery<TEntity>() {
+            var query = Session.Query<TEntity>();
+            if (typeof(IDeletableEntity).IsAssignableFrom(typeof(TEntity))) {
+                query = query.Where(e => !((IDeletableEntity)e).IsDeleted);
             }
+            return query;
         }
     }
 }
