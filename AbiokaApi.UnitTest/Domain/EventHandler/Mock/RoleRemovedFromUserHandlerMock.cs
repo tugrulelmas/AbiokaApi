@@ -1,5 +1,5 @@
-﻿using AbiokaApi.Domain.Repositories;
-using AbiokaApi.Repository.EventHandlers;
+﻿using AbiokaApi.ApplicationService.EventHandlers;
+using AbiokaApi.Domain.Repositories;
 using Moq;
 
 namespace AbiokaApi.UnitTest.Domain.EventHandler.Mock

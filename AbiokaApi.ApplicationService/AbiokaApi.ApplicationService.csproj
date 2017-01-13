@@ -55,6 +55,8 @@
     <Compile Include="DTOs\LoginAttemptDTO.cs" />
     <Compile Include="DTOs\RoleDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
+    <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Interceptors\DataValidationInterceptor.cs" />
     <Compile Include="Interceptors\RoleValidationInterceptor.cs" />
     <Compile Include="Messaging\AddUserResponse.cs" />
+    <Compile Include="Messaging\ChangePasswordRequest.cs" />
     <Compile Include="Messaging\CreateApplicationDataRequest.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
     <Compile Include="Messaging\LoginRequest.cs" />

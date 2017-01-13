@@ -2,7 +2,7 @@
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Domain;
 
-namespace AbiokaApi.Repository.EventHandlers
+namespace AbiokaApi.ApplicationService.EventHandlers
 {
     public class RoleAddedToUserHandler : IEventHandler<RoleAddedToUser>
     {

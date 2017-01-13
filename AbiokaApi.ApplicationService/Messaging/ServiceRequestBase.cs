@@ -1,6 +1,6 @@
 ﻿namespace AbiokaApi.ApplicationService.Messaging
 {
-    public class ServiceRequestBase
+    public abstract class ServiceRequestBase
     {
     }
 }

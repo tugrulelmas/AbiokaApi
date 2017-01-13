@@ -52,5 +52,13 @@
   "LoginResult": "Giriş Sonucu",
   "Create": "Oluştur",
   "Installation": "Kurulum",
-  "Installation.Description": "Uygulamaya giriş yapabilmek için Admin Kullanıcısını oluşturmalısın."
+  "Installation.Description": "Uygulamaya giriş yapabilmek için Admin Kullanıcısını oluşturmalısın.",
+  "CreatedDate": "Oluşturulma Tarihi",
+  "UpdatedDate": "Güncellenme Tarihi",
+  "ChangePassword": "Şifre Değiştir",
+  "OldPassword": "Eski Şifre",
+  "NewPassword": "Yeni Şifre",
+  "Profile": "Profil",
+  "PasswordChanged": "Şifre değiştirildi",
+  "NewPasswordCannotBeSameAsTheOldPassword": "Yeni şifre eski şifre ile aynı olamaz!"
 }

@@ -1,9 +1,11 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
 using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.ApplicationService.EventHandlers;
 using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.ApplicationService.Interceptors;
 using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain;
+using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.IoC;
 
 namespace AbiokaApi.ApplicationService
@@ -17,6 +19,7 @@ namespace AbiokaApi.ApplicationService
                 .RegisterService<ICrudService<RoleDTO>, CrudService<Role, RoleDTO>>()
                 .RegisterService<IReadService<LoginAttemptDTO>, ReadService<LoginAttempt, LoginAttemptDTO>>()
                 .RegisterWithBase(typeof(ICustomValidator<>), typeof(CustomValidator<>))
+                .RegisterWithBase(typeof(IEventHandler<>), typeof(RoleAddedToUserHandler))
                 .Register<IServiceInterceptor, RoleValidationInterceptor>()
                 .Register<IServiceInterceptor, DataValidationInterceptor>();
         }

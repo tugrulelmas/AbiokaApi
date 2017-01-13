@@ -8,15 +8,20 @@
     };
 
     /* @ngInject */
-    function UsersController($timeout, AdminResource) {
+    function UsersController($timeout, $filter, AdminResource) {
         var vm = this;
         vm.loadData = false;
+
+        var fulldateFormat = $filter("translate")("FullDateFormat");
+
         vm.options = {
             loadOnInit: false,
             rowSelection: false,
             resource: AdminResource.users,
             query: {},
-            columns: [{ name: "Email", text: "Email", order: true }],
+            columns: [{ name: "Email", text: "Email", order: true },
+                      { name: "CreatedDate", text: "CreatedDate", order: true, cellTemplate: "<span>{{entity.CreatedDate | abDate:'" + fulldateFormat + "'}}</span>" },
+                      { name: "UpdatedDate", text: "UpdatedDate", order: true, cellTemplate: "<span>{{entity.UpdatedDate | abDate:'" + fulldateFormat + "'}}</span>" }],
             dialogController: 'UserDialogController',
             editTemplate: '/app/components/user/userDialog.html',
             deleteTemplate: '/app/shared/deleteComponent/deleteComponent.html'

@@ -55,8 +55,6 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="DatabaseObjects\RoleDB.cs" />
     <Compile Include="DisposableUnitOfWork.cs" />
-    <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
-    <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
     <Compile Include="IDisposableUnitOfWork.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Mappings\BaseClassMap.cs" />

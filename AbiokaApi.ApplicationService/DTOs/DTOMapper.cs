@@ -72,7 +72,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             var result = new User(
               userDTO.Id,
               userDTO.Email,
-              null
+              ToDomainObjects<Role>(userDTO.Roles)
             );
             return result;
         }
@@ -80,7 +80,10 @@ namespace AbiokaApi.ApplicationService.DTOs
         private static UserDTO ToUserDTO(User user) {
             var result = new UserDTO {
                 Id = user.Id,
-                Email = user.Email
+                Email = user.Email,
+                Roles = FromDomainObject<RoleDTO>(user.Roles),
+                CreatedDate = user.CreatedDate,
+                UpdatedDate = user.UpdatedDate
             };
             return result;
         }
@@ -97,6 +100,8 @@ namespace AbiokaApi.ApplicationService.DTOs
             var result = new RoleDTO {
                 Id = role.Id,
                 Name = role.Name,
+                CreatedDate = role.CreatedDate,
+                UpdatedDate = role.UpdatedDate
             };
             return result;
         }
@@ -107,7 +112,9 @@ namespace AbiokaApi.ApplicationService.DTOs
                 Date = loginAttempt.Date,
                 IP = loginAttempt.IP,
                 User = ToUserDTO(loginAttempt.User),
-                LoginResult = loginAttempt.LoginResult.ToString()
+                LoginResult = loginAttempt.LoginResult.ToString(),
+                CreatedDate = loginAttempt.CreatedDate,
+                UpdatedDate = loginAttempt.UpdatedDate
             };
             return result;
         }

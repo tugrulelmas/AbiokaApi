@@ -60,5 +60,13 @@ namespace AbiokaApi.Host.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, token);
         }
+
+        [HttpPut]
+        [Route("{id}/ChangePassword")]
+        public HttpResponseMessage ChangePassword([FromUri]Guid id, [FromBody]ChangePasswordRequest request) {
+            var newToken = userService.ChangePassword(request);
+
+            return Request.CreateResponse(HttpStatusCode.OK, newToken);
+        }
     }
 }

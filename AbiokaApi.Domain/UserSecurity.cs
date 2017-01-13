@@ -1,4 +1,5 @@
 using AbiokaApi.Infrastructure.Common.Authentication;
+using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
 using System;
 using System.Collections.Generic;
@@ -86,6 +87,20 @@ namespace AbiokaApi.Domain
             var token = abiokaToken.Encode(userInfo);
             Token = token;
             ProviderToken = localToken;
+        }
+
+        public virtual void ChangePassword(string oldPassword, string newPassword) {
+            if (string.IsNullOrWhiteSpace(newPassword))
+                throw new DenialException("PasswordCannotBeEmpty");
+
+            if(!ArePasswordEqual(Email, oldPassword))
+                throw new DenialException("WrongPassword");
+
+            if(ArePasswordEqual(Email, newPassword))
+                throw new DenialException("NewPasswordCannotBeSameAsTheOldPassword");
+
+            ComputeHashPassword(newPassword);
+            RefreshToken = Guid.NewGuid().ToString();
         }
 
         /// <summary>

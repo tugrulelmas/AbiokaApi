@@ -46,5 +46,12 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <returns></returns>
         int Count();
+
+        /// <summary>
+        /// Changes the password.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        /// <returns>New token</returns>
+        string ChangePassword(ChangePasswordRequest request);
     }
 }

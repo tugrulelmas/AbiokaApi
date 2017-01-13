@@ -79,5 +79,14 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public int Count() => ((IUserRepository)repository).Count();
+
+        public string ChangePassword(ChangePasswordRequest request) {
+            var user = userSecurityRepository.FindById(request.UserId);
+            user.ChangePassword(request.OldPassword, request.NewPassword);
+            user.CreateToken(abiokaToken);
+            userSecurityRepository.Update(user);
+
+            return user.Token;
+        }
     }
 }

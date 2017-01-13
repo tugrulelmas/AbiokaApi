@@ -52,5 +52,13 @@
   "LoginResult": "Login Result",
   "Create": "Create",
   "Installation": "Installation",
-  "Installation.Description": "You have to create Admin User to login application."
+  "Installation.Description": "You have to create Admin User to login application.",
+  "CreatedDate": "Created Date",
+  "UpdatedDate": "Updated Date",
+  "ChangePassword": "Change Password",
+  "OldPassword": "Old Password",
+  "NewPassword": "New Password",
+  "Profile": "Profile",
+  "PasswordChanged": "Password is changed",
+  "NewPasswordCannotBeSameAsTheOldPassword": "New password can not be same as the old password!"
 }
