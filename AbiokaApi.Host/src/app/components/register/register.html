@@ -1,0 +1,44 @@
+﻿<md-content layout="row" layout-align="space-around" layout-padding="layout-padding">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-toolbar data-background-color="green" data-icon="true">
+            <div class="card-header-icon">
+                <i class="material-icons md-dark">person_add</i>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <h4><span>{{'SignUp' | translate}}</span></h4>
+            <form name="vm.modelForm" ng-submit="vm.modelForm.$valid && vm.create()" novalidate>
+                <md-input-container class="md-block">
+                    <label>{{'Email' | translate}}</label>
+                    <md-icon>email</md-icon>
+                    <input type="email" name="email" ng-model="vm.model.Email" required />
+                    <validation-message model="vm.modelForm.email" field-name="{{'Email' | translate}}"></validation-message>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>{{'Password' | translate}}</label>
+                    <md-icon>https</md-icon>
+                    <input type="password" name="password" ng-model="vm.model.Password" required />
+                    <validation-message model="vm.modelForm.password" field-name="{{'Password' | translate}}"></validation-message>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>{{'PasswordAgain' | translate}}</label>
+                    <md-icon>https</md-icon>
+                    <input password-match="vm.model.Password" type="password" name="passwordAgain" ng-model="vm.model.NewPasswordAgain" required />
+                    <validation-message model="vm.modelForm.passwordAgain" field-name="{{'PasswordAgain' | translate}}"></validation-message>
+                </md-input-container>
+                <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
+                <md-input-container class="md-block">
+                    <div layout="row" layout-xs="column" layout-align="center center">
+                        <md-button flex="50" flex-xs="100" type="submit" ng-disabled="!vm.modelForm.$valid || vm.loading" class="md-raised">&nbsp {{'OK' | translate}} &nbsp</md-button>
+                        <div flex="50" flex-xs="100">
+                            <small>
+                                {{'AlreadyHaveAnAccount' | translate}}
+                                <a href="" ui-sref="login">{{'Login' | translate}}</a>
+                            </small>
+                        </div>
+                    </div>
+                </md-input-container>
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>

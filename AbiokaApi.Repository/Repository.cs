@@ -1,4 +1,6 @@
 ﻿using AbiokaApi.Infrastructure.Common.Domain;
+using AbiokaApi.Infrastructure.Common.Helper;
+using AbiokaApi.Infrastructure.Common.IoC;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Linq;
@@ -48,11 +50,15 @@ namespace AbiokaApi.Repository
             }
 
             Session.Delete(entity);
+
+            DispatchEvents(entity);
         }
 
         protected void Update(IEntity entity) {
             entity.UpdatedDate = DateTime.UtcNow;
             Session.Merge(entity);
+
+            DispatchEvents(entity);
         }
 
         protected void Save(IEntity entity) {
@@ -68,6 +74,8 @@ namespace AbiokaApi.Repository
             entity.UpdatedDate = DateTime.UtcNow;
 
             session.Save(entity);
+
+            DispatchEvents(entity);
         }
 
         public virtual IPage<T> GetPage(PageRequest pageRequest) => GetPage(pageRequest, null);
@@ -112,6 +120,14 @@ namespace AbiokaApi.Repository
                 query = query.Where(e => !((IDeletableEntity)e).IsDeleted);
             }
             return query;
+        }
+
+        protected void DispatchEvents(IEntity entity) {
+            if (entity.Events.IsNullOrEmpty())
+                return;
+
+            var eventDispatcher = DependencyContainer.Container.Resolve<IEventDispatcher>();
+            eventDispatcher.Dispatch(entity.Events.ToArray());
         }
     }
 }

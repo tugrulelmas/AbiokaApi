@@ -60,5 +60,8 @@
   "NewPassword": "New Password",
   "Profile": "Profile",
   "PasswordChanged": "Password is changed",
-  "NewPasswordCannotBeSameAsTheOldPassword": "New password can not be same as the old password!"
+  "NewPasswordCannotBeSameAsTheOldPassword": "New password can not be same as the old password!",
+  "DontHaveAnAccountYet": "Don't have an account yet?",
+  "SignUp": "Sign up",
+  "AlreadyHaveAnAccount": "Already have an account?"
 }

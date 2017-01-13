@@ -17,13 +17,15 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public void CreateApplicationData(CreateApplicationDataRequest createApplicationDataRequest) {
-            var role = new RoleDTO { Id = Guid.Empty, Name = "Admin" };
-            roleService.Add(role);
+            var adminRole = new RoleDTO { Id = Guid.Empty, Name = "Admin" };
+            roleService.Add(adminRole);
+            var userRole = new RoleDTO { Id = Guid.Empty, Name = "User" };
+            roleService.Add(userRole);
 
             var adduserRequest = new AddUserRequest {
                 Email = createApplicationDataRequest.Email,
                 Password = createApplicationDataRequest.Password,
-                Roles = new List<RoleDTO> { role }
+                Roles = new List<RoleDTO> { adminRole }
             };
 
             userService.Add(adduserRequest);

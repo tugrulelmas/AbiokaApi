@@ -36,6 +36,15 @@ namespace AbiokaApi.Host.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, user);
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("register")]
+        public HttpResponseMessage Register([FromBody]AddUserRequest request) {
+            var user = userService.Register(request);
+
+            return Request.CreateResponse(HttpStatusCode.Created, user);
+        }
+
         [HttpPut]
         [Route("")]
         public HttpResponseMessage Update([FromBody]UserDTO user) {

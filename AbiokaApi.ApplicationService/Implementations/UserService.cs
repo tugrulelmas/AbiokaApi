@@ -6,6 +6,7 @@ using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Domain;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AbiokaApi.ApplicationService.Implementations
@@ -13,12 +14,14 @@ namespace AbiokaApi.ApplicationService.Implementations
     public class UserService : ReadService<User, UserDTO>, IUserService
     {
         private readonly IUserSecurityRepository userSecurityRepository;
+        private readonly IRoleRepository roleRepository;
         private readonly IAbiokaToken abiokaToken;
         private readonly IEventDispatcher eventDispatcher;
 
-        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IAbiokaToken abiokaToken, IEventDispatcher eventDispatcher)
+        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IEventDispatcher eventDispatcher)
             : base(repository) {
             this.userSecurityRepository = userSecurityRepository;
+            this.roleRepository = roleRepository;
             this.abiokaToken = abiokaToken;
             this.eventDispatcher = eventDispatcher;
         }
@@ -56,13 +59,18 @@ namespace AbiokaApi.ApplicationService.Implementations
 
             userSecurityRepository.Add(userSecurity);
 
-            eventDispatcher.Dispatch(userSecurity.Events.ToArray());
-
             return new AddUserResponse {
                 Email = userSecurity.Email,
                 Id = userSecurity.Id,
                 Roles = request.Roles
             };
+        }
+
+        public AddUserResponse Register(AddUserRequest request) {
+            var userRole = roleRepository.GetByName("User");
+            request.Roles = new List<RoleDTO> { new RoleDTO { Id = userRole.Id, Name = userRole.Name } };
+
+            return Add(request);
         }
 
         public void Update(UserDTO entity) {

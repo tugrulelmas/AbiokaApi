@@ -12,6 +12,7 @@
         var vm = this;
         vm.user = {};
         vm.login = login;
+        vm.loading = false;
 
         activate();
 

@@ -9,15 +9,28 @@
             <form name="loginForm" ng-submit="loginForm.$valid && vm.login()">
                 <md-input-container class="md-block">
                     <label>{{'Email' | translate}}</label>
+                    <md-icon>email</md-icon>
                     <input type="email" name="email" ng-model="vm.user.Email" required="" />
                     <validation-message model="loginForm.email" field-name="{{'Email' | translate}}"></validation-message>
                 </md-input-container>
                 <md-input-container class="md-block">
                     <label>{{'Password' | translate}}</label>
+                    <md-icon>https</md-icon>
                     <input type="password" name="password" ng-model="vm.user.Password" required="" md-maxlength="16" />
                     <validation-message model="loginForm.password" field-name="{{'Password' | translate}}"></validation-message>
                 </md-input-container>
-                <md-button type="submit" ng-disabled="!loginForm.$valid" class="md-raised md-default">&nbsp {{'Login' | translate}} &nbsp</md-button>
+                <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
+                <md-input-container class="md-block">
+                    <div layout="row" layout-xs="column" layout-align="center center" >
+                        <md-button flex="50" flex-xs="100" type="submit" ng-disabled="!loginForm.$valid || vm.loading" class="md-raised md-default">&nbsp {{'Login' | translate}} &nbsp</md-button>
+                        <div flex="50" flex-xs="100">
+                            <small>
+                                {{'DontHaveAnAccountYet' | translate}}
+                                <a href="" ui-sref="register">{{'SignUp' | translate}}</a>
+                            </small>
+                        </div>
+                    </div>
+                </md-input-container>
             </form>
         </md-card-content>
     </md-card>

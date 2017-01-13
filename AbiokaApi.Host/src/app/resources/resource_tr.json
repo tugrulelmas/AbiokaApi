@@ -60,5 +60,8 @@
   "NewPassword": "Yeni Şifre",
   "Profile": "Profil",
   "PasswordChanged": "Şifre değiştirildi",
-  "NewPasswordCannotBeSameAsTheOldPassword": "Yeni şifre eski şifre ile aynı olamaz!"
+  "NewPasswordCannotBeSameAsTheOldPassword": "Yeni şifre eski şifre ile aynı olamaz!",
+  "SignUp": "Hesap aç",
+  "DontHaveAnAccountYet": "Henüz hesabınız yok mu?",
+  "AlreadyHaveAnAccount": "Zaten bir hesabınız var mı?"
 }
