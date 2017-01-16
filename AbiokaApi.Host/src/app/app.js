@@ -18,9 +18,12 @@
         translationService.setGlobalResources();
 
         $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
-            if (toState.isPublic === true)
+            if (toState.isPublic === true) {
+                $rootScope.$broadcast('bodyClassEvent', 'login-page');
                 return;
+            }
 
+            $rootScope.$broadcast('bodyClassEvent', '');
             var user = userService.getUser();
             if (!user.IsSignedIn) {
                 e.preventDefault();

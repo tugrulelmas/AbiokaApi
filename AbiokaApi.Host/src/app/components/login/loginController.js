@@ -8,7 +8,7 @@
     };
 
     /* @ngInject */
-    function LoginController($scope, $http, $state, localSignInService, userService) {
+    function LoginController($http, $state, localSignInService, userService) {
         var vm = this;
         vm.user = {};
         vm.login = login;
