@@ -14,6 +14,8 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
 
         public string Email { get; set; }
 
+        public string Language { get; set; }
+
         public string Token { get; set; }
 
         public IIdentity Identity { get; }

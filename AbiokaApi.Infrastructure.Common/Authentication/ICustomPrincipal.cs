@@ -22,6 +22,14 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         string Email { get; set; }
 
         /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        string Language { get; set; }
+
+        /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>

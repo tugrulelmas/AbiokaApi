@@ -5,7 +5,7 @@
       .service('userService', userService);
 
     /* @ngInject */
-    function userService($cookies, $rootScope) {
+    function userService($cookies) {
         var user = getDefault();
         var rememberMe = false;
 
@@ -42,23 +42,19 @@
             user.Token = token;
             user.IsSignedIn = true;
             user.RefreshToken = tokenUser.refresh_token;
-            if (angular.isUndefined(user.Language) || user.Language.trim() === "") {
-                user.Language = getDefault().Language;
+            user.Language = tokenUser.language;
+            if (rememberMe) {
+                user.rememberMe = true;
+                setCookie(user);
             }
-            setCookie(user);
             callback(user);
         }
 
         function updateUser(userInfo) {
-            user.Id = userInfo.Id;
-            user.Email = userInfo.Email;
-            user.Provider = userInfo.Provider;
-            user.ExpirationDate = userInfo.ExpirationDate;
-            user.Token = userInfo.Token;
-            user.IsSignedIn = userInfo.IsSignedIn;
             user.Language = userInfo.Language;
-            setCookie(user);
-            $rootScope.$broadcast('userUpdated');
+            if (user.rememberMe) {
+                setCookie(user);
+            }
         }
 
         function destroy() {
@@ -76,10 +72,8 @@
         }
 
         function setCookie(user) {
-            if (rememberMe) {
-                $cookies.remove('userInfo', { path: '/' });
-                $cookies.putObject('userInfo', user, { path: '/' });
-            }
+            $cookies.remove('userInfo', { path: '/' });
+            $cookies.putObject('userInfo', user, { path: '/' });
         }
     }
 })();

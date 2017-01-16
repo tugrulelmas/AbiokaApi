@@ -60,5 +60,11 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// <param name="request">The request.</param>
         /// <returns>New token</returns>
         string ChangePassword(ChangePasswordRequest request);
+
+        /// <summary>
+        /// Changes the language.
+        /// </summary>
+        /// <param name="language">The language.</param>
+        void ChangeLanguage(string language);
     }
 }

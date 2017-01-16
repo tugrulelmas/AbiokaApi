@@ -5,6 +5,7 @@ using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Domain;
+using AbiokaApi.Infrastructure.Common.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,15 @@ namespace AbiokaApi.ApplicationService.Implementations
         private readonly IRoleRepository roleRepository;
         private readonly IAbiokaToken abiokaToken;
         private readonly IEventDispatcher eventDispatcher;
+        private readonly ICurrentContext currentContext;
 
-        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IEventDispatcher eventDispatcher)
+        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IEventDispatcher eventDispatcher, ICurrentContext currentContext)
             : base(repository) {
             this.userSecurityRepository = userSecurityRepository;
             this.roleRepository = roleRepository;
             this.abiokaToken = abiokaToken;
             this.eventDispatcher = eventDispatcher;
+            this.currentContext = currentContext;
         }
 
         public string Login(LoginRequest loginRequest) {
@@ -53,6 +56,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 Guid.NewGuid().ToString(),
                 string.Empty,
                 request.Password,
+                currentContext.Current.Principal.Language,
                 false,
                 roles
             );
@@ -89,12 +93,18 @@ namespace AbiokaApi.ApplicationService.Implementations
         public int Count() => ((IUserRepository)repository).Count();
 
         public string ChangePassword(ChangePasswordRequest request) {
-            var user = userSecurityRepository.FindById(request.UserId);
+            var user = userSecurityRepository.FindById(currentContext.Current.Principal.Id);
             user.ChangePassword(request.OldPassword, request.NewPassword);
             user.CreateToken(abiokaToken);
             userSecurityRepository.Update(user);
 
             return user.Token;
+        }
+
+        public void ChangeLanguage(string language) {
+            var user = userSecurityRepository.FindById(currentContext.Current.Principal.Id);
+            user.ChangeLanguage(language);
+            userSecurityRepository.Update(user);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.ProviderToken).Length(50);
             Map(x => x.RefreshToken).Length(50);
             Map(x => x.Token).Length(512);
+            Map(x => x.Language).Length(10);
 
             Table("dbo.[UserSecurity]");
         }

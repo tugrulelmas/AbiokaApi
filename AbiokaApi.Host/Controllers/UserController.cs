@@ -77,5 +77,13 @@ namespace AbiokaApi.Host.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, newToken);
         }
+
+        [HttpPut]
+        [Route("{id}/ChangeLanguage")]
+        public HttpResponseMessage ChangeLanguage([FromUri]Guid id, [FromUri]string language) {
+            userService.ChangeLanguage(language);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

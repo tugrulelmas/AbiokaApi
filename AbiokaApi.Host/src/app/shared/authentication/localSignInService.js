@@ -5,7 +5,7 @@
       .service('localSignInService', localSignInService);
 
     /* @ngInject */
-    function localSignInService($rootScope, $q, $http, $state, userService) {
+    function localSignInService($rootScope, $q, $http, $state, userService, translationService) {
         var service = {
             login: login,
             logout: logout
@@ -16,7 +16,9 @@
             var deferred = $q.defer();
             $http.post("./User/Login", localUser).then(function (response) {
                 userService.setUser(response.data, function (user) {
-                    $state.go("/");
+                    translationService.setGlobalResources().then(function () {
+                        $state.go("/");
+                    });
                 });
                 deferred.resolve();
             }, function (response) {

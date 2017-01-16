@@ -28,6 +28,8 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
         /// </value>
         public string RefreshToken { get; set; }
 
+        public string Language { get; set; }
+
         /// <summary>
         /// Gets or sets the provider.
         /// </summary>

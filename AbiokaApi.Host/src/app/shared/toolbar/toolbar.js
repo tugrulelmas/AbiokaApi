@@ -7,7 +7,7 @@
     };
 
     /* @ngInject */
-    function ToolbarController($scope, $state, userService, translationService, $mdSidenav) {
+    function ToolbarController($scope, $state, userService, translationService, $mdSidenav, $http) {
         var self = this;
         self.changeLanguage = changeLanguage;
         self.logout = logout;
@@ -22,6 +22,10 @@
                 translationService.setGlobalResources().then(function () {
                     //alert.info(vm.ml("LanguageChangedMessage")); 
                 });
+
+                if (self.user.IsSignedIn) {
+                    $http.put("./user/" + self.user.Id + "/ChangeLanguage?language=" + language).then(function () { });
+                }
             }
         }
 

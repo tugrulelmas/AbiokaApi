@@ -14,12 +14,13 @@ namespace AbiokaApi.Domain
 
         }
 
-        public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string refreshToken, string token, string password, bool isDeleted, IEnumerable<Role> roles)
+        public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string refreshToken, string token, string password, string language, bool isDeleted, IEnumerable<Role> roles)
             : base(id, email, roles) {
             AuthProvider = authProvider;
             ProviderToken = providerToken;
             RefreshToken = refreshToken;
             Token = token;
+            Language = language;
             IsDeleted = isDeleted;
 
             if (Id.IsNullOrEmpty()) {
@@ -70,6 +71,14 @@ namespace AbiokaApi.Domain
         public virtual string Password { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        public virtual string Language { get; protected set; }
+
+        /// <summary>
         /// Creates the token.
         /// </summary>
         /// <param name="abiokaToken">The abioka token.</param>
@@ -81,7 +90,8 @@ namespace AbiokaApi.Domain
                 Provider = AuthProvider.Local,
                 ProviderToken = localToken,
                 Roles = Roles?.Select(r => r.Name).ToArray(),
-                RefreshToken = RefreshToken
+                RefreshToken = RefreshToken,
+                Language = Language
             };
 
             var token = abiokaToken.Encode(userInfo);
@@ -103,6 +113,13 @@ namespace AbiokaApi.Domain
             RefreshToken = Guid.NewGuid().ToString();
         }
 
+        public virtual void ChangeLanguage(string language) {
+            if (string.IsNullOrWhiteSpace(language))
+                throw new DenialException("LanguageCannotBeEmpty");
+
+            Language = language;
+        }
+
         /// <summary>
         /// Are the passwords equal.
         /// </summary>
@@ -117,6 +134,6 @@ namespace AbiokaApi.Domain
 
         private string ComputeHashPassword(string email, string password) => Util.GetHashText(string.Concat(email.ToLowerInvariant(), "#", password));
 
-        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, string.Empty, string.Empty, password, isDeleted, null);
+        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, string.Empty, string.Empty, password, string.Empty, isDeleted, null);
     }
 }

@@ -27,7 +27,8 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 id = userClaim.Id,
                 provider = userClaim.Provider.ToString(),
                 roles = userClaim.Roles,
-                refresh_token = userClaim.RefreshToken
+                refresh_token = userClaim.RefreshToken,
+                language = userClaim.Language
             };
 
             return JsonWebToken.Encode(payload, key, JwtHashAlgorithm.HS256);
