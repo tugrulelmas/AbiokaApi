@@ -25,7 +25,7 @@ namespace AbiokaApi.ApplicationService.Messaging
         public string Password { get; set; }
     }
 
-    public class CreateApplicationDataRequestValidator : CustomValidator<AddUserRequest>
+    public class CreateApplicationDataRequestValidator : CustomValidator<CreateApplicationDataRequest>
     {
         private readonly IUserRepository userRepository;
 
@@ -36,7 +36,7 @@ namespace AbiokaApi.ApplicationService.Messaging
             RuleFor(r => r.Password).NotEmpty().WithMessage("IsRequired");
         }
 
-        protected override void DataValidate(AddUserRequest instance, ActionType actionType) {
+        protected override void DataValidate(CreateApplicationDataRequest instance, ActionType actionType) {
             var count = userRepository.Count();
             if (count > 0)
                 throw new DenialException("DBIsNotEmpty");

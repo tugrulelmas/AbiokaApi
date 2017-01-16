@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.Messaging
 {
-    public class AddUserRequest : ServiceRequestBase
+    public class RegisterUserRequest : ServiceRequestBase
     {
         /// <summary>
         /// Gets or sets the email.
@@ -25,7 +25,10 @@ namespace AbiokaApi.ApplicationService.Messaging
         /// The password.
         /// </value>
         public string Password { get; set; }
+    }
 
+    public class AddUserRequest : RegisterUserRequest
+    {
         /// <summary>
         /// Gets or sets the roles.
         /// </summary>
@@ -35,18 +38,18 @@ namespace AbiokaApi.ApplicationService.Messaging
         public IEnumerable<RoleDTO> Roles { get; set; }
     }
 
-    public class AddUserRequestValidator : CustomValidator<AddUserRequest>
+    public class RegisterUserRequestValidator : CustomValidator<RegisterUserRequest>
     {
         private readonly IUserSecurityRepository userSecurityRepository;
 
-        public AddUserRequestValidator(IUserSecurityRepository userSecurityRepository) {
+        public RegisterUserRequestValidator(IUserSecurityRepository userSecurityRepository) {
             this.userSecurityRepository = userSecurityRepository;
 
             RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").EmailAddress().WithMessage("ShouldBeCorrectEmail");
             RuleFor(r => r.Password).NotEmpty().WithMessage("IsRequired");
         }
 
-        protected override void DataValidate(AddUserRequest instance, ActionType actionType) {
+        protected override void DataValidate(RegisterUserRequest instance, ActionType actionType) {
             var tmpUser = userSecurityRepository.GetByEmail(instance.Email);
             if (tmpUser != null)
                 throw new DenialException("UserIsAlreadyRegistered", instance.Email);

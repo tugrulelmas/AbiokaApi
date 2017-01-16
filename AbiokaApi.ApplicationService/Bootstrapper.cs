@@ -3,6 +3,7 @@ using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.ApplicationService.EventHandlers;
 using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.ApplicationService.Interceptors;
+using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain;
 using AbiokaApi.Infrastructure.Common.Domain;
@@ -19,6 +20,7 @@ namespace AbiokaApi.ApplicationService
                 .RegisterService<ICrudService<RoleDTO>, CrudService<Role, RoleDTO>>()
                 .RegisterService<IReadService<LoginAttemptDTO>, ReadService<LoginAttempt, LoginAttemptDTO>>()
                 .RegisterWithBase(typeof(ICustomValidator<>), typeof(CustomValidator<>))
+                .Register<ICustomValidator<AddUserRequest>, RegisterUserRequestValidator>()
                 .RegisterWithBase(typeof(IEventHandler<>), typeof(RoleAddedToUserHandler))
                 .Register<IServiceInterceptor, RoleValidationInterceptor>()
                 .Register<IServiceInterceptor, DataValidationInterceptor>();

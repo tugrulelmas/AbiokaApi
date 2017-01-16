@@ -5,7 +5,7 @@ using Moq;
 
 namespace AbiokaApi.UnitTest.Service.Mock
 {
-    class AddUserRequestValidatorMock : AddUserRequestValidator
+    class AddUserRequestValidatorMock : RegisterUserRequestValidator
     {
         public readonly Mock<IUserSecurityRepository> UserSecurityRepositoryMock;
 
@@ -14,7 +14,7 @@ namespace AbiokaApi.UnitTest.Service.Mock
             UserSecurityRepositoryMock = userSecurityRepository;
         }
 
-        public new void DataValidate(AddUserRequest instance, ActionType actionType) {
+        public new void DataValidate(RegisterUserRequest instance, ActionType actionType) {
             base.DataValidate(instance, actionType);
         }
 

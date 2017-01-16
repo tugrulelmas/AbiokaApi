@@ -75,7 +75,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         public IDependencyContainer RegisterWithBase<T1, T2>() => RegisterWithBase(typeof(T1), typeof(T2));
 
         public IDependencyContainer RegisterWithBase(Type type1, Type type2) {
-            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.Base().Configure(c => c.LifestyleSingleton()));
+            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.Base().Configure(c => c.LifestyleSingleton().Named(Guid.NewGuid().ToString())));
             return this;
         }
 
