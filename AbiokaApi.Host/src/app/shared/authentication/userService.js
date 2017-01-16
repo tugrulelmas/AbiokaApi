@@ -7,15 +7,21 @@
     /* @ngInject */
     function userService($cookies, $rootScope) {
         var user = getDefault();
+        var rememberMe = false;
 
         var service = {
             getUser: getUser,
             setUser: setUser,
             updateUser: updateUser,
-            destroy: destroy
+            destroy: destroy,
+            setRememberMe: setRememberMe
         };
 
         return service;
+
+        function setRememberMe(remember) {
+            rememberMe = remember;
+        }
 
         function getUser() {
             var userInfo = $cookies.getObject('userInfo', { path: '/' });
@@ -39,7 +45,7 @@
             if (angular.isUndefined(user.Language) || user.Language.trim() === "") {
                 user.Language = getDefault().Language;
             }
-            $cookies.putObject('userInfo', user, { path: '/' });
+            setCookie(user);
             callback(user);
         }
 
@@ -51,8 +57,7 @@
             user.Token = userInfo.Token;
             user.IsSignedIn = userInfo.IsSignedIn;
             user.Language = userInfo.Language;
-            $cookies.remove('userInfo', { path: '/' });
-            $cookies.putObject('userInfo', user, { path: '/' });
+            setCookie(user);
             $rootScope.$broadcast('userUpdated');
         }
 
@@ -60,8 +65,7 @@
             var oldLanguage = user.Language;
             user = getDefault();
             user.Language = oldLanguage;
-            $cookies.remove('userInfo', { path: '/' });
-            $cookies.putObject('userInfo', user, { path: '/' });
+            setCookie(user);
         }
 
         function getDefault() {
@@ -69,6 +73,13 @@
                 Language: "en",
                 IsSignedIn: false
             };
+        }
+
+        function setCookie(user) {
+            if (rememberMe) {
+                $cookies.remove('userInfo', { path: '/' });
+                $cookies.putObject('userInfo', user, { path: '/' });
+            }
         }
     }
 })();

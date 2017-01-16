@@ -63,5 +63,6 @@
   "NewPasswordCannotBeSameAsTheOldPassword": "New password can not be same as the old password!",
   "DontHaveAnAccountYet": "Don't have an account yet?",
   "SignUp": "Sign up",
-  "AlreadyHaveAnAccount": "Already have an account?"
+  "AlreadyHaveAnAccount": "Already have an account?",
+  "RememberMe": "Remember Me"
 }

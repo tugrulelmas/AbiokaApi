@@ -30,6 +30,7 @@
 
         function login() {
             vm.loading = true;
+            userService.setRememberMe(vm.rememberMe);
             localSignInService.login(vm.user).then(function () {
                 vm.loading = false;
             }, function (reason) {
