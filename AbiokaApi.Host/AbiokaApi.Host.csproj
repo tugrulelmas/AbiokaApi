@@ -126,6 +126,9 @@
     <Content Include="src\app\components\main\mainController.js" />
     <Content Include="src\app\components\role\roleDialogController.js" />
     <Content Include="src\app\components\user\userDialogController.js" />
+    <Content Include="src\app\directives\dataImgDirective.js" />
+    <Content Include="src\app\shared\settings\settingsService.js" />
+    <Content Include="src\app\directives\backImgDirective.js" />
     <Content Include="src\app\directives\classDirective.js" />
     <Content Include="src\app\directives\customOnChangeDirective.js" />
     <Content Include="src\app\shared\dataTable\dataCellDirective.js" />

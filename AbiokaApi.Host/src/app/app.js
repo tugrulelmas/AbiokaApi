@@ -14,16 +14,18 @@
      .config(config);
 
     /* @ngInject */
-    function run($rootScope, $state, $stateParams, userService, translationService) {
+    function run($rootScope, $state, $stateParams, userService, translationService, settingsService) {
         translationService.setGlobalResources();
 
         $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState, fromParams) {
             if (toState.isPublic === true) {
-                $rootScope.$broadcast('bodyClassEvent', 'login-page');
+                settingsService.setBackImg("../assets/images/login.jpg");
+                //settingsService.setBackImg("https://source.unsplash.com/collection/1052/800x600");
                 return;
             }
 
-            $rootScope.$broadcast('bodyClassEvent', '');
+            settingsService.setBackImg("none");
+
             var user = userService.getUser();
             if (!user.IsSignedIn) {
                 e.preventDefault();

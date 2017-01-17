@@ -14,10 +14,6 @@
             { "url": "loginAttempts", "text": "LoginLogs" },
         ];
 
-        $scope.$on("bodyClassEvent", function (event, data) {
-            vm.imageClass = data;
-        });
-
         function toggleMenu(menuItem) {
             menuItem.isSelected = !menuItem.isSelected;
         }

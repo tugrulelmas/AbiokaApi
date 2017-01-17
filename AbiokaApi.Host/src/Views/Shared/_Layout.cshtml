@@ -15,7 +15,7 @@
     <!-- endinject -->
 </head>
 <body ng-app="abioka" ng-controller="MainController as vm">
-    <div class="full-page" data-image="{{vm.imageClass ? 'true' : 'false'}}" layout="row">
+    <div class="full-page" ab-data-img layout="row">
         <menu menu-items="vm.menuItems" toggle-menu="vm.toggleMenu(menuItem)" is-signed-in="vm.user.IsSignedIn"></menu>
         <div layout="column" flex>
             <toolbar></toolbar>
@@ -23,7 +23,7 @@
                 @RenderBody()
             </md-content>
         </div>
-        <div class="full-page-background" ng-class="vm.imageClass"></div>
+        <back-img class="full-page-background"></back-img>
     </div>
     <!-- lib:js -->
     <!-- endinject -->
