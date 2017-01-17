@@ -5,14 +5,19 @@
       .controller('MainController', MainController);
 
     /* @ngInject */
-    function MainController($scope, userService) {
+    function MainController($scope, $http, userService) {
         var vm = this;
         vm.user = userService.getUser();
         vm.toggleMenu = toggleMenu;
-        vm.menuItems = [{ "url": "/", "text": "Dashboard" }, 
-            { "url": "/", "text": "Admin", children: [{ "url": "users", "text": "Users" }, { "url": "roles", "text": "Roles" }] },
-            { "url": "loginAttempts", "text": "LoginLogs" },
-        ];
+        vm.menuItems = [];
+
+        activate();
+
+        function activate() {
+            $http.get("./menu").then(function (response) {
+                vm.menuItems = response.data;
+            });
+        }
 
         function toggleMenu(menuItem) {
             menuItem.isSelected = !menuItem.isSelected;

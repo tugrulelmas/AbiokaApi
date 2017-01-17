@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\ICrudService.cs" />
     <Compile Include="Abstractions\IInstallationService.cs" />
+    <Compile Include="Abstractions\IMenuService.cs" />
     <Compile Include="Abstractions\IReadService.cs" />
     <Compile Include="Abstractions\IUserService.cs" />
     <Compile Include="Abstractions\IService.cs" />
@@ -53,12 +54,14 @@
     <Compile Include="DTOs\DTOMapper.cs" />
     <Compile Include="DTOs\DTO.cs" />
     <Compile Include="DTOs\LoginAttemptDTO.cs" />
+    <Compile Include="DTOs\MenuDTO.cs" />
     <Compile Include="DTOs\RoleDTO.cs" />
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
+    <Compile Include="Implementations\MenuService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interceptors\DataValidationInterceptor.cs" />

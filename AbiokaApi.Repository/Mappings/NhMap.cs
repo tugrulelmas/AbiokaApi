@@ -62,6 +62,25 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
+    internal class MenuMap : BaseClassMap<Menu>
+    {
+        public MenuMap() {
+            Id(x => x.Id);
+            Map(x => x.Text);
+            Map(x => x.Url);
+            Map(x => x.Order).Column("[Order]");
+
+            HasMany(x => x.Children)
+                    .Inverse()
+                    .KeyColumn("ParentId")
+                    .OrderBy("[Order] ASC");
+
+            References(x => x.Parent).Column("ParentId");
+
+            Table("dbo.[Menu]");
+        }
+    }
+
     internal class LoginAttemptMap : BaseClassMap<LoginAttempt>
     {
         public LoginAttemptMap() {

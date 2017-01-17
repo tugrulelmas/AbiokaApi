@@ -16,10 +16,12 @@ namespace AbiokaApi.ApplicationService.DTOs
             mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserDTO((User)entity));
             mapActions.Add(typeof(Role).TypeHandle, (entity) => ToRoleDTO((Role)entity));
             mapActions.Add(typeof(LoginAttempt).TypeHandle, (entity) => ToLoginAttemptDTO((LoginAttempt)entity));
+            mapActions.Add(typeof(Menu).TypeHandle, (entity) => ToMenuDTO((Menu)entity));
 
             dbMapActions = new Dictionary<RuntimeTypeHandle, Func<DTO, IEntity>>();
             dbMapActions.Add(typeof(UserDTO).TypeHandle, (entity) => ToUser((UserDTO)entity));
             dbMapActions.Add(typeof(RoleDTO).TypeHandle, (entity) => ToRole((RoleDTO)entity));
+            dbMapActions.Add(typeof(MenuDTO).TypeHandle, (entity) => ToMenu((MenuDTO)entity));
         }
 
         internal static DTO FromDomainObject(IEntity entity) {
@@ -102,6 +104,35 @@ namespace AbiokaApi.ApplicationService.DTOs
                 Name = role.Name,
                 CreatedDate = role.CreatedDate,
                 UpdatedDate = role.UpdatedDate
+            };
+            return result;
+        }
+
+        private static Menu ToMenu(MenuDTO menuDTO) {
+            if (menuDTO == null)
+                return null;
+
+            var result = new Menu(
+                menuDTO.Id,
+                menuDTO.Text,
+                menuDTO.Url,
+                menuDTO.Order,
+                null,
+                ToDomainObjects<Menu>(menuDTO.Children)
+            );
+            return result;
+        }
+
+        private static MenuDTO ToMenuDTO(Menu menu) {
+            if (menu == null)
+                return null;
+
+            var result = new MenuDTO {
+                Id = menu.Id,
+                Text = menu.Text,
+                Url = menu.Url,
+                Order = menu.Order,
+                Children = FromDomainObject<MenuDTO>(menu.Children),
             };
             return result;
         }
