@@ -513,7 +513,7 @@ a.docs-logo {
         color:#FFF;
     }
 
-    .full-page:before {
+    .full-page[data-image="true"]:before { 
         background-color: rgba(0, 0, 0, 0.5);
     }
 
