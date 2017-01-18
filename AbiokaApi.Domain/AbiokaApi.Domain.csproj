@@ -51,7 +51,6 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Repositories\ILoginAttemptRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />
-    <Compile Include="Repositories\IMenuRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IUserSecurityRepository.cs" />
     <Compile Include="Role.cs" />

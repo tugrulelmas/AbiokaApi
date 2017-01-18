@@ -16,6 +16,7 @@
             var deferred = $q.defer();
             $http.post("./User/Login", localUser).then(function (response) {
                 userService.setUser(response.data, function (user) {
+                    $rootScope.$broadcast('userSignedIn', null);
                     translationService.setGlobalResources().then(function () {
                         $state.go("/");
                     });

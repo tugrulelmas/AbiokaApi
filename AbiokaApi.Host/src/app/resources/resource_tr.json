@@ -64,5 +64,14 @@
   "SignUp": "Hesap aç",
   "DontHaveAnAccountYet": "Henüz hesabınız yok mu?",
   "AlreadyHaveAnAccount": "Zaten bir hesabınız var mı?",
-  "RememberMe": "Beni Hatırla"
+  "RememberMe": "Beni Hatırla",
+  "Text": "Metin",
+  "Url": "Url",
+  "Parent": "Parent",
+  "Order": "Sıra",
+  "Menus": "Menüler",
+  "MenuDetail": "Menü Detayı",
+  "DeleteMenu": "Menü Sil",
+  "DeleteMenuMessage": "{0} bu menüyü silmek istediğinizden emin misiniz?",
+  "NotFound": "{0}, bulunamadı"
 }

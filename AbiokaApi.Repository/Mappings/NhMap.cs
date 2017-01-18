@@ -76,6 +76,7 @@ namespace AbiokaApi.Repository.Mappings
                     .OrderBy("[Order] ASC");
 
             References(x => x.Parent).Column("ParentId");
+            References(x => x.Role).Column("RoleId").Fetch.Join();
 
             Table("dbo.[Menu]");
         }

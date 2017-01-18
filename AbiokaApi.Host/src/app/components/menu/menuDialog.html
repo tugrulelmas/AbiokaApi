@@ -1,0 +1,43 @@
+﻿<form name="editForm" novalidate>
+    <edit-dialog resource="vm.resource" entity="vm.entity" title="{{vm.title}}" form="{{'editForm'}}">
+        <div class-gt-sm="edit-dialog">
+            <md-input-container class="md-block">
+                <label>{{'Text' | translate}}</label>
+                <input type="text" name="text" ng-model="vm.entity.Text" required />
+                <validation-message model="editForm.text" field-name="{{'Text' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>{{'Url' | translate}}</label>
+                <input type="text" name="url" ng-model="vm.entity.Url" required />
+                <validation-message model="editForm.url" field-name="{{'Url' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>{{'Order' | translate}}</label>
+                <input type="number" name="order" ng-model="vm.entity.Order" min="0" max="250" required />
+                <validation-message model="editForm.order" field-name="{{'Order' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container>
+                <label>{{'Roles' | translate}}</label>
+                <md-select name="role" ng-model="vm.entity.Role">
+                    <md-optgroup label="{{'Roles' | translate}}">
+                        <md-option ng-value="role" ng-repeat="role in vm.roles">{{role.Name}}</md-option>
+                    </md-optgroup>
+                </md-select>
+                <validation-message model="editForm.role" field-name="{{'Roles' | translate}}"></validation-message>
+            </md-input-container>
+            <md-autocomplete md-selected-item="vm.entity.Parent"
+                             md-search-text="vm.searchText"
+                             md-items="item in vm.searchParent(vm.searchText)"
+                             md-item-text="item.Text"
+                             md-min-length="0"
+                             md-floating-label="Parent">
+                <md-item-template>
+                    <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.Text}}</span>
+                </md-item-template>
+                <md-not-found>
+                    {{'NotFound' | translate | stringFormat: vm.searchText}}
+                </md-not-found>
+            </md-autocomplete>
+        </div>
+    </edit-dialog>
+</form>

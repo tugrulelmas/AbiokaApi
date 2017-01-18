@@ -34,7 +34,7 @@ namespace AbiokaApi.Repository
         }
 
         public virtual IEnumerable<T> GetAll() {
-            var result = Query.ToList();
+            var result = Query().ToList();
             return result;
         }
 
@@ -112,7 +112,7 @@ namespace AbiokaApi.Repository
             return result;
         }
 
-        protected IQueryable<T> Query => GetQuery<T>();
+        public IQueryable<T> Query() => GetQuery<T>();
 
         protected IQueryable<TEntity> GetQuery<TEntity>() {
             var query = Session.Query<TEntity>();

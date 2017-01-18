@@ -7,16 +7,20 @@
     /* @ngInject */
     function MainController($scope, $http, userService) {
         var vm = this;
-        vm.user = userService.getUser();
+        vm.user = {};
         vm.toggleMenu = toggleMenu;
         vm.menuItems = [];
 
         activate();
 
         function activate() {
-            $http.get("./menu").then(function (response) {
-                vm.menuItems = response.data;
-            });
+            vm.user = userService.getUser();
+
+            if (vm.user.IsSignedIn) {
+                $http.get("./menu").then(function (response) {
+                    vm.menuItems = response.data;
+                });
+            }
         }
 
         function toggleMenu(menuItem) {
@@ -25,6 +29,10 @@
 
         $scope.$on("userSignedOut", function (event, data) {
             vm.user = userService.getUser();
+        });
+
+        $scope.$on("userSignedIn", function (event, data) {
+            activate();
         });
     }
 })();

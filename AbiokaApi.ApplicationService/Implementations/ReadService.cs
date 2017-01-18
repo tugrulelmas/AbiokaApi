@@ -15,12 +15,12 @@ namespace AbiokaApi.ApplicationService.Implementations
             this.repository = repository;
         }
 
-        public IEnumerable<TDTO> GetAll() {
+        public virtual IEnumerable<TDTO> GetAll() {
             var entities = repository.GetAll();
             return DTOMapper.FromDomainObject<TDTO>(entities);
         }
 
-        public TDTO Get(object id) {
+        public virtual TDTO Get(object id) {
             var entity = repository.FindById(id);
             return (TDTO)DTOMapper.FromDomainObject(entity);
         }

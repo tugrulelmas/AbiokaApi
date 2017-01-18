@@ -16,7 +16,8 @@
                                   result = $filter($scope.column.filter)(result);
                               }
 
-                              $elm.append(result);
+                              var appendedResult = result ? result.toString() : "";
+                              $elm.append(appendedResult);
                           } else {
                               var cellElement = $compile($scope.column.cellTemplate)($scope.$parent);
                               $elm.append(cellElement);

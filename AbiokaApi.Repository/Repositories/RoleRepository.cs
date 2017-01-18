@@ -17,7 +17,7 @@ namespace AbiokaApi.Repository.Repositories
         }
 
         public Role GetByName(string name) {
-            var result = Query.Where(q => q.Name.ToLowerInvariant() == name.ToLowerInvariant()).FirstOrDefault();
+            var result = Query().Where(q => q.Name.ToLowerInvariant() == name.ToLowerInvariant()).FirstOrDefault();
             return result;
         }
 

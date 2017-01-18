@@ -118,6 +118,10 @@
     <Content Include="src\app\components\changePassword\changePassword.html" />
     <Content Include="src\app\components\install\install.html" />
     <Content Include="src\app\components\install\installComponent.js" />
+    <Content Include="src\app\components\menu\menuController.js" />
+    <Content Include="src\app\components\menu\menuDialog.html" />
+    <Content Include="src\app\components\menu\menuDialogController.js" />
+    <Content Include="src\app\components\menu\menus.html" />
     <Content Include="src\app\components\role\roleController.js" />
     <Content Include="src\app\components\loginAttempt\loginAttemptController.js" />
     <Content Include="src\app\components\user\usersController.js" />

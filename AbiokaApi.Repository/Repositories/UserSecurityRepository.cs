@@ -16,7 +16,7 @@ namespace AbiokaApi.Repository.Repositories
         public UserSecurity GetByRefreshToken(string refreshToken) => GetUser(u => u.RefreshToken == refreshToken);
 
         private UserSecurity GetUser(Expression<Func<UserSecurity, bool>> filter) {
-            var result = Query.Where(filter).FirstOrDefault();
+            var result = Query().Where(filter).FirstOrDefault();
             if (result == null)
                 return null;
             

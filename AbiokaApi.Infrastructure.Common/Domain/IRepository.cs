@@ -1,4 +1,6 @@
-﻿namespace AbiokaApi.Infrastructure.Common.Domain
+﻿using System.Linq;
+
+namespace AbiokaApi.Infrastructure.Common.Domain
 {
     /// <summary>
     /// 
@@ -24,5 +26,11 @@
         /// </summary>
         /// <param name="entity">The entity.</param>
         void Delete(T entity);
+
+        /// <summary>
+        /// Queries this instance.
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<T> Query();
     }
 }

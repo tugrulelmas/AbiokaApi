@@ -10,7 +10,7 @@ namespace AbiokaApi.Repository.Repositories
     public class UserRepository : Repository<User>, IUserRepository
     {
         public int Count() {
-            var result = Query.Count();
+            var result = Query().Count();
             return result;
         }
 

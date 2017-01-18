@@ -24,15 +24,23 @@ namespace AbiokaApi.ApplicationService.DTOs
             dbMapActions.Add(typeof(MenuDTO).TypeHandle, (entity) => ToMenu((MenuDTO)entity));
         }
 
+        internal static T FromDomainObject<T>(IEntity entity) where T : DTO => (T)FromDomainObject(entity);
+
         internal static DTO FromDomainObject(IEntity entity) {
             if (entity == null)
                 return null;
 
             var typeHandle = entity.GetType().TypeHandle;
-            if (!mapActions.ContainsKey(typeHandle)) {
-                throw new NotImplementedException($"{entity.GetType().Name} is not implemented in DTO object mapper.");
+            if (mapActions.ContainsKey(typeHandle)) {
+                return mapActions[typeHandle](entity);
             }
-            return mapActions[typeHandle](entity);
+
+            var baseTypeHandle = entity.GetType().BaseType.TypeHandle;
+            if (mapActions.ContainsKey(baseTypeHandle)) {
+                return mapActions[baseTypeHandle](entity);
+            }
+
+            throw new NotImplementedException($"{entity.GetType().Name} is not implemented in DTO object mapper.");
         }
 
         internal static IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DTO {
@@ -46,6 +54,8 @@ namespace AbiokaApi.ApplicationService.DTOs
             }
             return result;
         }
+
+        internal static T ToDomainObject<T>(DTO entity) where T : IEntity => (T)ToDomainObject(entity);
 
         internal static IEntity ToDomainObject(DTO entity) {
             if (entity == null)
@@ -112,12 +122,18 @@ namespace AbiokaApi.ApplicationService.DTOs
             if (menuDTO == null)
                 return null;
 
+            Menu parent = null;
+            if (menuDTO.Parent != null) {
+                parent = Menu.Create(menuDTO.Parent.Id);
+            }
+
             var result = new Menu(
                 menuDTO.Id,
                 menuDTO.Text,
                 menuDTO.Url,
                 menuDTO.Order,
-                null,
+                parent,
+                ToDomainObject<Role>(menuDTO.Role),
                 ToDomainObjects<Menu>(menuDTO.Children)
             );
             return result;
@@ -127,11 +143,21 @@ namespace AbiokaApi.ApplicationService.DTOs
             if (menu == null)
                 return null;
 
+            MenuDTO parent = null;
+            if (menu.Parent != null) {
+                parent = new MenuDTO {
+                    Id = menu.Parent.Id,
+                    Text = menu.Parent.Text
+                };
+            }
+
             var result = new MenuDTO {
                 Id = menu.Id,
                 Text = menu.Text,
                 Url = menu.Url,
                 Order = menu.Order,
+                Parent = parent,
+                Role = FromDomainObject<RoleDTO>(menu.Role as Role),
                 Children = FromDomainObject<MenuDTO>(menu.Children),
             };
             return result;

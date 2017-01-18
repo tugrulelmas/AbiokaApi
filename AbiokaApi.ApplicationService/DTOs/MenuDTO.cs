@@ -29,6 +29,10 @@ namespace AbiokaApi.ApplicationService.DTOs
         /// </value>
         public IEnumerable<MenuDTO> Children { get; set; }
 
+        public MenuDTO Parent { get; set; }
+
+        public RoleDTO Role { get; set; }
+
         public short Order { get; set; }
     }
 }

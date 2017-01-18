@@ -10,12 +10,13 @@ namespace AbiokaApi.Domain
 
         }
 
-        public Menu(Guid id, string text, string url, short order, Menu parent, IEnumerable<Menu> children) {
+        public Menu(Guid id, string text, string url, short order, Menu parent, Role role, IEnumerable<Menu> children) {
             Id = id;
             Text = text;
             Url = url;
             Order = order;
             Parent = parent;
+            Role = role;
             Children = children;
         }
 
@@ -46,11 +47,21 @@ namespace AbiokaApi.Domain
         public virtual Menu Parent { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the role.
+        /// </summary>
+        /// <value>
+        /// The role.
+        /// </value>
+        public virtual Role Role { get; protected set; }
+
+        /// <summary>
         /// Gets or sets the children.
         /// </summary>
         /// <value>
         /// The children.
         /// </value>
         public virtual IEnumerable<Menu> Children { get; protected set; }
+
+        public static Menu Create(Guid id) => new Menu(id, null, null, 0, null, null, null);
     }
 }
