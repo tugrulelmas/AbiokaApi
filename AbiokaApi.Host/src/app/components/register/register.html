@@ -9,6 +9,26 @@
             <h4><span>{{'SignUp' | translate}}</span></h4>
             <form name="vm.modelForm" ng-submit="vm.modelForm.$valid && vm.create()" novalidate>
                 <md-input-container class="md-block">
+                    <label>{{'Name' | translate}}</label>
+                    <md-icon>portrait</md-icon>
+                    <input type="text" name="name" ng-model="vm.model.Name" required />
+                    <validation-message model="vm.modelForm.name" field-name="{{'Name' | translate}}"></validation-message>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>{{'Surname' | translate}}</label>
+                    <md-icon>nature_people</md-icon>
+                    <input type="text" name="surname" ng-model="vm.model.Surname" required />
+                    <validation-message model="vm.modelForm.surname" field-name="{{'Surname' | translate}}"></validation-message>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-icon>wc</md-icon>
+                    <md-select name="gender" ng-model="vm.model.Gender" placeholder="{{'Gender' | translate}}" required>
+                        <md-option value="Male">{{'Male' | translate}}</md-option>
+                        <md-option value="Female">{{'Female' | translate}}</md-option>
+                    </md-select>
+                    <br />
+                </md-input-container>
+                <md-input-container class="md-block">
                     <label>{{'Email' | translate}}</label>
                     <md-icon>email</md-icon>
                     <input type="email" name="email" ng-model="vm.model.Email" required />

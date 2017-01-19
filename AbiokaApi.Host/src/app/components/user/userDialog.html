@@ -2,13 +2,29 @@
     <edit-dialog resource="vm.resource" entity="vm.entity" title="{{vm.title}}" form="{{'userForm'}}">
         <div class-gt-sm="edit-dialog">
             <md-input-container class="md-block">
+                <label>{{'Name' | translate}}</label>
+                <input type="text" name="name" ng-model="vm.entity.Name" required />
+                <validation-message model="userForm.name" field-name="{{'Name' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>{{'Surname' | translate}}</label>
+                <input type="text" name="surname" ng-model="vm.entity.Surname" required />
+                <validation-message model="userForm.surname" field-name="{{'Surname' | translate}}"></validation-message>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <md-select name="gender" ng-model="vm.entity.Gender" placeholder="{{'Gender' | translate}}" required>
+                    <md-option value="Male">{{'Male' | translate}}</md-option>
+                    <md-option value="Female">{{'Female' | translate}}</md-option>
+                </md-select>
+                <br />
+            </md-input-container>
+            <md-input-container class="md-block">
                 <label>{{'Email' | translate}}</label>
                 <input type="email" name="email" ng-model="vm.entity.Email" ng-disabled="vm.isUpdate" required />
                 <validation-message model="userForm.email" field-name="{{'Email' | translate}}"></validation-message>
             </md-input-container>
             <md-input-container>
-                <label>{{'Roles' | translate}}</label>
-                <md-select name="role" ng-model="vm.entity.Roles" md-on-close="vm.searchRole = ''" ng-model-options="{trackBy: '$value.Id'}" data-md-container-class="selectdemoSelectHeader" multiple>
+                <md-select name="role" ng-model="vm.entity.Roles" placeholder="{{'Roles' | translate}}" md-on-close="vm.searchRole = ''" ng-model-options="{trackBy: '$value.Id'}" data-md-container-class="selectdemoSelectHeader" multiple>
                     <md-select-header class="demo-select-header">
                         <input id="roleSearch" ng-model="vm.searchRole" type="search" placeholder="{{'Search' | translate}}" class="demo-header-searchbox md-text">
                     </md-select-header>
@@ -16,7 +32,6 @@
                         <md-option ng-value="role" ng-repeat="role in vm.roles | filter:vm.searchRole">{{role.Name}}</md-option>
                     </md-optgroup>
                 </md-select>
-                <validation-message model="userForm.role" field-name="{{'Roles' | translate}}"></validation-message>
             </md-input-container>
             <md-input-container class="md-block" ng-if="!vm.isUpdate">
                 <label>{{'Password' | translate}}</label>

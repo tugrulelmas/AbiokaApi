@@ -33,7 +33,7 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        AddUserResponse Register(AddUserRequest request);
+        AddUserResponse Register(RegisterUserRequest request);
 
         /// <summary>
         /// Updates the specified entiy.

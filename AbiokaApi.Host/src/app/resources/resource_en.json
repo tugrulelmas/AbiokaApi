@@ -73,5 +73,9 @@
   "MenuDetail": "Menu Detail",
   "DeleteMenu": "Delete Menu",
   "DeleteMenuMessage": "Do you really want to delete menu whose text is {0}",
-  "NotFound": "{0} can not be found"
+  "NotFound": "{0} can not be found",
+  "Gender": "Gender",
+  "Male": "Male",
+  "Female": "Female",
+  "Surname": "Surname"
 }

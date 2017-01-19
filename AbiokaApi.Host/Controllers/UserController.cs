@@ -39,7 +39,7 @@ namespace AbiokaApi.Host.Controllers
         [AllowAnonymous]
         [HttpPost]
         [Route("register")]
-        public HttpResponseMessage Register([FromBody]AddUserRequest request) {
+        public HttpResponseMessage Register([FromBody]RegisterUserRequest request) {
             var user = userService.Register(request);
 
             return Request.CreateResponse(HttpStatusCode.Created, user);

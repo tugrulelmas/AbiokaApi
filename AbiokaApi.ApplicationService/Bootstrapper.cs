@@ -20,7 +20,7 @@ namespace AbiokaApi.ApplicationService
                 .RegisterService<ICrudService<RoleDTO>, CrudService<Role, RoleDTO>>()
                 .RegisterService<IReadService<LoginAttemptDTO>, ReadService<LoginAttempt, LoginAttemptDTO>>()
                 .RegisterWithBase(typeof(ICustomValidator<>), typeof(CustomValidator<>))
-                .Register<ICustomValidator<AddUserRequest>, RegisterUserRequestValidator>()
+                .Register<ICustomValidator<RegisterUserRequest>, AddUserRequestValidator>()
                 .RegisterWithBase(typeof(IEventHandler<>), typeof(RoleAddedToUserHandler))
                 .Register<IServiceInterceptor, RoleValidationInterceptor>()
                 .Register<IServiceInterceptor, DataValidationInterceptor>();

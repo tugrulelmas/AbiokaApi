@@ -84,6 +84,11 @@ namespace AbiokaApi.ApplicationService.DTOs
             var result = new User(
               userDTO.Id,
               userDTO.Email,
+              userDTO.Language,
+              userDTO.Name,
+              userDTO.Surname,
+              userDTO.Picture,
+              userDTO.Gender,
               ToDomainObjects<Role>(userDTO.Roles)
             );
             return result;
@@ -93,6 +98,11 @@ namespace AbiokaApi.ApplicationService.DTOs
             var result = new UserDTO {
                 Id = user.Id,
                 Email = user.Email,
+                Language = user.Language,
+                Name = user.Name,
+                Surname = user.Surname,
+                Picture = user.Picture,
+                Gender = user.Gender,
                 Roles = FromDomainObject<RoleDTO>(user.Roles),
                 CreatedDate = user.CreatedDate,
                 UpdatedDate = user.UpdatedDate

@@ -16,10 +16,15 @@ namespace AbiokaApi.Domain
             roles = new List<Role>();
         }
 
-        public User(Guid id, string email, IEnumerable<Role> roles)
+        public User(Guid id, string email, string language, string name, string surname, string picture, Gender gender, IEnumerable<Role> roles)
             : this() {
             Id = id;
             Email = email;
+            Language = language;
+            Name = name;
+            Surname = surname;
+            Gender = gender;
+            Picture = picture;
 
             if (roles.IsNotNullAndEmpty()) {
                 AddRoles(roles);
@@ -37,6 +42,46 @@ namespace AbiokaApi.Domain
         /// The email.
         /// </value>
         public virtual string Email { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the language.
+        /// </summary>
+        /// <value>
+        /// The language.
+        /// </value>
+        public virtual string Language { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public virtual string Name { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the surname.
+        /// </summary>
+        /// <value>
+        /// The surname.
+        /// </value>
+        public virtual string Surname { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the picture.
+        /// </summary>
+        /// <value>
+        /// The picture.
+        /// </value>
+        public virtual string Picture { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the gender.
+        /// </summary>
+        /// <value>
+        /// The gender.
+        /// </value>
+        public virtual Gender Gender { get; protected set; }
 
         /// <summary>
         /// Gets the roles.
@@ -80,6 +125,14 @@ namespace AbiokaApi.Domain
             AddEvent(new RoleRemovedFromUser(this, role.Id));
         }
 
+        public virtual void Update(User user) {
+            Name = user.Name;
+            Surname = user.Surname;
+            Gender = user.Gender;
+
+            SetRoles(user.Roles);
+        }
+
         /// <summary>
         /// Sets the roles.
         /// </summary>
@@ -113,6 +166,15 @@ namespace AbiokaApi.Domain
             }
         }
 
-        public static User Empty(Guid id) => new User(id, string.Empty, null);
+        public virtual void ChangeLanguage(string language) {
+            if (string.IsNullOrWhiteSpace(language))
+                throw new DenialException("LanguageCannotBeEmpty");
+
+            Language = language;
+        }
+
+        public static User Empty(Guid id) => new User(id, null, null, null, null, null, Gender.Male, null);
+
+        public static User Empty(Guid id, IEnumerable<Role> roles) => new User(id, null, null, null, null, null, Gender.Male, roles);
     }
 }

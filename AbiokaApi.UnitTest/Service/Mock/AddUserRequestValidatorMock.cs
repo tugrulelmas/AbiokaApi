@@ -5,7 +5,7 @@ using Moq;
 
 namespace AbiokaApi.UnitTest.Service.Mock
 {
-    class AddUserRequestValidatorMock : RegisterUserRequestValidator
+    class AddUserRequestValidatorMock : AddUserRequestValidator
     {
         public readonly Mock<IUserSecurityRepository> UserSecurityRepositoryMock;
 

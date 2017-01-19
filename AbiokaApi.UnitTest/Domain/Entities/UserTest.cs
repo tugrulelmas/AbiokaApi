@@ -103,7 +103,7 @@ namespace AbiokaApi.UnitTest.Domain.Entities
 
         [Test]
         public void SetRoles_Removes_All_Roles() {
-            var user = new User(Guid.NewGuid(), string.Empty, new List<Role>() { new Role(Guid.NewGuid(), "test"), new Role(Guid.NewGuid(), "test") });
+            var user = User.Empty(Guid.NewGuid(), new List<Role>() { new Role(Guid.NewGuid(), "test"), new Role(Guid.NewGuid(), "test") });
 
             user.SetRoles(null);
 
@@ -126,7 +126,7 @@ namespace AbiokaApi.UnitTest.Domain.Entities
             var role3 = new Role(Guid.NewGuid(), "test 3");
             var role4 = new Role(Guid.NewGuid(), "test 4");
 
-            var user = new User(Guid.NewGuid(), string.Empty, new List<Role>() { role1, role2, role3 });
+            var user = User.Empty(Guid.NewGuid(), new List<Role>() { role1, role2, role3 });
 
             user.SetRoles(new List<Role>() { role2, role4 });
 
@@ -137,14 +137,14 @@ namespace AbiokaApi.UnitTest.Domain.Entities
 
         [Test]
         public void Clear_Events_On_Initialize_For_Existing_User() {
-            var user = new User(Guid.NewGuid(), string.Empty, new List<Role>() { new Role(Guid.NewGuid(), "test"), new Role(Guid.NewGuid(), "test") });
+            var user = User.Empty(Guid.NewGuid(), new List<Role>() { new Role(Guid.NewGuid(), "test"), new Role(Guid.NewGuid(), "test") });
 
             Assert.AreEqual(0, user.Events.Count());
         }
 
         [Test]
         public void Not_Clear_Events_On_Initialize_For_New_User() {
-            var user = new User(Guid.Empty, string.Empty, new List<Role>() { new Role(Guid.NewGuid(), "test"), new Role(Guid.NewGuid(), "test") });
+            var user = User.Empty(Guid.Empty, new List<Role>() { new Role(Guid.NewGuid(), "test"), new Role(Guid.NewGuid(), "test") });
 
             Assert.AreEqual(2, user.Events.Count());
         }

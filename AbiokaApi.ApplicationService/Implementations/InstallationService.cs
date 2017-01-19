@@ -22,13 +22,13 @@ namespace AbiokaApi.ApplicationService.Implementations
             var userRole = new RoleDTO { Id = Guid.Empty, Name = "User" };
             roleService.Add(userRole);
 
-            var adduserRequest = new AddUserRequest {
+            var registerUserRequest = new RegisterUserRequest {
                 Email = createApplicationDataRequest.Email,
                 Password = createApplicationDataRequest.Password,
                 Roles = new List<RoleDTO> { adminRole }
             };
 
-            userService.Add(adduserRequest);
+            userService.Register(registerUserRequest);
         }
 
         public bool IsInstallationRequired() => userService.Count() == 0;

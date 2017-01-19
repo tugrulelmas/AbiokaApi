@@ -4,11 +4,9 @@ using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
-using AbiokaApi.Infrastructure.Common.Domain;
 using AbiokaApi.Infrastructure.Common.Helper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
@@ -17,15 +15,13 @@ namespace AbiokaApi.ApplicationService.Implementations
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly IRoleRepository roleRepository;
         private readonly IAbiokaToken abiokaToken;
-        private readonly IEventDispatcher eventDispatcher;
         private readonly ICurrentContext currentContext;
 
-        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IEventDispatcher eventDispatcher, ICurrentContext currentContext)
+        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, ICurrentContext currentContext)
             : base(repository) {
             this.userSecurityRepository = userSecurityRepository;
             this.roleRepository = roleRepository;
             this.abiokaToken = abiokaToken;
-            this.eventDispatcher = eventDispatcher;
             this.currentContext = currentContext;
         }
 
@@ -51,12 +47,16 @@ namespace AbiokaApi.ApplicationService.Implementations
             var userSecurity = new UserSecurity (
                 Guid.Empty,
                 request.Email,
-                AuthProvider.Local,
+                request.AuthProvider,
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
                 string.Empty,
                 request.Password,
-                currentContext.Current.Principal.Language,
+                request.Language ?? currentContext.Current.Principal.Language,
+                request.Name,
+                request.Surname,
+                request.Picture,
+                request.Gender,
                 false,
                 roles
             );
@@ -70,7 +70,7 @@ namespace AbiokaApi.ApplicationService.Implementations
             };
         }
 
-        public AddUserResponse Register(AddUserRequest request) {
+        public AddUserResponse Register(RegisterUserRequest request) {
             var userRole = roleRepository.GetByName("User");
             request.Roles = new List<RoleDTO> { new RoleDTO { Id = userRole.Id, Name = userRole.Name } };
 
@@ -79,10 +79,9 @@ namespace AbiokaApi.ApplicationService.Implementations
 
         public void Update(UserDTO entity) {
             var dbUser = GetEntity(entity.Id);
-            var roles = DTOMapper.ToDomainObjects<Role>(entity.Roles);
-            dbUser.SetRoles(roles);
-
-            eventDispatcher.Dispatch(dbUser.Events.ToArray());
+            var user = DTOMapper.ToDomainObject<User>(entity);
+            dbUser.Update(user);
+            repository.Update(dbUser);
         }
 
         public void Delete(Guid id) {
@@ -102,9 +101,9 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public void ChangeLanguage(string language) {
-            var user = userSecurityRepository.FindById(currentContext.Current.Principal.Id);
+            var user = repository.FindById(currentContext.Current.Principal.Id);
             user.ChangeLanguage(language);
-            userSecurityRepository.Update(user);
+            repository.Update(user);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AbiokaApi.Domain;
+using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.DTOs
 {
@@ -11,6 +12,16 @@ namespace AbiokaApi.ApplicationService.DTOs
         /// The email.
         /// </value>
         public string Email { get; set; }
+
+        public string Language { get; set; }
+
+        public string Name { get; set; }
+        
+        public string Surname { get; set; }
+        
+        public string Picture { get; set; }
+        
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Gets or sets the roles.

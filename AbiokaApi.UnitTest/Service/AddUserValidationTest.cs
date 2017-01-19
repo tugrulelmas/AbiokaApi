@@ -14,14 +14,14 @@ namespace AbiokaApi.UnitTest.Service
     {
         [Test]
         public void Add_Throws_User_Is_Already_Registered() {
-            var addUserRequest = new AddUserRequest {
+            var registerUserRequest = new RegisterUserRequest {
                 Email = "test@abioka.com",
                 Password = "1234"
             };
 
             var userService = AddUserRequestValidatorMock.Create();
-            userService.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(addUserRequest.Email)).Returns(UserSecurity.CreateBasic(Guid.Empty, string.Empty, string.Empty));
-            var exception = Assert.Throws<DenialException>(() => userService.DataValidate(addUserRequest, ActionType.Add));
+            userService.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(registerUserRequest.Email)).Returns(UserSecurity.CreateBasic(Guid.Empty, string.Empty, string.Empty));
+            var exception = Assert.Throws<DenialException>(() => userService.DataValidate(registerUserRequest, ActionType.Add));
 
             Assert.AreEqual(exception.Message, "UserIsAlreadyRegistered");
             Assert.AreEqual(exception.StatusCode, HttpStatusCode.BadRequest);

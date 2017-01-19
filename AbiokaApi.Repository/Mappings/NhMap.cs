@@ -7,12 +7,11 @@ namespace AbiokaApi.Repository.Mappings
     internal class UserSecurityMap : SubclassMap<UserSecurity>
     {
         public UserSecurityMap() {
-            Map(x => x.AuthProvider);
+            Map(x => x.AuthProvider).Length(20);
             Map(x => x.Password);
             Map(x => x.ProviderToken).Length(50);
             Map(x => x.RefreshToken).Length(50);
             Map(x => x.Token).Length(512);
-            Map(x => x.Language).Length(10);
 
             Table("dbo.[UserSecurity]");
         }
@@ -23,6 +22,11 @@ namespace AbiokaApi.Repository.Mappings
         public UserMap() {
             Id(x => x.Id);
             Map(x => x.Email);
+            Map(x => x.Language).Length(10);
+            Map(x => x.Gender).Length(10);
+            Map(x => x.Name).Length(100);
+            Map(x => x.Surname).Length(100);
+            Map(x => x.Picture).Length(250);
             /*
             HasManyToMany(x => x.Roles)
                 .Table("dbo.UserRole")

@@ -73,5 +73,9 @@
   "MenuDetail": "Menü Detayı",
   "DeleteMenu": "Menü Sil",
   "DeleteMenuMessage": "{0} bu menüyü silmek istediğinizden emin misiniz?",
-  "NotFound": "{0}, bulunamadı"
+  "NotFound": "{0}, bulunamadı",
+  "Gender": "Cinsiyet",
+  "Male": "Erkek",
+  "Female": "Kadın",
+  "Surname": "Soyad"
 }

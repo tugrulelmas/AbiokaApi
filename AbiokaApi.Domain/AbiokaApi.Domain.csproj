@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Events\RoleRemovedFromUser.cs" />
     <Compile Include="Events\RoleAddedToUser.cs" />
+    <Compile Include="Gender.cs" />
     <Compile Include="LoginAttempt.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Menu.cs" />
