@@ -17,17 +17,7 @@ namespace AbiokaApi.Host.Controllers
             : base(userService) {
             this.userService = userService;
         }
-
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("Login")]
-        public HttpResponseMessage Login([FromBody]LoginRequest request) {
-            var token = userService.Login(request);
-
-            var response = Request.CreateResponse(HttpStatusCode.OK, token);
-            return response;
-        }
-
+        
         [HttpPost]
         [Route("")]
         public HttpResponseMessage Add([FromBody]AddUserRequest request) {
@@ -59,15 +49,6 @@ namespace AbiokaApi.Host.Controllers
             userService.Delete(id);
 
             return Request.CreateResponse(HttpStatusCode.OK);
-        }
-
-        [AllowAnonymous]
-        [HttpGet]
-        [Route("RefreshToken/{refreshToken}")]
-        public HttpResponseMessage RefreshToken([FromUri]string refreshToken) {
-            var token = userService.RefreshToken(refreshToken);
-
-            return Request.CreateResponse(HttpStatusCode.OK, token);
         }
 
         [HttpPut]

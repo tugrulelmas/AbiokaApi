@@ -1,6 +1,7 @@
 ﻿using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain;
 using AbiokaApi.Domain.Repositories;
+using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
 using FluentValidation;
@@ -9,47 +10,51 @@ using System.Net;
 
 namespace AbiokaApi.ApplicationService.Messaging
 {
-    public class LoginRequest : ServiceRequestBase
+    public class AuthRequest : ServiceRequestBase
     {
-        /// <summary>
-        /// Gets or sets the email.
-        /// </summary>
-        /// <value>
-        /// The email.
-        /// </value>
+        public string code { get; set; }
+
+        public string clientId { get; set; }
+
+        public string redirectUri { get; set; }
+
+        public AuthProvider provider { get; set; }
+
         public string Email { get; set; }
 
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
-        /// <value>
-        /// The password.
-        /// </value>
         public string Password { get; set; }
     }
 
-    public class LoginRequestValidator : CustomValidator<LoginRequest>
+    public class AuthRequestValidator : CustomValidator<AuthRequest>
     {
         private readonly IUserSecurityRepository userSecurityRepository;
         private readonly ILoginAttemptRepository loginAttemptRepository;
         private readonly ICurrentContext currentContext;
 
-        public LoginRequestValidator(IUserSecurityRepository userSecurityRepository, ILoginAttemptRepository loginAttemptRepository, ICurrentContext currentContext) {
+        public AuthRequestValidator(IUserSecurityRepository userSecurityRepository, ILoginAttemptRepository loginAttemptRepository, ICurrentContext currentContext) {
             this.userSecurityRepository = userSecurityRepository;
             this.loginAttemptRepository = loginAttemptRepository;
             this.currentContext = currentContext;
 
-            RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").EmailAddress().WithMessage("ShouldBeCorrectEmail");
-            RuleFor(lr => lr.Password).NotEmpty().WithMessage("IsRequired");
+            RuleFor(r => r.code).NotEmpty().WithMessage("IsRequired").When(r => r.provider != AuthProvider.Local);
+            RuleFor(r => r.clientId).NotEmpty().WithMessage("IsRequired").When(r => r.provider != AuthProvider.Local);
+            RuleFor(r => r.redirectUri).NotEmpty().WithMessage("IsRequired").When(r => r.provider != AuthProvider.Local);
+            RuleFor(r => r.provider).NotEmpty().WithMessage("IsRequired").When(r => r.provider != AuthProvider.Local);
+
+            RuleFor(r => r.Email).NotEmpty().WithMessage("IsRequired").When(r => r.provider == AuthProvider.Local);
+            RuleFor(r => r.Password).NotEmpty().WithMessage("IsRequired").When(r => r.provider == AuthProvider.Local);
         }
 
-        protected override void DataValidate(LoginRequest instance, ActionType actionType) {
+        protected override void DataValidate(AuthRequest instance, ActionType actionType) {
+            if (instance.provider != AuthProvider.Local)
+                return;
+
             var user = userSecurityRepository.GetByEmail(instance.Email);
 
             if (user == null) {
                 throw new DenialException(HttpStatusCode.NotFound, "UserNotFound");
             }
-            
+
             var loginAttempt = new LoginAttempt {
                 Date = DateTime.UtcNow,
                 Token = user.Token,

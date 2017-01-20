@@ -32,6 +32,7 @@
         }
 
         function setUser(token, callback) {
+            var isRememberMe = rememberMe || getUser().rememberMe;
             var payload = Base64.decode(token.split('.')[1]);
             var tokenUser = angular.fromJson(payload);
 
@@ -43,7 +44,7 @@
             user.IsSignedIn = true;
             user.RefreshToken = tokenUser.refresh_token;
             user.Language = tokenUser.language;
-            if (rememberMe) {
+            if (isRememberMe) {
                 user.rememberMe = true;
                 setCookie(user);
             }

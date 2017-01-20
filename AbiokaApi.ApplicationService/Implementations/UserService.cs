@@ -25,29 +25,13 @@ namespace AbiokaApi.ApplicationService.Implementations
             this.currentContext = currentContext;
         }
 
-        public string Login(LoginRequest loginRequest) {
-            var user = userSecurityRepository.GetByEmail(loginRequest.Email);
-            user.CreateToken(abiokaToken);
-            userSecurityRepository.Update(user);
-            return user.Token;
-        }
-
-        public string RefreshToken(string refreshToken) {
-            var user = userSecurityRepository.GetByRefreshToken(refreshToken);
-            if (user == null)
-                throw AuthenticationException.InvalidCredential;
-
-            user.CreateToken(abiokaToken);
-            userSecurityRepository.Update(user);
-            return user.Token;
-        }
-
         public AddUserResponse Add(AddUserRequest request) {
             var roles = DTOMapper.ToDomainObjects<Role>(request.Roles);
             var userSecurity = new UserSecurity (
                 Guid.Empty,
                 request.Email,
-                request.AuthProvider,
+                AuthProvider.Local,
+                Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
                 string.Empty,
@@ -94,7 +78,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         public string ChangePassword(ChangePasswordRequest request) {
             var user = userSecurityRepository.FindById(currentContext.Current.Principal.Id);
             user.ChangePassword(request.OldPassword, request.NewPassword);
-            user.CreateToken(abiokaToken);
+            user.CreateToken(abiokaToken, Guid.NewGuid().ToString());
             userSecurityRepository.Update(user);
 
             return user.Token;

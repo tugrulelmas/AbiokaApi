@@ -8,11 +8,12 @@
     };
 
     /* @ngInject */
-    function LoginController($http, $state, localSignInService, userService) {
+    function LoginController($http, $state, userService, $auth, $rootScope, translationService) {
         var vm = this;
         vm.user = {};
         vm.login = login;
         vm.loading = false;
+        vm.authenticate = authenticate;
 
         activate();
 
@@ -29,10 +30,27 @@
         }
 
         function login() {
-            vm.loading = true;
             userService.setRememberMe(vm.rememberMe);
-            localSignInService.login(vm.user).then(function () {
-                vm.loading = false;
+            internalLogin($http.post("./Auth/Login", angular.extend(vm.user, {
+                provider: 'Local'
+            })));
+        }
+
+        function authenticate(provider) {
+            userService.setRememberMe(true);
+            internalLogin($auth.authenticate(provider, { "provider": provider }));
+        }
+
+        function internalLogin(promise) {
+            vm.loading = true;
+            promise.then(function (response) {
+                userService.setUser(response.data, function (user) {
+                    $rootScope.$broadcast('userSignedIn', null);
+                    translationService.setGlobalResources().then(function () {
+                        $state.go("/");
+                    });
+                    vm.loading = false;
+                });
             }, function (reason) {
                 vm.loading = false;
             });

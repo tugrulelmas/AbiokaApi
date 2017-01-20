@@ -39,7 +39,7 @@
                     </md-tooltip>
                 </md-button>
                 <md-menu-content>
-                    <md-menu-item>
+                    <md-menu-item ng-show="$ctrl.user.Provider === 'Local'">
                         <a class="md-button md-ink-ripple" ui-sref="changePassword">
                             <span>{{'ChangePassword' | translate}}</span>
                         </a>

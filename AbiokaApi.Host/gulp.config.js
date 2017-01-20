@@ -29,6 +29,7 @@
               packageFolder + 'angular-messages/angular-messages.js',
               packageFolder + 'angular-material/angular-material.js',
               packageFolder + 'angular-material-data-table/dist/md-data-table.js',
+              packageFolder + 'satellizer/dist/satellizer.js',
               packageFolder + 'moment/moment.js',
               packageFolder + 'angular-moment/angular-moment.js',
               srcFolder + 'assets/js/base64.js', ],

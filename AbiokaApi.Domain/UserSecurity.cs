@@ -14,7 +14,7 @@ namespace AbiokaApi.Domain
 
         }
 
-        public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string refreshToken, string token, string password, string language, string name, string surname, string picture, Gender gender, bool isDeleted, IEnumerable<Role> roles)
+        public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string providerRefreshToken, string refreshToken, string token, string password, string language, string name, string surname, string picture, Gender gender, bool isDeleted, IEnumerable<Role> roles)
             : base(id, email, language, name, surname, picture, gender, roles) {
             AuthProvider = authProvider;
             ProviderToken = providerToken;
@@ -46,6 +46,14 @@ namespace AbiokaApi.Domain
         public virtual string ProviderToken { get; protected set; }
 
         /// <summary>
+        /// Gets or sets the provider refresh token.
+        /// </summary>
+        /// <value>
+        /// The provider refresh token.
+        /// </value>
+        public virtual string ProviderRefreshToken { get; protected set; }
+
+        /// <summary>
         /// Gets or sets the refresh token.
         /// </summary>
         /// <value>
@@ -73,13 +81,12 @@ namespace AbiokaApi.Domain
         /// Creates the token.
         /// </summary>
         /// <param name="abiokaToken">The abioka token.</param>
-        public virtual void CreateToken(IAbiokaToken abiokaToken) {
-            var localToken = Guid.NewGuid().ToString();
+        public virtual void CreateToken(IAbiokaToken abiokaToken, string newProviderToken) {
             var userInfo = new UserClaim {
                 Email = Email,
                 Id = Id,
-                Provider = AuthProvider.Local,
-                ProviderToken = localToken,
+                Provider = AuthProvider,
+                ProviderToken = newProviderToken,
                 Roles = Roles?.Select(r => r.Name).ToArray(),
                 RefreshToken = RefreshToken,
                 Language = Language
@@ -87,10 +94,13 @@ namespace AbiokaApi.Domain
 
             var token = abiokaToken.Encode(userInfo);
             Token = token;
-            ProviderToken = localToken;
+            ProviderToken = newProviderToken;
         }
 
         public virtual void ChangePassword(string oldPassword, string newPassword) {
+            if(AuthProvider != AuthProvider.Local)
+                throw new DenialException("PasswordCannotBeChanged");
+
             if (string.IsNullOrWhiteSpace(newPassword))
                 throw new DenialException("PasswordCannotBeEmpty");
 
@@ -104,6 +114,10 @@ namespace AbiokaApi.Domain
             RefreshToken = Guid.NewGuid().ToString();
         }
 
+        public virtual void UpdateProviderRefreshToken(string refreshToken) {
+            ProviderRefreshToken = refreshToken;
+        }
+
         /// <summary>
         /// Are the passwords equal.
         /// </summary>
@@ -113,11 +127,14 @@ namespace AbiokaApi.Domain
         public virtual bool ArePasswordEqual(string email, string password) => Password == ComputeHashPassword(email, password);
 
         private void ComputeHashPassword(string password) {
+            if (string.IsNullOrEmpty(password))
+                return;
+
             Password = ComputeHashPassword(Email, password);
         }
 
         private string ComputeHashPassword(string email, string password) => Util.GetHashText(string.Concat(email.ToLowerInvariant(), "#", password));
 
-        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, string.Empty, string.Empty, password, string.Empty, null, null, null, Gender.Male, isDeleted, null);
+        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, null, string.Empty, string.Empty, password, string.Empty, null, null, null, Gender.Male, isDeleted, null);
     }
 }

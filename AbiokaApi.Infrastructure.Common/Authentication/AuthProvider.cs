@@ -1,7 +1,12 @@
-﻿namespace AbiokaApi.Infrastructure.Common.Authentication
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace AbiokaApi.Infrastructure.Common.Authentication
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum AuthProvider
     {
-        Local
+        Local,
+        Google
     }
 }

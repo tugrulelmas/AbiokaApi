@@ -68,7 +68,7 @@ namespace AbiokaApi.UnitTest.Domain.Entities
             var password = "1234";
             var newPassword = "12345";
             var refreshToken = Guid.NewGuid().ToString();
-            var userSecurity = new UserSecurity(Guid.Empty, "test@abioka.com", AuthProvider.Local, string.Empty, refreshToken, string.Empty, password, string.Empty, null, null, null, Gender.Male, false, null);
+            var userSecurity = new UserSecurity(Guid.Empty, "test@abioka.com", AuthProvider.Local, string.Empty, null, refreshToken, string.Empty, password, string.Empty, null, null, null, Gender.Male, false, null);
 
             userSecurity.ChangePassword(password, newPassword);
 

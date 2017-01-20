@@ -12,30 +12,6 @@ namespace AbiokaApi.UnitTest.Service
     public class UserServiceTest
     {
         [Test]
-        public void Login_Set_Token() {
-            var password = "1234";
-
-            var userSecurity = UserSecurity.CreateBasic(
-                Guid.Empty,
-                "test@abioka.com",
-                password
-            );
-            userSecurity.Id = Guid.NewGuid();
-
-            var userService = UserServiceMock.Create();
-            userService.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
-            var token = Guid.NewGuid().ToString();
-            userService.AbiokaTokenMock.Setup(t => t.Encode(It.Is<UserClaim>(uc => uc.Email == userSecurity.Email && uc.Id == userSecurity.Id))).Returns(token);
-            userService.Login(new LoginRequest {
-                Email = userSecurity.Email,
-                Password = password
-            });
-
-            Assert.AreEqual(userSecurity.Token, token);
-            userService.UserSecurityRepositoryMock.Verify(us => us.Update(userSecurity), Times.Once());
-        }
-
-        [Test]
         public void Add_Calls_Repository_Add_Method_And_Returns_User() {
             var addUserRequest = new AddUserRequest {
                 Email = "test@abioka.com",

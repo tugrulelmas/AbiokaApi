@@ -154,7 +154,6 @@
     <Content Include="src\app\shared\token\tokenInjector.js" />
     <Content Include="src\app\shared\dbResources\adminResource.js" />
     <Content Include="src\app\shared\alert\alert.js" />
-    <Content Include="src\app\shared\authentication\localSignInService.js" />
     <Content Include="src\app\shared\translation\translationService.js" />
     <Content Include="src\app\shared\authentication\userService.js" />
     <Content Include="src\assets\css\content.css" />
@@ -203,6 +202,7 @@
     <Compile Include="Attributes\CustomDirectRouteProvider.cs" />
     <Compile Include="Attributes\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BaseReadController.cs" />
     <Compile Include="Controllers\BaseCrudController.cs" />

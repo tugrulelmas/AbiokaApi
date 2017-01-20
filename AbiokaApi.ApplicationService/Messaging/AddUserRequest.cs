@@ -1,7 +1,6 @@
 ﻿using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain.Repositories;
-using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
 using FluentValidation;
@@ -17,8 +16,6 @@ namespace AbiokaApi.ApplicationService.Messaging
         /// The password.
         /// </value>
         public string Password { get; set; }
-
-        public AuthProvider AuthProvider { get; set; }
     }
 
     public class RegisterUserRequest : AddUserRequest

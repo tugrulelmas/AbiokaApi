@@ -21,7 +21,7 @@ namespace AbiokaApi.ApplicationService.Implementations
             var menus = repository.Query().Where(m => m.Parent == null).ToList();
             IEnumerable<Menu> result = null;
             if (!currentContext.Current.Principal.IsInRole("Admin")) {
-                result = menus.Where(m => currentContext.Principal.Roles.Contains(m.Role.Name)).OrderBy(m => m.Order).ToList();
+                result = menus.Where(m => currentContext.Current.Principal.Roles.Contains(m.Role.Name)).OrderBy(m => m.Order).ToList();
             } else {
                 result = menus.OrderBy(m => m.Order).ToList();
             }

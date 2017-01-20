@@ -8,7 +8,8 @@
         'ui.router',
         'ngMaterial',
         'md.data.table',
-        'angularMoment']
+        'angularMoment',
+        'satellizer']
      )
      .run(run)
      .config(config);

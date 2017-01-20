@@ -9,7 +9,8 @@ namespace AbiokaApi.Repository.Mappings
         public UserSecurityMap() {
             Map(x => x.AuthProvider).Length(20);
             Map(x => x.Password);
-            Map(x => x.ProviderToken).Length(50);
+            Map(x => x.ProviderToken).Length(512);
+            Map(x => x.ProviderRefreshToken).Length(512);
             Map(x => x.RefreshToken).Length(50);
             Map(x => x.Token).Length(512);
 

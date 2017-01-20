@@ -102,11 +102,13 @@
     <Compile Include="IoC\ContextHolderTest.cs" />
     <Compile Include="IoC\UnitOfWorkTest.cs" />
     <Compile Include="Service\AddUserValidationTest.cs" />
+    <Compile Include="Service\LocalAuthServiceTest.cs" />
     <Compile Include="Service\LoginValidationTest.cs" />
     <Compile Include="Service\Mock\RoleValidatorMock.cs" />
     <Compile Include="Service\Mock\AddUserRequestValidatorMock.cs" />
-    <Compile Include="Service\Mock\LoginRequestValidatorMock.cs" />
+    <Compile Include="Service\Mock\AuthRequestValidatorMock.cs" />
     <Compile Include="Service\Mock\ReadServiceMock.cs" />
+    <Compile Include="Service\Mock\LocalAuthServiceMock.cs" />
     <Compile Include="Service\Mock\UserServiceMock.cs" />
     <Compile Include="Service\ReadServiceTest.cs" />
     <Compile Include="Service\RoleValidationTest.cs" />
@@ -114,7 +116,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

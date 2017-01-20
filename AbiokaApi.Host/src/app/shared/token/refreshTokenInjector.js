@@ -32,7 +32,7 @@
             }
 
             var $http = $injector.get("$http");
-            $http.get("/api/user/refreshToken/" + userInfo.RefreshToken).then(function (response) {
+            $http.post("/api/auth/refreshToken?refreshToken=" + userInfo.RefreshToken + "&provider=" + userInfo.Provider).then(function (response) {
                 userService.setUser(response.data, function (userData) {
                     deferred.resolve(config);
                 });

@@ -5,23 +5,23 @@ using Moq;
 
 namespace AbiokaApi.UnitTest.Service.Mock
 {
-    class LoginRequestValidatorMock : LoginRequestValidator
+    class AuthRequestValidatorMock : AuthRequestValidator
     {
         public readonly Mock<IUserSecurityRepository> UserSecurityRepositoryMock;
         public readonly Mock<ICurrentContext> CurrentContextMock;
         public readonly Mock<ILoginAttemptRepository> LoginAttemptRepositoryMock;
 
-        public LoginRequestValidatorMock(Mock<IUserSecurityRepository> userSecurityRepository, Mock<ILoginAttemptRepository> loginAttemptRepository, Mock<ICurrentContext> currentContext)
+        public AuthRequestValidatorMock(Mock<IUserSecurityRepository> userSecurityRepository, Mock<ILoginAttemptRepository> loginAttemptRepository, Mock<ICurrentContext> currentContext)
             : base(userSecurityRepository.Object, loginAttemptRepository.Object, currentContext.Object) {
             UserSecurityRepositoryMock = userSecurityRepository;
             CurrentContextMock = currentContext;
             LoginAttemptRepositoryMock = loginAttemptRepository;
         }
 
-        public new void DataValidate(LoginRequest instance, ActionType actionType) {
+        public new void DataValidate(AuthRequest instance, ActionType actionType) {
             base.DataValidate(instance, actionType);
         }
 
-        public static LoginRequestValidatorMock Create() => new LoginRequestValidatorMock(new Mock<IUserSecurityRepository>(), new Mock<ILoginAttemptRepository>(), new Mock<ICurrentContext>());
+        public static AuthRequestValidatorMock Create() => new AuthRequestValidatorMock(new Mock<IUserSecurityRepository>(), new Mock<ILoginAttemptRepository>(), new Mock<ICurrentContext>());
     }
 }

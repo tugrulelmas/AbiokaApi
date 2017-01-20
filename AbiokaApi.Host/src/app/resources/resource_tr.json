@@ -77,5 +77,6 @@
   "Gender": "Cinsiyet",
   "Male": "Erkek",
   "Female": "Kadın",
-  "Surname": "Soyad"
+  "Surname": "Soyad",
+  "UserIsRegisteredForLocal": "{0} adresi şifre ile kaydedilmiş. Lütfen email ve şifre yazarak giriş yapınız."
 }

@@ -8,20 +8,6 @@ namespace AbiokaApi.ApplicationService.Abstractions
     public interface IUserService : IReadService<UserDTO>
     {
         /// <summary>
-        /// Logins the specified login request.
-        /// </summary>
-        /// <param name="loginRequest">The login request.</param>
-        /// <returns></returns>
-        string Login(LoginRequest loginRequest);
-
-        /// <summary>
-        /// Refreshes the token.
-        /// </summary>
-        /// <param name="refreshToken">The refresh token.</param>
-        /// <returns></returns>
-        string RefreshToken(string refreshToken);
-
-        /// <summary>
         /// Adds the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
