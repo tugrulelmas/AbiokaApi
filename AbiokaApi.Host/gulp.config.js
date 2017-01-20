@@ -31,7 +31,7 @@
               packageFolder + 'angular-material/angular-material.js',
               packageFolder + 'angular-material-data-table/dist/md-data-table.js',
               packageFolder + 'angular-material-icons/angular-material-icons.js',
-              packageFolder + 'satellizer/dist/satellizer.js',
+              srcFolder + 'assets/js/satellizer.js',
               packageFolder + 'moment/moment.js',
               packageFolder + 'angular-moment/angular-moment.js',
               srcFolder + 'assets/js/base64.js', ],

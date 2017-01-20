@@ -175,6 +175,7 @@
     <Content Include="src\app\shared\dataTable\deleteDialog.html" />
     <Content Include="src\app\components\user\userDialog.html" />
     <Content Include="src\app\components\loginAttempt\loginAttempts.html" />
+    <Content Include="src\assets\js\satellizer.js" />
     <Content Include="src\Views\web.config" />
     <Content Include="src\Views\_ViewStart.cshtml" />
     <Content Include="src\Views\Home\Detail.cshtml" />
