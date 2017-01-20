@@ -80,5 +80,6 @@
   "Surname": "Surname",
   "UserIsRegisteredForLocal": "{0} is registered for 'email and password login'. Please type email and password to login.",
   "SignInWithGoogle": "Sign in with Google",
-  "SignInWithFacebook": "Sign in with Facebook"
+  "SignInWithFacebook": "Sign in with Facebook",
+  "or": "or"
 }
