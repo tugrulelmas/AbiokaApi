@@ -23,7 +23,8 @@ namespace AbiokaApi.ApplicationService
                 .Register<ICustomValidator<RegisterUserRequest>, AddUserRequestValidator>()
                 .RegisterWithBase(typeof(IEventHandler<>), typeof(RoleAddedToUserHandler))
                 .Register<IServiceInterceptor, RoleValidationInterceptor>()
-                .Register<IServiceInterceptor, DataValidationInterceptor>();
+                .Register<IServiceInterceptor, DataValidationInterceptor>()
+                .Register<IHttpClient, CustomHttpClient>();
         }
     }
 }

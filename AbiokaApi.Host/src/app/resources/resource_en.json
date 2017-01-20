@@ -78,5 +78,7 @@
   "Male": "Male",
   "Female": "Female",
   "Surname": "Surname",
-  "UserIsRegisteredForLocal": "{0} is registered for 'email and password login'. Please type email and password to login."
+  "UserIsRegisteredForLocal": "{0} is registered for 'email and password login'. Please type email and password to login.",
+  "SignInWithGoogle": "Sign in with Google",
+  "SignInWithFacebook": "Sign in with Facebook"
 }

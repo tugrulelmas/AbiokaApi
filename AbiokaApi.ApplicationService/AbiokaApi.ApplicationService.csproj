@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IHttpClient.cs" />
+    <Compile Include="Authentication\FacebookAuthService.cs" />
     <Compile Include="Authentication\IAuthService.cs" />
     <Compile Include="Abstractions\ICrudService.cs" />
     <Compile Include="Abstractions\IInstallationService.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Authentication\GoogleAuthService.cs" />
+    <Compile Include="Implementations\CustomHttpClient.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\MenuService.cs" />
     <Compile Include="Implementations\ReadService.cs" />

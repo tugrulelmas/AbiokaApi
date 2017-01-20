@@ -9,7 +9,8 @@
         'ngMaterial',
         'md.data.table',
         'angularMoment',
-        'satellizer']
+        'satellizer',
+        'ngMdIcons']
      )
      .run(run)
      .config(config);

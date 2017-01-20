@@ -18,7 +18,7 @@
                     <md-icon>https</md-icon>
                     <input type="password" name="password" ng-model="vm.user.Password" required="" md-maxlength="16" />
                     <validation-message model="loginForm.password" field-name="{{'Password' | translate}}"></validation-message>
-                </md-input-container> 
+                </md-input-container>
                 <md-checkbox ng-model="vm.rememberMe" aria-label="{{'RememberMe' | translate}}">
                     {{'RememberMe' | translate}}
                 </md-checkbox>
@@ -35,7 +35,20 @@
                     </div>
                 </md-input-container>
             </form>
-            <button ng-click="vm.authenticate('google')">Sign in with Google</button>
+            <div layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <md-button class="md-fab md-primary md-hue-2" ng-click="vm.authenticate('facebook')">
+                    <ng-md-icon icon="facebook"></ng-md-icon>
+                    <md-tooltip>
+                        {{'SignInWithFacebook' | translate}}
+                    </md-tooltip>
+                </md-button>
+                <md-button class="md-fab md-hue-2" ng-click="vm.authenticate('google')">
+                    <ng-md-icon icon="google-plus"></ng-md-icon>
+                    <md-tooltip>
+                        {{'SignInWithGoogle' | translate}}
+                    </md-tooltip>
+                </md-button>
+            </div>
         </md-card-content>
     </md-card>
 </md-content>

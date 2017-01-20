@@ -78,5 +78,7 @@
   "Male": "Erkek",
   "Female": "Kadın",
   "Surname": "Soyad",
-  "UserIsRegisteredForLocal": "{0} adresi şifre ile kaydedilmiş. Lütfen email ve şifre yazarak giriş yapınız."
+  "UserIsRegisteredForLocal": "{0} adresi şifre ile kaydedilmiş. Lütfen email ve şifre yazarak giriş yapınız.",
+  "SignInWithGoogle": "Google ile giriş yap",
+  "SignInWithFacebook": "Facebook ile giriş yap"
 }

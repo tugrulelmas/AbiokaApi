@@ -18,6 +18,7 @@ namespace AbiokaApi.Domain
             : base(id, email, language, name, surname, picture, gender, roles) {
             AuthProvider = authProvider;
             ProviderToken = providerToken;
+            ProviderRefreshToken = providerRefreshToken;
             RefreshToken = refreshToken;
             Token = token;
             IsDeleted = isDeleted;

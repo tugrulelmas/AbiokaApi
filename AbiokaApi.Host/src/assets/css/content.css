@@ -509,11 +509,11 @@ a.docs-logo {
         z-index: 2;
     }
 
-    .full-page[data-image="true"] toolbar h2 > span{
-        color:#FFF;
+    .full-page[data-image="true"] toolbar h2 > span {
+        color: #FFF;
     }
 
-    .full-page[data-image="true"]:before { 
+    .full-page[data-image="true"]:before {
         background-color: rgba(0, 0, 0, 0.5);
     }
 
@@ -539,3 +539,7 @@ a.docs-logo {
         background-size: cover;
         background-position: center center;
     }
+
+.md-button {
+    text-transform: none !important;
+}

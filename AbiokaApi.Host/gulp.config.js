@@ -16,6 +16,7 @@
         css: {
             src: [packageFolder + 'angular-material/angular-material.css',
               packageFolder + 'angular-material-data-table/dist/md-data-table.css',
+              packageFolder + 'angular-material-icons/angular-material-icons.css',
               srcFolder + 'assets/css/content.css'],
             dest: rootFolder + '/assets/content'
         },
@@ -29,6 +30,7 @@
               packageFolder + 'angular-messages/angular-messages.js',
               packageFolder + 'angular-material/angular-material.js',
               packageFolder + 'angular-material-data-table/dist/md-data-table.js',
+              packageFolder + 'angular-material-icons/angular-material-icons.js',
               packageFolder + 'satellizer/dist/satellizer.js',
               packageFolder + 'moment/moment.js',
               packageFolder + 'angular-moment/angular-moment.js',
