@@ -169,6 +169,8 @@ namespace AbiokaApi.ApplicationService.DTOs
                 Parent = parent,
                 Role = FromDomainObject<RoleDTO>(menu.Role as Role),
                 Children = FromDomainObject<MenuDTO>(menu.Children),
+                CreatedDate = menu.CreatedDate,
+                UpdatedDate = menu.UpdatedDate
             };
             return result;
         }

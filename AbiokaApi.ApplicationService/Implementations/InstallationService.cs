@@ -1,6 +1,9 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
-using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.ApplicationService.Messaging;
+using AbiokaApi.Domain;
+using AbiokaApi.Domain.Repositories;
+using AbiokaApi.Infrastructure.Common.Authentication;
+using AbiokaApi.Infrastructure.Common.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -8,29 +11,62 @@ namespace AbiokaApi.ApplicationService.Implementations
 {
     public class InstallationService : IInstallationService
     {
-        private readonly IUserService userService;
-        private readonly ICrudService<RoleDTO> roleService;
+        private readonly IUserSecurityRepository userSecurityRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IRoleRepository roleRepository;
+        private readonly IRepository<Menu> menuRepository;
 
-        public InstallationService(IUserService userService, ICrudService<RoleDTO> roleService) {
-            this.userService = userService;
-            this.roleService = roleService;
+        public InstallationService(IUserSecurityRepository userSecurityRepository, IUserRepository userRepository, IRoleRepository roleRepository, IRepository<Menu> menuRepository) {
+            this.userSecurityRepository = userSecurityRepository;
+            this.userRepository = userRepository;
+            this.roleRepository = roleRepository;
+            this.menuRepository = menuRepository;
         }
 
         public void CreateApplicationData(CreateApplicationDataRequest createApplicationDataRequest) {
-            var adminRole = new RoleDTO { Id = Guid.Empty, Name = "Admin" };
-            roleService.Add(adminRole);
-            var userRole = new RoleDTO { Id = Guid.Empty, Name = "User" };
-            roleService.Add(userRole);
+            var adminRole = new Role(Guid.Empty, "Admin");
+            roleRepository.Add(adminRole);
+            var userRole = new Role(Guid.Empty, "User");
+            roleRepository.Add(userRole);
 
-            var registerUserRequest = new RegisterUserRequest {
-                Email = createApplicationDataRequest.Email,
-                Password = createApplicationDataRequest.Password,
-                Roles = new List<RoleDTO> { adminRole }
-            };
+            var userSecurity = new UserSecurity(
+                Guid.Empty,
+                createApplicationDataRequest.Email,
+                AuthProvider.Local,
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString(),
+                string.Empty,
+                createApplicationDataRequest.Password,
+                "en",
+                "admin",
+                "admin",
+                null,
+                Gender.Male,
+                false,
+                new List<Role> { adminRole }
+            );
 
-            userService.Register(registerUserRequest);
+            userSecurityRepository.Add(userSecurity);
+
+            CreateMenus(adminRole, userRole);
         }
 
-        public bool IsInstallationRequired() => userService.Count() == 0;
+        private void CreateMenus(Role adminRole, Role userRole) {
+            var dashboardMenu = new Menu(Guid.Empty, "Dashboard", "/", 5, null, userRole, null);
+            menuRepository.Add(dashboardMenu);
+            var loginLogsMenu = new Menu(Guid.Empty, "LoginLogs", "/loginAttempts", 80, null, userRole, null);
+            menuRepository.Add(loginLogsMenu);
+            var adminMenu = new Menu(Guid.Empty, "Admin", "/", 10, null, adminRole, null);
+            menuRepository.Add(adminMenu);
+            var menusMenu = new Menu(Guid.Empty, "Menus", "/menus", 10, adminMenu, adminRole, null);
+            menuRepository.Add(menusMenu);
+            var usersMenu = new Menu(Guid.Empty, "Users", "/users", 1, adminMenu, adminRole, null);
+            menuRepository.Add(usersMenu);
+            var rolesMenu = new Menu(Guid.Empty, "Roles", "/roles", 4, adminMenu, adminRole, null);
+            menuRepository.Add(rolesMenu);
+        }
+
+        public bool IsInstallationRequired() => userRepository.Count() == 0;
     }
 }
