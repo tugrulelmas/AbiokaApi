@@ -11,7 +11,7 @@ This is a boilerplate framework helps you build fast, robust, and modern web app
 ##Covered Functionality##
 - [Authentication](#authentication)
 - [Authorization](#authorization)
-- [OAuth 2.0](#oauth-2-0)
+- [OAuth 2.0](#oauth-20)
 - [Validation](#validation)
 - [Localization](#localization)
 - Inversion of Control
