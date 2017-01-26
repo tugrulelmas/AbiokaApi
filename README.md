@@ -11,6 +11,7 @@ This is a boilerplate framework helps you build fast, robust, and modern web app
 ##Covered Functionality##
 - [Authentication](#authentication)
 - [Authorization](#authorization)
+- [OAuth 2](#oauth-2)
 - [Validation](#validation)
 - [Localization](#localization)
 - Inversion of Control
@@ -162,7 +163,7 @@ public class AddUserRequestValidator : CustomValidator<AddUserRequest>
 
 ## Authentication
 
-[JWT](http://jwt.io) is used for Authentication. Once the user is logged in, then JWT is generated and returned as a response. Each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. You may want to look at [AuthenticationHandler](#11-authenticationhandler)
+[JWT](http://jwt.io) is used for Authentication. Once the user is logged in, then JWT is generated and returned as a response. Each subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted with that token. You may want to look at [AuthenticationHandler](#11-authenticationhandler) 
 
 **Allow Anonymous**
 
@@ -190,6 +191,11 @@ public class UserController : BaseReadController<User>
     }
 }
 ```
+## OAuth 2
+
+Facebook and Google accounts can also used for login.
+
+[![Login](files/login.PNG)]
 
 ## Authorization
 
@@ -316,6 +322,8 @@ gulp
 ```
 
 Change connection string in [web.config](AbiokaApi.Host/Web.config)
+
+Change Facebook and Google's client and secret key's value in [web.config](AbiokaApi.Host/Web.config)
 
 Open the [AbiokaApi.sln](AbiokaApi.sln) with Visual Studio and then run the project.
 
