@@ -11,7 +11,7 @@ This is a boilerplate framework helps you build fast, robust, and modern web app
 ##Covered Functionality##
 - [Authentication](#authentication)
 - [Authorization](#authorization)
-- [OAuth 2](#oauth-2)
+- [OAuth 2.0](#oauth-2-0)
 - [Validation](#validation)
 - [Localization](#localization)
 - Inversion of Control
@@ -191,7 +191,7 @@ public class UserController : BaseReadController<User>
     }
 }
 ```
-## OAuth 2
+## OAuth 2.0
 
 Facebook and Google accounts can also used for login.
 
