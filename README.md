@@ -195,7 +195,7 @@ public class UserController : BaseReadController<User>
 
 Facebook and Google accounts can also used for login.
 
-[![Login](files/login.PNG)]
+![Login](files/login.PNG)
 
 ## Authorization
 
