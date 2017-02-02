@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/0oiw9f5woi46fjyo?svg=true)](https://ci.appveyor.com/project/tugrulelmas/abiokaapi) [![Build Status](https://travis-ci.org/tugrulelmas/AbiokaApi.svg?branch=master)](https://travis-ci.org/tugrulelmas/AbiokaApi)
+[![Build status](https://ci.appveyor.com/api/projects/status/0oiw9f5woi46fjyo?svg=true)](https://ci.appveyor.com/project/tugrulelmas/abiokaapi) [![Build Status](https://travis-ci.org/tugrulelmas/AbiokaApi.svg?branch=master)](https://travis-ci.org/tugrulelmas/AbiokaApi) [![abioka MyGet Build Status](https://www.myget.org/BuildSource/Badge/abioka?identifier=77345714-4b00-4c21-afa7-d58539087443)](https://www.myget.org/)
 
 # AbiokaApi
 
