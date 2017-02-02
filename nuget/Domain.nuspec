@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AbiokaApi.Domain</id>
+    <version>0.0.1</version>
+    <authors>Tugrul Elmas</authors>
+    <owners>abioka</owners>
+    <licenseUrl>https://github.com/tugrulelmas/AbiokaApi/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tugrulelmas/AbiokaApi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>First Release</releaseNotes>
+    <description>AbiokaApi Domain framework</description>
+    <copyright>Copyright ©2017 abioka</copyright>
+    <tags>web asp.net web api domain abioka</tags>
+    <dependencies>
+      <dependency id="AbiokaApi.Infrastructure.Common" version="0.0.1" />
+      <dependency id="Newtonsoft.Json" version="9.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\AbiokaApi.Domain\bin\Release\AbiokaApi.Domain.dll" target="lib\net461\AbiokaApi.Domain.dll" />
+	<file src="..\AbiokaApi.Domain\bin\Release\AbiokaApi.Domain.pdb" target="lib\net461\AbiokaApi.Domain.pdb" />
+  </files>
+</package>
