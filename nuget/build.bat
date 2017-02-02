@@ -11,7 +11,7 @@ if not "%PackageVersion%" == "" (
 
 set nuget=
 if "%nuget%" == "" (
-	set nuget=..\tools\nuget.exe
+	set nuget=.\tools\nuget.exe
 )
 
 %nuget% restore .\AbiokaApi.sln 
