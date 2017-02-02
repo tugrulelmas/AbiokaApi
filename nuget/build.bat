@@ -14,9 +14,9 @@ if "%nuget%" == "" (
 	set nuget=..\tools\nuget.exe
 )
 
-%nuget% restore ..\AbiokaApi.sln 
+%nuget% restore .\AbiokaApi.sln 
 
-"C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild" ..\AbiokaApi.sln /t:Build /p:Configuration="%config%" /flp:LogFile=msbuild.log;Verbosity=diag
+"C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild" .\AbiokaApi.sln /t:Build /p:Configuration="%config%" /flp:LogFile=msbuild.log;Verbosity=diag
 
 %nuget% pack "Domain.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
 %nuget% pack "Infrastructure.Common.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
