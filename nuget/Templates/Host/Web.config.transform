@@ -1,13 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<configuration>
+﻿<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <appSettings>
-    <add key="GoogleClientId" value="********.apps.googleusercontent.com"/>
-    <add key="GoogleClientSecret" value="********"/>
-    <add key="FacebookClientId" value="********"/>
-    <add key="FacebookClientSecret" value="********"/>
+    <add key="GoogleClientId" value="********.apps.googleusercontent.com" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="GoogleClientSecret" value="********" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="FacebookClientId" value="********" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
+    <add key="FacebookClientSecret" value="********" xdt:Transform="SetAttributes" xdt:Locator="Match(key)"/>
   </appSettings>
   <connectionStrings>
-    <add name="abioka" connectionString="" />
+    <add name="abioka" connectionString="" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
   </connectionStrings>
   <system.webServer>
     <validation validateIntegratedModeConfiguration="false" />
