@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>AbiokaApi.ApplicationService</id>
-    <version>0.0.1</version>
+    <version>$version$</version>
     <authors>Tugrul Elmas</authors>
     <owners>abioka</owners>
     <licenseUrl>https://github.com/tugrulelmas/AbiokaApi/blob/master/LICENSE</licenseUrl>
@@ -13,7 +13,7 @@
     <copyright>Copyright ©2017 abioka</copyright>
     <tags>web asp.net web api domain abioka</tags>
     <dependencies>
-      <dependency id="AbiokaApi.Repository" version="0.0.1" />
+      <dependency id="AbiokaApi.Repository" version="$version$" />
       <dependency id="FluentValidation" version="6.2.1.0" />
     </dependencies>
   </metadata>
