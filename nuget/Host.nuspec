@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>AbiokaApi.Host</id>
+    <version>$version$</version>
+    <authors>Tugrul Elmas</authors>
+    <owners>abioka</owners>
+    <licenseUrl>https://github.com/tugrulelmas/AbiokaApi/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/tugrulelmas/AbiokaApi</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>First Release</releaseNotes>
+    <description>AbiokaApi Domain framework</description>
+    <copyright>Copyright ©2017 abioka</copyright>
+    <tags>web asp.net web api domain abioka</tags>
+    <dependencies>
+      <dependency id="AbiokaApi.Service" version="$version$" />
+      <dependency id="AbiokaApi.Infrastructure.Framework" version="$version$" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.Razor" version="3.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="5.2.3" />
+      <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.3"/>
+      <dependency id="Microsoft.AspNet.WebPages" version="3.2.3"/>
+      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <dependency id="Newtonsoft.Json" version="9.0.1"/>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\AbiokaApi.Host\src\**\*.*" target="content\src" />
+    <file src="..\AbiokaApi.Host\gulpfile.js" target="content" />
+    <file src="..\AbiokaApi.Host\gulp.config.js" target="content" />
+    <file src="..\AbiokaApi.Host\package.json" target="content" />
+    <file src="Templates\Host\**\*.*" target="content" />
+  </files>
+</package>

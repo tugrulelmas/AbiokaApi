@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Infrastructure.Common", "AbiokaApi.Infrastructure.Common\AbiokaApi.Infrastructure.Common.csproj", "{1B91BA21-B8E2-4A84-9221-9E9365EFD4DD}"
 EndProject
@@ -16,6 +16,55 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.UnitTest", "AbiokaApi.UnitTest\AbiokaApi.UnitTest.csproj", "{02A2DDE0-1E78-4B86-AA04-4E9A26BB4B07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Host", "AbiokaApi.Host\AbiokaApi.Host.csproj", "{8C8C8D37-7073-410B-8B28-0F2810D581FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4AE244E5-A5C7-4311-9027-0B2C4544DF6B}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\ApplicationService.nuspec = nuget\ApplicationService.nuspec
+		nuget\build.bat = nuget\build.bat
+		nuget\Domain.nuspec = nuget\Domain.nuspec
+		nuget\Host.nuspec = nuget\Host.nuspec
+		nuget\Infrastructure.Common.nuspec = nuget\Infrastructure.Common.nuspec
+		nuget\Infrastructure.Framework.nuspec = nuget\Infrastructure.Framework.nuspec
+		nuget\Repository.nuspec = nuget\Repository.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{7BA44700-3485-44DA-9817-91B775A01036}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{125EF53C-4049-45A5-8320-D69B8D1E7775}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Templates\Host\Bootstrapper.cs.pp = nuget\Templates\Host\Bootstrapper.cs.pp
+		nuget\Templates\Host\DIControllerActivator.cs.pp = nuget\Templates\Host\DIControllerActivator.cs.pp
+		nuget\Templates\Host\Global.asax.cs.pp = nuget\Templates\Host\Global.asax.cs.pp
+		nuget\Templates\Host\Global.asax.pp = nuget\Templates\Host\Global.asax.pp
+		nuget\Templates\Host\Web.config.transform = nuget\Templates\Host\Web.config.transform
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{0F93B9CA-6B02-42D5-BDC1-73F466465E3F}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Templates\Host\Controllers\AuthController.cs.pp = nuget\Templates\Host\Controllers\AuthController.cs.pp
+		nuget\Templates\Host\Controllers\BaseApiController.cs.pp = nuget\Templates\Host\Controllers\BaseApiController.cs.pp
+		nuget\Templates\Host\Controllers\BaseCrudController.cs.pp = nuget\Templates\Host\Controllers\BaseCrudController.cs.pp
+		nuget\Templates\Host\Controllers\BaseReadController.cs.pp = nuget\Templates\Host\Controllers\BaseReadController.cs.pp
+		nuget\Templates\Host\Controllers\HomeController.cs.pp = nuget\Templates\Host\Controllers\HomeController.cs.pp
+		nuget\Templates\Host\Controllers\InstallationController.cs.pp = nuget\Templates\Host\Controllers\InstallationController.cs.pp
+		nuget\Templates\Host\Controllers\LoginAttemptController.cs.pp = nuget\Templates\Host\Controllers\LoginAttemptController.cs.pp
+		nuget\Templates\Host\Controllers\MenuController.cs.pp = nuget\Templates\Host\Controllers\MenuController.cs.pp
+		nuget\Templates\Host\Controllers\RoleController.cs.pp = nuget\Templates\Host\Controllers\RoleController.cs.pp
+		nuget\Templates\Host\Controllers\UserController.cs.pp = nuget\Templates\Host\Controllers\UserController.cs.pp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Attributes", "Attributes", "{05823456-D6CE-4DED-96B0-374380114B9F}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Templates\Host\Attributes\CustomActionFilter.cs.pp = nuget\Templates\Host\Attributes\CustomActionFilter.cs.pp
+		nuget\Templates\Host\Attributes\CustomDirectRouteProvider.cs.pp = nuget\Templates\Host\Attributes\CustomDirectRouteProvider.cs.pp
+		nuget\Templates\Host\Attributes\CustomExceptionFilterAttribute.cs.pp = nuget\Templates\Host\Attributes\CustomExceptionFilterAttribute.cs.pp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{E43808A5-52E5-4C41-87D3-829A1D0E8A6A}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Templates\Host\App_Start\RouteConfig.cs.pp = nuget\Templates\Host\App_Start\RouteConfig.cs.pp
+		nuget\Templates\Host\App_Start\WebApiConfig.cs.pp = nuget\Templates\Host\App_Start\WebApiConfig.cs.pp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,5 +103,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7BA44700-3485-44DA-9817-91B775A01036} = {4AE244E5-A5C7-4311-9027-0B2C4544DF6B}
+		{125EF53C-4049-45A5-8320-D69B8D1E7775} = {7BA44700-3485-44DA-9817-91B775A01036}
+		{0F93B9CA-6B02-42D5-BDC1-73F466465E3F} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
+		{05823456-D6CE-4DED-96B0-374380114B9F} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
+		{E43808A5-52E5-4C41-87D3-829A1D0E8A6A} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
 	EndGlobalSection
 EndGlobal
