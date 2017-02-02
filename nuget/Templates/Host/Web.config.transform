@@ -3,7 +3,7 @@
   <appSettings>
     <add key="GoogleClientId" value="********.apps.googleusercontent.com"/>
     <add key="GoogleClientSecret" value="********"/>
-    <add key="FacebookClientId" value="********"/>"/>
+    <add key="FacebookClientId" value="********"/>
     <add key="FacebookClientSecret" value="********"/>
   </appSettings>
   <connectionStrings>
