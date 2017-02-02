@@ -1,4 +1,4 @@
-﻿using AbiokaApi.Host.Attributes;
+﻿using $rootnamespace$.Attributes;
 using System.Linq;
 using System.Web.Http;
 
