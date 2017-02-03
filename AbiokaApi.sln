@@ -36,7 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{125EF53C-4
 		nuget\Templates\Host\DIControllerActivator.cs.pp = nuget\Templates\Host\DIControllerActivator.cs.pp
 		nuget\Templates\Host\Global.asax.cs.pp = nuget\Templates\Host\Global.asax.cs.pp
 		nuget\Templates\Host\Global.asax.pp = nuget\Templates\Host\Global.asax.pp
-		nuget\Templates\Host\Web.config.transform = nuget\Templates\Host\Web.config.transform
+		nuget\Templates\Host\web.config.install.xdt = nuget\Templates\Host\web.config.install.xdt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers", "{0F93B9CA-6B02-42D5-BDC1-73F466465E3F}"
