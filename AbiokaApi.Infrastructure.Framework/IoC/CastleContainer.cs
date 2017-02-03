@@ -95,7 +95,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         }
 
         public IDependencyContainer UsingFactoryMethod<T>(Func<T> func) {
-            container.Register(Component.For(typeof(T)).UsingFactoryMethod(func).LifeStyle.Singleton);
+            RegisterComponent(Component.For(typeof(T)).UsingFactoryMethod(func), LifeStyle.Singleton);
             return this;
         }
 
