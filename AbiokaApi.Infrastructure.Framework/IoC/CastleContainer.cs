@@ -20,8 +20,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         /// Resolve the target type with necessary dependencies.
         /// </summary>
         public object Resolve(Type targetType) {
-            if (container.Kernel.HasComponent(targetType))
-            {
+            if (container.Kernel.HasComponent(targetType)) {
                 return container.Resolve(targetType);
             }
             return null;
@@ -31,8 +30,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         /// Resolves all registered instances for a specific service type.
         /// </summary>
         public IList<object> ResolveAll(Type serviceType) {
-            if (container.Kernel.HasComponent(serviceType))
-            {
+            if (container.Kernel.HasComponent(serviceType)) {
                 return new List<object>((object[])container.ResolveAll(serviceType));
             }
             return null;
@@ -44,10 +42,10 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
 
         public IEnumerable<T> ResolveAll<T>() => container.ResolveAll<T>();
 
-        public IDependencyContainer Register<T>(LifeStyle lifeStyle) => Register(typeof(T), lifeStyle);
+        public IDependencyContainer Register<T>(LifeStyle lifeStyle, bool isFallback) => Register(typeof(T), lifeStyle, isFallback);
 
-        public IDependencyContainer Register(Type type, LifeStyle lifeStyle) {
-            RegisterComponent(Component.For(type), lifeStyle);
+        public IDependencyContainer Register(Type type, LifeStyle lifeStyle, bool isFallback) {
+            RegisterComponent(Component.For(type), lifeStyle, isFallback);
             return this;
         }
 
@@ -61,28 +59,28 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         public IDependencyContainer RegisterService<T1, T2>(LifeStyle lifeStyle) => RegisterService(typeof(T1), typeof(T2), lifeStyle);
 
         public IDependencyContainer RegisterService(Type type1, Type type2, LifeStyle lifeStyle) {
-            RegisterComponent(Component.For(type1).ImplementedBy(type2).Interceptors<ServiceInterceptor>(), lifeStyle);
+            RegisterComponent(Component.For(type1).ImplementedBy(type2).Interceptors<ServiceInterceptor>(), lifeStyle, false);
             return this;
         }
 
         public IDependencyContainer RegisterWithDefaultInterfaces<T1, T2>() => RegisterWithDefaultInterfaces(typeof(T1), typeof(T2));
 
         public IDependencyContainer RegisterWithDefaultInterfaces(Type type1, Type type2) {
-            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.DefaultInterfaces().Configure(c => c.LifestyleSingleton().Named(Guid.NewGuid().ToString())));
+            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.DefaultInterfaces().Configure(c => c.LifestyleSingleton().NamedAutomatically(Guid.NewGuid().ToString())));
             return this;
         }
 
         public IDependencyContainer RegisterWithBase<T1, T2>() => RegisterWithBase(typeof(T1), typeof(T2));
 
         public IDependencyContainer RegisterWithBase(Type type1, Type type2) {
-            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.Base().Configure(c => c.LifestyleSingleton().Named(Guid.NewGuid().ToString())));
+            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.Base().Configure(c => c.LifestyleSingleton().NamedAutomatically(Guid.NewGuid().ToString())));
             return this;
         }
 
-        public IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle) => Register(typeof(T1), typeof(T2), lifeStyle);
+        public IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle, bool isFallback) => Register(typeof(T1), typeof(T2), lifeStyle, isFallback);
 
-        public IDependencyContainer Register(Type type1, Type type2, LifeStyle lifeStyle) {
-            RegisterComponent(Component.For(type1).ImplementedBy(type2), lifeStyle);
+        public IDependencyContainer Register(Type type1, Type type2, LifeStyle lifeStyle, bool isFallback) {
+            RegisterComponent(Component.For(type1).ImplementedBy(type2), lifeStyle, isFallback);
             return this;
         }
 
@@ -94,20 +92,24 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
             container.Dispose();
         }
 
-        public IDependencyContainer UsingFactoryMethod<T>(Func<T> func) {
-            RegisterComponent(Component.For(typeof(T)).UsingFactoryMethod(func), LifeStyle.Singleton);
+        public IDependencyContainer UsingFactoryMethod<T>(Func<T> func, bool isFallback) {
+            RegisterComponent(Component.For(typeof(T)).UsingFactoryMethod(func), LifeStyle.Singleton, isFallback);
             return this;
         }
 
-        private void RegisterComponent<T>(ComponentRegistration<T> componentRegistration, LifeStyle lifeStyle) where T: class {
+        private void RegisterComponent<T>(ComponentRegistration<T> componentRegistration, LifeStyle lifeStyle, bool isFallback) where T : class {
             var lifestyleDescriptor = new LifestyleDescriptor<T>(GetLifestyleType(lifeStyle));
             componentRegistration.AddDescriptor(lifestyleDescriptor);
+
+            if (isFallback) {
+                componentRegistration = componentRegistration.IsFallback().NamedAutomatically(Guid.NewGuid().ToString());
+            }
+
             container.Register(componentRegistration);
         }
 
         private LifestyleType GetLifestyleType(LifeStyle lifeStyle) {
-            switch (lifeStyle)
-            {
+            switch (lifeStyle) {
                 case LifeStyle.PerThread:
                     return LifestyleType.Thread;
                 case LifeStyle.PerWebRequest:

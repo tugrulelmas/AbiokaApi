@@ -38,7 +38,7 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         /// <typeparam name="T"></typeparam>
         /// <param name="lifeStyle">The life style.</param>
         /// <returns></returns>
-        IDependencyContainer Register<T>(LifeStyle lifeStyle);
+        IDependencyContainer Register<T>(LifeStyle lifeStyle, bool isFallback = false);
 
         /// <summary>
         /// Registers the specified type.
@@ -46,7 +46,7 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         /// <param name="type">The type.</param>
         /// <param name="lifeStyle">The life style.</param>
         /// <returns></returns>
-        IDependencyContainer Register(Type type, LifeStyle lifeStyle);
+        IDependencyContainer Register(Type type, LifeStyle lifeStyle, bool isFallback = false);
        
         /// <summary>
         /// Registers the services.
@@ -103,7 +103,7 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         /// <typeparam name="T"></typeparam>
         /// <param name="func">The function.</param>
         /// <returns></returns>
-        IDependencyContainer UsingFactoryMethod<T>(Func<T> func);
+        IDependencyContainer UsingFactoryMethod<T>(Func<T> func, bool isFallback = false);
 
         /// <summary>
         /// Registers the specified type.
@@ -112,7 +112,7 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         /// <typeparam name="T2">The type of the 2.</typeparam>
         /// <param name="lifeStyle">The life style.</param>
         /// <returns></returns>
-        IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle = LifeStyle.Singleton);
+        IDependencyContainer Register<T1, T2>(LifeStyle lifeStyle = LifeStyle.Singleton, bool isFallback = false);
 
         /// <summary>
         /// Registers the specified type1.
@@ -121,6 +121,6 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         /// <param name="type2">The type2.</param>
         /// <param name="lifeStyle">The life style.</param>
         /// <returns></returns>
-        IDependencyContainer Register(Type type1, Type type2, LifeStyle lifeStyle = LifeStyle.Singleton);
+        IDependencyContainer Register(Type type1, Type type2, LifeStyle lifeStyle = LifeStyle.Singleton, bool isFallback = false);
     }
 }

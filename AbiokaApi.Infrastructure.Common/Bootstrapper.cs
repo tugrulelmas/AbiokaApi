@@ -10,11 +10,11 @@ namespace AbiokaApi.Infrastructure.Common
     {
         public static void Initialise() {
             DependencyContainer.Container
-                .Register<IConnectionStringRepository, WebConfigConnectionStringRepository>()
-                .Register<IContextHolder, ContextHolder>()
+                .Register<IConnectionStringRepository, WebConfigConnectionStringRepository>(isFallback: true)
+                .Register<IContextHolder, ContextHolder>(isFallback: true)
                 .Register<IExceptionAdapterFactory, ExceptionAdapterFactory>()
-                .Register<ICurrentContext, CurrentContext>(LifeStyle.PerWebRequest)
-                .Register<IEventDispatcher, EventDispatcher>();
+                .Register<ICurrentContext, CurrentContext>(LifeStyle.PerWebRequest, true)
+                .Register<IEventDispatcher, EventDispatcher>(isFallback: true);
         }
     }
 }

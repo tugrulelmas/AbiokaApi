@@ -7,12 +7,12 @@ using AbiokaApi.Infrastructure.Framework.IoC;
 
 namespace AbiokaApi.Infrastructure.Framework
 {
-   public class Bootstrapper
+    public class Bootstrapper
     {
         public static void Initialise() {
             DependencyContainer.Container
                 .Register<ServiceInterceptor>(LifeStyle.Transient)
-                .Register<IAbiokaToken, AbiokaToken>()
+                .Register<IAbiokaToken, AbiokaToken>(isFallback: true)
                 .Register<IDynamicHandler, AuthenticationHandler>(LifeStyle.PerWebRequest)
                 .Register<IDynamicHandler, ExceptionHandler>();
         }

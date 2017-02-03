@@ -12,12 +12,12 @@ namespace AbiokaApi.Repository
             Infrastructure.Common.Bootstrapper.Initialise();
 
             DependencyContainer.Container
-                .UsingFactoryMethod(SessionFactory.CreateNhSessionFactory)
+                .UsingFactoryMethod(SessionFactory.CreateNhSessionFactory, true)
                 .RegisterWithDefaultInterfaces(typeof(IRepository<>), typeof(Repository<>))
                 .Register<IRepository<LoginAttempt>, LoginAttemptRepository>()
                 .Register<IDynamicHandler, NhUnitOfWorkHandler>(LifeStyle.PerWebRequest)
-                .Register<IUnitOfWork, UnitOfWork>(LifeStyle.PerWebRequest)
-                .Register<IDisposableUnitOfWork, DisposableUnitOfWork>(LifeStyle.Transient);
+                .Register<IUnitOfWork, UnitOfWork>(LifeStyle.PerWebRequest, true)
+                .Register<IDisposableUnitOfWork, DisposableUnitOfWork>(LifeStyle.Transient, true);
         }
     }
 }
