@@ -19,6 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbiokaApi.Host", "AbiokaApi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4AE244E5-A5C7-4311-9027-0B2C4544DF6B}"
 	ProjectSection(SolutionItems) = preProject
+		nuget\All.nuspec = nuget\All.nuspec
 		nuget\ApplicationService.nuspec = nuget\ApplicationService.nuspec
 		nuget\build.bat = nuget\build.bat
 		nuget\Domain.nuspec = nuget\Domain.nuspec
