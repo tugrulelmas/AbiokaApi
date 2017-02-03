@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace $rootnamespace$.Attributes
+namespace AbiokaApi.Infrastructure.Framework.RestHelper.Attributes
 {
     public class CustomActionFilter : ActionFilterAttribute
     {

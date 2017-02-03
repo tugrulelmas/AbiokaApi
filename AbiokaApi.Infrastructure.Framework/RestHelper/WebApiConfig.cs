@@ -1,8 +1,8 @@
-﻿using AbiokaApi.Host.Attributes;
+﻿using AbiokaApi.Infrastructure.Framework.RestHelper.Attributes;
 using System.Linq;
 using System.Web.Http;
 
-namespace AbiokaApi.Host
+namespace AbiokaApi.Infrastructure.Framework.RestHelper
 {
     public class WebApiConfig
     {

@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 
-namespace AbiokaApi.Host
+namespace AbiokaApi.Infrastructure.Framework.RestHelper
 {
     public class DIControllerActivator : IHttpControllerActivator
     {

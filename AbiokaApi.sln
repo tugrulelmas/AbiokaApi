@@ -34,7 +34,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{125EF53C-4049-45A5-8320-D69B8D1E7775}"
 	ProjectSection(SolutionItems) = preProject
 		nuget\Templates\Host\Bootstrapper.cs.pp = nuget\Templates\Host\Bootstrapper.cs.pp
-		nuget\Templates\Host\DIControllerActivator.cs.pp = nuget\Templates\Host\DIControllerActivator.cs.pp
 		nuget\Templates\Host\Global.asax.cs.pp = nuget\Templates\Host\Global.asax.cs.pp
 		nuget\Templates\Host\Global.asax.pp = nuget\Templates\Host\Global.asax.pp
 		nuget\Templates\Host\web.config.install.xdt = nuget\Templates\Host\web.config.install.xdt
@@ -54,17 +53,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controllers", "Controllers"
 		nuget\Templates\Host\Controllers\UserController.cs.pp = nuget\Templates\Host\Controllers\UserController.cs.pp
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Attributes", "Attributes", "{05823456-D6CE-4DED-96B0-374380114B9F}"
-	ProjectSection(SolutionItems) = preProject
-		nuget\Templates\Host\Attributes\CustomActionFilter.cs.pp = nuget\Templates\Host\Attributes\CustomActionFilter.cs.pp
-		nuget\Templates\Host\Attributes\CustomDirectRouteProvider.cs.pp = nuget\Templates\Host\Attributes\CustomDirectRouteProvider.cs.pp
-		nuget\Templates\Host\Attributes\CustomExceptionFilterAttribute.cs.pp = nuget\Templates\Host\Attributes\CustomExceptionFilterAttribute.cs.pp
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Start", "App_Start", "{E43808A5-52E5-4C41-87D3-829A1D0E8A6A}"
 	ProjectSection(SolutionItems) = preProject
 		nuget\Templates\Host\App_Start\RouteConfig.cs.pp = nuget\Templates\Host\App_Start\RouteConfig.cs.pp
-		nuget\Templates\Host\App_Start\WebApiConfig.cs.pp = nuget\Templates\Host\App_Start\WebApiConfig.cs.pp
 	EndProjectSection
 EndProject
 Global
@@ -109,7 +100,6 @@ Global
 		{7BA44700-3485-44DA-9817-91B775A01036} = {4AE244E5-A5C7-4311-9027-0B2C4544DF6B}
 		{125EF53C-4049-45A5-8320-D69B8D1E7775} = {7BA44700-3485-44DA-9817-91B775A01036}
 		{0F93B9CA-6B02-42D5-BDC1-73F466465E3F} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
-		{05823456-D6CE-4DED-96B0-374380114B9F} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
 		{E43808A5-52E5-4C41-87D3-829A1D0E8A6A} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
 	EndGlobalSection
 EndGlobal

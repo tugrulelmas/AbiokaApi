@@ -3,7 +3,7 @@ using AbiokaApi.Infrastructure.Common.IoC;
 using System.Linq;
 using System.Web.Http.Filters;
 
-namespace AbiokaApi.Host.Attributes
+namespace AbiokaApi.Infrastructure.Framework.RestHelper.Attributes
 {
     public class CustomExceptionFilterAttribute : ExceptionFilterAttribute
     {

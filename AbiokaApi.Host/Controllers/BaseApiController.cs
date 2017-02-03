@@ -1,4 +1,4 @@
-﻿using AbiokaApi.Host.Attributes;
+﻿using AbiokaApi.Infrastructure.Framework.RestHelper.Attributes;
 using System.Web.Http;
 
 namespace AbiokaApi.Host.Controllers

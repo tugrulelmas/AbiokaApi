@@ -198,10 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Attributes\CustomActionFilter.cs" />
-    <Compile Include="Attributes\CustomDirectRouteProvider.cs" />
-    <Compile Include="Attributes\CustomExceptionFilterAttribute.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
@@ -213,7 +209,6 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="DIControllerActivator.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

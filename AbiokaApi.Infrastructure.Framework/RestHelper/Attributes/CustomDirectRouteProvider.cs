@@ -2,7 +2,7 @@
 using System.Web.Http.Controllers;
 using System.Web.Http.Routing;
 
-namespace $rootnamespace$.Attributes
+namespace AbiokaApi.Infrastructure.Framework.RestHelper.Attributes
 {
     public class CustomDirectRouteProvider : DefaultDirectRouteProvider
     {

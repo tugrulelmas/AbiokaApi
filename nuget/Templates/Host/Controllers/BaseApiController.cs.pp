@@ -1,4 +1,4 @@
-﻿using $rootnamespace$.Attributes;
+﻿using AbiokaApi.Infrastructure.Framework.RestHelper.Attributes;
 using System.Web.Http;
 
 namespace $rootnamespace$.Controllers
