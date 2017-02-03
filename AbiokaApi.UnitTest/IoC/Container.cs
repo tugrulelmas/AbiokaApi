@@ -17,7 +17,7 @@ namespace AbiokaApi.UnitTest.IoC
         [Test]
         public void RegisterAndResolve() {
             DependencyContainer.Container.Register<ServiceInterceptor>(LifeStyle.Transient)
-                .RegisterServices<IDummyService>()
+                .RegisterServices<IDummyService, IDummyService>()
                 .Register<IServiceInterceptor, Interceptor>();
 
             var dummy = DependencyContainer.Container.Resolve<IDummyService>();

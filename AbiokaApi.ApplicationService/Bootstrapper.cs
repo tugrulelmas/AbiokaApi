@@ -16,7 +16,7 @@ namespace AbiokaApi.ApplicationService
         public static void Initialise() {
             Repository.Bootstrapper.Initialise();
             DependencyContainer.Container
-                .RegisterServices<IService>()
+                .RegisterServices<IService, IService>()
                 .RegisterService<ICrudService<RoleDTO>, CrudService<Role, RoleDTO>>()
                 .RegisterService<IReadService<LoginAttemptDTO>, ReadService<LoginAttempt, LoginAttemptDTO>>()
                 .RegisterWithBase(typeof(ICustomValidator<>), typeof(CustomValidator<>))

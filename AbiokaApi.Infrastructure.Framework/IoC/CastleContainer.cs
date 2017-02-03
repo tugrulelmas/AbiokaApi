@@ -51,10 +51,10 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
             return this;
         }
 
-        public IDependencyContainer RegisterServices<T>() => RegisterServices(typeof(T));
+        public IDependencyContainer RegisterServices<T1, T2>() => RegisterServices(typeof(T1), typeof(T2));
 
-        private IDependencyContainer RegisterServices(Type type) {
-            container.Register(Classes.FromAssemblyContaining(type).BasedOn(type).WithService.FromInterface().Configure(c => c.LifestyleSingleton().Interceptors<ServiceInterceptor>()));
+        private IDependencyContainer RegisterServices(Type type1, Type type2) {
+            container.Register(Classes.FromAssemblyContaining(type2).BasedOn(type1).WithService.FromInterface().Configure(c => c.LifestyleSingleton().Interceptors<ServiceInterceptor>()));
             return this;
         }
 
