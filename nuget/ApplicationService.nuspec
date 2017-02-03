@@ -13,7 +13,6 @@
     <copyright>Copyright ©2017 abioka</copyright>
     <tags>web asp.net web api domain abioka</tags>
     <dependencies>
-      <dependency id="AbiokaApi.Infrastructure.Common" version="$version$" />
       <dependency id="FluentValidation" version="6.2.1.0" />
     </dependencies>
   </metadata>
