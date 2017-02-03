@@ -8,7 +8,7 @@
   </appSettings>
   <connectionStrings>
     <add name="abioka" connectionString="abiokaDB" 
-         xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
+         xdt:Transform="Replace" xdt:Locator="Match(name)" />
   </connectionStrings>
   <system.webServer>
     <validation validateIntegratedModeConfiguration="false" />
