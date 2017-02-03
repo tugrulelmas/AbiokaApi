@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
-    <id>AbiokaApi.ApplicationService</id>
+    <id>AbiokaApi.All</id>
     <version>$version$</version>
     <authors>Tugrul Elmas</authors>
     <owners>abioka</owners>
@@ -13,11 +13,9 @@
     <copyright>Copyright ©2017 abioka</copyright>
     <tags>web asp.net web api domain abioka</tags>
     <dependencies>
-      <dependency id="FluentValidation" version="6.2.1.0" />
+      <dependency id="AbiokaApi.Domain" version="$version$" />
+      <dependency id="AbiokaApi.Repository" version="$version$" />
+      <dependency id="AbiokaApi.Host" version="$version$" />
     </dependencies>
   </metadata>
-  <files>
-    <file src="..\AbiokaApi.ApplicationService\bin\Release\AbiokaApi.ApplicationService.dll" target="lib\net461\AbiokaApi.ApplicationService.dll" />
-	<file src="..\AbiokaApi.ApplicationService\bin\Release\AbiokaApi.ApplicationService.pdb" target="lib\net461\AbiokaApi.ApplicationService.pdb" />
-  </files>
 </package>

@@ -13,7 +13,6 @@
     <copyright>Copyright ©2017 abioka</copyright>
     <tags>web asp.net web api domain abioka</tags>
     <dependencies>
-      <dependency id="AbiokaApi.Domain" version="$version$" />
       <dependency id="Newtonsoft.Json" version="9.0" />
       <dependency id="FluentNHibernate" version="2.0.3.0" />
       <dependency id="Iesi.Collections" version="4.0.0.4000" />
