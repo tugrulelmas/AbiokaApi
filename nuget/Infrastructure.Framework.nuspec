@@ -23,6 +23,6 @@
   </metadata>
   <files>
     <file src="..\AbiokaApi.Infrastructure.Framework\bin\Release\AbiokaApi.Infrastructure.Framework.dll" target="lib\net461\AbiokaApi.Infrastructure.Framework.dll" />
-	<file src="..\AbiokaApi.Infrastructure.Framework\bin\Release\AbiokaApi.Infrastructure.Framework.pdb" target="lib\net461\AbiokaApi.Infrastructure.Framework.pdb" />
+	  <file src="..\AbiokaApi.Infrastructure.Framework\bin\Release\AbiokaApi.Infrastructure.Framework.pdb" target="lib\net461\AbiokaApi.Infrastructure.Framework.pdb" />
   </files>
 </package>

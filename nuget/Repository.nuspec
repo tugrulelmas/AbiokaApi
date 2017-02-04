@@ -22,6 +22,7 @@
   </metadata>
   <files>
     <file src="..\AbiokaApi.Repository\bin\Release\AbiokaApi.Repository.dll" target="lib\net461\AbiokaApi.Repository.dll" />
-	<file src="..\AbiokaApi.Repository\bin\Release\AbiokaApi.Repository.pdb" target="lib\net461\AbiokaApi.Repository.pdb" />
+	  <file src="..\AbiokaApi.Repository\bin\Release\AbiokaApi.Repository.pdb" target="lib\net461\AbiokaApi.Repository.pdb" />
+    <file src="Templates\Infrastructure.Framework\SessionFactory.cs.pp" target="content" />
   </files>
 </package>

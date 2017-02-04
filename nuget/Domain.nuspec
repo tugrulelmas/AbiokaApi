@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>First Release</releaseNotes>
     <description>AbiokaApi Domain framework</description>
-    <copyright>Copyright ©2017 abioka</copyright>
+    <copyright>Copyright Â©2017 abioka</copyright>
     <tags>web asp.net web api domain abioka</tags>
     <dependencies>
       <dependency id="AbiokaApi.Infrastructure.Common" version="$version$" />
@@ -19,6 +19,6 @@
   </metadata>
   <files>
     <file src="..\AbiokaApi.Domain\bin\Release\AbiokaApi.Domain.dll" target="lib\net461\AbiokaApi.Domain.dll" />
-	<file src="..\AbiokaApi.Domain\bin\Release\AbiokaApi.Domain.pdb" target="lib\net461\AbiokaApi.Domain.pdb" />
+	  <file src="..\AbiokaApi.Domain\bin\Release\AbiokaApi.Domain.pdb" target="lib\net461\AbiokaApi.Domain.pdb" />
   </files>
 </package>

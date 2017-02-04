@@ -18,6 +18,6 @@
   </metadata>
   <files>
     <file src="..\AbiokaApi.Infrastructure.Common\bin\Release\AbiokaApi.Infrastructure.Common.dll" target="lib\net461\AbiokaApi.Infrastructure.Common.dll" />
-	<file src="..\AbiokaApi.Infrastructure.Common\bin\Release\AbiokaApi.Infrastructure.Common.pdb" target="lib\net461\AbiokaApi.Infrastructure.Common.pdb" />
+	  <file src="..\AbiokaApi.Infrastructure.Common\bin\Release\AbiokaApi.Infrastructure.Common.pdb" target="lib\net461\AbiokaApi.Infrastructure.Common.pdb" />
   </files>
 </package>

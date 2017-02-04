@@ -18,6 +18,6 @@
   </metadata>
   <files>
     <file src="..\AbiokaApi.ApplicationService\bin\Release\AbiokaApi.ApplicationService.dll" target="lib\net461\AbiokaApi.ApplicationService.dll" />
-	<file src="..\AbiokaApi.ApplicationService\bin\Release\AbiokaApi.ApplicationService.pdb" target="lib\net461\AbiokaApi.ApplicationService.pdb" />
+	  <file src="..\AbiokaApi.ApplicationService\bin\Release\AbiokaApi.ApplicationService.pdb" target="lib\net461\AbiokaApi.ApplicationService.pdb" />
   </files>
 </package>
