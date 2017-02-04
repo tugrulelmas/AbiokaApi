@@ -2,7 +2,7 @@
 using FluentNHibernate.Conventions.Instances;
 using NHibernate.Type;
 
-namespace AbiokaApi.Repository
+namespace AbiokaApi.Repository.Conventions
 {
     public class UtcConvention : IPropertyConvention
     {

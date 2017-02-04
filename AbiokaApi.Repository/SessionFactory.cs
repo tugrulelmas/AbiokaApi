@@ -1,5 +1,6 @@
 ﻿using AbiokaApi.Infrastructure.Common.ApplicationSettings;
 using AbiokaApi.Infrastructure.Common.IoC;
+using AbiokaApi.Repository.Conventions;
 using AbiokaApi.Repository.Mappings;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;

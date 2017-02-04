@@ -69,7 +69,7 @@
     <Compile Include="Repository.cs" />
     <Compile Include="SessionFactory.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UtcConvention.cs" />
+    <Compile Include="Conventions\UtcConvention.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

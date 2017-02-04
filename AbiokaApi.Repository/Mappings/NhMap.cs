@@ -4,7 +4,7 @@ using FluentNHibernate.Mapping;
 
 namespace AbiokaApi.Repository.Mappings
 {
-    internal class UserSecurityMap : SubclassMap<UserSecurity>
+    public class UserSecurityMap : SubclassMap<UserSecurity>
     {
         public UserSecurityMap() {
             Map(x => x.AuthProvider).Length(20);
@@ -18,7 +18,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
     
-    internal class UserMap : DeletableClassMap<User>
+    public class UserMap : DeletableClassMap<User>
     {
         public UserMap() {
             Id(x => x.Id);
@@ -40,7 +40,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class RoleMap : DeletableClassMap<Role>
+    public class RoleMap : DeletableClassMap<Role>
     {
         public RoleMap() {
             Id(x => x.Id);
@@ -54,7 +54,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class UserRoleMap : BaseClassMap<UserRoleDB>
+    public class UserRoleMap : BaseClassMap<UserRoleDB>
     {
         public UserRoleMap() {
             Id(x => x.Id);
@@ -67,7 +67,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class MenuMap : BaseClassMap<Menu>
+    public class MenuMap : BaseClassMap<Menu>
     {
         public MenuMap() {
             Id(x => x.Id);
@@ -87,7 +87,7 @@ namespace AbiokaApi.Repository.Mappings
         }
     }
 
-    internal class LoginAttemptMap : BaseClassMap<LoginAttempt>
+    public class LoginAttemptMap : BaseClassMap<LoginAttempt>
     {
         public LoginAttemptMap() {
             Id(x => x.Id);
