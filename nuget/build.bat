@@ -24,3 +24,4 @@ if "%nuget%" == "" (
 %nuget% pack ".\nuget\ApplicationService.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
 %nuget% pack ".\nuget\Infrastructure.Framework.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
 %nuget% pack ".\nuget\Host.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
+%nuget% pack ".\nuget\All.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
