@@ -327,5 +327,23 @@ Change Facebook and Google's client and secret key's value in [web.config](Abiok
 
 Open the [AbiokaApi.sln](AbiokaApi.sln) with Visual Studio and then run the project.
 
+#### Installation via nuget
+
+Install full code:
+
+```
+Install-Package AbiokaApi.All
+```
+
+or install custom libraries:
+```
+Install-Package AbiokaApi.Domain
+Install-Package AbiokaApi.Repository
+Install-Package AbiokaApi.ApplicationService
+Install-Package AbiokaApi.Infrastructure.Common
+Install-Package AbiokaApi.Infrastructure.Framework
+Install-Package AbiokaApi.Host
+```
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
