@@ -24,7 +24,8 @@ namespace AbiokaApi.ApplicationService
                 .RegisterWithBase(typeof(IEventHandler<>), typeof(RoleAddedToUserHandler))
                 .Register<IServiceInterceptor, RoleValidationInterceptor>()
                 .Register<IServiceInterceptor, DataValidationInterceptor>()
-                .Register<IHttpClient, CustomHttpClient>();
+                .Register<IHttpClient, CustomHttpClient>(isFallback: true)
+                .Register<IDTOMapper, DTOMapper>(isFallback: true);
         }
     }
 }

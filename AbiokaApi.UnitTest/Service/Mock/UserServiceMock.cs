@@ -1,4 +1,5 @@
-﻿using AbiokaApi.ApplicationService.Implementations;
+﻿using AbiokaApi.ApplicationService.DTOs;
+using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.Domain.Repositories;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Helper;
@@ -14,14 +15,14 @@ namespace AbiokaApi.UnitTest.Service.Mock
         public readonly Mock<ICurrentContext> CurrentContextMock;
 
         public UserServiceMock(Mock<IUserRepository> repository, Mock<IUserSecurityRepository> userSecurityRepository, Mock<IRoleRepository> roleRepository,
-                               Mock<IAbiokaToken> abiokaToken, Mock<ICurrentContext> currentContext)
-            : base(repository.Object, userSecurityRepository.Object, roleRepository.Object, abiokaToken.Object, currentContext.Object) {
+                               Mock<IAbiokaToken> abiokaToken, Mock<ICurrentContext> currentContext, Mock<IDTOMapper> dtoMapper)
+            : base(repository.Object, userSecurityRepository.Object, roleRepository.Object, abiokaToken.Object, currentContext.Object, dtoMapper.Object) {
             RepositoryMock = repository;
             UserSecurityRepositoryMock = userSecurityRepository;
             AbiokaTokenMock = abiokaToken;
             CurrentContextMock = currentContext;
         }
 
-        public static UserServiceMock Create() => new UserServiceMock(new Mock<IUserRepository>(), new Mock<IUserSecurityRepository>(), new Mock<IRoleRepository>(), new Mock<IAbiokaToken>(), new Mock<ICurrentContext>());
+        public static UserServiceMock Create() => new UserServiceMock(new Mock<IUserRepository>(), new Mock<IUserSecurityRepository>(), new Mock<IRoleRepository>(), new Mock<IAbiokaToken>(), new Mock<ICurrentContext>(), new Mock<IDTOMapper>());
     }
 }

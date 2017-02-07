@@ -10,19 +10,21 @@ namespace AbiokaApi.ApplicationService.Implementations
     public class ReadService<TEntity, TDTO> : IReadService<TDTO> where TEntity : class, IEntity where TDTO : DTO
     {
         protected readonly IRepository<TEntity> repository;
+        protected readonly IDTOMapper dtoMapper;
 
-        public ReadService(IRepository<TEntity> repository) {
+        public ReadService(IRepository<TEntity> repository, IDTOMapper dtoMapper) {
             this.repository = repository;
+            this.dtoMapper = dtoMapper;
         }
 
         public virtual IEnumerable<TDTO> GetAll() {
             var entities = repository.GetAll();
-            return DTOMapper.FromDomainObject<TDTO>(entities);
+            return dtoMapper.FromDomainObject<TDTO>(entities);
         }
 
         public virtual TDTO Get(object id) {
             var entity = repository.FindById(id);
-            return (TDTO)DTOMapper.FromDomainObject(entity);
+            return (TDTO)dtoMapper.FromDomainObject(entity);
         }
 
         public virtual IPage<TDTO> GetWithPage(int page, int limit, string order) {
@@ -45,7 +47,7 @@ namespace AbiokaApi.ApplicationService.Implementations
 
             var result = new Page<TDTO> {
                 Count = pageResult.Count,
-                Data = DTOMapper.FromDomainObject<TDTO>(pageResult.Data)
+                Data = dtoMapper.FromDomainObject<TDTO>(pageResult.Data)
             };
 
             return result;

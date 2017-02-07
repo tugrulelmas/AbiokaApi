@@ -5,12 +5,27 @@ using System.Collections.Generic;
 
 namespace AbiokaApi.ApplicationService.DTOs
 {
-    public class DTOMapper
+    public interface IDTOMapper
     {
-        private static readonly IDictionary<RuntimeTypeHandle, Func<IEntity, DTO>> mapActions;
-        private static readonly IDictionary<RuntimeTypeHandle, Func<DTO, IEntity>> dbMapActions;
+        T FromDomainObject<T>(IEntity entity) where T : DTO;
 
-        static DTOMapper() {
+        DTO FromDomainObject(IEntity entity);
+
+        IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DTO;
+
+        T ToDomainObject<T>(DTO entity) where T : IEntity;
+
+        IEntity ToDomainObject(DTO entity);
+
+        IEnumerable<T> ToDomainObjects<T>(IEnumerable<DTO> entities) where T : IEntity;
+    }
+
+    public class DTOMapper : IDTOMapper
+    {
+        protected readonly IDictionary<RuntimeTypeHandle, Func<IEntity, DTO>> mapActions;
+        protected readonly IDictionary<RuntimeTypeHandle, Func<DTO, IEntity>> dbMapActions;
+
+        public DTOMapper() {
             mapActions = new Dictionary<RuntimeTypeHandle, Func<IEntity, DTO>>();
             mapActions.Add(typeof(User).TypeHandle, (entity) => ToUserDTO((User)entity));
             mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserDTO((User)entity));
@@ -24,9 +39,9 @@ namespace AbiokaApi.ApplicationService.DTOs
             dbMapActions.Add(typeof(MenuDTO).TypeHandle, (entity) => ToMenu((MenuDTO)entity));
         }
 
-        internal static T FromDomainObject<T>(IEntity entity) where T : DTO => (T)FromDomainObject(entity);
+        public T FromDomainObject<T>(IEntity entity) where T : DTO => (T)FromDomainObject(entity);
 
-        internal static DTO FromDomainObject(IEntity entity) {
+        public DTO FromDomainObject(IEntity entity) {
             if (entity == null)
                 return null;
 
@@ -43,7 +58,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             throw new NotImplementedException($"{entity.GetType().Name} is not implemented in DTO object mapper.");
         }
 
-        internal static IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DTO {
+        public IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DTO {
             if (entities == null)
                 return null;
 
@@ -55,9 +70,9 @@ namespace AbiokaApi.ApplicationService.DTOs
             return result;
         }
 
-        internal static T ToDomainObject<T>(DTO entity) where T : IEntity => (T)ToDomainObject(entity);
+        public T ToDomainObject<T>(DTO entity) where T : IEntity => (T)ToDomainObject(entity);
 
-        internal static IEntity ToDomainObject(DTO entity) {
+        public IEntity ToDomainObject(DTO entity) {
             if (entity == null)
                 return null;
 
@@ -68,7 +83,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             return dbMapActions[typeHandle](entity);
         }
 
-        internal static IEnumerable<T> ToDomainObjects<T>(IEnumerable<DTO> entities) where T : IEntity {
+        public IEnumerable<T> ToDomainObjects<T>(IEnumerable<DTO> entities) where T : IEntity {
             if (entities == null)
                 return null;
 
@@ -80,7 +95,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             return result;
         }
 
-        private static User ToUser(UserDTO userDTO) {
+        private User ToUser(UserDTO userDTO) {
             var result = new User(
               userDTO.Id,
               userDTO.Email,
@@ -94,7 +109,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             return result;
         }
 
-        private static UserDTO ToUserDTO(User user) {
+        private UserDTO ToUserDTO(User user) {
             var result = new UserDTO {
                 Id = user.Id,
                 Email = user.Email,
@@ -128,7 +143,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             return result;
         }
 
-        private static Menu ToMenu(MenuDTO menuDTO) {
+        private Menu ToMenu(MenuDTO menuDTO) {
             if (menuDTO == null)
                 return null;
 
@@ -149,7 +164,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             return result;
         }
 
-        private static MenuDTO ToMenuDTO(Menu menu) {
+        private MenuDTO ToMenuDTO(Menu menu) {
             if (menu == null)
                 return null;
 
@@ -175,7 +190,7 @@ namespace AbiokaApi.ApplicationService.DTOs
             return result;
         }
 
-        private static LoginAttemptDTO ToLoginAttemptDTO(LoginAttempt loginAttempt) {
+        private LoginAttemptDTO ToLoginAttemptDTO(LoginAttempt loginAttempt) {
             var result = new LoginAttemptDTO {
                 Id = loginAttempt.Id,
                 Date = loginAttempt.Date,

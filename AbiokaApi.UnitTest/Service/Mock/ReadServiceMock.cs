@@ -11,13 +11,13 @@ namespace AbiokaApi.UnitTest.Service.Mock
     {
         public readonly Mock<IRepository<MockEntity>> RepositoryMock;
 
-        public ReadServiceMock(Mock<IRepository<MockEntity>> repository) : base(repository.Object) {
+        public ReadServiceMock(Mock<IRepository<MockEntity>> repository, Mock<IDTOMapper> dtoMapper) : base(repository.Object, dtoMapper.Object) {
             RepositoryMock = repository;
         }
 
         public new MockEntity GetEntity(object id) => base.GetEntity(id);
 
-        public static ReadServiceMock Create() => new ReadServiceMock(new Mock<IRepository<MockEntity>>());
+        public static ReadServiceMock Create() => new ReadServiceMock(new Mock<IRepository<MockEntity>>(), new Mock<IDTOMapper>());
     }
 
     public class MockEntity : IEntity

@@ -12,8 +12,8 @@ namespace AbiokaApi.ApplicationService.Implementations
     {
         private readonly ICurrentContext currentContext;
 
-        public MenuService(IRepository<Menu> repository, ICurrentContext currentContext)
-            : base(repository) {
+        public MenuService(IRepository<Menu> repository, ICurrentContext currentContext, IDTOMapper dtoMapper)
+            : base(repository, dtoMapper) {
             this.currentContext = currentContext;
         }
 
@@ -26,7 +26,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 result = menus.OrderBy(m => m.Order).ToList();
             }
 
-            return DTOMapper.FromDomainObject<MenuDTO>(result);
+            return dtoMapper.FromDomainObject<MenuDTO>(result);
         }
 
         public IEnumerable<MenuDTO> Filter(string text) {
@@ -37,7 +37,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 result = repository.Query().Where(m => m.Text.Contains(text)).ToList();
             }
 
-            return DTOMapper.FromDomainObject<MenuDTO>(result);
+            return dtoMapper.FromDomainObject<MenuDTO>(result);
         }
     }
 }

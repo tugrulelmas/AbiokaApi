@@ -17,8 +17,8 @@ namespace AbiokaApi.ApplicationService.Implementations
         private readonly IAbiokaToken abiokaToken;
         private readonly ICurrentContext currentContext;
 
-        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, ICurrentContext currentContext)
-            : base(repository) {
+        public UserService(IUserRepository repository, IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, ICurrentContext currentContext, IDTOMapper dtoMapper)
+            : base(repository, dtoMapper) {
             this.userSecurityRepository = userSecurityRepository;
             this.roleRepository = roleRepository;
             this.abiokaToken = abiokaToken;
@@ -26,7 +26,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         public AddUserResponse Add(AddUserRequest request) {
-            var roles = DTOMapper.ToDomainObjects<Role>(request.Roles);
+            var roles = dtoMapper.ToDomainObjects<Role>(request.Roles);
             var userSecurity = new UserSecurity (
                 Guid.Empty,
                 request.Email,
@@ -63,7 +63,7 @@ namespace AbiokaApi.ApplicationService.Implementations
 
         public void Update(UserDTO entity) {
             var dbUser = GetEntity(entity.Id);
-            var user = DTOMapper.ToDomainObject<User>(entity);
+            var user = dtoMapper.ToDomainObject<User>(entity);
             dbUser.Update(user);
             repository.Update(dbUser);
         }
