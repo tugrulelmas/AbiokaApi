@@ -8,7 +8,7 @@ This is a boilerplate framework helps you build fast, robust, and modern web app
 * [License](#license)
 * [Demo](#demo)
 
-##Covered Functionality##
+### Covered Functionality
 - [Authentication](#authentication)
 - [Authorization](#authorization)
 - [OAuth 2.0](#oauth-20)
@@ -22,7 +22,7 @@ This is a boilerplate framework helps you build fast, robust, and modern web app
 - [Aspect Oriented Programming](#aspect-oriented-programming)
 - Object Oriented Programming
 
-##Used Technologies##
+### Used Technologies
 - [Asp.Net Web Api 2](https://www.asp.net/web-api)
 - [SQL Server](https://www.microsoft.com/en-us/sql-server)
 - [FluentValidation](https://github.com/JeremySkinner/FluentValidation)
