@@ -106,6 +106,13 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         IDependencyContainer UsingFactoryMethod<T>(Func<T> func, bool isFallback = false);
 
         /// <summary>
+        /// Register <see cref="T"/> as a factory.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        IDependencyContainer RegisterAsFactory<T>() where T : class;
+
+        /// <summary>
         /// Registers the specified type.
         /// </summary>
         /// <typeparam name="T1">The type of the 1.</typeparam>

@@ -6,6 +6,7 @@ using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using System;
 using System.Collections.Generic;
+using Castle.Facilities.TypedFactory;
 
 namespace AbiokaApi.Infrastructure.Framework.IoC
 {
@@ -14,6 +15,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         public CastleContainer() {
             container = new WindsorContainer();
             container.Kernel.Resolver.AddSubResolver(new CollectionResolver(container.Kernel, true));
+            container.Kernel.AddFacility<TypedFactoryFacility>();
         }
 
         /// <summary>
@@ -94,6 +96,11 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
 
         public IDependencyContainer UsingFactoryMethod<T>(Func<T> func, bool isFallback) {
             RegisterComponent(Component.For(typeof(T)).UsingFactoryMethod(func), LifeStyle.Singleton, isFallback);
+            return this;
+        }
+
+        public IDependencyContainer RegisterAsFactory<T>() where  T : class {
+            RegisterComponent(Component.For<T>().AsFactory(), LifeStyle.Singleton, false);
             return this;
         }
 

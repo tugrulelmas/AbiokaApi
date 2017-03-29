@@ -11,7 +11,6 @@ namespace AbiokaApi.UnitTest.IoC
         [SetUp]
         protected void SetUp() {
             DependencyContainer.SetContainer(new CastleContainer());
-
         }
 
         [Test]
@@ -24,9 +23,45 @@ namespace AbiokaApi.UnitTest.IoC
 
             Assert.AreEqual(dummy.GetText(), new DummyService().GetText());
         }
+
+        [Test]
+        public void RegisterAsAFactory() {
+            DependencyContainer.Container
+                .RegisterAsFactory<IServiceFactory>()
+                .Register<IFooService, FooService>(LifeStyle.Transient);
+
+            var serviceFactory = DependencyContainer.Container.Resolve<IServiceFactory>();
+            var foo = "foo";
+            var fooService = serviceFactory.CreateFooService(foo);
+
+            Assert.AreEqual(foo, fooService.Foo());
+        }
     }
 
-   public interface IDummyService
+    public interface IServiceFactory
+    {
+        IFooService CreateFooService(string foo);
+    }
+
+    public interface IFooService
+    {
+        string Foo();
+    }
+
+    public class FooService : IFooService
+    {
+        private readonly string foo;
+
+        public FooService(string foo) {
+            this.foo = foo;
+        }
+
+        public string Foo() {
+            return foo;
+        }
+    }
+
+    public interface IDummyService
     {
         string GetText();
     }
@@ -46,5 +81,4 @@ namespace AbiokaApi.UnitTest.IoC
             Console.WriteLine("Before");
         }
     }
-
 }
