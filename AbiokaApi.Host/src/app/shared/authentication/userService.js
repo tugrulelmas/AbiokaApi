@@ -66,8 +66,9 @@
         }
 
         function getDefault() {
+            var browserLanguage = window.navigator.userLanguage || window.navigator.language;
             return {
-                Language: "en",
+                Language: browserLanguage === 'tr' || browserLanguage === 'tr-TR' ? 'tr' : 'en',
                 IsSignedIn: false
             };
         }
