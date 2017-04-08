@@ -112,7 +112,12 @@ namespace AbiokaApi.Repository
             return result;
         }
 
-        public IQueryable<T> Query() => GetQuery<T>();
+        public IQueryable<T> Query(bool ignoreDefaultRules = false) {
+            if (ignoreDefaultRules)
+                return Session.Query<T>();
+
+            return GetQuery<T>();
+        }
 
         protected IQueryable<TEntity> GetQuery<TEntity>() {
             var query = Session.Query<TEntity>();

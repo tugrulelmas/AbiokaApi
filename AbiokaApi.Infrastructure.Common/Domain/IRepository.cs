@@ -28,9 +28,10 @@ namespace AbiokaApi.Infrastructure.Common.Domain
         void Delete(T entity);
 
         /// <summary>
-        /// Queries this instance.
+        /// Queries the specified ignore default rules.
         /// </summary>
+        /// <param name="ignoreDefaultRules">if set to <c>true</c> [ignore default rules].</param>
         /// <returns></returns>
-        IQueryable<T> Query();
+        IQueryable<T> Query(bool ignoreDefaultRules = false);
     }
 }
