@@ -24,6 +24,7 @@
 
         function create() {
             vm.loading = true;
+            vm.model.Language = userService.getUser().Language;
             $http.post("./user/register", vm.model).then(function (response) {
                 $state.go("login");
             }, function () {
