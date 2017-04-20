@@ -55,15 +55,15 @@ namespace AbiokaApi.ApplicationService.Implementations
         private void CreateMenus(Role adminRole, Role userRole) {
             var dashboardMenu = new Menu(Guid.Empty, "Dashboard", "/", 5, null, userRole, null);
             menuRepository.Add(dashboardMenu);
-            var loginLogsMenu = new Menu(Guid.Empty, "LoginLogs", "/loginAttempts", 80, null, userRole, null);
+            var loginLogsMenu = new Menu(Guid.Empty, "LoginLogs", "loginAttempts", 80, null, userRole, null);
             menuRepository.Add(loginLogsMenu);
             var adminMenu = new Menu(Guid.Empty, "Admin", "/", 10, null, adminRole, null);
             menuRepository.Add(adminMenu);
-            var menusMenu = new Menu(Guid.Empty, "Menus", "/menus", 10, adminMenu, adminRole, null);
+            var menusMenu = new Menu(Guid.Empty, "Menus", "menus", 10, adminMenu, adminRole, null);
             menuRepository.Add(menusMenu);
-            var usersMenu = new Menu(Guid.Empty, "Users", "/users", 1, adminMenu, adminRole, null);
+            var usersMenu = new Menu(Guid.Empty, "Users", "users", 1, adminMenu, adminRole, null);
             menuRepository.Add(usersMenu);
-            var rolesMenu = new Menu(Guid.Empty, "Roles", "/roles", 4, adminMenu, adminRole, null);
+            var rolesMenu = new Menu(Guid.Empty, "Roles", "roles", 4, adminMenu, adminRole, null);
             menuRepository.Add(rolesMenu);
         }
 
