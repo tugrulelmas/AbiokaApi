@@ -36,7 +36,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 Guid.NewGuid().ToString(),
                 string.Empty,
                 request.Password,
-                request.Language ?? currentContext.Current.Principal.Language,
+                request.Language ?? currentContext.Current?.Principal.Language,
                 request.Name,
                 request.Surname,
                 request.Picture,
