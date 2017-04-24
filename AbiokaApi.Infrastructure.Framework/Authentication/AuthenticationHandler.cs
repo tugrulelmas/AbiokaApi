@@ -30,19 +30,25 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
             var actionDescriptor = requestContext.Request.GetActionDescriptor();
             var actionAttributes = actionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>(true);
             var controllerAttributes = actionDescriptor.ControllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>(true);
-            if ((actionAttributes != null && actionAttributes.Count > 0) || (controllerAttributes != null && controllerAttributes.Count > 0)) {
-                currentContext.Principal = null;
-                return;
-            }
+            var isAllowAnonymous = (actionAttributes != null && actionAttributes.Count > 0) || (controllerAttributes != null && controllerAttributes.Count > 0);
             Request = requestContext.Request;
 
             HttpRequestMessage request = requestContext.Request;
 
             if (request.Headers.Authorization == null || string.IsNullOrWhiteSpace(request.Headers.Authorization.Parameter)) {
+                if (isAllowAnonymous) {
+                    currentContext.Principal = null;
+                    return;
+                }
                 throw AuthenticationException.MissingCredential;
             }
 
             if (request.Headers.Authorization.Scheme != "Bearer") {
+                if (isAllowAnonymous) {
+                    currentContext.Principal = null;
+                    return;
+                }
+
                 throw AuthenticationException.InvalidCredential;
             }
 

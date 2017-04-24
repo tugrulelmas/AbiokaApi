@@ -54,6 +54,7 @@ namespace AbiokaApi.Host.Controllers
         [HttpPut]
         [Route("{id}/ChangePassword")]
         public HttpResponseMessage ChangePassword([FromUri]Guid id, [FromBody]ChangePasswordRequest request) {
+            request.UserId = id;
             var newToken = userService.ChangePassword(request);
 
             return Request.CreateResponse(HttpStatusCode.OK, newToken);
