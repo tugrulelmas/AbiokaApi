@@ -48,10 +48,7 @@
         <table md-table ng-model="$ctrl.selected" md-progress="$ctrl.promise">
             <thead md-head md-order="$ctrl.query.order" md-on-reorder="$ctrl.getData">
                 <tr md-row>
-                    <th ng-if="column.order" md-order-by="{{column.name}}" md-column ng-repeat="column in $ctrl.options.columns">
-                        <span>{{column.text | translate}}</span>
-                    </th>
-                    <th ng-if="!column.order" md-column ng-repeat="column in $ctrl.options.columns">
+                    <th md-order-by="{{column.order ? column.name : ''}}" md-column ng-repeat="column in $ctrl.options.columns">
                         <span>{{column.text | translate}}</span>
                     </th>
                     <th ng-show="!$ctrl.options.isReadOnly"></th>
