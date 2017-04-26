@@ -30,17 +30,9 @@ namespace AbiokaApi.ApplicationService.Implementations
         public virtual IPage<TDTO> GetWithPage(int page, int limit, string order) {
             var pageRequest = new PageRequest {
                 Page = page,
-                Limit = limit
+                Limit = limit,
+                Order = order
             };
-            if (!string.IsNullOrWhiteSpace(order)) {
-                if (order.StartsWith("-")) {
-                    pageRequest.Order = order.Substring(1);
-                    pageRequest.Ascending = false;
-                } else {
-                    pageRequest.Order = order;
-                    pageRequest.Ascending = true;
-                }
-            }
             var pageResult = repository.GetPage(pageRequest);
             if (pageResult == null)
                 return null;
