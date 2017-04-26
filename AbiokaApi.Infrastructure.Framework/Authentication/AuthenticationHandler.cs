@@ -52,18 +52,23 @@ namespace AbiokaApi.Infrastructure.Framework.Authentication
                 throw AuthenticationException.InvalidCredential;
             }
 
-            var payload = abiokaToken.Decode(request.Headers.Authorization.Parameter);
+            try {
+                var payload = abiokaToken.Decode(request.Headers.Authorization.Parameter);
 
-            var user = new CustomPrincipal(payload.id.ToString()) {
-                Token = request.Headers.Authorization.Parameter,
-                UserName = payload.id.ToString(),
-                Email = payload.email,
-                Id = payload.id,
-                TokenExpirationDate = Util.UnixTimeStampToDateTime(payload.exp),
-                Roles = payload.roles,
-                Language = payload.language
-            };
-            currentContext.Principal = user;
+                var user = new CustomPrincipal(payload.id.ToString()) {
+                    Token = request.Headers.Authorization.Parameter,
+                    UserName = payload.id.ToString(),
+                    Email = payload.email,
+                    Id = payload.id,
+                    TokenExpirationDate = Util.UnixTimeStampToDateTime(payload.exp),
+                    Roles = payload.roles,
+                    Language = payload.language
+                };
+                currentContext.Principal = user;
+            } catch {
+                if (!isAllowAnonymous)
+                    throw;
+            }
         }
 
         public void OnException(IExceptionContext exceptionContext) {
