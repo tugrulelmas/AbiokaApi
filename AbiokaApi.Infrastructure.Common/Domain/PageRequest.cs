@@ -13,13 +13,14 @@
                 return order;
             }
             set {
-                if (value.StartsWith("-")) {
-                    order = value.Substring(1);
-                    Ascending = false;
-                } else {
+                if (string.IsNullOrEmpty(value) || char.IsLetterOrDigit(value, 0)) {
                     order = value;
                     Ascending = true;
+                    return;
                 }
+
+                order = value.Substring(1);
+                Ascending = false;
             }
         }
 
