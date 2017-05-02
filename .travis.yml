@@ -5,5 +5,5 @@ before_install:
 install:
   - nuget restore AbiokaApi.sln
 script:
-  - xbuild /p:Configuration=Release AbiokaApi.sln /p:TargetFrameworkVersion="v4.5"
+  - xbuild /p:Configuration=Release AbiokaApi.sln /p:TargetFrameworkVersion="v4.6"
   - nunit-console AbiokaApi.UnitTest/bin/Release/AbiokaApi.UnitTest.dll
