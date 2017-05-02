@@ -12,8 +12,9 @@ namespace AbiokaApi.Infrastructure.Common.Helper
         private const string cloudFlare = "CF-Connecting-IP";
 
         public static string GetClientIpString(this HttpRequestMessage request) {
-            //"CF-Connecting-IP"
-            if (request.Headers.TryGetValues(cloudFlare, out IEnumerable<string> clientIPs)) {
+            //"Cloudflare"
+            IEnumerable<string> clientIPs;
+            if (request.Headers.TryGetValues(cloudFlare, out clientIPs)) {
                 if(clientIPs!= null && clientIPs.Count() > 0) {
                     var clientIp = clientIPs.First();
                     if (!string.IsNullOrWhiteSpace(clientIp)) {
