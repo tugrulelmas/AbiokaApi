@@ -66,7 +66,7 @@
         }
 
         function getDefault() {
-            var browserLanguage = window.navigator.userLanguage || window.navigator.language;
+            var browserLanguage = window.navigator.languages ? window.navigator.languages[0] : (window.navigator.userLanguage || window.navigator.language);
             return {
                 Language: browserLanguage === 'tr' || browserLanguage === 'tr-TR' ? 'tr' : 'en',
                 IsSignedIn: false
