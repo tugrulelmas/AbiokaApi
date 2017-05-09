@@ -9,9 +9,9 @@ namespace AbiokaApi.ApplicationService.DTOs
     {
         T FromDomainObject<T>(IEntity entity) where T : DTO;
 
-        DTO FromDomainObject(IEntity entity);
+        DTO FromDomainObject(IEntity entity, params string[] includes);
 
-        IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DTO;
+        IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities, params string[] includes) where T : DTO;
 
         T ToDomainObject<T>(DTO entity) where T : IEntity;
 
@@ -22,16 +22,16 @@ namespace AbiokaApi.ApplicationService.DTOs
 
     public class DTOMapper : IDTOMapper
     {
-        protected readonly IDictionary<RuntimeTypeHandle, Func<IEntity, DTO>> mapActions;
+        protected readonly IDictionary<RuntimeTypeHandle, Func<IEntity, string[], DTO>> mapActions;
         protected readonly IDictionary<RuntimeTypeHandle, Func<DTO, IEntity>> dbMapActions;
 
         public DTOMapper() {
-            mapActions = new Dictionary<RuntimeTypeHandle, Func<IEntity, DTO>>();
-            mapActions.Add(typeof(User).TypeHandle, (entity) => ToUserDTO((User)entity));
-            mapActions.Add(typeof(UserSecurity).TypeHandle, (entity) => ToUserDTO((User)entity));
-            mapActions.Add(typeof(Role).TypeHandle, (entity) => ToRoleDTO((Role)entity));
-            mapActions.Add(typeof(LoginAttempt).TypeHandle, (entity) => ToLoginAttemptDTO((LoginAttempt)entity));
-            mapActions.Add(typeof(Menu).TypeHandle, (entity) => ToMenuDTO((Menu)entity));
+            mapActions = new Dictionary<RuntimeTypeHandle, Func<IEntity, string[], DTO>>();
+            mapActions.Add(typeof(User).TypeHandle, (entity, includes) => ToUserDTO((User)entity));
+            mapActions.Add(typeof(UserSecurity).TypeHandle, (entity, includes) => ToUserDTO((User)entity));
+            mapActions.Add(typeof(Role).TypeHandle, (entity, includes) => ToRoleDTO((Role)entity));
+            mapActions.Add(typeof(LoginAttempt).TypeHandle, (entity, includes) => ToLoginAttemptDTO((LoginAttempt)entity));
+            mapActions.Add(typeof(Menu).TypeHandle, (entity, includes) => ToMenuDTO((Menu)entity));
 
             dbMapActions = new Dictionary<RuntimeTypeHandle, Func<DTO, IEntity>>();
             dbMapActions.Add(typeof(UserDTO).TypeHandle, (entity) => ToUser((UserDTO)entity));
@@ -41,30 +41,30 @@ namespace AbiokaApi.ApplicationService.DTOs
 
         public T FromDomainObject<T>(IEntity entity) where T : DTO => (T)FromDomainObject(entity);
 
-        public DTO FromDomainObject(IEntity entity) {
+        public DTO FromDomainObject(IEntity entity, params string[] includes) {
             if (entity == null)
                 return null;
 
             var typeHandle = entity.GetType().TypeHandle;
             if (mapActions.ContainsKey(typeHandle)) {
-                return mapActions[typeHandle](entity);
+                return mapActions[typeHandle](entity, includes);
             }
 
             var baseTypeHandle = entity.GetType().BaseType.TypeHandle;
             if (mapActions.ContainsKey(baseTypeHandle)) {
-                return mapActions[baseTypeHandle](entity);
+                return mapActions[baseTypeHandle](entity, includes);
             }
 
             throw new NotImplementedException($"{entity.GetType().Name} is not implemented in DTO object mapper.");
         }
 
-        public IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities) where T : DTO {
+        public IEnumerable<T> FromDomainObject<T>(IEnumerable<IEntity> entities, params string[] includes) where T : DTO {
             if (entities == null)
                 return null;
 
             var result = new List<T>();
             foreach (var item in entities) {
-                var entity = (T)FromDomainObject(item);
+                var entity = (T)FromDomainObject(item, includes);
                 result.Add(entity);
             }
             return result;
