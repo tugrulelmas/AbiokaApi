@@ -82,5 +82,9 @@
   "SignInWithGoogle": "Google ile giriş yap",
   "SignInWithFacebook": "Facebook ile giriş yap",
   "or": "veya",
-  "UserNotFound": "Kullanıcı bulunamadı."
+  "UserNotFound": "Kullanıcı bulunamadı.",
+  "InvalidCredentials": "Geçersiz kimlik bilgileri",
+  "MissingCredentials": "Eksik kimlik bilgileri",
+  "UserIsRegisteredForFacebook": "{0} adresi Facebook için kaydedilmiştir. Lütfen Facebook ile giriş yapınız.",
+  "UserIsRegisteredForGoogle": "{0} adresi Google için kaydedilmiştir. Lütfen Google ile giriş yapınız."
 }

@@ -6,13 +6,17 @@ namespace AbiokaApi.Infrastructure.Common.Authentication
     public class AuthenticationException : DenialException
     {
         public AuthenticationException(string errorCode)
-            : base(HttpStatusCode.Unauthorized, errorCode) {
+            : this(HttpStatusCode.Unauthorized, errorCode) {
+        }
+
+        public AuthenticationException(HttpStatusCode httpStatusCode, string errorCode)
+            : base(httpStatusCode, errorCode) {
         }
 
         public static AuthenticationException TokenExpired => new AuthenticationException("Token is expired");
 
-        public static AuthenticationException InvalidCredential => new AuthenticationException("Invalid credentials");
+        public static AuthenticationException InvalidCredential => new AuthenticationException(HttpStatusCode.BadRequest, "InvalidCredentials");
 
-        public static AuthenticationException MissingCredential => new AuthenticationException("Missing credentials");
+        public static AuthenticationException MissingCredential => new AuthenticationException(HttpStatusCode.BadRequest, "MissingCredentials");
     }
 }

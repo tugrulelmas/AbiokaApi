@@ -82,5 +82,9 @@
   "SignInWithGoogle": "Sign in with Google",
   "SignInWithFacebook": "Sign in with Facebook",
   "or": "or",
-  "UserNotFound": "User can not be found."
+  "UserNotFound": "User can not be found.",
+  "InvalidCredentials": "Invalid Credentials",
+  "MissingCredentials": "Missing Credentials",
+  "UserIsRegisteredForFacebook": "{0} is registered for Facebook. Please login with Facebook.",
+  "UserIsRegisteredForGoogle": "{0} is registered for Google. Please login with Google."
 }
