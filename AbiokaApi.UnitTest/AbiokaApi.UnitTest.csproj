@@ -102,8 +102,10 @@
     <Compile Include="IoC\ContextHolderTest.cs" />
     <Compile Include="IoC\UnitOfWorkTest.cs" />
     <Compile Include="Service\AddUserValidationTest.cs" />
+    <Compile Include="Service\ExceptionLogHandlerTest.cs" />
     <Compile Include="Service\LocalAuthServiceTest.cs" />
     <Compile Include="Service\LoginValidationTest.cs" />
+    <Compile Include="Service\Mock\ExceptionLogHandlerMock.cs" />
     <Compile Include="Service\Mock\RoleValidatorMock.cs" />
     <Compile Include="Service\Mock\AddUserRequestValidatorMock.cs" />
     <Compile Include="Service\Mock\AuthRequestValidatorMock.cs" />
