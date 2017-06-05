@@ -86,6 +86,9 @@
     <Compile Include="Exceptions\Adapters\IExceptionAdapterFactory.cs" />
     <Compile Include="Exceptions\ApiException.cs" />
     <Compile Include="Exceptions\DenialException.cs" />
+    <Compile Include="Exceptions\ExceptionContent.cs" />
+    <Compile Include="Exceptions\ExceptionLog.cs" />
+    <Compile Include="Exceptions\IExceptionLogResolver.cs" />
     <Compile Include="Helper\ActionType.cs" />
     <Compile Include="Helper\CurrentContext.cs" />
     <Compile Include="Helper\HttpRequestMessageExtensions.cs" />

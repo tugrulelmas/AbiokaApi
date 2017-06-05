@@ -5,6 +5,7 @@
     <add key="GoogleClientSecret" value="********" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
     <add key="FacebookClientId" value="********" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
     <add key="FacebookClientSecret" value="********" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
+    <add key="IsExceptionLogEnabled" value="true" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
   </appSettings>
   <connectionStrings xdt:Transform="InsertIfMissing">
     <add name="abioka" connectionString="abiokaDB" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)"/>

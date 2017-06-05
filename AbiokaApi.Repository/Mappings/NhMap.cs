@@ -1,4 +1,5 @@
 ﻿using AbiokaApi.Domain;
+using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Repository.DatabaseObjects;
 using FluentNHibernate.Mapping;
 
@@ -99,6 +100,22 @@ namespace AbiokaApi.Repository.Mappings
             References(x => x.User).Column("UserId");
 
             Table("dbo.[LoginAttempt]");
+        }
+    }
+
+    public class ExceptionLogMap : BaseClassMap<ExceptionLog>
+    {
+        public ExceptionLogMap() {
+            Id(x => x.Id);
+            Map(x => x.ErrorCode).Length(1000);
+            Map(x => x.Message).Length(8000);
+            Map(x => x.Request).Length(8000);
+            Map(x => x.Source).Length(100);
+            Map(x => x.TypeName).Length(100);
+            Map(x => x.UserId);
+            Map(x => x.IP);
+
+            Table("dbo.[ExceptionLog]");
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="LoginAttempt.cs" />
     <Compile Include="LoginResult.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="Repositories\IExceptionLogRepository.cs" />
     <Compile Include="Repositories\ILoginAttemptRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

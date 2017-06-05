@@ -10,7 +10,7 @@ namespace AbiokaApi.Infrastructure.Common.Exceptions
 
         public DenialException(HttpStatusCode statusCode, string errorCode, params object[] parameters)
             : base(errorCode ) {
-            ContentValue = new { ErrorCode = errorCode, Parameters = parameters };
+            ContentValue = new ExceptionContent { ErrorCode = errorCode, Parameters = parameters };
             StatusCode = statusCode;
             ExtraHeaders.Add("Status-Reason", "validation-failed");
         }

@@ -64,6 +64,7 @@
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
+    <Compile Include="Handlers\ExceptionLogHandler.cs" />
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Authentication\GoogleAuthService.cs" />
     <Compile Include="Implementations\CustomHttpClient.cs" />
@@ -100,7 +101,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

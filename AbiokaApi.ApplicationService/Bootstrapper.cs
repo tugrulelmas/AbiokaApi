@@ -1,12 +1,14 @@
 ﻿using AbiokaApi.ApplicationService.Abstractions;
 using AbiokaApi.ApplicationService.DTOs;
 using AbiokaApi.ApplicationService.EventHandlers;
+using AbiokaApi.ApplicationService.Handlers;
 using AbiokaApi.ApplicationService.Implementations;
 using AbiokaApi.ApplicationService.Interceptors;
 using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.ApplicationService.Validation;
 using AbiokaApi.Domain;
 using AbiokaApi.Infrastructure.Common.Domain;
+using AbiokaApi.Infrastructure.Common.Dynamic;
 using AbiokaApi.Infrastructure.Common.IoC;
 
 namespace AbiokaApi.ApplicationService
@@ -25,7 +27,8 @@ namespace AbiokaApi.ApplicationService
                 .Register<IServiceInterceptor, RoleValidationInterceptor>()
                 .Register<IServiceInterceptor, DataValidationInterceptor>()
                 .Register<IHttpClient, CustomHttpClient>(isFallback: true)
-                .Register<IDTOMapper, DTOMapper>(isFallback: true);
+                .Register<IDTOMapper, DTOMapper>(isFallback: true)
+                .Register<IDynamicHandler, ExceptionLogHandler>(isFallback: true);
         }
     }
 }

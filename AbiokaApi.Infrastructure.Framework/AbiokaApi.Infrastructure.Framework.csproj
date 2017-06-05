@@ -74,6 +74,7 @@
     <Compile Include="IoC\ServiceInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestHelper\DIControllerActivator.cs" />
+    <Compile Include="RestHelper\ExceptionLogResolver.cs" />
     <Compile Include="RestHelper\WebApiConfig.cs" />
   </ItemGroup>
   <ItemGroup>
