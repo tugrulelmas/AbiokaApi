@@ -14,12 +14,6 @@ namespace AbiokaApi.Repository
             transaction = session.BeginTransaction();
         }
 
-        public IDisposableUnitOfWork OpenSession() {
-            session = sessionFactory.OpenSession();
-            transaction = session.BeginTransaction();
-            return this;
-        }
-
         public ISession Session => session;
 
         public void Dispose() {

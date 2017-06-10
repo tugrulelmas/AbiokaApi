@@ -6,12 +6,6 @@ namespace AbiokaApi.Repository
     public interface IDisposableUnitOfWork : IDisposable
     {
         /// <summary>
-        /// Opens the session.
-        /// </summary>
-        /// <returns></returns>
-        IDisposableUnitOfWork OpenSession();
-
-        /// <summary>
         /// Gets the session.
         /// </summary>
         /// <value>
