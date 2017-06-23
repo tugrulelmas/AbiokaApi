@@ -12,6 +12,7 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
+        [AllowedRole("Admin")]
         AddUserResponse Add(AddUserRequest request);
 
         /// <summary>
@@ -32,6 +33,7 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// Deletes the specified user.
         /// </summary>
         /// <param name="id">The identifier.</param>
+        [AllowedRole("Admin")]
         void Delete(Guid id);
 
         /// <summary>

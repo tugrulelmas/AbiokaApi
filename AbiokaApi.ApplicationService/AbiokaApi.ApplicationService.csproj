@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\IHttpClient.cs" />
+    <Compile Include="Abstractions\IRoleService.cs" />
     <Compile Include="Authentication\FacebookAuthService.cs" />
     <Compile Include="Authentication\IAuthService.cs" />
     <Compile Include="Abstractions\ICrudService.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\MenuService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
+    <Compile Include="Implementations\RoleService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interceptors\DataValidationInterceptor.cs" />
     <Compile Include="Interceptors\RoleValidationInterceptor.cs" />

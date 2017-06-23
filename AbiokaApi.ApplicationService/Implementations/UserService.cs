@@ -7,6 +7,7 @@ using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Helper;
 using System;
 using System.Collections.Generic;
+using AbiokaApi.Infrastructure.Common.Domain;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
@@ -88,6 +89,11 @@ namespace AbiokaApi.ApplicationService.Implementations
             var user = repository.FindById(currentContext.Current.Principal.Id);
             user.ChangeLanguage(language);
             repository.Update(user);
+        }
+
+        [AllowedRole("Admin")]
+        public override IPage<UserDTO> GetWithPage(int page, int limit, string order) {
+            return base.GetWithPage(page, limit, order);
         }
     }
 }

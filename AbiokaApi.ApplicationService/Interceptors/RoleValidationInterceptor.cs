@@ -17,9 +17,13 @@ namespace AbiokaApi.ApplicationService.Interceptors
         public int Order => 0;
 
         public void BeforeProceed(IInvocationContext context) {
-            var attributes = context.Method.GetCustomAttributes(typeof(AllowedRole), true);
-            if (attributes == null || attributes.Count() == 0)
-                return;
+            var attributes = context.MethodInvocationTarget.GetCustomAttributes(typeof(AllowedRole), true);
+
+            if (attributes.IsNullOrEmpty()) {
+                attributes = context.Method.GetCustomAttributes(typeof(AllowedRole), true);
+                if (attributes.IsNullOrEmpty())
+                    return;
+            }
 
             if(currentContext.Current.Principal == null || currentContext.Current.Principal.Roles == null)
                 throw new DenialException("AccessDenied");

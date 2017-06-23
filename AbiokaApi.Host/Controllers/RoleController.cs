@@ -7,7 +7,7 @@ namespace AbiokaApi.Host.Controllers
     [RoutePrefix("api/Role")]
     public class RoleController : BaseCrudController<RoleDTO>
     {
-        public RoleController(ICrudService<RoleDTO> service)
+        public RoleController(IRoleService service)
             : base(service) {
         }
     }
