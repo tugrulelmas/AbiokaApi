@@ -1,3 +1,4 @@
+using AbiokaApi.Domain.Events;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using AbiokaApi.Infrastructure.Common.Helper;
@@ -25,6 +26,8 @@ namespace AbiokaApi.Domain
 
             if (Id.IsNullOrEmpty()) {
                 ComputeHashPassword(password);
+
+                AddEvent(new UserIsAdded(this));
             } else {
                 Password = password;
             }
@@ -113,6 +116,7 @@ namespace AbiokaApi.Domain
 
             ComputeHashPassword(newPassword);
             RefreshToken = Guid.NewGuid().ToString();
+            AddEvent(new UsersPasswordIsChanged(Id, Email));
         }
 
         public virtual void UpdateProviderRefreshToken(string refreshToken) {

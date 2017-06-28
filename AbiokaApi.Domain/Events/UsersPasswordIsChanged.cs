@@ -3,12 +3,15 @@ using System;
 
 namespace AbiokaApi.Domain.Events
 {
-    public class UserDeleted : IEvent
+    public class UsersPasswordIsChanged : IEvent
     {
-        public UserDeleted(Guid userId) {
+        public UsersPasswordIsChanged(Guid userId, string email) {
             UserId = userId;
+            Email = email;
         }
 
         public Guid UserId { get; }
+
+        public string Email { get; set; }
     }
 }

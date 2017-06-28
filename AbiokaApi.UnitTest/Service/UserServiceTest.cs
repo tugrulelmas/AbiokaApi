@@ -1,10 +1,12 @@
 ﻿using AbiokaApi.ApplicationService.Messaging;
 using AbiokaApi.Domain;
+using AbiokaApi.Domain.Events;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.UnitTest.Service.Mock;
 using Moq;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace AbiokaApi.UnitTest.Service
 {
@@ -28,6 +30,22 @@ namespace AbiokaApi.UnitTest.Service
 
             userService.UserSecurityRepositoryMock.Verify(us => us.Add(It.Is<UserSecurity>(e => e.Email == addUserRequest.Email && e.AuthProvider == AuthProvider.Local && e.Password == userSecurity.Password && e.Language == "en")), Times.Once());
             Assert.AreEqual(user.Email, addUserRequest.Email);
+        }
+
+        [Test]
+        public void Delete_Adds_UserIsDeleted_Event_And_Calls_Repository_Delete_Method() {
+            var user = User.Empty(Guid.NewGuid(), "test@abioka.com");
+
+            var userService = UserServiceMock.Create();
+            userService.RepositoryMock.Setup(us => us.FindById(user.Id)).Returns(user);
+
+            userService.Delete(user.Id);
+
+            userService.RepositoryMock.Verify(us => us.Delete(user), Times.Once());
+            Assert.AreEqual(1, user.Events.Count(e => e.GetType() == typeof(UserIsDeleted)));
+            var userIsDeleted = (UserIsDeleted)user.Events.First(e => e.GetType() == typeof(UserIsDeleted));
+            Assert.AreEqual(user.Id, userIsDeleted.UserId);
+            Assert.AreEqual(user.Email, userIsDeleted.Email);
         }
     }
 }

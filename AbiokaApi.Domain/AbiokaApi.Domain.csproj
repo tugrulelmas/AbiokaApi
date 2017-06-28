@@ -46,8 +46,9 @@
   <ItemGroup>
     <Compile Include="Events\RoleRemovedFromUser.cs" />
     <Compile Include="Events\RoleAddedToUser.cs" />
-    <Compile Include="Events\UserAdded.cs" />
-    <Compile Include="Events\UserDeleted.cs" />
+    <Compile Include="Events\UsersPasswordIsChanged.cs" />
+    <Compile Include="Events\UserIsAdded.cs" />
+    <Compile Include="Events\UserIsDeleted.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="LoginAttempt.cs" />
     <Compile Include="LoginResult.cs" />

@@ -173,7 +173,13 @@ namespace AbiokaApi.Domain
             Language = language;
         }
 
+        public virtual void AddDeleteEvent() {
+            AddEvent(new UserIsDeleted(Id, Email));
+        }
+
         public static User Empty(Guid id) => new User(id, null, null, null, null, null, Gender.Male, null);
+
+        public static User Empty(Guid id, string email) => new User(id, email, null, null, null, null, Gender.Male, null);
 
         public static User Empty(Guid id, IEnumerable<Role> roles) => new User(id, null, null, null, null, null, Gender.Male, roles);
     }

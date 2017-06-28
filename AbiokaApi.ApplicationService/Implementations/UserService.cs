@@ -71,6 +71,7 @@ namespace AbiokaApi.ApplicationService.Implementations
 
         public void Delete(Guid id) {
             var entity = GetEntity(id);
+            entity.AddDeleteEvent();
             repository.Delete(entity);
         }
 

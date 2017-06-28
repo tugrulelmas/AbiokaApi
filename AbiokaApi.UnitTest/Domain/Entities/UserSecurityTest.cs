@@ -1,8 +1,10 @@
 ﻿using AbiokaApi.Domain;
+using AbiokaApi.Domain.Events;
 using AbiokaApi.Infrastructure.Common.Authentication;
 using AbiokaApi.Infrastructure.Common.Exceptions;
 using NUnit.Framework;
 using System;
+using System.Linq;
 
 namespace AbiokaApi.UnitTest.Domain.Entities
 {
@@ -74,6 +76,20 @@ namespace AbiokaApi.UnitTest.Domain.Entities
 
             Assert.IsTrue(userSecurity.ArePasswordEqual(userSecurity.Email, newPassword));
             Assert.AreNotEqual(refreshToken, userSecurity.Token);
+        }
+
+        [Test]
+        public void ChangePassword_Adds_UsersPasswordIsChanged_Event() {
+            var password = "1234";
+            var newPassword = "12345";
+            var refreshToken = Guid.NewGuid().ToString();
+            var userSecurity = new UserSecurity(Guid.Empty, "test@abioka.com", AuthProvider.Local, string.Empty, null, refreshToken, string.Empty, password, string.Empty, null, null, null, Gender.Male, false, null);
+
+            userSecurity.ChangePassword(password, newPassword);
+
+            Assert.AreEqual(1, userSecurity.Events.Count(e=>e.GetType() == typeof(UsersPasswordIsChanged)));
+            var usersPasswordIsChanged = (UsersPasswordIsChanged)userSecurity.Events.First(e => e.GetType() == typeof(UsersPasswordIsChanged));
+            Assert.AreEqual(userSecurity.Email, usersPasswordIsChanged.Email);
         }
     }
 }
