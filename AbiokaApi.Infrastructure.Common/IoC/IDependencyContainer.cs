@@ -20,6 +20,13 @@ namespace AbiokaApi.Infrastructure.Common.IoC
         IEnumerable<T> ResolveAll<T>();
 
         /// <summary>
+        /// Resolves all.
+        /// </summary>
+        /// <param name="serviceType">Type of the service.</param>
+        /// <returns></returns>
+        IEnumerable<object> ResolveAll(Type serviceType);
+
+        /// <summary>
         /// Resolves the specified type.
         /// </summary>
         /// <param name="type">The type.</param>

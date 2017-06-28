@@ -12,6 +12,8 @@ namespace AbiokaApi.ApplicationService.EventHandlers
             this.roleRepository = roleRepository;
         }
 
+        public int Order => 5;
+
         public void Handle(RoleAddedToUser eventInstance) {
             roleRepository.AddToUser(eventInstance.RoleId, eventInstance.User.Id);
         }

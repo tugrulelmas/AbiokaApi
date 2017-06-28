@@ -31,7 +31,7 @@ namespace AbiokaApi.Infrastructure.Framework.IoC
         /// <summary>
         /// Resolves all registered instances for a specific service type.
         /// </summary>
-        public IList<object> ResolveAll(Type serviceType) {
+        public IEnumerable<object> ResolveAll(Type serviceType) {
             if (container.Kernel.HasComponent(serviceType)) {
                 return new List<object>((object[])container.ResolveAll(serviceType));
             }

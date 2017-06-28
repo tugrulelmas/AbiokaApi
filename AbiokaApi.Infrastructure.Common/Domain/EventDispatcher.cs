@@ -1,5 +1,6 @@
 ﻿using AbiokaApi.Infrastructure.Common.IoC;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AbiokaApi.Infrastructure.Common.Domain
@@ -12,13 +13,15 @@ namespace AbiokaApi.Infrastructure.Common.Domain
                     throw new ArgumentNullException(nameof(eventItem), "Event can not be null.");
 
                 var type = typeof(IEventHandler<>).MakeGenericType(eventItem.GetType());
-                var handler = DependencyContainer.Container.Resolve(type);
-                if (handler == null)
+                var handlers = DependencyContainer.Container.ResolveAll(type)?.Cast<IEventHandler>();
+                if (handlers == null)
                     continue;
 
-                var methodInfo = handler.GetType().GetMethod("Handle");
-                methodInfo.Invoke(handler, new object[] { eventItem });
-
+                var orderedHandlers = handlers.OrderBy(h => h.Order);
+                foreach (var handler in orderedHandlers) {
+                    var methodInfo = handler.GetType().GetMethod("Handle");
+                    methodInfo.Invoke(handler, new object[] { eventItem });
+                }
                 //((dynamic)handler).Handle(eventItem);
             }
         }
