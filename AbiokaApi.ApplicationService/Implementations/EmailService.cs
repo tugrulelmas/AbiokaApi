@@ -19,8 +19,9 @@ namespace AbiokaApi.ApplicationService.Implementations
         private readonly string from;
         private readonly ICurrentContext currentContext;
         private readonly IExceptionLogRepository exceptionLogRepository;
+        private readonly IHttpClient httpClient;
 
-        public EmailService(IConnectionStringRepository connectionStringRepository, ICurrentContext currentContext, IExceptionLogRepository exceptionLogRepository) {
+        public EmailService(IConnectionStringRepository connectionStringRepository, ICurrentContext currentContext, IExceptionLogRepository exceptionLogRepository, IHttpClient httpClient) {
             var mailgunApiValues = connectionStringRepository.ReadAppSetting("MailgunApiValues").Split(',');
             apiKey = mailgunApiValues[0];
             domain = mailgunApiValues[1];
@@ -28,12 +29,10 @@ namespace AbiokaApi.ApplicationService.Implementations
 
             this.currentContext = currentContext;
             this.exceptionLogRepository = exceptionLogRepository;
+            this.httpClient = httpClient;
         }
 
         public async Task SendAsync(EmailRequest emailRequest) {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", $"api:{apiKey}".EncodeWithBase64());
-
             var form = new Dictionary<string, string>();
             form["from"] = emailRequest.From ?? from;
             form["to"] = emailRequest.To;
@@ -42,7 +41,11 @@ namespace AbiokaApi.ApplicationService.Implementations
             form["subject"] = emailRequest.Subject;
             form["html"] = emailRequest.Body;
 
-            var response = await client.PostAsync($"https://api.mailgun.net/v3/{domain}/messages", new FormUrlEncodedContent(form));
+            var request = new HttpRequestMessage(HttpMethod.Post, new Uri(($"https://api.mailgun.net/v3/{domain}/messages")));
+            request.Headers.Authorization = new AuthenticationHeaderValue("Basic", $"api:{apiKey}".EncodeWithBase64());
+            request.Content = new FormUrlEncodedContent(form);
+
+            var response = await httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode) {
                 var content = await response.Content.ReadAsStringAsync();
