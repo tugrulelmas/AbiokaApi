@@ -36,8 +36,12 @@ namespace AbiokaApi.ApplicationService.Implementations
             var form = new Dictionary<string, string>();
             form["from"] = emailRequest.From ?? from;
             form["to"] = emailRequest.To;
-            form["cc"] = emailRequest.Cc;
-            form["bcc"] = emailRequest.Bcc;
+            if (!string.IsNullOrEmpty(emailRequest.Cc)) {
+                form["cc"] = emailRequest.Cc;
+            }
+            if (!string.IsNullOrEmpty(emailRequest.Bcc)) {
+                form["bcc"] = emailRequest.Bcc;
+            }
             form["subject"] = emailRequest.Subject;
             form["html"] = emailRequest.Body;
 
