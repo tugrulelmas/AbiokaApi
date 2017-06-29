@@ -40,5 +40,7 @@ namespace AbiokaApi.Infrastructure.Common.Helper
         public static bool IsNullOrEmpty(this Guid guid) => guid == null || guid == Guid.Empty;
 
         public static bool IsNotNullAndEmpty(this Guid guid) => guid != null && guid != Guid.Empty;
+
+        public static string EncodeWithBase64(this string value) => Convert.ToBase64String(Encoding.UTF8.GetBytes(value));
     }
 }

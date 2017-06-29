@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\IEmailService.cs" />
     <Compile Include="Abstractions\IHttpClient.cs" />
     <Compile Include="Abstractions\IRoleService.cs" />
     <Compile Include="Authentication\FacebookAuthService.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Authentication\GoogleAuthService.cs" />
     <Compile Include="Implementations\CustomHttpClient.cs" />
+    <Compile Include="Implementations\EmailService.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\MenuService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Messaging\ChangePasswordRequest.cs" />
     <Compile Include="Messaging\CreateApplicationDataRequest.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
+    <Compile Include="Messaging\EmailRequest.cs" />
     <Compile Include="Messaging\ServiceRequestBase.cs" />
     <Compile Include="Messaging\ServiceResponseBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
