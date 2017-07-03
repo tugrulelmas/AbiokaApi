@@ -164,5 +164,7 @@ namespace AbiokaApi.Domain
         private string ComputeHashPassword(string email, string password) => Util.GetHashText(string.Concat(email.ToLowerInvariant(), "#", password));
 
         public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, null, string.Empty, string.Empty, password, string.Empty, null, null, null, Gender.Male, isDeleted, false, null);
+
+        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isEmailVerified, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, null, string.Empty, string.Empty, password, string.Empty, null, null, null, Gender.Male, isDeleted, isEmailVerified, null);
     }
 }

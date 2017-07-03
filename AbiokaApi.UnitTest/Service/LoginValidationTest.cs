@@ -58,7 +58,7 @@ namespace AbiokaApi.UnitTest.Service
         [Test]
         public void Login_Throws_User_IsDeleted() {
             var password = "1234";
-            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", password, true);
+            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", password, true, true);
 
             authRequestValidator.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
 
@@ -76,7 +76,7 @@ namespace AbiokaApi.UnitTest.Service
         [Test]
         public void Login_Adds_Successful_LoginAttempt() {
             var password = "1234";
-            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", password);
+            var userSecurity = UserSecurity.CreateBasic(Guid.Empty, "test@abioka.com", password, true, false);
 
             authRequestValidator.UserSecurityRepositoryMock.Setup(us => us.GetByEmail(userSecurity.Email)).Returns(userSecurity);
 
