@@ -8,6 +8,7 @@ using AbiokaApi.Infrastructure.Common.Helper;
 using System;
 using System.Collections.Generic;
 using AbiokaApi.Infrastructure.Common.Domain;
+using System.Linq;
 
 namespace AbiokaApi.ApplicationService.Implementations
 {
@@ -94,8 +95,17 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         [AllowedRole("Admin")]
-        public override IPage<UserDTO> GetWithPage(int page, int limit, string order) {
-            return base.GetWithPage(page, limit, order);
+        public override IPage<UserDTO> GetWithPage(int page, int limit, string order) => base.GetWithPage(page, limit, order);
+
+        public void VerifyEmail(string encodedToken) {
+            var providerToken = encodedToken.DecodeBase64();
+            var user = userSecurityRepository.Query().Where(u => u.ProviderToken == providerToken && !u.IsEmailVerified).FirstOrDefault();
+            if (user == null)
+                return;
+
+            user.VerifyEmail();
+
+            userSecurityRepository.Update(user);
         }
     }
 }

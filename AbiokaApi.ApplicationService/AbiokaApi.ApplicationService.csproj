@@ -67,6 +67,7 @@
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
+    <Compile Include="EventHandlers\SendWelcomeEmailHandler.cs" />
     <Compile Include="EventHandlers\SendVerificationEmailHandler.cs" />
     <Compile Include="Handlers\ExceptionLogHandler.cs" />
     <Compile Include="Implementations\CrudService.cs" />

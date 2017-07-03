@@ -8,6 +8,7 @@ namespace AbiokaApi.Domain
     {
         Successful,
         WrongPassword,
-        UserIsNotActive
+        UserIsNotActive,
+        UnverifiedEmail
     }
 }

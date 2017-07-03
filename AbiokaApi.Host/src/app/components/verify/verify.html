@@ -1,0 +1,16 @@
+﻿<md-content layout="row" layout-align="space-around" layout-padding="layout-padding">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-toolbar data-background-color="green" data-icon="true">
+            <div class="card-header-icon">
+                <i class="material-icons md-dark">verified_user</i>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <h4><span>{{'VerifyAccount' | translate}}</span></h4>
+            <p>
+                {{'PleaseWaitAccountIsVerifying' | translate}}
+            </p>
+            <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
+        </md-card-content>
+    </md-card>
+</md-content>

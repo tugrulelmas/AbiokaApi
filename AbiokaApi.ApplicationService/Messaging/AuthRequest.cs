@@ -69,6 +69,13 @@ namespace AbiokaApi.ApplicationService.Messaging
                 throw new DenialException("WrongPassword");
             }
 
+            if (!user.IsEmailVerified) {
+                loginAttempt.LoginResult = LoginResult.UnverifiedEmail;
+                loginAttemptRepository.Add(loginAttempt);
+
+                throw new DenialException("EmailIsNotVerifiedCheckYourEmails");
+            }
+
             if (user.IsDeleted) {
                 loginAttempt.LoginResult = LoginResult.UserIsNotActive;
                 loginAttemptRepository.Add(loginAttempt);

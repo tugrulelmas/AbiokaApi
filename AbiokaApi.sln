@@ -67,6 +67,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Data", "App_Data", "{17
 	ProjectSection(SolutionItems) = preProject
 		nuget\Templates\Host\App_Data\VerifyEmail.en.html = nuget\Templates\Host\App_Data\VerifyEmail.en.html
 		nuget\Templates\Host\App_Data\VerifyEmail.tr.html = nuget\Templates\Host\App_Data\VerifyEmail.tr.html
+		nuget\Templates\Host\App_Data\WelcomeEmail.en.html = nuget\Templates\Host\App_Data\WelcomeEmail.en.html
+		nuget\Templates\Host\App_Data\WelcomeEmail.tr.html = nuget\Templates\Host\App_Data\WelcomeEmail.tr.html
 	EndProjectSection
 EndProject
 Global

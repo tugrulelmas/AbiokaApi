@@ -67,5 +67,14 @@ namespace AbiokaApi.Host.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        [AllowAnonymous]
+        [HttpPut]
+        [Route("{id}/Verify")]
+        public HttpResponseMessage Verify([FromUri]string id) {
+            userService.VerifyEmail(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

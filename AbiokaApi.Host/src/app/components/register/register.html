@@ -7,58 +7,81 @@
         </md-toolbar>
         <md-card-content>
             <h4><span>{{'SignUp' | translate}}</span></h4>
-            <form name="vm.modelForm" ng-submit="vm.modelForm.$valid && vm.create()" novalidate>
-                <md-input-container class="md-block">
-                    <label>{{'Name' | translate}}</label>
-                    <md-icon>portrait</md-icon>
-                    <input type="text" name="name" ng-model="vm.model.Name" required />
-                    <validation-message model="vm.modelForm.name" field-name="{{'Name' | translate}}"></validation-message>
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>{{'Surname' | translate}}</label>
-                    <md-icon>nature_people</md-icon>
-                    <input type="text" name="surname" ng-model="vm.model.Surname" required />
-                    <validation-message model="vm.modelForm.surname" field-name="{{'Surname' | translate}}"></validation-message>
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <md-icon>wc</md-icon>
-                    <md-select name="gender" ng-model="vm.model.Gender" placeholder="{{'Gender' | translate}}" required>
-                        <md-option value="Male">{{'Male' | translate}}</md-option>
-                        <md-option value="Female">{{'Female' | translate}}</md-option>
-                    </md-select>
-                    <br />
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>{{'Email' | translate}}</label>
-                    <md-icon>email</md-icon>
-                    <input type="email" name="email" ng-model="vm.model.Email" required />
-                    <validation-message model="vm.modelForm.email" field-name="{{'Email' | translate}}"></validation-message>
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>{{'Password' | translate}}</label>
-                    <md-icon>https</md-icon>
-                    <input type="password" name="password" ng-model="vm.model.Password" required />
-                    <validation-message model="vm.modelForm.password" field-name="{{'Password' | translate}}"></validation-message>
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label>{{'PasswordAgain' | translate}}</label>
-                    <md-icon>https</md-icon>
-                    <input password-match="vm.model.Password" type="password" name="passwordAgain" ng-model="vm.model.NewPasswordAgain" required />
-                    <validation-message model="vm.modelForm.passwordAgain" field-name="{{'PasswordAgain' | translate}}"></validation-message>
-                </md-input-container>
-                <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
-                <md-input-container class="md-block">
-                    <div layout="row" layout-xs="column" layout-align="center center">
-                        <md-button flex="50" flex-xs="100" type="submit" ng-disabled="!vm.modelForm.$valid || vm.loading" class="md-raised">&nbsp {{'OK' | translate}} &nbsp</md-button>
-                        <div flex="50" flex-xs="100">
-                            <small>
-                                {{'AlreadyHaveAnAccount' | translate}}
-                                <a href="" ui-sref="login">{{'Login' | translate}}</a>
-                            </small>
+            <div ng-show="!vm.registered">
+                <form name="vm.modelForm" ng-submit="vm.modelForm.$valid && vm.create()" novalidate>
+                    <md-input-container class="md-block">
+                        <label>{{'Name' | translate}}</label>
+                        <md-icon>portrait</md-icon>
+                        <input type="text" name="name" ng-model="vm.model.Name" required />
+                        <validation-message model="vm.modelForm.name" field-name="{{'Name' | translate}}"></validation-message>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>{{'Surname' | translate}}</label>
+                        <md-icon>nature_people</md-icon>
+                        <input type="text" name="surname" ng-model="vm.model.Surname" required />
+                        <validation-message model="vm.modelForm.surname" field-name="{{'Surname' | translate}}"></validation-message>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <md-icon>wc</md-icon>
+                        <md-select name="gender" ng-model="vm.model.Gender" placeholder="{{'Gender' | translate}}" required>
+                            <md-option value="Male">{{'Male' | translate}}</md-option>
+                            <md-option value="Female">{{'Female' | translate}}</md-option>
+                        </md-select>
+                        <br />
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>{{'Email' | translate}}</label>
+                        <md-icon>email</md-icon>
+                        <input type="email" name="email" ng-model="vm.model.Email" required />
+                        <validation-message model="vm.modelForm.email" field-name="{{'Email' | translate}}"></validation-message>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>{{'Password' | translate}}</label>
+                        <md-icon>https</md-icon>
+                        <input type="password" name="password" ng-model="vm.model.Password" required />
+                        <validation-message model="vm.modelForm.password" field-name="{{'Password' | translate}}"></validation-message>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>{{'PasswordAgain' | translate}}</label>
+                        <md-icon>https</md-icon>
+                        <input password-match="vm.model.Password" type="password" name="passwordAgain" ng-model="vm.model.NewPasswordAgain" required />
+                        <validation-message model="vm.modelForm.passwordAgain" field-name="{{'PasswordAgain' | translate}}"></validation-message>
+                    </md-input-container>
+                    <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
+                    <md-input-container class="md-block">
+                        <div layout="row" layout-xs="column" layout-align="center center">
+                            <md-button flex="50" flex-xs="100" type="submit" ng-disabled="!vm.modelForm.$valid || vm.loading" class="md-raised">&nbsp {{'OK' | translate}} &nbsp</md-button>
+                            <div flex="50" flex-xs="100">
+                                <small>
+                                    {{'AlreadyHaveAnAccount' | translate}}
+                                    <a href="" ui-sref="login">{{'Login' | translate}}</a>
+                                </small>
+                            </div>
                         </div>
-                    </div>
-                </md-input-container>
-            </form>
+                    </md-input-container>
+                </form>
+                <div class="signup-or-separator">
+                    <h5 class="text">{{'or' | translate}}</h5>
+                    <hr>
+                </div>
+                <div layout="row" layout-align="center center">
+                    <md-button class="md-fab md-primary md-hue-2" ng-click="vm.authenticate('facebook')">
+                        <ng-md-icon icon="facebook"></ng-md-icon>
+                        <md-tooltip>
+                            {{'SignInWithFacebook' | translate}}
+                        </md-tooltip>
+                    </md-button>
+                    <md-button class="md-fab md-hue-2" ng-click="vm.authenticate('google')">
+                        <ng-md-icon icon="google-plus"></ng-md-icon>
+                        <md-tooltip>
+                            {{'SignInWithGoogle' | translate}}
+                        </md-tooltip>
+                    </md-button>
+                </div>
+            </div>
+            <div ng-show="vm.registered">
+                {{'VerifyEmail' | translate}}
+            </div>
         </md-card-content>
     </md-card>
 </md-content>

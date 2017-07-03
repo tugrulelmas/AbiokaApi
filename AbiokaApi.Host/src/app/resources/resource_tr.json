@@ -86,5 +86,10 @@
   "InvalidCredentials": "Geçersiz kimlik bilgileri",
   "MissingCredentials": "Eksik kimlik bilgileri",
   "UserIsRegisteredForFacebook": "{0} adresi Facebook için kaydedilmiştir. Lütfen Facebook ile giriş yapınız.",
-  "UserIsRegisteredForGoogle": "{0} adresi Google için kaydedilmiştir. Lütfen Google ile giriş yapınız."
+  "UserIsRegisteredForGoogle": "{0} adresi Google için kaydedilmiştir. Lütfen Google ile giriş yapınız.",
+  "EmailIsNotVerifiedCheckYourEmails": "Hesap doğrulanmamış! Lütfen e-postalarınızı kontrol edin.",
+  "UnverifiedEmail": "Email Doğrulanmamış",
+  "VerifyEmail": "Lütfen e-postalarınızı kontrol edin ve hesabınızı doğrulayın.",
+  "VerifyAccount": "Hesap Doğrula",
+  "PleaseWaitAccountIsVerifying": "Lütfen bekleyin. Hesabınız doğrulanıyor."
 }

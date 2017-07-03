@@ -54,5 +54,11 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <param name="language">The language.</param>
         void ChangeLanguage(string language);
+
+        /// <summary>
+        /// Verifies the email.
+        /// </summary>
+        /// <param name="encodedToken">The encoded token.</param>
+        void VerifyEmail(string encodedToken);
     }
 }

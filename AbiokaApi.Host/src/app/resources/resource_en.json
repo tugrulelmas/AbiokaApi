@@ -86,5 +86,10 @@
   "InvalidCredentials": "Invalid Credentials",
   "MissingCredentials": "Missing Credentials",
   "UserIsRegisteredForFacebook": "{0} is registered for Facebook. Please login with Facebook.",
-  "UserIsRegisteredForGoogle": "{0} is registered for Google. Please login with Google."
+  "UserIsRegisteredForGoogle": "{0} is registered for Google. Please login with Google.",
+  "EmailIsNotVerifiedCheckYourEmails": "Account is not verified! Please check your emails.",
+  "UnverifiedEmail": "Unverified Email",
+  "VerifyEmail": "Please check your emails and verify your account.",
+  "VerifyAccount": "Verify Account",
+  "PleaseWaitAccountIsVerifying": "Please wait. Your account is being verified."
 }

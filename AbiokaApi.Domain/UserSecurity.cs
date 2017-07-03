@@ -30,6 +30,9 @@ namespace AbiokaApi.Domain
                 ComputeHashPassword(password);
 
                 AddEvent(new UserIsAdded(this));
+                if (IsEmailVerified) {
+                    AddEvent(new EmailIsVerified(this));
+                }
             } else {
                 Password = password;
             }
@@ -127,6 +130,16 @@ namespace AbiokaApi.Domain
             ComputeHashPassword(newPassword);
             RefreshToken = Guid.NewGuid().ToString();
             AddEvent(new UsersPasswordIsChanged(Id, Email));
+        }
+
+        public virtual void VerifyEmail() {
+            if (AuthProvider != AuthProvider.Local || IsEmailVerified)
+                throw new DenialException("EmailCannotBeVerified");
+
+            IsEmailVerified = true;
+            ProviderToken = Guid.NewGuid().ToString();
+
+            AddEvent(new EmailIsVerified(this));
         }
 
         public virtual void UpdateProviderRefreshToken(string refreshToken) {
