@@ -7,6 +7,7 @@
     <add key="FacebookClientSecret" value="********" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
     <add key="IsExceptionLogEnabled" value="true" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
     <add key="MailgunApiValues" value="apikey,domainName,fromAddress" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
+    <add key="EmailVerifyTemplate" value="AbiokaApi\AbiokaApi.Host\App_Data\VerifyEmail.{{lang}}.html" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)"/>
   </appSettings>
   <connectionStrings xdt:Transform="InsertIfMissing">
     <add name="abioka" connectionString="abiokaDB" xdt:Transform="InsertIfMissing" xdt:Locator="Match(name)"/>

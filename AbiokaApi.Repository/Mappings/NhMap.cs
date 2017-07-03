@@ -14,6 +14,7 @@ namespace AbiokaApi.Repository.Mappings
             Map(x => x.ProviderRefreshToken).Length(512);
             Map(x => x.RefreshToken).Length(50);
             Map(x => x.Token).Length(512);
+            Map(x => x.IsEmailVerified).Not.Nullable();
 
             Table("dbo.[UserSecurity]");
         }

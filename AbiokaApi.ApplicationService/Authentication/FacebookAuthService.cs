@@ -82,6 +82,7 @@ namespace AbiokaApi.ApplicationService.Authentication
                     facebookUser.picture?.data?.url,
                     facebookUser.gender == "male" ? Gender.Male : Gender.Female,
                     false,
+                    true,
                     new List<Role> { userRole }
                 );
 

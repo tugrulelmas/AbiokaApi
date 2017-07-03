@@ -105,6 +105,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\VerifyEmail.en.html" />
+    <Content Include="App_Data\VerifyEmail.tr.html" />
     <Content Include="Global.asax" />
     <Content Include="gulp.config.js" />
     <Content Include="gulpfile.js" />

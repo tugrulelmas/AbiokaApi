@@ -15,7 +15,8 @@ namespace AbiokaApi.Domain
 
         }
 
-        public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string providerRefreshToken, string refreshToken, string token, string password, string language, string name, string surname, string picture, Gender gender, bool isDeleted, IEnumerable<Role> roles)
+        public UserSecurity(Guid id, string email, AuthProvider authProvider, string providerToken, string providerRefreshToken, string refreshToken, string token, 
+            string password, string language, string name, string surname, string picture, Gender gender, bool isDeleted, bool isEmailVerified, IEnumerable<Role> roles)
             : base(id, email, language, name, surname, picture, gender, roles) {
             AuthProvider = authProvider;
             ProviderToken = providerToken;
@@ -23,6 +24,7 @@ namespace AbiokaApi.Domain
             RefreshToken = refreshToken;
             Token = token;
             IsDeleted = isDeleted;
+            IsEmailVerified = isEmailVerified;
 
             if (Id.IsNullOrEmpty()) {
                 ComputeHashPassword(password);
@@ -80,6 +82,14 @@ namespace AbiokaApi.Domain
         /// The password.
         /// </value>
         public virtual string Password { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is email verified.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is email verified; otherwise, <c>false</c>.
+        /// </value>
+        public virtual bool IsEmailVerified { get; set; }
 
         /// <summary>
         /// Creates the token.
@@ -140,6 +150,6 @@ namespace AbiokaApi.Domain
 
         private string ComputeHashPassword(string email, string password) => Util.GetHashText(string.Concat(email.ToLowerInvariant(), "#", password));
 
-        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, null, string.Empty, string.Empty, password, string.Empty, null, null, null, Gender.Male, isDeleted, null);
+        public static UserSecurity CreateBasic(Guid id, string email, string password, bool isDeleted = false) => new UserSecurity(id, email, AuthProvider.Local, string.Empty, null, string.Empty, string.Empty, password, string.Empty, null, null, null, Gender.Male, isDeleted, false, null);
     }
 }

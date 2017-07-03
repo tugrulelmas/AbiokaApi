@@ -44,6 +44,7 @@ namespace AbiokaApi.ApplicationService.Implementations
                 null,
                 Gender.Male,
                 false,
+                true,
                 new List<Role> { adminRole }
             );
 

@@ -84,6 +84,7 @@ namespace AbiokaApi.ApplicationService.Authentication
                     googleUser.picture,
                     googleUser.gender == "male" ? Gender.Male : Gender.Female,
                     false,
+                    true,
                     new List<Role> { userRole }
                 );
 

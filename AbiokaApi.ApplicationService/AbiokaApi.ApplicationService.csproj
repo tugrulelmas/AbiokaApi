@@ -48,6 +48,7 @@
     <Compile Include="Abstractions\IEmailService.cs" />
     <Compile Include="Abstractions\IHttpClient.cs" />
     <Compile Include="Abstractions\IRoleService.cs" />
+    <Compile Include="Abstractions\ITemplateReader.cs" />
     <Compile Include="Authentication\FacebookAuthService.cs" />
     <Compile Include="Authentication\IAuthService.cs" />
     <Compile Include="Abstractions\ICrudService.cs" />
@@ -66,15 +67,19 @@
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
+    <Compile Include="EventHandlers\SendVerificationEmailHandler.cs" />
     <Compile Include="Handlers\ExceptionLogHandler.cs" />
     <Compile Include="Implementations\CrudService.cs" />
     <Compile Include="Authentication\GoogleAuthService.cs" />
     <Compile Include="Implementations\CustomHttpClient.cs" />
     <Compile Include="Implementations\EmailService.cs" />
+    <Compile Include="Abstractions\IFileReader.cs" />
+    <Compile Include="Implementations\FileReader.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\MenuService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
     <Compile Include="Implementations\RoleService.cs" />
+    <Compile Include="Implementations\TemplateReader.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="Interceptors\DataValidationInterceptor.cs" />
     <Compile Include="Interceptors\RoleValidationInterceptor.cs" />
@@ -84,6 +89,9 @@
     <Compile Include="Messaging\CreateApplicationDataRequest.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
     <Compile Include="Messaging\EmailRequest.cs" />
+    <Compile Include="Messaging\Template.cs" />
+    <Compile Include="Messaging\FilePathRequest.cs" />
+    <Compile Include="Messaging\ReadTemplateRequest.cs" />
     <Compile Include="Messaging\ServiceRequestBase.cs" />
     <Compile Include="Messaging\ServiceResponseBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

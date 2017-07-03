@@ -63,6 +63,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Framework", 
 		nuget\Templates\Infrastructure.Framework\SessionFactory.cs.pp = nuget\Templates\Infrastructure.Framework\SessionFactory.cs.pp
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Data", "App_Data", "{175054FA-8346-40EF-980C-73BCEA5D3D56}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\Templates\Host\App_Data\VerifyEmail.en.html = nuget\Templates\Host\App_Data\VerifyEmail.en.html
+		nuget\Templates\Host\App_Data\VerifyEmail.tr.html = nuget\Templates\Host\App_Data\VerifyEmail.tr.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,5 +113,6 @@ Global
 		{0F93B9CA-6B02-42D5-BDC1-73F466465E3F} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
 		{E43808A5-52E5-4C41-87D3-829A1D0E8A6A} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
 		{BDA03B80-838C-4F00-A106-65F28FF5DF9A} = {7BA44700-3485-44DA-9817-91B775A01036}
+		{175054FA-8346-40EF-980C-73BCEA5D3D56} = {125EF53C-4049-45A5-8320-D69B8D1E7775}
 	EndGlobalSection
 EndGlobal
