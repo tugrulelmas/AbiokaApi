@@ -12,9 +12,9 @@ namespace AbiokaApi.UnitTest.Service
     {
         [Test]
         public void Do_Log_When_IsExceptionLogEnabled() {
-            var connectionStringRepository = new Mock<IConnectionStringRepository>();
-            connectionStringRepository.Setup(c => c.ReadAppSetting("IsExceptionLogEnabled")).Returns("true");
-            var exceptionLogHandlerMock = ExceptionLogHandlerMock.Create(connectionStringRepository);
+            var configurationManager = new Mock<IConfigurationManager>();
+            configurationManager.Setup(c => c.ReadAppSetting("IsExceptionLogEnabled")).Returns("true");
+            var exceptionLogHandlerMock = ExceptionLogHandlerMock.Create(configurationManager);
 
             IExceptionContext exceptionContext = new ExceptionContext(null);
             var exceptionLog = new ExceptionLog();
@@ -28,9 +28,9 @@ namespace AbiokaApi.UnitTest.Service
 
         [Test]
         public void Do_Not_Log_When_IsExceptionLogDisabled() {
-            var connectionStringRepository = new Mock<IConnectionStringRepository>();
-            connectionStringRepository.Setup(c => c.ReadAppSetting("IsExceptionLogEnabled")).Returns("false");
-            var exceptionLogHandlerMock = ExceptionLogHandlerMock.Create(connectionStringRepository);
+            var configurationManager = new Mock<IConfigurationManager>();
+            configurationManager.Setup(c => c.ReadAppSetting("IsExceptionLogEnabled")).Returns("false");
+            var exceptionLogHandlerMock = ExceptionLogHandlerMock.Create(configurationManager);
 
             IExceptionContext exceptionContext = new ExceptionContext(null);
             exceptionLogHandlerMock.OnException(exceptionContext);

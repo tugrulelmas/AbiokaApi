@@ -23,14 +23,14 @@ namespace AbiokaApi.ApplicationService.Authentication
         private readonly string clientId;
         private readonly string clientSecret;
 
-        public FacebookAuthService(IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IConnectionStringRepository connectionStringRepository, IHttpClient httpClient) {
+        public FacebookAuthService(IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IConfigurationManager configurationManager, IHttpClient httpClient) {
             this.userSecurityRepository = userSecurityRepository;
             this.roleRepository = roleRepository;
             this.abiokaToken = abiokaToken;
             this.httpClient = httpClient;
 
-            clientId = connectionStringRepository.ReadAppSetting("FacebookClientId");
-            clientSecret = connectionStringRepository.ReadAppSetting("FacebookClientSecret");
+            clientId = configurationManager.ReadAppSetting("FacebookClientId");
+            clientSecret = configurationManager.ReadAppSetting("FacebookClientSecret");
         }
 
         public AuthProvider Provider => AuthProvider.Facebook;

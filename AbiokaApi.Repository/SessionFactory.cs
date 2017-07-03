@@ -12,7 +12,7 @@ namespace AbiokaApi.Repository
     internal class SessionFactory
     {
         public static ISessionFactory CreateNhSessionFactory() {
-            var connectionStringRepository = DependencyContainer.Container.Resolve<IConnectionStringRepository>();
+            var connectionStringRepository = DependencyContainer.Container.Resolve<IConfigurationManager>();
             var sessionFactory = Fluently.Configure()
           .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionStringRepository.ReadConnectionString("abioka")))
           .ExposeConfiguration(config => new SchemaUpdate(config).Execute(false, true))

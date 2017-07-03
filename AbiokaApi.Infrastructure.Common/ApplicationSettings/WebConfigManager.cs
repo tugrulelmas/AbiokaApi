@@ -6,8 +6,8 @@ namespace AbiokaApi.Infrastructure.Common.ApplicationSettings
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="AbiokaApi.Infrastructure.Common.ApplicationSettings.IConnectionStringRepository" />
-    public class WebConfigConnectionStringRepository : IConnectionStringRepository
+    /// <seealso cref="AbiokaApi.Infrastructure.Common.ApplicationSettings.IConfigurationManager" />
+    public class WebConfigManager : IConfigurationManager
     {
         /// <summary>
         /// Reads the application setting.

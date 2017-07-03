@@ -11,11 +11,11 @@ namespace AbiokaApi.ApplicationService.Handlers
         private readonly IExceptionLogRepository exceptionLogRepository;
         private readonly bool isExceptionLogEnabled = false;
 
-        public ExceptionLogHandler(IExceptionLogResolver exceptionLogResolver, IExceptionLogRepository exceptionLogRepository, IConnectionStringRepository connectionStringRepository) {
+        public ExceptionLogHandler(IExceptionLogResolver exceptionLogResolver, IExceptionLogRepository exceptionLogRepository, IConfigurationManager configurationManager) {
             this.exceptionLogResolver = exceptionLogResolver;
             this.exceptionLogRepository = exceptionLogRepository;
 
-            isExceptionLogEnabled = connectionStringRepository.ReadAppSetting("IsExceptionLogEnabled") == "true";
+            isExceptionLogEnabled = configurationManager.ReadAppSetting("IsExceptionLogEnabled") == "true";
         }
 
         public short Order => 99;

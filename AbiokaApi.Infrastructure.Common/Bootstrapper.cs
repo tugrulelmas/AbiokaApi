@@ -10,7 +10,7 @@ namespace AbiokaApi.Infrastructure.Common
     {
         public static void Initialise() {
             DependencyContainer.Container
-                .Register<IConnectionStringRepository, WebConfigConnectionStringRepository>(isFallback: true)
+                .Register<IConfigurationManager, WebConfigManager>(isFallback: true)
                 .Register<IContextHolder, ContextHolder>(isFallback: true)
                 .Register<IExceptionAdapterFactory, ExceptionAdapterFactory>()
                 .Register<ICurrentContext, CurrentContext>(LifeStyle.PerWebRequest, true)

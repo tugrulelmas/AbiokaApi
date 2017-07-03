@@ -13,11 +13,11 @@ namespace AbiokaApi.ApplicationService.Implementations
         private static readonly IDictionary<string, Template> maps = new ConcurrentDictionary<string, Template>();
 
         private readonly IFileReader fileReader;
-        private readonly IConnectionStringRepository connectionStringRepository;
+        private readonly IConfigurationManager configurationManager;
 
-        public TemplateReader(IFileReader fileReader, IConnectionStringRepository connectionStringRepository) {
+        public TemplateReader(IFileReader fileReader, IConfigurationManager configurationManager) {
             this.fileReader = fileReader;
-            this.connectionStringRepository = connectionStringRepository;
+            this.configurationManager = configurationManager;
         }
 
         public Template ReadTemplate(ReadTemplateRequest request) {
@@ -66,7 +66,7 @@ namespace AbiokaApi.ApplicationService.Implementations
         }
 
         private Tuple<Template, string> GetTemplateFromCache(ReadTemplateRequest request) {
-            var filePath = connectionStringRepository.ReadAppSetting(request.Key);
+            var filePath = configurationManager.ReadAppSetting(request.Key);
             var emailTemplatePath = filePath.Replace("{{lang}}", request.Language.ToLower());
 
             Template result;

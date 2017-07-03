@@ -23,14 +23,14 @@ namespace AbiokaApi.ApplicationService.Authentication
         private readonly string clientId;
         private readonly string clientSecret;
 
-        public GoogleAuthService(IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IConnectionStringRepository connectionStringRepository, IHttpClient httpClient) {
+        public GoogleAuthService(IUserSecurityRepository userSecurityRepository, IRoleRepository roleRepository, IAbiokaToken abiokaToken, IConfigurationManager configurationManager, IHttpClient httpClient) {
             this.userSecurityRepository = userSecurityRepository;
             this.roleRepository = roleRepository;
             this.abiokaToken = abiokaToken;
             this.httpClient = httpClient;
 
-            clientId = connectionStringRepository.ReadAppSetting("GoogleClientId");
-            clientSecret = connectionStringRepository.ReadAppSetting("GoogleClientSecret");
+            clientId = configurationManager.ReadAppSetting("GoogleClientId");
+            clientSecret = configurationManager.ReadAppSetting("GoogleClientSecret");
         }
 
         public AuthProvider Provider => AuthProvider.Google;

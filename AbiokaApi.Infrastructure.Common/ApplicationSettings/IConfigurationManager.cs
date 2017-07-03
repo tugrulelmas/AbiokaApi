@@ -1,6 +1,6 @@
 ﻿namespace AbiokaApi.Infrastructure.Common.ApplicationSettings
 {
-    public interface IConnectionStringRepository
+    public interface IConfigurationManager
     {
         /// <summary>
         /// Reads the connection string.

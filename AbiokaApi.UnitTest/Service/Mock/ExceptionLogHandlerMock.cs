@@ -10,15 +10,15 @@ namespace AbiokaApi.UnitTest.Service.Mock
     {
         public readonly Mock<IExceptionLogResolver> ExceptionLogResolverMock;
         public readonly Mock<IExceptionLogRepository> ExceptionLogRepositoryMock;
-        public readonly Mock<IConnectionStringRepository> ConnectionStringRepositoryMock;
+        public readonly Mock<IConfigurationManager> ConfigurationManagerMock;
 
-        public ExceptionLogHandlerMock(Mock<IExceptionLogResolver> exceptionLogResolver, Mock<IExceptionLogRepository> exceptionLogRepository, Mock<IConnectionStringRepository> connectionStringRepository)
-            : base(exceptionLogResolver.Object, exceptionLogRepository.Object, connectionStringRepository.Object) {
+        public ExceptionLogHandlerMock(Mock<IExceptionLogResolver> exceptionLogResolver, Mock<IExceptionLogRepository> exceptionLogRepository, Mock<IConfigurationManager> configurationManager)
+            : base(exceptionLogResolver.Object, exceptionLogRepository.Object, configurationManager.Object) {
             ExceptionLogResolverMock = exceptionLogResolver;
             ExceptionLogRepositoryMock = exceptionLogRepository;
-            ConnectionStringRepositoryMock = connectionStringRepository;
+            ConfigurationManagerMock = configurationManager;
         }
 
-        public static ExceptionLogHandlerMock Create(Mock<IConnectionStringRepository> connectionStringRepository) => new ExceptionLogHandlerMock(new Mock<IExceptionLogResolver>(), new Mock<IExceptionLogRepository>(), connectionStringRepository);
+        public static ExceptionLogHandlerMock Create(Mock<IConfigurationManager> connectionStringRepository) => new ExceptionLogHandlerMock(new Mock<IExceptionLogResolver>(), new Mock<IExceptionLogRepository>(), connectionStringRepository);
     }
 }

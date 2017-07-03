@@ -21,8 +21,8 @@ namespace AbiokaApi.ApplicationService.Implementations
         private readonly IExceptionLogRepository exceptionLogRepository;
         private readonly IHttpClient httpClient;
 
-        public EmailService(IConnectionStringRepository connectionStringRepository, ICurrentContext currentContext, IExceptionLogRepository exceptionLogRepository, IHttpClient httpClient) {
-            var mailgunApiValues = connectionStringRepository.ReadAppSetting("MailgunApiValues").Split(',');
+        public EmailService(IConfigurationManager configurationManager, ICurrentContext currentContext, IExceptionLogRepository exceptionLogRepository, IHttpClient httpClient) {
+            var mailgunApiValues = configurationManager.ReadAppSetting("MailgunApiValues").Split(',');
             apiKey = mailgunApiValues[0];
             domain = mailgunApiValues[1];
             from = mailgunApiValues[2];
