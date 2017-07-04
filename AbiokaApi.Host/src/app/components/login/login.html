@@ -20,9 +20,18 @@
                     <validation-message model="loginForm.password" field-name="{{'Password' | translate}}"></validation-message>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <md-checkbox ng-model="vm.rememberMe" aria-label="{{'RememberMe' | translate}}">
-                        {{'RememberMe' | translate}}
-                    </md-checkbox>
+                    <div layout="row" layout-xs="column" layout-align="end center">
+                        <div layout="row" layout-align="start center" flex>
+                            <md-checkbox ng-model="vm.rememberMe" aria-label="{{'RememberMe' | translate}}">
+                                {{'RememberMe' | translate}}
+                            </md-checkbox>
+                        </div>
+                        <div>
+                            <small>
+                                <a href="" ui-sref="resetPassword">{{'ForgetYourPassword' | translate}}</a>
+                            </small>
+                        </div>
+                    </div>
                 </md-input-container>
                 <md-progress-linear md-mode="indeterminate" ng-show="vm.loading"></md-progress-linear>
                 <md-input-container class="md-block">

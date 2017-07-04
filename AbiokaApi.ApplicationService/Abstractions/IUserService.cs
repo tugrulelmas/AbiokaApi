@@ -60,5 +60,17 @@ namespace AbiokaApi.ApplicationService.Abstractions
         /// </summary>
         /// <param name="encodedToken">The encoded token.</param>
         void VerifyEmail(string encodedToken);
+
+        /// <summary>
+        /// Resets the password.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        void ResetPassword(string email);
+
+        /// <summary>
+        /// News the password.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        void NewPassword(NewPasswordRequest request);
     }
 }

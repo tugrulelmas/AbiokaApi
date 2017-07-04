@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\PasswordIsReset.cs" />
     <Compile Include="Events\EmailIsVerified.cs" />
     <Compile Include="Events\RoleRemovedFromUser.cs" />
     <Compile Include="Events\RoleAddedToUser.cs" />

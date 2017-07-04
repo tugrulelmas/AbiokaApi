@@ -105,6 +105,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ResetPassword.tr.html" />
+    <Content Include="App_Data\ResetPassword.en.html" />
     <Content Include="App_Data\VerifyEmail.en.html" />
     <Content Include="App_Data\WelcomeEmail.en.html" />
     <Content Include="App_Data\WelcomeEmail.tr.html" />
@@ -116,6 +118,10 @@
     <Content Include="package.json" />
     <Content Include="src\app\app.configuration.js" />
     <Content Include="src\app\app.js" />
+    <Content Include="src\app\components\resetPassword\newPassword.html" />
+    <Content Include="src\app\components\resetPassword\resetPassword.html" />
+    <Content Include="src\app\components\resetPassword\newPasswordController.js" />
+    <Content Include="src\app\components\resetPassword\resetPasswordController.js" />
     <Content Include="src\app\components\resendVerification\resendVerificationController.js" />
     <Content Include="src\app\components\resendVerification\resendVerification.html" />
     <Content Include="src\app\components\verify\verify.html" />

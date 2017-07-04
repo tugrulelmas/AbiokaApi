@@ -65,6 +65,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure.Framework", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App_Data", "App_Data", "{175054FA-8346-40EF-980C-73BCEA5D3D56}"
 	ProjectSection(SolutionItems) = preProject
+		nuget\Templates\Host\App_Data\ResetPassword.en.html = nuget\Templates\Host\App_Data\ResetPassword.en.html
+		nuget\Templates\Host\App_Data\ResetPassword.tr.html = nuget\Templates\Host\App_Data\ResetPassword.tr.html
 		nuget\Templates\Host\App_Data\VerifyEmail.en.html = nuget\Templates\Host\App_Data\VerifyEmail.en.html
 		nuget\Templates\Host\App_Data\VerifyEmail.tr.html = nuget\Templates\Host\App_Data\VerifyEmail.tr.html
 		nuget\Templates\Host\App_Data\WelcomeEmail.en.html = nuget\Templates\Host\App_Data\WelcomeEmail.en.html

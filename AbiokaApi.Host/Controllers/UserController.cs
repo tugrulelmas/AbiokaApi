@@ -87,5 +87,24 @@ namespace AbiokaApi.Host.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("{id}/ResetPassword")]
+        public HttpResponseMessage ResetPassword([FromUri]string id) {
+            userService.ResetPassword(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("{id}/NewPassword")]
+        public HttpResponseMessage NewPassword([FromUri]string id, [FromBody]NewPasswordRequest request) {
+            request.Token = id;
+            userService.NewPassword(request);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

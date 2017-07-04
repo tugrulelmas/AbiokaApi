@@ -127,7 +127,23 @@ namespace AbiokaApi.Domain
             if(ArePasswordEqual(Email, newPassword))
                 throw new DenialException("NewPasswordCannotBeSameAsTheOldPassword");
 
-            ComputeHashPassword(newPassword);
+            ChangePassword(newPassword);
+        }
+
+        public virtual void ResetPassword() {
+            if (AuthProvider != AuthProvider.Local || !IsEmailVerified)
+                return;
+
+            ProviderToken = Guid.NewGuid().ToString();
+            AddEvent(new PasswordIsReset(this));
+        }
+
+        public virtual void SetNewPassword(string password) {
+            ChangePassword(password);
+        }
+
+        protected virtual void ChangePassword(string password) {
+            ComputeHashPassword(password);
             RefreshToken = Guid.NewGuid().ToString();
             AddEvent(new UsersPasswordIsChanged(Id, Email));
         }

@@ -96,5 +96,10 @@
   "Send": "Gönder",
   "NoVerificationEmail": "Doğrulama e-postası gelmedi mi? Lütfen spam dosyasını kontrol edin veya",
   "RequestNewVerificationEmail": "Yeni Doğrulama e-postası İste",
-  "AccountIsAlreadyVerified": "Hesap dağa önce doğrulanmış."
+  "AccountIsAlreadyVerified": "Hesap dağa önce doğrulanmış.",
+  "ResetPassword": "Parola Sıfırla",
+  "AlreadyHaveAnAccountAndPassword": "Zaten bir hesabınız ve şifreniz var mı?",
+  "ForgetYourPassword": "Şifremi unuttum.",
+  "ResetPasswordMessage": "E-posta adresiniz veritabanımızda mevcutsa, birkaç dakika içinde e-posta adresinize bir şifre kurtarma bağlantısı gönderilecektir.",
+  "PleaseVerifyYourAccount": "Hesabınız doğrulanmamış. Lütfen e-postalarınızı kontrol edin ve hesabınızı doğrulayın."
 }

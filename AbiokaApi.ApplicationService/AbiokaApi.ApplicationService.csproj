@@ -68,6 +68,7 @@
     <Compile Include="DTOs\UserDTO.cs" />
     <Compile Include="EventHandlers\RoleAddedToUserHandler.cs" />
     <Compile Include="EventHandlers\RoleRemovedFromUserHandler.cs" />
+    <Compile Include="EventHandlers\SendResetPasswordEmailHandler.cs" />
     <Compile Include="EventHandlers\SendWelcomeEmailHandler.cs" />
     <Compile Include="EventHandlers\SendVerificationEmailHandler.cs" />
     <Compile Include="Handlers\ExceptionLogHandler.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Interceptors\RoleValidationInterceptor.cs" />
     <Compile Include="Messaging\AddUserResponse.cs" />
     <Compile Include="Messaging\AuthRequest.cs" />
+    <Compile Include="Messaging\NewPasswordRequest.cs" />
     <Compile Include="Messaging\ChangePasswordRequest.cs" />
     <Compile Include="Messaging\CreateApplicationDataRequest.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />

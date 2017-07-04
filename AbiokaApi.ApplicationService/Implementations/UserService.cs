@@ -104,7 +104,22 @@ namespace AbiokaApi.ApplicationService.Implementations
                 return;
 
             user.VerifyEmail();
+            userSecurityRepository.Update(user);
+        }
 
+        public void ResetPassword(string email) {
+            var user = userSecurityRepository.GetByEmail(email);
+            if (user == null)
+                return;
+
+            user.ResetPassword();
+            userSecurityRepository.Update(user);
+        }
+
+        public void NewPassword(NewPasswordRequest request) {
+            var providerToken = request.Token.DecodeBase64();
+            var user = userSecurityRepository.Query().Where(u => u.ProviderToken == providerToken).FirstOrDefault();
+            user.SetNewPassword(request.Password);
             userSecurityRepository.Update(user);
         }
     }

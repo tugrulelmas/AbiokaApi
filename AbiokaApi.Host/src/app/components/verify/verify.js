@@ -18,7 +18,7 @@
         function activate() {
             vm.loading = true;
             $http.put("./user/" + id + "/verify").then(function (response) {
-                $state.go("/");
+                $state.go("login");
             }, function () {
                 vm.loading = false;
             });

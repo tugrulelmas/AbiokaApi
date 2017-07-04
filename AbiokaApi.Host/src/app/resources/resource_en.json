@@ -96,5 +96,10 @@
   "Send": "Send",
   "NoVerificationEmail": "No confirmation email received? Please check your spam folder or",
   "RequestNewVerificationEmail": "Request New Confirmation Email",
-  "AccountIsAlreadyVerified": "Account is already verified."
+  "AccountIsAlreadyVerified": "Account is already verified.",
+  "ResetPassword": "Reset Password",
+  "AlreadyHaveAnAccountAndPassword": "Already have an account and password?",
+  "ForgetYourPassword": "Forget your password?",
+  "ResetPasswordMessage": "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.",
+  "PleaseVerifyYourAccount": "Your account is not confirmed. Please check your email to confirm your account."
 }
