@@ -89,7 +89,12 @@
   "UserIsRegisteredForGoogle": "{0} is registered for Google. Please login with Google.",
   "EmailIsNotVerifiedCheckYourEmails": "Account is not verified! Please check your emails.",
   "UnverifiedEmail": "Unverified Email",
-  "VerifyEmail": "Please check your emails and verify your account.",
+  "VerifyEmail": "Please check your email to confirm your account.",
   "VerifyAccount": "Verify Account",
-  "PleaseWaitAccountIsVerifying": "Please wait. Your account is being verified."
+  "PleaseWaitAccountIsVerifying": "Please wait. Your account is being verified.",
+  "ResendConfirmationInstructions": "Resend Confirmation Instructions",
+  "Send": "Send",
+  "NoVerificationEmail": "No confirmation email received? Please check your spam folder or",
+  "RequestNewVerificationEmail": "Request New Confirmation Email",
+  "AccountIsAlreadyVerified": "Account is already verified."
 }

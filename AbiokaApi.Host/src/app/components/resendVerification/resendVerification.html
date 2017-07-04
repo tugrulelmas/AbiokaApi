@@ -1,0 +1,35 @@
+﻿<md-content layout="row" layout-align="space-around" layout-padding="layout-padding">
+    <md-card flex="flex" flex-gt-sm="50" flex-gt-md="33">
+        <md-toolbar data-background-color="green" data-icon="true">
+            <div class="card-header-icon">
+                <i class="material-icons md-dark">verified_user</i>
+            </div>
+        </md-toolbar>
+        <md-card-content>
+            <h4><span>{{'ResendConfirmationInstructions' | translate}}</span></h4>
+            <div ng-show="!vm.resent">
+                <form name="vm.modelForm" ng-submit="vm.modelForm.$valid && vm.resend()" novalidate>
+                    <md-input-container class="md-block">
+                        <label>{{'Email' | translate}}</label>
+                        <md-icon>email</md-icon>
+                        <input type="email" name="email" ng-model="vm.model.Email" required />
+                        <validation-message model="vm.modelForm.email" field-name="{{'Email' | translate}}"></validation-message>
+                    </md-input-container>
+                    <div layout="row" flex>
+                        <md-button flex="100" type="submit" ng-disabled="!vm.modelForm.$valid || vm.loading" class="md-raised md-warn">&nbsp {{'Send' | translate}} &nbsp</md-button>
+                    </div>
+                    <hr />
+                    <p>
+                        <small>
+                            {{'AlreadyHaveAnAccount' | translate}}
+                            <a href="" ui-sref="login">{{'Login' | translate}}</a>
+                        </small>
+                    </p>
+                </form>
+            </div>
+            <div ng-show="vm.resent">
+                {{'VerifyEmail' | translate}}
+            </div>
+        </md-card-content>
+    </md-card>
+</md-content>

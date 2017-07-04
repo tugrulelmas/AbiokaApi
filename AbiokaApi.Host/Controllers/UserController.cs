@@ -12,10 +12,12 @@ namespace AbiokaApi.Host.Controllers
     public class UserController : BaseReadController<UserDTO>
     {
         private readonly IUserService userService;
+        private readonly INotificationService notificationService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, INotificationService notificationService)
             : base(userService) {
             this.userService = userService;
+            this.notificationService = notificationService;
         }
         
         [HttpPost]
@@ -73,6 +75,15 @@ namespace AbiokaApi.Host.Controllers
         [Route("{id}/Verify")]
         public HttpResponseMessage Verify([FromUri]string id) {
             userService.VerifyEmail(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("{id}/ResendVerification")]
+        public HttpResponseMessage ResendVerification([FromUri]string id) {
+            notificationService.SendVerificationEmail(new SendVerificationEmailRequest { Email = id });
 
             return Request.CreateResponse(HttpStatusCode.OK);
         }

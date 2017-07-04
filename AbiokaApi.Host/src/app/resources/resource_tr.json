@@ -91,5 +91,10 @@
   "UnverifiedEmail": "Email Doğrulanmamış",
   "VerifyEmail": "Lütfen e-postalarınızı kontrol edin ve hesabınızı doğrulayın.",
   "VerifyAccount": "Hesap Doğrula",
-  "PleaseWaitAccountIsVerifying": "Lütfen bekleyin. Hesabınız doğrulanıyor."
+  "PleaseWaitAccountIsVerifying": "Lütfen bekleyin. Hesabınız doğrulanıyor.",
+  "ResendConfirmationInstructions": "Hesap Doğrulama Bilgilerini Yeniden Gönder",
+  "Send": "Gönder",
+  "NoVerificationEmail": "Doğrulama e-postası gelmedi mi? Lütfen spam dosyasını kontrol edin veya",
+  "RequestNewVerificationEmail": "Yeni Doğrulama e-postası İste",
+  "AccountIsAlreadyVerified": "Hesap dağa önce doğrulanmış."
 }

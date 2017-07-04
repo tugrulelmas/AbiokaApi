@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\IEmailService.cs" />
     <Compile Include="Abstractions\IHttpClient.cs" />
+    <Compile Include="Abstractions\INotification.cs" />
     <Compile Include="Abstractions\IRoleService.cs" />
     <Compile Include="Abstractions\ITemplateReader.cs" />
     <Compile Include="Authentication\FacebookAuthService.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Implementations\FileReader.cs" />
     <Compile Include="Implementations\InstallationService.cs" />
     <Compile Include="Implementations\MenuService.cs" />
+    <Compile Include="Implementations\NotificationService.cs" />
     <Compile Include="Implementations\ReadService.cs" />
     <Compile Include="Implementations\RoleService.cs" />
     <Compile Include="Implementations\TemplateReader.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Messaging\CreateApplicationDataRequest.cs" />
     <Compile Include="Messaging\AddUserRequest.cs" />
     <Compile Include="Messaging\EmailRequest.cs" />
+    <Compile Include="Messaging\SendVerificationEmailRequest.cs" />
     <Compile Include="Messaging\Template.cs" />
     <Compile Include="Messaging\FilePathRequest.cs" />
     <Compile Include="Messaging\ReadTemplateRequest.cs" />

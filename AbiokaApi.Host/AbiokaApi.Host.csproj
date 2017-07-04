@@ -116,6 +116,8 @@
     <Content Include="package.json" />
     <Content Include="src\app\app.configuration.js" />
     <Content Include="src\app\app.js" />
+    <Content Include="src\app\components\resendVerification\resendVerificationController.js" />
+    <Content Include="src\app\components\resendVerification\resendVerification.html" />
     <Content Include="src\app\components\verify\verify.html" />
     <Content Include="src\app\components\verify\verify.js" />
     <Content Include="src\app\components\register\register.html" />

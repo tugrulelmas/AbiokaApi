@@ -80,7 +80,21 @@
                 </div>
             </div>
             <div ng-show="vm.registered">
-                {{'VerifyEmail' | translate}}
+                <p>
+                    {{'VerifyEmail' | translate}}
+                </p>
+                <hr />
+                <br />
+                <md-card>
+                    <md-card-content>
+                        <p>
+                            {{'NoVerificationEmail' | translate}}
+                        </p>
+                        <div layout="row" flex>
+                            <md-button ng-href="resendVerification" flex="100" class="md-raised md-warn">&nbsp {{'RequestNewVerificationEmail' | translate}} &nbsp</md-button>
+                        </div>
+                    </md-card-content>
+                </md-card>
             </div>
         </md-card-content>
     </md-card>
