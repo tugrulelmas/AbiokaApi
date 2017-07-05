@@ -3,6 +3,22 @@
     height: 100%;
 }
 
+a {
+    color: #1b69b6;
+    text-decoration: none
+}
+
+a:hover, a:focus {
+    color: #134a81;
+    text-decoration: underline
+}
+
+a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
 md-content {
     background-color: inherit;
 }
@@ -562,4 +578,8 @@ a.docs-logo {
   padding: 8px;
   margin: 0;
   background-color: #fff;
+}
+
+.forgot-password {
+    margin-top: -20px;
 }
