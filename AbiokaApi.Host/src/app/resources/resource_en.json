@@ -101,5 +101,7 @@
   "AlreadyHaveAnAccountAndPassword": "Already have an account and password?",
   "ForgetYourPassword": "Forget your password?",
   "ResetPasswordMessage": "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.",
-  "PleaseVerifyYourAccount": "Your account is not confirmed. Please check your email to confirm your account."
+  "PleaseVerifyYourAccount": "Your account is not confirmed. Please check your email to confirm your account.",
+  "DidntReceiveConfirmationEmail": "Didn't receive a confirmation email?",
+  "RequestNewOne": "Request a new one"
 }

@@ -101,5 +101,7 @@
   "AlreadyHaveAnAccountAndPassword": "Zaten bir hesabınız ve şifreniz var mı?",
   "ForgetYourPassword": "Şifremi unuttum.",
   "ResetPasswordMessage": "E-posta adresiniz veritabanımızda mevcutsa, birkaç dakika içinde e-posta adresinize bir şifre kurtarma bağlantısı gönderilecektir.",
-  "PleaseVerifyYourAccount": "Hesabınız doğrulanmamış. Lütfen e-postalarınızı kontrol edin ve hesabınızı doğrulayın."
+  "PleaseVerifyYourAccount": "Hesabınız doğrulanmamış. Lütfen e-postalarınızı kontrol edin ve hesabınızı doğrulayın.",
+  "DidntReceiveConfirmationEmail": "Onay e-postası almadınız mı?",
+  "RequestNewOne": "Yeni bir tane talep et"
 }
