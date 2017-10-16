@@ -327,6 +327,8 @@ Change Facebook and Google's client and secret key's value in [web.config](Abiok
 
 Open the [AbiokaApi.sln](AbiokaApi.sln) with Visual Studio and then run the project.
 
+Open http://localhost:84 in your lovely browser.
+
 #### Installation via nuget
 
 Install full code:
