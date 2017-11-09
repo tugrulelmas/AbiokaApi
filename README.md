@@ -2,7 +2,7 @@
 
 # AbiokaApi
 
-This is a boilerplate framework helps you build fast, robust, and modern web application. S.O.L.I.D principles are applied in this project. It implements NLayer Architecture (Domain, Application, Infrastructure and UI Layers) and also provides a good infrastructure to implement best practices such as Aspect Oriented Programming, Dependency Injection.
+This is a boilerplate framework that helps building fast, robust, and modern web applications. S.O.L.I.D principles are applied in this project. It implements NLayer Architecture (Domain, Application, Infrastructure and UI Layers) and also provides a good infrastructure to implement best practices such as Aspect Oriented Programming, Dependency Injection.
 
 * [Installation](#installation)
 * [License](#license)
